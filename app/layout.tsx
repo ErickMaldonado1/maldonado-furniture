@@ -1,9 +1,10 @@
-// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Outfit, Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/layout/navBar/NavBar";
 import Footer from "@/components/layout/footer/Footer";
+import { MainProvider } from "@/providers/MainProvider";
+import WhatsAppButton from "@/components/ui/WhatsApp/WhatsAppButton";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -30,12 +31,14 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${inter.variable} font-sans antialiased bg-white dark:bg-[#0a0a0a] transition-colors duration-500`}
       >
-        {/* Aquí integras la estructura que tenías en el componente Layout */}
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        <MainProvider>
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <WhatsAppButton />
+          </div>
+        </MainProvider>
       </body>
     </html>
   );

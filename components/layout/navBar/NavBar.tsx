@@ -18,10 +18,17 @@ import MegaMenu from "@/components/layout/menu/MegaMenu";
 import MobileMenu from "@/components/layout/menu/MobileMenu";
 import DesktopNav from "@/components/layout/menu/DesktopNav";
 import { categories } from "@/lib/categories";
+import AuthDrawer from "@/components/layout/AuthDrawer";
+import FavoritesMenu from "./FavoritesMenu";
+import CartDrawer from "./CartDrawer";
+import UserDropdown from "./UserDropdown";
+import { useCartStore } from "@/store/cart-store";
 
 const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const [favoritesOpen, setFavoritesOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -34,6 +41,10 @@ const Navbar = () => {
   const isHomePage = pathname === "/";
   const showSolidNavbar = isScrolled || !isHomePage;
   const isAnyMenuOpen = activeMenu !== null || isHoveringMenu;
+  const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
+
+  const totalItems = useCartStore((state) => state.getTotalItems());
+  const cartItems = useCartStore((state) => state.cart);
 
   const handleLinkMouseEnter = (item: string) => {
     if (closeTimeout) clearTimeout(closeTimeout);
@@ -82,7 +93,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 font-sans ${showSolidNavbar ? "bg-white/90 dark:bg-[#0D0D0D]/90 backdrop-blur-2xl py-2 shadow-sm border-b border-zinc-200/50 dark:border-white/5" : "bg-transparent py-3"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 font-sans ${showSolidNavbar ? "bg-white/90 dark:bg-[#0D0D0D]/90 py-2 shadow-sm border-b border-zinc-200/50 dark:border-white/5" : "bg-transparent py-3"}`}
     >
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 flex justify-between items-center gap-8">
         {/* Logo */}
@@ -133,29 +144,36 @@ const Navbar = () => {
           </button>
 
           <Link
-            href="/favoritos"
+            href="/"
             className={`p-2.5 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"}`}
           >
-            <HiOutlineHeart className="text-2xl group-hover:scale-110 transition-transform" />
+            <HiOutlineHeart
+              className="text-2xl group-hover:scale-110 transition-transform"
+              onClick={() => setFavoritesOpen(true)}
+            />
             <span className="absolute top-2 right-2 w-2 h-2 bg-[#4A3728] rounded-full" />
           </Link>
 
-          {/* Icono de Usuario (RESTAURADO) */}
-          <Link
-            href="/perfil"
-            className={`p-2.5 rounded-full group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"}`}
-          >
-            <HiOutlineUser className="text-2xl group-hover:scale-110 transition-transform" />
-          </Link>
+      
+          <UserDropdown
+            onOpenAuth={() => setIsAuthDrawerOpen(true)}
+            showSolidNavbar={showSolidNavbar}
+          />
 
           <Link
-            href="/carrito"
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setCartOpen(true);
+            }}
             className={`p-2.5 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"}`}
           >
             <HiOutlineShoppingBag className="text-2xl group-hover:scale-110 transition-transform" />
-            <span className="absolute top-1 right-1 bg-[#4A3728] text-white text-[10px] font-black h-5 w-5 rounded-full flex items-center justify-center shadow-lg">
-              0
-            </span>
+            {mounted && totalItems > 0 && (
+              <span className="absolute top-1 right-1 bg-[#4A3728] text-white text-[10px] font-black h-5 w-5 rounded-full flex items-center justify-center shadow-lg animate-in zoom-in">
+                {totalItems}
+              </span>
+            )}
           </Link>
 
           <button
@@ -167,7 +185,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Desktop Navigation Component */}
       <DesktopNav
         showSolidNavbar={showSolidNavbar}
         activeMenu={activeMenu}
@@ -177,7 +194,6 @@ const Navbar = () => {
         isHomePage={isHomePage}
       />
 
-      {/* Mega Menu Integration */}
       <MegaMenu
         isOpen={isAnyMenuOpen}
         data={categories.find((c) => c.label === activeMenu) || null}
@@ -193,8 +209,6 @@ const Navbar = () => {
           setCloseTimeout(timeout);
         }}
       />
-
-      {/* Mobile Menu Component (REPARADO) */}
       <MobileMenu
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
@@ -202,6 +216,20 @@ const Navbar = () => {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         handleSearch={handleSearch}
+      />
+
+      <AuthDrawer
+        isOpen={isAuthDrawerOpen}
+        onClose={() => setIsAuthDrawerOpen(false)}
+      />
+      <FavoritesMenu
+        isOpen={favoritesOpen}
+        onClose={() => setFavoritesOpen(false)}
+      />
+      <CartDrawer
+        isOpen={cartOpen}
+        onClose={() => setCartOpen(false)}
+        items={cartItems}
       />
     </nav>
   );
