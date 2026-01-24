@@ -93,10 +93,9 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 font-sans ${showSolidNavbar ? "bg-white/90 dark:bg-[#0D0D0D]/90 py-2 shadow-sm border-b border-zinc-200/50 dark:border-white/5" : "bg-transparent py-3"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 font-sans ${showSolidNavbar ? "bg-white dark:bg-[#0D0D0D] py-2 shadow-sm border-b border-zinc-200/50 dark:border-white/5" : "bg-transparent py-3"}`}
     >
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 flex justify-between items-center gap-8">
-        {/* Logo */}
         <Link href="/" className="shrink-0 group">
           <div className="relative w-36 aspect-400/113 transition-transform group-hover:scale-105">
             <Image
@@ -112,8 +111,6 @@ const Navbar = () => {
             />
           </div>
         </Link>
-
-        {/* Search Desktop */}
         <form
           onSubmit={handleSearch}
           className="hidden md:flex flex-1 max-w-xl relative group"
@@ -130,7 +127,6 @@ const Navbar = () => {
           />
         </form>
 
-        {/* Global Icons */}
         <div className="flex items-center gap-1 md:gap-4">
           <button
             onClick={toggleTheme}
@@ -154,12 +150,10 @@ const Navbar = () => {
             <span className="absolute top-2 right-2 w-2 h-2 bg-[#4A3728] rounded-full" />
           </Link>
 
-      
           <UserDropdown
             onOpenAuth={() => setIsAuthDrawerOpen(true)}
             showSolidNavbar={showSolidNavbar}
           />
-
           <Link
             href="#"
             onClick={(e) => {
@@ -170,12 +164,11 @@ const Navbar = () => {
           >
             <HiOutlineShoppingBag className="text-2xl group-hover:scale-110 transition-transform" />
             {mounted && totalItems > 0 && (
-              <span className="absolute top-1 right-1 bg-[#4A3728] text-white text-[10px] font-black h-5 w-5 rounded-full flex items-center justify-center shadow-lg animate-in zoom-in">
+              <span className="absolute top-1 right-1 bg-[#4A3728] text-white text-md font-black h-5 w-5 rounded-full flex items-center justify-center shadow-lg animate-in zoom-in">
                 {totalItems}
               </span>
             )}
           </Link>
-
           <button
             onClick={() => setIsMobileMenuOpen(true)}
             className={`lg:hidden p-2.5 text-3xl transition-all ${!showSolidNavbar ? "text-white" : "text-zinc-700 dark:text-white"}`}

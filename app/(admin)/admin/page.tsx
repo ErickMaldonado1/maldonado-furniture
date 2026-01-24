@@ -68,7 +68,7 @@ export default async function AdminPage() {
           />
         </div>
 
-        <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <div className="bg-white p-8 rounded-sm border border-slate-200 shadow-sm">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-slate-800">
               Pedidos Recientes
@@ -115,7 +115,7 @@ export default async function AdminPage() {
                       </td>
                       <td className="py-4 px-2">
                         <span
-                          className={`inline-block px-2 py-1 rounded-full text-[10px] font-bold uppercase ${
+                          className={`inline-block px-2 py-1 rounded-full text-md font-bold uppercase ${
                             order.status === "PAID"
                               ? "bg-emerald-100 text-emerald-700"
                               : order.status === "PENDING"
@@ -137,7 +137,7 @@ export default async function AdminPage() {
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition group">
+          <div className="bg-white p-8 rounded-sm shadow-sm border border-slate-200 hover:shadow-md transition group">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2 text-slate-800">
               <Package size={20} /> Gestión de Inventario
             </h2>
@@ -152,7 +152,7 @@ export default async function AdminPage() {
             </Link>
           </div>
 
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition group">
+          <div className="bg-white p-8 rounded-sm shadow-sm border border-slate-200 hover:shadow-md transition group">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2 text-slate-800">
               <LayoutDashboard size={20} /> Gestión de Pedidos
             </h2>
@@ -174,8 +174,8 @@ export default async function AdminPage() {
 
 function StatCard({ title, value, icon, description }: any) {
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-start gap-4 hover:shadow-md transition-shadow">
-      <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
+    <div className="bg-white p-6 rounded-sm shadow-sm border border-slate-200 flex items-start gap-4 hover:shadow-md transition-shadow">
+      <div className="p-3 bg-slate-50 rounded-sm border border-slate-100">
         {icon}
       </div>
       <div>

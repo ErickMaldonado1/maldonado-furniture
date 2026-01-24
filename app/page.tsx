@@ -1,26 +1,42 @@
 import HeroSlider from "@/components/home/HeroSlider";
-import CategoryShowcase from "@/components/home/CategoryShowcase";
-import ServicesHero from "@/components/home/ServicesHero";
 import ValueProps from "@/components/home/ValueProps";
+import CategoryShowcase from "@/components/home/CategoryShowcase";
 import FeaturedCarousel from "@/components/home/FeaturedCarousel";
-import prisma from "@/lib/prisma";
+import CategoryCarousel from "@/components/home/CategoryCarousel";
+import { ProductService } from "@/features/products/product.service";
 
 const HomePage = async () => {
-  const featuredProducts = await prisma.product.findMany({
-    where: { isActive: true },
-    take: 5,
-    orderBy: { createdAt: "desc" },
-    include: { images: true },
-  });
+  const [featured, bedroom, living, office] = await Promise.all([
+    ProductService.getAll({ isFeatured: true, limit: 8 }),
+    ProductService.getByCategory("Dormitorio", 8),
+    ProductService.getByCategory("Sala", 8),
+    ProductService.getByCategory("Oficina", 8),
+  ]);
 
   return (
-    <div className="flex flex-col w-full dark:bg-[#121212] overflow-x-hidden">
+    <div className="flex flex-col w-full dark:bg-[#050505] overflow-x-hidden">
       <HeroSlider />
+      <FeaturedCarousel products={featured} />
       <ValueProps />
-      <FeaturedCarousel products={featuredProducts} />
+      <CategoryCarousel
+        products={bedroom}
+        title="Ideas para Dormitorio"
+        categorySlug="dormitorio"
+      />
+      <CategoryCarousel
+        products={living}
+        title="Tu sala con estilo"
+        categorySlug="sala"
+      />
       <CategoryShowcase />
-      <ServicesHero />
+
+      <CategoryCarousel
+        products={office}
+        title="Muebles de oficina"
+        categorySlug="oficina"
+      />
     </div>
   );
 };
+
 export default HomePage;

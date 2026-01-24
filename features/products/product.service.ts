@@ -1,10 +1,7 @@
-// features/products/product.service.ts
 import prisma from "@/lib/prisma";
 import { uploadImage } from "@/lib/cloudinary";
 
 export const ProductService = {
-  // --- PRODUCTOS ---
-
   async getAll(filters: any) {
     return await prisma.product.findMany({
       where: {
@@ -41,6 +38,37 @@ export const ProductService = {
     });
   },
 
+
+async getBySlug(slug: string) {
+  // 1. Generamos versiones de búsqueda
+  const nameWithSpaces = slug.replace(/-/g, ' '); // "escritorio industrial prowork"
+  
+  return await prisma.product.findFirst({
+    where: {
+      isActive: true,
+      OR: [
+        { sku: { equals: slug, mode: 'insensitive' } }, 
+        { 
+          name: { 
+            contains: nameWithSpaces, 
+            mode: 'insensitive' 
+          } 
+        },
+       
+        {
+          name: {
+            contains: slug,
+            mode: 'insensitive'
+          }
+        }
+      ],
+    },
+    include: {
+      images: true,
+      variants: { include: { dimensions: true } },
+    },
+  });
+},
   async create(data: any) {
     return await prisma.product.create({
       data: {
@@ -69,15 +97,12 @@ export const ProductService = {
     });
   },
 
-  // ESTE MÉTODO ES EL QUE TE DABA EL ERROR EN EL ROUTE.TS
   async deactivateProduct(id: string) {
     return await prisma.product.update({
       where: { id },
       data: { isActive: false },
     });
   },
-
-  // --- VARIANTES ---
 
   async getVariantById(variantId: string) {
     return await prisma.productVariant.findUnique({
@@ -96,8 +121,17 @@ export const ProductService = {
         dimensions: data.dimensions
           ? {
               upsert: {
-                create: data.dimensions,
-                update: data.dimensions,
+                update: {
+                  width: data.dimensions.width,
+                  height: data.dimensions.height,
+                  depth: data.dimensions.depth,
+                },
+
+                create: {
+                  width: data.dimensions.width,
+                  height: data.dimensions.height,
+                  depth: data.dimensions.depth,
+                },
               },
             }
           : undefined,
@@ -107,15 +141,27 @@ export const ProductService = {
   },
 
   async deleteVariant(variantId: string) {
-    // Primero borramos dimensiones por la relación 1:1 en MongoDB si existen
     await prisma.variantDimensions.deleteMany({ where: { variantId } });
     return await prisma.productVariant.delete({ where: { id: variantId } });
   },
 
-  // --- UTILIDADES ---
-
   async uploadOnly(file: string, folder: string) {
     const res = await uploadImage(file, folder);
     return { url: res.url, publicId: res.publicId };
+  },
+
+  async getByCategory(categoryName: string, limit = 8) {
+    return await prisma.product.findMany({
+      where: {
+        isActive: true,
+        category: {
+          contains: categoryName,
+          mode: "insensitive",
+        },
+      },
+      take: limit,
+      include: { images: true, variants: true },
+      orderBy: { createdAt: "desc" },
+    });
   },
 };

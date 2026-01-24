@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/navBar/NavBar";
 import Footer from "@/components/layout/footer/Footer";
 import { MainProvider } from "@/providers/MainProvider";
 import WhatsAppButton from "@/components/ui/WhatsApp/WhatsAppButton";
+import { Toaster } from "sonner";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -34,7 +35,10 @@ export default function RootLayout({
         <MainProvider>
           <div className="flex flex-col min-h-screen">
             <Navbar />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1">
+              {children}
+              <Toaster position="bottom-right" richColors expand={false} />
+            </main>
             <Footer />
             <WhatsAppButton />
           </div>

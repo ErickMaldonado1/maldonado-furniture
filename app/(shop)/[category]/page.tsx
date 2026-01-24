@@ -1,258 +1,171 @@
-"use client";
-
-import React, { use } from "react";
-import { motion, Variants } from "framer-motion";
-import {
-  HiPlus,
-  HiOutlineSparkles,
-  HiArrowLongRight,
-  HiMiniViewfinderCircle,
-} from "react-icons/hi2";
 import { categories } from "@/lib/categories";
+import ProductCard from "@/components/shop/ProductCard";
+import { ContactForm } from "@/components/shop/ContactForm";
+import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { HiOutlineSquares2X2 } from "react-icons/hi2";
 
-const fadeUp: Variants = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
-  },
-};
+const seoContent: Record<string, { prefix: string; content: React.ReactNode }> =
+  {
+    dormitorio: {
+      prefix: "Proyectamos tu",
+      content: (
+        <p className="text-justify text-md leading-relaxed text-zinc-800 dark:text-zinc-400">
+          En <strong>Muebles Maldonado</strong> ofrecemos{" "}
+          <strong>camas modernas, cómodas, closets y veladores</strong> de
+          diseño lineal. Confort con materiales de alta calidad
+        </p>
+      ),
+    },
+    sala: {
+      prefix: "Creamos tu",
+      content: (
+        <p className="text-justify text-md leading-relaxed text-zinc-800 dark:text-zinc-400">
+          Diseñamos{" "}
+          <strong>
+            muebles de sala vanguardistas, aparadores , mesas de centro ,
+            muebles de tv y paneles
+          </strong>{" "}
+          que combinan confort y elegancia para ambientes modernos.
+        </p>
+      ),
+    },
+    cocina: {
+      prefix: "Diseñamos tu",
+      content: (
+        <p className="text-justify text-md leading-relaxed text-zinc-800 dark:text-zinc-400">
+          Nuestro equipo especializado en dsieño te ayuda a proyectar tu{" "}
+          <strong>cocina de melamina y madera a tu gusto</strong>, logrando un
+          diseño funcional.
+        </p>
+      ),
+    },
+    oficina: {
+      prefix: "Equipamos tu",
+      content: (
+        <p className="text-justify text-md leading-relaxed text-zinc-800 dark:text-zinc-400">
+          Optimiza tu productividad con{" "}
+          <strong>
+            escritorios ergonómicos, estanterías, libreros a medida
+          </strong>{" "}
+          de alta resistencia con acabados profesionales.
+        </p>
+      ),
+    },
+  };
 
 type Props = {
   params: Promise<{ category: string }>;
 };
 
-const badgeStyles: Record<string, string> = {
-  accent: "bg-[#4A3728] text-white",
-  gold: "bg-amber-500 text-white",
-  red: "bg-red-500 text-white",
-  blue: "bg-blue-500 text-white",
-  green: "bg-emerald-500 text-white",
-};
+export default async function CategoryPage({ params }: Props) {
+  const { category: categorySlug } = await params;
+  const categoryConfig = categories.find((c) => c.slug === categorySlug);
 
-export default function CategoryPage({ params }: Props) {
-  const resolvedParams = use(params);
-  const categorySlug = resolvedParams.category;
+  if (!categoryConfig) return notFound();
 
-  const category = categories.find((c) => c.slug === categorySlug);
+  const productsFromDB = await prisma.product.findMany({
+    where: { category: categorySlug },
+    take: 8,
+    orderBy: { createdAt: "desc" },
+    include: { images: true, variants: true },
+  });
 
-  if (!category) {
-    return notFound();
-  }
-  const heroImage =
-    category.featuredContent[0]?.imageSrc ||
-    "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2";
+  const heroImage = categoryConfig.featuredContent[0]?.imageSrc;
 
   return (
-    <main className="mt-16 min-h-screen bg-[#FDFCFB] dark:bg-[#050505] transition-colors overflow-x-hidden">
-      <section className="relative min-h-[90vh] grid lg:grid-cols-2 items-center">
-
-        <div className="relative z-20 px-6 lg:px-20 py-20 order-2 lg:order-1">
-          <motion.div
-            variants={fadeUp}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={{ once: true }}
-          >
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#4A3728] text-white text-[9px] font-black uppercase tracking-[0.4em] mb-8">
-              Colección 2026
-            </span>
-            <h1 className="text-6xl md:text-8xl xl:text-9xl font-black uppercase tracking-tighter text-[#2B2118] dark:text-white leading-[0.85] mb-8">
-              {category.label} <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#8D6E63]">
-                Maldonado
-              </span>
-            </h1>
-            <p className="text-lg text-zinc-500 dark:text-zinc-400 max-w-md font-medium leading-relaxed mb-10">
-              Diseño y fabricación de alta gama en Quito. Descubre nuestra línea
-              exclusiva de {category.label.toLowerCase()}.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button className="bg-black dark:bg-white text-white dark:text-black px-12 py-5 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-[#4A3728] hover:text-white transition-all">
-                Ver Catálogo
-              </button>
+    <main className="mt-20 min-h-screen bg-white dark:bg-[#050505] transition-colors">
+      <section className="bg-[#FDFCFB] dark:bg-black">
+        <div className="max-w-[1360px] mx-auto flex flex-col lg:flex-row h-auto lg:h-[360px]">
+          <div className="w-full lg:w-1/2 p-4 lg:p-16 flex flex-col justify-center">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <span className="text-[#4A3728] text-2xl font-black uppercase ">
+                  {seoContent[categorySlug]?.prefix}
+                </span>
+              </div>
+              <h1 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+                {categoryConfig.label}
+              </h1>
+              <div className="max-w-md">
+                {seoContent[categorySlug]?.content}
+              </div>
             </div>
-          </motion.div>
-        </div>
-        <div className="relative h-[60vh] lg:h-full order-1 lg:order-2 overflow-hidden bg-zinc-200">
-          <div className="absolute inset-0 bg-black/10 z-10" />
-          <img
-            src={heroImage}
-            className="w-full h-full object-cover"
-            alt={`${category.label} Maldonado Furniture`}
-          />
-          {/* Badge Flotante */}
-          <div className="absolute bottom-10 right-10 z-20 bg-white/90 backdrop-blur-md p-6 hidden md:block">
-            <p className="text-[10px] font-black uppercase tracking-widest text-[#4A3728]">
-              Categoría
-            </p>
-            <p className="text-xl font-black uppercase text-black">
-              {category.label}
-            </p>
+          </div>
+          <div className="w-full lg:w-1/2 h-[280px] lg:h-full">
+            <img
+              src={heroImage}
+              className="w-full h-full object-cover"
+              alt={categoryConfig.label}
+            />
           </div>
         </div>
       </section>
-      <section className="py-32 px-6 max-w-screen-2xl mx-auto">
-        <div className="flex items-center justify-between mb-20">
-          <h2 className="text-3xl font-black uppercase tracking-tighter text-[#2B2118] dark:text-[#E7DED4]">
-            Explorar {category.label}
-          </h2>
-          <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800 mx-10 hidden md:block" />
-          <HiMiniViewfinderCircle className="text-4xl text-[#4A3728]" />
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {category.subcategories.map((sub, i) => (
-            <Link key={sub.sub} href={sub.href}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="group relative h-112.5 overflow-hidden rounded-sm cursor-pointer"
-              >
-                <img
-                  src={sub.imageSrc}
-                  alt={sub.label}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent opacity-80" />
-                <div className="absolute bottom-8 left-8 right-8 text-white">
-                  <h3 className="text-2xl font-black uppercase tracking-tighter mb-1">
-                    {sub.label}
-                  </h3>
-                  <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Ver Productos
-                  </p>
-                </div>
-              </motion.div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-    
-      <section className="bg-white dark:bg-[#0A0A0A] py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-black uppercase tracking-tighter text-[#2B2118] dark:text-[#E7DED4] mb-4">
-              Destacados
+      <section className="py-12 bg-[#FDFCFB] dark:bg-black">
+        <div className="max-w-360 mx-auto px-4 sm:px-6">
+          <div className="flex items-center gap-4 mb-8  pl-4">
+            <HiOutlineSquares2X2 className="text-[#4A3728] text-2xl" />
+            <h2 className="text-2xl font-black uppercase text-zinc-800 dark:text-zinc-200">
+              Lineas Especializadas
             </h2>
-            <p className="text-zinc-500">Lo mejor de {category.label}</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-16">
-            {category.featuredContent.map((item, i) => (
-              <Link key={i} href={item.href}>
-                <motion.div
-                  className="group"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="relative aspect-4/5 bg-[#F3EFEA] dark:bg-[#1A1A1A] overflow-hidden mb-6">
-                    <img
-                      src={item.imageSrc}
-                      className="w-full h-full object-cover mix-blend-multiply dark:mix-blend-normal opacity-90 group-hover:opacity-100 transition-opacity"
-                      alt={item.title}
-                    />
-                    <button className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all">
-                      <HiPlus className="text-white text-4xl" />
-                    </button>
-                  </div>
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h4 className="text-[11px] font-black uppercase tracking-widest text-zinc-900 dark:text-white">
-                        {item.title}
-                      </h4>
-                      <p className="text-xs text-zinc-500 mt-1">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
 
-         
-                  <span
-                    className={`inline-block mt-2 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${badgeStyles[item.badgeColor] || "bg-black text-white"}`}
-                  >
-                    {item.badge}
-                  </span>
-                </motion.div>
+          <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-2">
+            {categoryConfig.subcategories.slice(0, 8).map((sub) => (
+              <Link
+                key={sub.sub}
+                href={sub.href}
+                className="group flex flex-col items-center gap-3"
+              >
+                <div className="w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden ring-2 ring-zinc-100 dark:ring-zinc-800 group-hover:ring-[#4A3728] transition-all duration-500 p-1 bg-white dark:bg-zinc-900 shadow-md">
+                  <img
+                    src={sub.imageSrc}
+                    className="p-2 w-full h-full object-contain rounded-full transition-transform duration-700 ease-in-out group-hover:scale-110"
+                    alt={sub.label}
+                  />
+                </div>
+                <span className="text-[14px] font-bold uppercase tracking-tight text-zinc-500 group-hover:text-black dark:group-hover:text-white text-center transition-colors">
+                  {sub.label}
+                </span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. SECCIÓN TÉCNICA (SEO) */}
-      <section className="py-24 px-6 bg-[#4A3728] text-white">
-        <div className="max-w-4xl mx-auto text-center space-y-10">
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none">
-            Calidad Garantizada <br /> en {category.label}
-          </h2>
-          <p className="text-zinc-300 text-lg font-medium leading-relaxed">
-            Cada mueble es una pieza de ingeniería. Usamos materiales de primera
-            calidad para asegurar que tus {category.label.toLowerCase()} duren
-            toda la vida. Garantía extendida y soporte local en Quito.
-          </p>
-        </div>
-      </section>
-
-      {/* 5. CONTACTO — CIERRE PREMIUM */}
-      <section className="py-32 px-6 max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-20 items-start">
-          <div>
-            <h2 className="text-7xl font-black uppercase tracking-tighter dark:text-white leading-none mb-10 text-balance">
-              Hablemos <br /> de tu proyecto.
-            </h2>
-            <div className="space-y-6">
-              <div className="flex gap-6 items-center border-b border-zinc-100 dark:border-zinc-800 pb-6">
-                <span className="text-3xl font-black text-[#4A3728]">01</span>
-                <p className="text-xs font-black uppercase tracking-widest dark:text-zinc-400">
-                  Asesoría Técnica en Quito
-                </p>
-              </div>
-              <div className="flex gap-6 items-center border-b border-zinc-100 dark:border-zinc-800 pb-6">
-                <span className="text-3xl font-black text-[#4A3728]">02</span>
-                <p className="text-xs font-black uppercase tracking-widest dark:text-zinc-400">
-                  Diseño 3D Personalizado
-                </p>
-              </div>
+      <section className="py-12 bg-[#FDFCFB] dark:bg-black">
+        <div className="max-w-360 mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between mb-14">
+            <div className="flex items-center gap-3">
+              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white">
+                Productos <span className="text-[#4A3728]">Destacados</span>
+              </h2>
             </div>
           </div>
 
-          <div className="bg-[#141414] p-10 lg:p-16 rounded-sm shadow-2xl">
-            <form className="space-y-8">
-              <div className="space-y-2">
-                <label className="text-[9px] font-black uppercase tracking-[0.4em] text-zinc-500">
-                  Nombre del Proyecto
-                </label>
-                <input
-                  type="text"
-                  className="w-full bg-transparent border-b border-zinc-800 py-3 outline-none text-white font-bold focus:border-[#4A3728] transition-colors"
-                  placeholder={`EJ: ${category.label.toUpperCase()} MASTER`}
+          {productsFromDB.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
+              {productsFromDB.map((product, i) => (
+                <ProductCard
+                  key={product.id}
+                  product={JSON.parse(JSON.stringify(product))}
+                  index={i}
                 />
-              </div>
-              <div className="space-y-2">
-                <label className="text-[9px] font-black uppercase tracking-[0.4em] text-zinc-500">
-                  WhatsApp de contacto
-                </label>
-                <input
-                  type="text"
-                  className="w-full bg-transparent border-b border-zinc-800 py-3 outline-none text-white font-bold focus:border-[#4A3728] transition-colors"
-                  placeholder="+593 ..."
-                />
-              </div>
-              <button className="w-full py-6 bg-white text-black font-black uppercase text-[10px] tracking-[0.5em] hover:bg-[#4A3728] hover:text-white transition-all">
-                Enviar Solicitud{" "}
-                <HiArrowLongRight className="inline ml-2 text-xl" />
-              </button>
-            </form>
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-24 border-2 border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl">
+              <p className="text-zinc-400 uppercase tracking-[0.2em] text-xs font-black">
+                Próximamente más modelos exclusivos
+              </p>
+            </div>
+          )}
         </div>
       </section>
+
+      <ContactForm />
     </main>
   );
 }

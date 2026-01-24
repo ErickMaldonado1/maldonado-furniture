@@ -22,12 +22,10 @@ export default function CategoryLayout({
 
   return (
     <main className="mt-16 min-h-screen bg-[#FDFCFB] dark:bg-[#050505] transition-colors overflow-x-hidden">
- 
       <section className="relative min-h-[60vh] lg:h-[80vh] grid lg:grid-cols-2 items-center">
-
         <div className="relative z-20 px-6 lg:px-20 py-20 order-2 lg:order-1">
           <div className="animate-in slide-in-from-bottom-10 fade-in duration-700">
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#4A3728] text-white text-[9px] font-black uppercase tracking-[0.4em] mb-8">
+            <span className="inline-flex items-center gap-2 px-3 py-1 bg-[#4A3728] text-white text-md font-black uppercase tracking-[0.4em] mb-8">
               Colección 2026
             </span>
             <h1 className="text-5xl md:text-7xl xl:text-8xl font-black uppercase tracking-tighter text-[#2B2118] dark:text-white leading-[0.85] mb-8">
@@ -44,7 +42,7 @@ export default function CategoryLayout({
             <div className="flex flex-wrap gap-4">
               <Link
                 href={`/${category.slug}/${category.subcategories[0]?.sub || ""}`}
-                className="bg-black dark:bg-white text-white dark:text-black px-12 py-5 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-[#4A3728] hover:text-white transition-all"
+                className="bg-black dark:bg-white text-white dark:text-black px-12 py-5 text-md font-black uppercase tracking-[0.3em] hover:bg-[#4A3728] hover:text-white transition-all"
               >
                 Ver Catálogo
               </Link>
@@ -85,7 +83,7 @@ export default function CategoryLayout({
             <Link
               href={`/${category.slug}/${sub.sub}`}
               key={sub.sub}
-              className="group relative h-96 overflow-hidden rounded-2xl cursor-pointer block"
+              className="group relative h-96 overflow-hidden rounded-sm cursor-pointer block"
             >
               <Image
                 src={sub.imageSrc}
@@ -98,7 +96,7 @@ export default function CategoryLayout({
                 <h3 className="text-2xl font-black uppercase tracking-tighter mb-1">
                   {sub.label}
                 </h3>
-                <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-300 opacity-0 group-hover:opacity-100 transition-opacity">
+                <p className="text-md font-bold uppercase tracking-[0.3em] text-zinc-300 opacity-0 group-hover:opacity-100 transition-opacity">
                   Ver Productos
                 </p>
               </div>
@@ -121,7 +119,7 @@ export default function CategoryLayout({
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
               {featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard key={product.id} product={product} index={0} />
               ))}
             </div>
           </div>

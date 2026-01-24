@@ -67,7 +67,7 @@ export default function Drawer({
             initial="closed"
             animate="open"
             exit="closed"
-            className={`fixed top-0 bottom-0 z-[101] w-full max-w-md bg-white dark:bg-[#0A0A0A] shadow-2xl ${
+            className={`fixed top-0 bottom-0 z-[101] w-full max-w-md bg-white dark:bg-[#0A0A0A] shadow ${
               position === "right" ? "right-0 border-l" : "left-0 border-r"
             } border-zinc-100 dark:border-zinc-800 flex flex-col`}
           >

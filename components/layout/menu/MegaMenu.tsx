@@ -28,11 +28,9 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
           onMouseLeave={onMouseLeave}
           className="absolute top-full left-1/2 -translate-x-1/2 z-50 hidden lg:block w-full"
         >
-          {/* CONTENEDOR REAL */}
-          <div className="w-full bg-white/90 dark:bg-[#0b0b0b]/80 backdrop-blur-sm">
+          <div className="w-full bg-white/95 dark:bg-[#0b0b0b]/95 backdrop-blur-sm">
             <div className="mx-auto max-w-360">
               <div className="grid grid-cols-[1fr_2fr_2fr] gap-10 px-10 py-4">
-                {/* CATEGORÍAS */}
                 <div className="min-w-0">
                   <p className="text-[12px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4">
                     {data.label}
@@ -46,7 +44,7 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                           className="group flex items-center justify-between px-3 py-1 rounded-lg
                 hover:bg-zinc-100 dark:hover:bg-white/5 transition"
                         >
-                          <span className="text-[14px] font-semibold text-zinc-800 dark:text-zinc-200 truncate">
+                          <span className="text-md font-semibold text-zinc-800 dark:text-zinc-200 truncate">
                             {cat.label}
                           </span>
 
@@ -90,10 +88,8 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                     ))}
                   </div>
                 </div>
-
-                {/* TENDENCIAS */}
                 <div className="min-w-0">
-                  <p className="text-[11px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4">
+                  <p className="text-[12px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4">
                     Tendencias
                   </p>
 
@@ -102,11 +98,10 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                       <Link
                         key={item.title}
                         href={item.href}
-                        className="group relative w-full rounded-2xl border border-zinc-200/40 dark:border-white/10
+                        className="group relative w-full rounded-sm border border-zinc-200/40 dark:border-white/10
   bg-white dark:bg-zinc-900 overflow-hidden transition-all
-  hover:shadow-2xl hover:-translate-y-1"
+  hover:shadow hover:-translate-y-1"
                       >
-                        {/* Imagen */}
                         <div className="relative aspect-4/3 overflow-hidden">
                           <Image
                             src={item.imageSrc}
@@ -114,17 +109,13 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                           />
-
-                          {/* Overlay premium */}
                           <div
                             className="absolute inset-0 bg-linear-to-t
       from-black/50 via-black/10 to-transparent opacity-80"
                           />
-
-                          {/* Badge */}
                           {item.badge && (
                             <span
-                              className={`absolute top-4 left-4 px-3 py-1 text-[10px]
+                              className={`absolute top-4 left-4 px-3 py-1 text-[12px]
         font-black uppercase tracking-widest rounded-full backdrop-blur-md
         ${badgeStyles[item.badgeColor]}`}
                             >
@@ -133,18 +124,17 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                           )}
                         </div>
 
-                        {/* Contenido */}
                         <div className="relative p-5">
-                          <h4 className="text-[15px] font-semibold text-zinc-900 dark:text-white leading-tight mb-1">
+                          <h4 className="text-[12px] font-semibold text-zinc-900 dark:text-white leading-tight mb-1">
                             {item.title}
                           </h4>
 
-                          <p className="text-[12px] text-zinc-500 dark:text-zinc-400 line-clamp-2">
+                          <p className="text-md text-zinc-500 dark:text-zinc-400 line-clamp-2">
                             {item.description}
                           </p>
 
                           <span
-                            className="mt-3 block text-[11px] uppercase tracking-widest text-zinc-400
+                            className="mt-3 block text-[12px] uppercase tracking-widest text-zinc-400
   group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition"
                           >
                             Explorar →

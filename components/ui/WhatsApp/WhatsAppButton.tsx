@@ -20,7 +20,7 @@ export default function WhatsAppButton() {
     >
       {/* Tooltip Message */}
       {isOpen && (
-        <div className="relative bg-white dark:bg-zinc-800 p-4 rounded-xl shadow-xl shadow-zinc-200/50 dark:shadow-black/50 border border-zinc-100 dark:border-white/5 max-w-[250px] animate-in fade-in zoom-in duration-200 origin-bottom-right">
+        <div className="relative bg-white dark:bg-zinc-800 p-4 rounded-sm shadow-xl shadow-zinc-200/50 dark:shadow-black/50 border border-zinc-100 dark:border-white/5 max-w-[250px] animate-in fade-in zoom-in duration-200 origin-bottom-right">
           <button
             onClick={(e) => {
               e.preventDefault();

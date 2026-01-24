@@ -44,18 +44,16 @@ export default function FavoritesPage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {favorites.map((fav) => {
-              // Adapting generic favorite item to ProductCard props structure mock
-              // Ideally, favorites should store more data or we assume basic data is enough for display
-              // Or fetch fresh data. Displaying what we have for speed.
+              
               const mockProduct = {
                 id: fav.id,
                 name: fav.name,
                 price: fav.price,
                 images: [{ url: fav.image }],
                 category: "Favorito",
-                // other defaults
+               
               };
-              return <ProductCard key={fav.id} product={mockProduct as any} />;
+              return <ProductCard key={fav.id} product={mockProduct as any} index={0} />;
             })}
           </div>
         )}

@@ -12,49 +12,40 @@ import {
 const slides = [
   {
     id: 1,
-    title: "DORMITORIOS",
-    description: "Modernos y elegantes que unen diseño, confort y calidad.",
-    image:
-      "https://images.pexels.com/photos/32177992/pexels-photo-32177992.png?auto=compress&cs=tinysrgb&w=1440",
-    link: "/productos?category=dormitorio",
-    tag: "Nuevos diseños",
-  },
-  {
-    id: 2,
-    title: "SALA ",
-    description: "Muebles de sala para cada espacio de tu hogar.",
-    image:
-      "https://images.pexels.com/photos/27604130/pexels-photo-27604130.png?auto=compress&cs=tinysrgb&w=1920",
-    link: "/productos?category=sala",
-    tag: "Decoración de sala",
-  },
-  {
-    id: 3,
-    title: "OFICINA",
-    description:
-      "Muebles de oficina para home office y espacios profesionales.",
-    image:
-      "https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg?auto=compress&cs=tinysrgb&w=1920",
-    link: "/productos?category=oficina",
-    tag: "Home Office",
-  },
-  {
-    id: 4,
     title: "COCINAS",
     description: "Diseño y calidad en muebles de cocina a medida.",
     image:
-      "https://images.pexels.com/photos/7534545/pexels-photo-7534545.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769127395/cocina_stp9o1.webp",
     link: "/productos?category=cocina",
     tag: "Cocinas a Medida ",
   },
   {
-    id: 5,
-    title: "Proyectos",
-    description: "Muebles a medida para proyectos con estilo y funcionalidad.",
+    id: 2,
+    title: "DORMITORIOS",
+    description: "Modernos y elegantes que unen diseño, confort y calidad.",
     image:
-      "https://images.pexels.com/photos/7534545/pexels-photo-7534545.jpeg?auto=compress&cs=tinysrgb&w=1920",
-    link: "/productos?category=cocina",
-    tag: "Diseño de muebles personalzados",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp",
+    link: "/productos?category=dormitorio",
+    tag: "Nuevos diseños",
+  },
+  {
+    id: 3,
+    title: "SALA ",
+    description: "Muebles de sala para cada espacio de tu hogar.",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769124357/sala_jgxncz.webp",
+    link: "/productos?category=sala",
+    tag: "Decoración de sala",
+  },
+  {
+    id: 4,
+    title: "OFICINA",
+    description:
+      "Muebles de oficina para home office y espacios profesionales.",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769126235/oficina_rzbif0.webp",
+    link: "/productos?category=oficina",
+    tag: "Home Office",
   },
 ];
 
@@ -85,7 +76,6 @@ const HeroSlider = () => {
               : "opacity-0 scale-105 pointer-events-none"
           }`}
         >
-          {/* Image Layer with Dynamic Overlays */}
           <div className="absolute inset-0">
             <Image
               src={slide.image}
@@ -94,13 +84,10 @@ const HeroSlider = () => {
               className="object-cover"
               priority={index === 0}
             />
-            {/* Dynamic Overlays: Sophisticated & Subtle */}
             <div className="absolute inset-0 bg-black/30 dark:bg-black/50 transition-colors duration-700" />
             <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/20 to-transparent dark:from-black/70 dark:via-black/30 transition-colors duration-700" />
           </div>
-
-          {/* Content Layer with Fluid Layout & Navbar Offset */}
-          <div className="relative h-full w-full max-w-screen-2xl mx-auto px-6 lg:px-12 flex flex-col justify-center items-start text-white pt-20 md:pt-24">
+          <div className="relative h-full w-full max-w-360 mx-auto px-6 lg:px-12 flex flex-col justify-center items-start text-white pt-20 md:pt-24">
             <div
               className={`max-w-3xl transition-all duration-1000 delay-300 ${
                 index === current
@@ -108,7 +95,7 @@ const HeroSlider = () => {
                   : "translate-y-8 opacity-0 blur-sm"
               }`}
             >
-              <span className=" inline-flex mb-4 px-3 py-1 text-[10px] md:text-xs font-semibold tracking-[0.25em] uppercase text-white dark:text-white bg-[#4A3728]/90 dark:bg-white/10 backdrop-blur-sm rounded-md">
+              <span className=" inline-flex mb-4 px-3 py-1 text-md md:text-xs font-semibold tracking-[0.25em] uppercase text-white dark:text-white bg-[#4A3728]/90 dark:bg-white/10 backdrop-blur-sm rounded-md">
                 {slide.tag}
               </span>
 
@@ -147,12 +134,10 @@ const HeroSlider = () => {
         </div>
       ))}
 
-      {/* Controls Wrapper - Aligned with NavBar bounds */}
       <div className="absolute inset-x-0 bottom-8 md:bottom-12 z-20 pointer-events-none">
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 flex items-end justify-between pointer-events-auto">
-          {/* Slide Indicators - Left Side */}
+        <div className=" max-w-360 mx-auto px-6 lg:px-12 flex items-end justify-between pointer-events-auto">
           <div className="flex items-center gap-5">
-            <span className="text-white/60 text-[12px] font-black tracking-widest hidden sm:inline">
+            <span className="text-white/60 text-md font-black tracking-widest hidden sm:inline">
               {String(current + 1).padStart(2, "0")}
             </span>
             <div className="flex gap-1.5">
@@ -169,13 +154,11 @@ const HeroSlider = () => {
                 />
               ))}
             </div>
-            <span className="text-white/60 text-[12px] font-black tracking-widest hidden sm:inline">
+            <span className="text-white/60 text-md font-black tracking-widest hidden sm:inline">
               {String(slides.length).padStart(2, "0")}
             </span>
           </div>
-
-          {/* Navigation Buttons - Right Side */}
-          <div className="flex gap-2 md:gap-3">
+          <div className="flex gap-2 md:gap-3 ">
             {[
               {
                 icon: <HiOutlineChevronLeft className="text-lg md:text-xl" />,

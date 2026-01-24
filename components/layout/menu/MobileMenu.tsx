@@ -44,7 +44,7 @@ const MobileMenu = ({
 
       {/* Drawer */}
       <div
-        className={`absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white dark:bg-[#0b0b0b] shadow-2xl transition-transform duration-500 ease-out transform ${isOpen ? "translate-x-0" : "translate-x-full"} flex flex-col`}
+        className={`absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white dark:bg-[#0b0b0b] shadow transition-transform duration-500 ease-out transform ${isOpen ? "translate-x-0" : "translate-x-full"} flex flex-col`}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-zinc-200 dark:border-zinc-800">
@@ -78,7 +78,7 @@ const MobileMenu = ({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Buscar muebles..."
-                className="w-full bg-zinc-100 dark:bg-zinc-900 rounded-xl py-3 pl-11 pr-4 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#4A3728]/20 border border-transparent dark:border-zinc-800"
+                className="w-full bg-zinc-100 dark:bg-zinc-900 rounded-sm py-3 pl-11 pr-4 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#4A3728]/20 border border-transparent dark:border-zinc-800"
               />
               <HiOutlineSearch
                 className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500"
@@ -87,7 +87,7 @@ const MobileMenu = ({
             </form>
 
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-500 dark:text-zinc-400 mb-3 px-1">
+              <p className="text-md font-bold uppercase tracking-[0.15em] text-zinc-500 dark:text-zinc-400 mb-3 px-1">
                 Categorías
               </p>
               <div className="grid grid-cols-2 gap-2">
@@ -103,7 +103,7 @@ const MobileMenu = ({
                       key={cat.name}
                       href={`/${cat.name.toLowerCase()}`}
                       onClick={onClose}
-                      className="flex items-center gap-2.5 px-3.5 py-3 bg-zinc-50 dark:bg-zinc-900/50 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800/70 transition-colors border border-zinc-200/50 dark:border-zinc-800"
+                      className="flex items-center gap-2.5 px-3.5 py-3 bg-zinc-50 dark:bg-zinc-900/50 rounded-sm hover:bg-zinc-100 dark:hover:bg-zinc-800/70 transition-colors border border-zinc-200/50 dark:border-zinc-800"
                     >
                       <div className="w-9 h-9 rounded-lg bg-[#4A3728]/10 dark:bg-[#4A3728]/20 flex items-center justify-center shrink-0">
                         <IconComponent className="text-[#4A3728] dark:text-[#8B6F47] text-xl" />
@@ -118,7 +118,7 @@ const MobileMenu = ({
             </div>
 
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-500 dark:text-zinc-400 mb-3 px-1">
+              <p className="text-md font-bold uppercase tracking-[0.15em] text-zinc-500 dark:text-zinc-400 mb-3 px-1">
                 Navegación
               </p>
               <nav className="flex flex-col gap-1">
@@ -170,7 +170,7 @@ const MobileMenu = ({
                 <FaWhatsapp size={18} />
               </a>
             </div>
-            <div className="space-y-1.5 text-[11px] font-medium text-zinc-600 dark:text-zinc-400">
+            <div className="space-y-1.5 text-md font-medium text-zinc-600 dark:text-zinc-400">
               <div className="flex items-center gap-2">
                 <HiOutlineMail size={14} className="shrink-0" />{" "}
                 <span className="truncate">mueblesmaldonadoec@gmail.com</span>

@@ -7,8 +7,11 @@ export async function GET(
 ) {
   try {
     const { productId } = await params;
+    let product = await ProductService.getById(productId);
 
-    const product = await ProductService.getById(productId);
+    if (!product) {
+      product = await ProductService.getBySlug(productId);
+    }
 
     if (!product) {
       return NextResponse.json(

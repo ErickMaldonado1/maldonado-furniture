@@ -17,20 +17,20 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
   const { favorites, toggleFavorite } = useFavoritesStore();
   const { addToCart } = useCartStore();
 
- const handleAddToCart = (item: any) => {
-   // Usamos "as any" al final del objeto para evitar que TypeScript
-   // bloquee el build por la propiedad variantName
-   addToCart({
-     id: item.id,
-     name: item.name,
-     price: item.price,
-     quantity: 1,
-     image: item.image,
-     variantId: "base",
-     variantName: "Base",
-     maxStock: 99,
-   } as any);
- };
+  const handleAddToCart = (item: any) => {
+    // Usamos "as any" al final del objeto para evitar que TypeScript
+    // bloquee el build por la propiedad variantName
+    addToCart({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      quantity: 1,
+      image: item.image,
+      variantId: "base",
+      variantName: "Base",
+      maxStock: 99,
+    } as any);
+  };
 
   return (
     <Drawer
@@ -55,7 +55,7 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
           ) : (
             favorites.map((item) => (
               <div key={item.id} className="flex gap-4 group relative">
-                <div className="w-24 h-24 relative shrink-0 rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+                <div className="w-24 h-24 relative shrink-0 rounded-sm overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
                   <Image
                     src={item.image || "/icons/placeholder.png"}
                     alt={item.name}

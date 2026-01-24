@@ -20,7 +20,6 @@ interface CartDrawerProps {
 }
 
 const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
-
   const { removeFromCart, updateQuantity, getTotalPrice } = useCartStore();
   const total = getTotalPrice();
 
@@ -58,7 +57,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                 key={`${item.id}-${item.variantId || "base"}`}
                 className="flex gap-4 group"
               >
-                <div className="w-24 h-24 relative shrink-0 rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+                <div className="w-24 h-24 relative shrink-0 rounded-sm overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
                   <Image
                     src={item.image || "/icons/placeholder.png"}
                     alt={item.name}
@@ -131,7 +130,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                 <span>${total.toLocaleString()}</span>
               </div>
             </div>
-            <button className="w-full py-4 bg-[#4A3728] hover:bg-[#3D2C1F] text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+            <button className="w-full py-4 bg-[#4A3728] hover:bg-[#3D2C1F] text-white rounded-sm font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
               Proceder al Pago
             </button>
             <p className="text-center text-xs text-zinc-400 mt-3">

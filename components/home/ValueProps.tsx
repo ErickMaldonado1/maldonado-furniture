@@ -44,7 +44,6 @@ const services = [
   },
 ];
 
-// Animaciones para el grid
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -64,9 +63,8 @@ const itemVariants: Variants = {
 
 const ValueProps = () => {
   return (
-    <section className="bg-white dark:bg-black py-24">
-      <div className="max-w-screen-2xl mx-auto px-4 lg:px-12">
-        {/* Header */}
+    <section className="py-12 bg-white dark:bg-[#050505] transition-colors duration-300">
+      <div className="max-w-360 mx-auto px-4 sm:px-6">
         <div className="mb-20 text-center md:text-left">
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -81,7 +79,6 @@ const ValueProps = () => {
           </motion.h2>
         </div>
 
-        {/* Grid de servicios */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -106,12 +103,11 @@ const ServiceCard = ({ service }: { service: Service }) => {
 
   return (
     <motion.div
-      className="group relative flex flex-col items-center text-center md:items-start md:text-left rounded-2xl border border-zinc-200/70 dark:border-white/10 md:border-none p-5 md:p-0 cursor-pointer"
+      className="group relative flex flex-col items-center text-center md:items-start md:text-left rounded-sm border border-zinc-200/70 dark:border-white/10 md:border-none p-5 md:p-0 cursor-pointer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       variants={itemVariants}
     >
-      {/* Icono animado */}
       <motion.div
         animate={
           hovered
@@ -119,14 +115,13 @@ const ServiceCard = ({ service }: { service: Service }) => {
             : { x: 0, rotate: 0, scale: 1 }
         }
         transition={{ type: "spring", stiffness: 260, damping: 16 }}
-        className="w-14 h-14 md:w-18 md:h-18 rounded-xl bg-white dark:bg-zinc-950 flex items-center justify-center text-[#4A3728] mb-4 border border-zinc-200 dark:border-white/10 shadow-sm transition-colors duration-300 group-hover:bg-[#4A3728] group-hover:text-white"
+        className="w-14 h-14 md:w-18 md:h-18 rounded-sm bg-white dark:bg-zinc-950 flex items-center justify-center text-[#4A3728] mb-4 border border-zinc-200 dark:border-white/10 shadow-sm transition-colors duration-300 group-hover:bg-[#4A3728] group-hover:text-white"
       >
         <Icon size={32} strokeWidth={1.5} />
       </motion.div>
 
-      {/* Contenido */}
       <div className="flex-1 flex flex-col">
-        <span className="text-[12px] md:text-[12px] font-black tracking-[0.15em] uppercase text-[#4A3728] mb-2">
+        <span className="text-md md:text-md font-black tracking-[0.15em] uppercase text-[#4A3728] mb-2">
           {service.subtitle}
         </span>
 
@@ -138,9 +133,7 @@ const ServiceCard = ({ service }: { service: Service }) => {
           {service.desc}
         </p>
 
-        {/* Línea y botón animados */}
         <div className="flex items-center justify-between w-full">
-          {/* Línea */}
           <motion.div
             className="h-1 rounded-full w-6 md:w-8"
             animate={
@@ -151,12 +144,11 @@ const ServiceCard = ({ service }: { service: Service }) => {
             transition={{ duration: 0.3 }}
           />
 
-          {/* Botón */}
           <motion.a
             href={service.href}
             animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
             transition={{ duration: 0.3 }}
-            className="flex items-center gap-2 text-[12px] font-black uppercase  text-zinc-900 dark:text-white pointer-events-auto"
+            className="flex items-center gap-2 text-md font-black uppercase  text-zinc-900 dark:text-white pointer-events-auto"
           >
             {service.cta}
           </motion.a>

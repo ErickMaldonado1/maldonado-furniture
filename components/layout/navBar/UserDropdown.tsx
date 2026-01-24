@@ -82,7 +82,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
 
       {/* Dropdown Menu */}
       <div
-        className={`absolute right-0 top-full mt-2 w-64 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-100 dark:border-zinc-800 transform transition-all duration-200 origin-top-right z-50 overflow-hidden ${
+        className={`absolute right-0 top-full mt-2 w-64 bg-white dark:bg-zinc-900 rounded-sm shadow-xl border border-zinc-100 dark:border-zinc-800 transform transition-all duration-200 origin-top-right z-50 overflow-hidden ${
           isOpen
             ? "opacity-100 scale-100 visible"
             : "opacity-0 scale-95 invisible"
@@ -96,7 +96,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
             {user?.email}
           </p>
           {user?.role === "ADMIN" && (
-            <span className="mt-2 inline-block px-2 py-0.5 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-[10px] font-bold rounded-full uppercase tracking-wider">
+            <span className="mt-2 inline-block px-2 py-0.5 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-md font-bold rounded-full uppercase tracking-wider">
               Administrador
             </span>
           )}
@@ -136,7 +136,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
         <div className="border-t border-zinc-100 dark:border-zinc-800 p-2">
           <button
             onClick={() => signOut({ callbackUrl: "/" })}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-sm transition-colors"
           >
             <HiOutlineLogout size={18} />
             Cerrar Sesión

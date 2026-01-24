@@ -7,10 +7,11 @@ export interface SubCategory {
 }
 
 export interface FeaturedCard {
+  id: number;
+  subcategory: string;
   badge: string;
-  badgeColor: "accent" | "gold" | "red" | "blue" | "green";
+  badgeColor: "brand";
   title: string;
-  description: string;
   imageSrc: string;
   href: string;
 }
@@ -27,13 +28,14 @@ export const categories: Category[] = [
   {
     label: "Dormitorio",
     slug: "dormitorio",
+
     subcategories: [
       {
         sub: "camas-lineales",
         label: "Camas Lineales",
         href: "/dormitorio/camas-lineales",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fcama-lineal.webp?alt=media&token=5cc9698b-bea9-4d44-b880-c8f7413f8b95",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190706/cama-lineal_s686kh.webp",
         imageAlt: "cama lineal",
       },
       {
@@ -41,7 +43,7 @@ export const categories: Category[] = [
         label: "Camas Clásicas",
         href: "/dormitorio/camas-clasicas",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fcama-clasica.webp?alt=media&token=4d5f4d4c-6ae4-4153-9e7e-c77b35eb15d3",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190704/cama-clasica_pujgl9.webp",
         imageAlt: "cama clasica",
       },
       {
@@ -49,7 +51,7 @@ export const categories: Category[] = [
         label: "Camas Juveniles",
         href: "/dormitorio/camas-juveniles",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fcama-juvenil.webp?alt=media&token=a74e795e-a42d-4720-b25a-5d05dcf3bb3e",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190705/cama-juvenil_noxqes.webp",
         imageAlt: "cama juvenil",
       },
       {
@@ -57,7 +59,7 @@ export const categories: Category[] = [
         label: "Literas",
         href: "/dormitorio/literas",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Flitera.webp?alt=media&token=f8bad6e6-5110-4c46-af5e-1799999c637b",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190708/litera_xirrrj.webp",
         imageAlt: "litera",
       },
       {
@@ -65,7 +67,7 @@ export const categories: Category[] = [
         label: "Closets",
         href: "/dormitorio/closets",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Farmario.webp?alt=media&token=94ad9f79-fc4a-49b9-886c-28c04bb00904",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190704/armario_tji5kq.webp",
         imageAlt: "closet",
       },
       {
@@ -73,7 +75,7 @@ export const categories: Category[] = [
         label: "Cómodas",
         href: "/dormitorio/comodas",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fcomoda.webp?alt=media&token=27f7a5fe-dc6d-441c-9d21-21996690db98",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190707/comoda_fkpkjv.webp",
         imageAlt: "comoda",
       },
       {
@@ -81,47 +83,21 @@ export const categories: Category[] = [
         label: "Veladores",
         href: "/dormitorio/veladores",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fvelador1.webp?alt=media&token=083c7f28-411e-42be-848c-040e73021a5c",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190709/velador1_l8ken4.webp",
         imageAlt: "velador",
       },
     ],
-    highlightedSub: "camas-lineales",
+    highlightedSub: "dormitorio",
     featuredContent: [
       {
-        badge: "TENDENCIA",
-        badgeColor: "accent",
-        title: "Minimalismo Nórdico",
-        description: "Descubre la nueva colección",
+        badge: "Confort",
+        badgeColor: "brand",
+        title: "Muebles de dormitorio",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fcama-lineal.webp?alt=media&token=5cc9698b-bea9-4d44-b880-c8f7413f8b95",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769201196/dormitorio-page_eojapw.webp",
         href: "/dormitorio",
-      },
-      {
-        badge: "TOP VENTAS",
-        badgeColor: "gold",
-        title: "Camas Lineales",
-        description: "El favorito de nuestros clientes",
-        imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fcama-lineal.webp?alt=media&token=5cc9698b-bea9-4d44-b880-c8f7413f8b95",
-        href: "/dormitorio/camas-lineales",
-      },
-      {
-        badge: "OFERTA -20%",
-        badgeColor: "red",
-        title: "Closets a Medida",
-        description: "Diseño personalizado incluido",
-        imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Farmario.webp?alt=media&token=94ad9f79-fc4a-49b9-886c-28c04bb00904",
-        href: "/dormitorio/closets",
-      },
-      {
-        badge: "INSPIRACIÓN",
-        badgeColor: "blue",
-        title: "Guía de Decoración",
-        description: "Tips para tu dormitorio ideal",
-        imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fcama-clasica.webp?alt=media&token=4d5f4d4c-6ae4-4153-9e7e-c77b35eb15d3",
-        href: "/blog/guia-dormitorio",
+        id: 0,
+        subcategory: "",
       },
     ],
   },
@@ -134,7 +110,7 @@ export const categories: Category[] = [
         label: "Aparadores",
         href: "/sala/aparadores",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Faparador.webp?alt=media&token=41974a89-2950-4c22-ba0a-a21717117b22",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190710/aparador_ayliec.webp",
         imageAlt: "aparador",
       },
       {
@@ -142,7 +118,7 @@ export const categories: Category[] = [
         label: "Comedores",
         href: "/sala/comedores",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fcomedor.webp?alt=media&token=e62987f5-59ce-4557-9f57-493354e28408",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190710/comedor_sm9shq.webp",
         imageAlt: "comedor",
       },
       {
@@ -150,7 +126,7 @@ export const categories: Category[] = [
         label: "Muebles TV",
         href: "/sala/muebles-tv",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fmuebletv.webp?alt=media&token=fe6606b1-40b7-4450-8559-88c2e64f8070",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190713/muebletv_vmoebu.webp",
         imageAlt: "muebletv",
       },
       {
@@ -158,7 +134,7 @@ export const categories: Category[] = [
         label: "Mesas de Centro",
         href: "/sala/mesas-de-centro",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fmesa-centro.webp?alt=media&token=d5df39df-25cb-4da6-a981-e7f97a8fe0be",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190712/mesa-centro_cgbp9g.webp",
         imageAlt: "mesa centro",
       },
       {
@@ -166,29 +142,21 @@ export const categories: Category[] = [
         label: "Recibidores",
         href: "/sala/recibidores",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Frecibidor.webp?alt=media&token=e1f27c7b-d7b1-47d4-890c-cdb590d4f756",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190713/recibidor_g2qukc.webp",
         imageAlt: "recibidor",
       },
     ],
-    highlightedSub: "comedores",
+    highlightedSub: "Sala y hogar",
     featuredContent: [
       {
-        badge: "NUEVO",
-        badgeColor: "green",
-        title: "Comedores Modernos",
-        description: "Recién llegados de fábrica",
+        badge: "Tendencia",
+        badgeColor: "brand",
+        title: "Muebles de sala",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fcomedor.webp?alt=media&token=e62987f5-59ce-4557-9f57-493354e28408",
-        href: "/sala/comedores",
-      },
-      {
-        badge: "DESTACADO",
-        badgeColor: "accent",
-        title: "Muebles TV Premium",
-        description: "Diseño y funcionalidad",
-        imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fmuebletv.webp?alt=media&token=fe6606b1-40b7-4450-8559-88c2e64f8070",
-        href: "/sala/muebles-tv",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769201194/sala-page_svem3p.webp",
+        href: "/sala",
+        id: 0,
+        subcategory: "",
       },
     ],
   },
@@ -197,19 +165,11 @@ export const categories: Category[] = [
     slug: "cocina",
     subcategories: [
       {
-        sub: "cocina-a-medida",
-        label: "Cocina a medida",
-        href: "/cocina/cocina-a-medida",
-        imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fgabinete.webp?alt=media&token=d25f34cf-1a9a-41f5-a6e5-9a22b5314997",
-        imageAlt: "cocina",
-      },
-      {
         sub: "modulares",
         label: "Modulares",
         href: "/cocina/modulares",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fgabinete-cocina.webp?alt=media&token=541e78ab-eab7-42cb-b71e-cc3ae1cab5ce",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190715/gabinete-cocina_cmi7i7.webp",
         imageAlt: "modulares",
       },
       {
@@ -217,20 +177,21 @@ export const categories: Category[] = [
         label: "Auxiliares",
         href: "/cocina/auxiliares",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fmesa-auxiliar.webp?alt=media&token=c0d1a965-27c9-4265-9b66-2c1e7381e3bb",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190716/mesa-auxiliar_nhyhcm.webp",
         imageAlt: "auxiliares",
       },
     ],
     highlightedSub: "cocina-a-medida",
     featuredContent: [
       {
-        badge: "PREMIUM",
-        badgeColor: "accent",
-        title: "Cocinas a Medida",
-        description: "Diseño personalizado total",
+        badge: "Funcional",
+        badgeColor: "brand",
+        title: "Muebles de cocina a medida",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fgabinete.webp?alt=media&token=d25f34cf-1a9a-41f5-a6e5-9a22b5314997",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769201198/cocina-page_hrwpwh.webp",
         href: "/cocina/cocina-a-medida",
+        id: 0,
+        subcategory: "cocina-a-medida",
       },
     ],
   },
@@ -243,7 +204,7 @@ export const categories: Category[] = [
         label: "Archivadores",
         href: "/oficina/archivadores",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Farchivador.webp?alt=media&token=93a64c6a-9874-4a8f-bfdf-dc3bf2348c4b",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190718/archivador_clkja6.webp",
         imageAlt: "archivador",
       },
       {
@@ -251,7 +212,7 @@ export const categories: Category[] = [
         label: "Escritorios",
         href: "/oficina/escritorios",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fescritorio.webp?alt=media&token=44330aad-fdf5-431a-a69e-54661d621e92",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190718/escritorio_fhpios.webp",
         imageAlt: "escritorio",
       },
       {
@@ -259,20 +220,21 @@ export const categories: Category[] = [
         label: "Libreros",
         href: "/oficina/libreros",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Flibrero.webp?alt=media&token=e9905c82-fb95-497e-9430-1292bd04b64d",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190719/librero_b25afx.webp",
         imageAlt: "librero",
       },
     ],
-    highlightedSub: "escritorios",
+    highlightedSub: "oficina",
     featuredContent: [
       {
-        badge: "PRODUCTIVIDAD",
-        badgeColor: "blue",
-        title: "Escritorios Ejecutivos",
-        description: "Diseño profesional",
+        badge: "Home Office",
+        badgeColor: "brand",
+        title: "Diseño profesional",
         imageSrc:
-          "https://firebasestorage.googleapis.com/v0/b/app-muebles-maldonado.appspot.com/o/menu%2Fescritorio.webp?alt=media&token=44330aad-fdf5-431a-a69e-54661d621e92",
-        href: "/oficina/escritorios",
+          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769201200/oficina-page_jlagve.webp",
+        href: "/oficina",
+        id: 0,
+        subcategory: "",
       },
     ],
   },

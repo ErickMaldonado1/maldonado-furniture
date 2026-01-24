@@ -10,26 +10,22 @@ type Props = {
 
 export default async function SubCategoryPage({ params }: Props) {
   const { category: categorySlug, subcategory: subcategorySlug } = await params;
-
-  // Validate Category
   const category = categories.find((c) => c.slug === categorySlug);
   if (!category) return notFound();
 
-  // Validate Subcategory
   const subcategory = category.subcategories.find(
     (s) => s.sub === subcategorySlug,
   );
   if (!subcategory) return notFound();
 
-  // Fetch Products
   const { products } = await getProducts({
     category: categorySlug,
     subcategory: subcategorySlug,
   });
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 md:px-8 max-w-[1600px] mx-auto">
-      {/* Header */}
+    <div className="min-h-screen pt-24 pb-16 px-4 md:px-8 max-w-1600px mx-auto">
+    
       <div className="mb-12 space-y-4">
         <div className="flex items-center gap-2 text-sm text-zinc-500 uppercase tracking-widest font-medium">
           <span>{category.label}</span>
@@ -44,11 +40,10 @@ export default async function SubCategoryPage({ params }: Props) {
         <div className="h-1 w-20 bg-[#4A3728]" />
       </div>
 
-      {/* Product Grid */}
       {products && products.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} index={0} />
           ))}
         </div>
       ) : (
