@@ -232,6 +232,7 @@ const Footer = () => {
                   key={i}
                   href={social.href}
                   className="w-10 h-10 rounded-sm border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-[#4A3728] hover:border-[#4A3728] transition-all duration-300"
+                  aria-label="Abrir perfil"
                 >
                   <span className="text-lg">{social.icon}</span>
                 </a>

@@ -23,7 +23,8 @@ import FavoritesMenu from "./FavoritesMenu";
 import CartDrawer from "./CartDrawer";
 import UserDropdown from "./UserDropdown";
 import { useCartStore } from "@/store/cart-store";
-import { useFavoritesStore } from "@/features/favorites/favorites-store";
+import { useFavoritesStore } from "@/store/favorites-store";
+import SearchBar from "@/components/shop/SearchBar";
 
 const Navbar = () => {
   const router = useRouter();
@@ -62,20 +63,29 @@ const Navbar = () => {
 
   useEffect(() => {
     setMounted(true);
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    if (!isHomePage) return;
 
-    const savedTheme = localStorage.getItem("theme");
-    if (
-      savedTheme === "dark" ||
-      (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      setIsDarkMode(true);
-      document.documentElement.classList.add("dark");
-    }
+    let ticking = false;
 
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const offset = window.scrollY;
+
+          if (offset > 20 && !isScrolled) {
+            setIsScrolled(true);
+          } else if (offset <= 20 && isScrolled) {
+            setIsScrolled(false);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage, isScrolled]); // Agregamos estas dependencias
 
   const toggleTheme = () => {
     const nextDark = !isDarkMode;
@@ -100,7 +110,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 font-sans ${showSolidNavbar ? "bg-white dark:bg-[#0D0D0D] py-2 shadow-sm border-b border-zinc-200/50 dark:border-white/5" : "bg-transparent py-3"}`}
     >
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 flex justify-between items-center gap-8">
-        <Link href="/" className="shrink-0 group">
+        <Link href="/" className="shrink-0 group" aria-label="Ir al inicio">
           <div className="relative w-36 aspect-400/113 transition-transform group-hover:scale-105">
             <Image
               src={
@@ -115,26 +125,15 @@ const Navbar = () => {
             />
           </div>
         </Link>
-        <form
-          onSubmit={handleSearch}
-          className="hidden md:flex flex-1 max-w-xl relative group"
-        >
-          <HiOutlineSearch
-            className={`absolute left-4 top-1/2 -translate-y-1/2 text-xl ${!showSolidNavbar ? "text-white/40" : "text-zinc-400 dark:text-zinc-500"}`}
-          />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="¿Qué estás buscando?"
-            className={`w-full border-b py-2 pl-12 pr-4 focus:outline-none transition-all ${!showSolidNavbar ? "bg-transparent border-white/20 text-white placeholder:text-white/40 focus:border-white/60" : "bg-transparent border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white focus:border-[#4A3728]"}`}
-          />
-        </form>
+        <div className="hidden md:flex flex-1 max-w-xl">
+          <SearchBar showSolidNavbar={showSolidNavbar} />
+        </div>
 
         <div className="flex items-center gap-1 md:gap-4">
           <button
             onClick={toggleTheme}
             className={`p-2.5 rounded-full transition-all ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"}`}
+            aria-label="Cambiar tema"
           >
             {isDarkMode ? (
               <HiOutlineSun className="text-2xl" />
@@ -146,6 +145,7 @@ const Navbar = () => {
           <button
             onClick={() => setFavoritesOpen(true)}
             className={`hidden sm:flex p-2.5 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"}`}
+            aria-label="Abrir favoritos"
           >
             <HiOutlineHeart className="text-2xl group-hover:scale-110 transition-transform" />
             {mounted && favorites.length > 0 && (
@@ -165,6 +165,7 @@ const Navbar = () => {
               e.preventDefault();
               setCartOpen(true);
             }}
+            aria-label="Abrir carrito"
             className={`p-2.5 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"}`}
           >
             <HiOutlineShoppingBag className="text-2xl group-hover:scale-110 transition-transform" />
@@ -177,6 +178,7 @@ const Navbar = () => {
           <button
             onClick={() => setIsMobileMenuOpen(true)}
             className={`lg:hidden p-2.5 text-3xl transition-all ${!showSolidNavbar ? "text-white" : "text-zinc-700 dark:text-white"}`}
+            aria-label="Abrir menú móvil"
           >
             <HiOutlineMenuAlt3 size={32} />
           </button>

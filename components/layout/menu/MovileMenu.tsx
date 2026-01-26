@@ -14,6 +14,7 @@ import {
 import { BiBed } from "react-icons/bi";
 import { MdOutlineKitchen } from "react-icons/md";
 import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
+import SearchBar from "@/components/shop/SearchBar";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -67,19 +68,9 @@ const MobileMenu = ({
 
         <div className="flex-1 overflow-y-auto overscroll-contain">
           <div className="px-6 py-6 space-y-8">
-            <form onSubmit={handleSearch} className="relative">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Buscar muebles..."
-                className="w-full bg-zinc-100 dark:bg-zinc-900 rounded-sm py-2.5 pl-10 pr-4 text-[13px] text-zinc-900 dark:text-white placeholder:text-zinc-500 focus:outline-none border border-transparent dark:border-zinc-800"
-              />
-              <HiOutlineSearch
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"
-                size={16}
-              />
-            </form>
+            <div className="relative">
+              <SearchBar showSolidNavbar={true} onSearchResolved={onClose} />
+            </div>
 
             <div>
               <p className="text-[11px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-4">

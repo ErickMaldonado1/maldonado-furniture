@@ -62,14 +62,14 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
 
   return (
     <div className="w-full max-w-md mx-auto rounded-3xl bg-white dark:bg-zinc-950 shadow border border-zinc-100 dark:border-zinc-800 overflow-hidden transition-all duration-300">
-      <div className="p-8 sm:p-10">
-        <header className="mb-8 flex flex-col items-center text-center">
+      <div className="p-8 sm:p-8">
+        <header className="mb-4 flex flex-col items-center text-center">
           <Image
             src="/assets/images/logoA.webp"
             alt="Muebles Maldonado"
             width={160}
             height={50}
-            className="mb-6 dark:brightness-110"
+            className="mb-4 dark:brightness-110"
             priority
           />
         </header>

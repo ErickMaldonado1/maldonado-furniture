@@ -8,46 +8,7 @@ import {
   HiOutlineChevronLeft,
   HiOutlineChevronRight,
 } from "react-icons/hi";
-
-const slides = [
-  {
-    id: 1,
-    title: "COCINAS",
-    description: "Diseño y calidad en muebles de cocina a medida.",
-    image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769127395/cocina_stp9o1.webp",
-    link: "/cocina",
-    tag: "Cocinas a Medida ",
-  },
-  {
-    id: 2,
-    title: "DORMITORIOS",
-    description: "Modernos y elegantes que unen diseño, confort y calidad.",
-    image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp",
-    link: "/dormitorio",
-    tag: "Nuevos diseños",
-  },
-  {
-    id: 3,
-    title: "SALA ",
-    description: "Muebles de sala para cada espacio de tu hogar.",
-    image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769124357/sala_jgxncz.webp",
-    link: "/sala",
-    tag: "Decoración de sala",
-  },
-  {
-    id: 4,
-    title: "OFICINA",
-    description:
-      "Muebles de oficina para home office y espacios profesionales.",
-    image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769126235/oficina_rzbif0.webp",
-    link: "/oficina",
-    tag: "Home Office",
-  },
-];
+import { slides } from "@/utils/SlidesHero";
 
 const HeroSlider = () => {
   const [current, setCurrent] = useState(0);
@@ -83,6 +44,10 @@ const HeroSlider = () => {
               fill
               className="object-cover"
               priority={index === 0}
+              loading={index === 0 ? "eager" : "lazy"}
+              quality={75}
+              fetchPriority={index === 0 ? "high" : "low"}
+              sizes="(max-width: 768px) 100vw, (max-width: 1440px) 100vw, 1440px"
             />
             <div className="absolute inset-0 bg-black/30 dark:bg-black/50 transition-colors duration-700" />
             <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/20 to-transparent dark:from-black/70 dark:via-black/30 transition-colors duration-700" />
@@ -139,18 +104,25 @@ const HeroSlider = () => {
             <span className="text-white/60 text-md font-black tracking-widest hidden sm:inline">
               {String(current + 1).padStart(2, "0")}
             </span>
-            <div className="flex gap-1.5">
+            <div className="flex gap-3">
+              {" "}
+              {/* Aumentamos el gap para separar las áreas de clic */}
               {slides.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrent(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-700 ${
-                    idx === current
-                      ? "w-10 bg-[#4A3728]"
-                      : "w-1.5 bg-white/40 hover:bg-white/40"
-                  }`}
+                  className="relative h-11 w-auto flex items-center justify-center group"
                   aria-label={`Go to slide ${idx + 1}`}
-                />
+                >
+                  <div
+                    className={`h-2 rounded-full transition-all duration-700 ${
+                      idx === current
+                        ? "w-10 bg-[#4A3728]"
+                        : "w-2 bg-white/40 group-hover:bg-white/60"
+                    }`}
+                  />
+                  <span className="absolute inset-0 -inset-y-2" />
+                </button>
               ))}
             </div>
             <span className="text-white/60 text-md font-black tracking-widest hidden sm:inline">

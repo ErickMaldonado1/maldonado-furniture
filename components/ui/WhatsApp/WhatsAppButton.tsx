@@ -44,6 +44,7 @@ export default function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         className="group relative flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full shadow-lg shadow-[#25D366]/30 transition-all hover:scale-110 active:scale-95"
+        aria-label="Abrir WhatsApp"
         onMouseEnter={() => setIsOpen(true)}
         onClick={(e) => {
           if (!isOpen) {

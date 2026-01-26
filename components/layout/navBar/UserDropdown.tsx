@@ -53,7 +53,8 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
           !showSolidNavbar
             ? "text-white hover:bg-white/10"
             : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"
-        }`}
+          }`}
+          aria-label="Abrir perfil"
       >
         <HiOutlineUser className="text-2xl group-hover:scale-110 transition-transform" />
       </button>

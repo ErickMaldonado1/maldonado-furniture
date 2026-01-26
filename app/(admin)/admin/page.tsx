@@ -174,7 +174,7 @@ export default async function AdminPage() {
 
 function StatCard({ title, value, icon, description }: any) {
   return (
-    <div className="bg-white p-6 rounded-sm shadow-sm border border-slate-200 flex items-start gap-4 hover:shadow-md transition-shadow">
+    <div className="bg-white p-6 pt-16 rounded-sm shadow-sm border border-slate-200 flex items-start gap-4 hover:shadow-md transition-shadow">
       <div className="p-3 bg-slate-50 rounded-sm border border-slate-100">
         {icon}
       </div>

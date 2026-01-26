@@ -26,7 +26,7 @@ const AuthDrawer: React.FC<AuthDrawerProps> = ({ isOpen, onClose }) => {
       onClose={onClose}
       title={view === "login" ? "Bienvenido de nuevo" : "Crea tu cuenta"}
     >
-      <div className="flex flex-col justify-center h-full">
+      <div className="flex flex-col justify-center">
         {view === "login" ? (
           <LoginForm
             onSuccess={onClose}

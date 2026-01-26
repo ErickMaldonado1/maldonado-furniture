@@ -134,9 +134,9 @@ const ServiceCard = ({ service }: { service: (typeof services)[0] }) => {
           {service.subtitle}
         </span>
 
-        <h4 className="text-[16px] md:text-[18px] font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-2">
+        <h2 className="text-[16px] md:text-[18px] font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-2">
           {service.title}
-        </h4>
+        </h2>
 
         <p className="text-[13px] md:text-[14px] font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6">
           {service.desc}
