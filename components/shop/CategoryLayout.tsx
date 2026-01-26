@@ -50,7 +50,6 @@ export default function CategoryLayout({
           </div>
         </div>
 
-        {/* Lado Derecho: Imagen de Gran Formato */}
         <div className="relative h-[50vh] lg:h-full order-1 lg:order-2 overflow-hidden bg-zinc-200">
           <div className="absolute inset-0 bg-black/10 z-10" />
           <div className="relative w-full h-full">
@@ -68,7 +67,6 @@ export default function CategoryLayout({
         </div>
       </section>
 
-      {/* 2. CATEGORÍAS — GRID TÉCNICO */}
       <section className="py-24 px-6 max-w-screen-2xl mx-auto">
         <div className="flex items-center justify-between mb-16">
           <h2 className="text-3xl font-black uppercase tracking-tighter text-[#2B2118] dark:text-[#E7DED4]">
@@ -105,7 +103,6 @@ export default function CategoryLayout({
         </div>
       </section>
 
-      {/* 3. PRODUCT SHOWCASE */}
       {featuredProducts.length > 0 && (
         <section className="bg-white dark:bg-[#0A0A0A] py-24 px-6">
           <div className="max-w-screen-2xl mx-auto">
@@ -126,7 +123,6 @@ export default function CategoryLayout({
         </section>
       )}
 
-      {/* 4. SECCIÓN TÉCNICA (SEO) */}
       <section className="py-24 px-6 bg-[#4A3728] text-white">
         <div className="max-w-4xl mx-auto text-center space-y-10">
           <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none">

@@ -14,7 +14,7 @@ const HomePage = async () => {
   ]);
 
   return (
-    <div className="flex flex-col w-full dark:bg-[#050505] overflow-x-hidden">
+    <div className="flex flex-col w-full dark:bg-[#050505] overflow-x-hidden mb-20">
       <HeroSlider />
       <FeaturedCarousel products={featured} />
       <ValueProps />

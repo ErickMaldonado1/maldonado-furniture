@@ -2,7 +2,6 @@ import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
 export const AuthService = {
-  // Lógica de Registro
   async register(data: any) {
     const { name, email, password } = data;
 
@@ -21,7 +20,6 @@ export const AuthService = {
     });
   },
 
-  // Lógica de Validación (Para NextAuth)
   async validateUser(credentials: any) {
     const user = await prisma.user.findUnique({
       where: { email: credentials.email },

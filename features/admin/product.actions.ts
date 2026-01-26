@@ -14,7 +14,6 @@ interface UploadError {
   error: string;
 }
 
-
 export async function uploadProductImage(
   base64Image: string,
 ): Promise<UploadSuccess | UploadError> {
@@ -40,7 +39,7 @@ export async function createFullProduct(data: any) {
         price: data.price,
         category: data.category,
         images: {
-          create: data.images, 
+          create: data.images,
         },
         variants: {
           create: data.variants.map((v: any) => ({
@@ -67,7 +66,6 @@ export async function createFullProduct(data: any) {
 
 export async function deleteFullProduct(productId: string) {
   try {
-    
     const product = await prisma.product.findUnique({
       where: { id: productId },
       include: { images: true },
@@ -75,13 +73,11 @@ export async function deleteFullProduct(productId: string) {
 
     if (!product) return { success: false, error: "Producto no encontrado" };
 
- 
     const deletePromises = product.images.map((img) =>
       deleteImage(img.publicId),
     );
     await Promise.all(deletePromises);
 
-   
     await prisma.product.delete({
       where: { id: productId },
     });

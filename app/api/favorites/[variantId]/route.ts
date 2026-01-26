@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/features/auth/auth.options";
-import { NextRequest, NextResponse } from "next/server"; 
+import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(
   req: NextRequest,
@@ -13,7 +13,6 @@ export async function DELETE(
     return new NextResponse("No autorizado", { status: 401 });
   }
 
- 
   const { variantId } = await params;
 
   try {
@@ -21,7 +20,7 @@ export async function DELETE(
       where: {
         userId_variantId: {
           userId: session.user.id,
-          variantId: variantId, 
+          variantId: variantId,
         },
       },
     });

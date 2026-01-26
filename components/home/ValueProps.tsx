@@ -48,29 +48,29 @@ const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.12 },
+    transition: { staggerChildren: 0.1 },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6 },
+    transition: { duration: 0.5 },
   },
 };
 
 const ValueProps = () => {
   return (
-    <section className="py-12 bg-white dark:bg-[#050505] transition-colors duration-300">
+    <section className="py-6 md:py-12 bg-white dark:bg-[#050505] overflow-hidden">
       <div className="max-w-360 mx-auto px-4 sm:px-6">
-        <div className="mb-20 text-center md:text-left">
+        <div className="mb-10 md:mb-16 text-center md:text-left">
           <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white"
+            className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white"
           >
             Nuestros{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
@@ -84,10 +84,15 @@ const ValueProps = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 lg:gap-12"
+          className="flex md:grid overflow-x-auto md:overflow-visible pb-6 md:pb-0 hide-scrollbar snap-x snap-mandatory md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8"
         >
           {services.map((service, idx) => (
-            <ServiceCard key={idx} service={service} />
+            <div
+              key={idx}
+              className="min-w-[85%] sm:min-w-[48%] md:min-w-0 snap-center p-1"
+            >
+              <ServiceCard service={service} />
+            </div>
           ))}
         </motion.div>
       </div>
@@ -95,63 +100,58 @@ const ValueProps = () => {
   );
 };
 
-type Service = (typeof services)[number];
-
-const ServiceCard = ({ service }: { service: Service }) => {
+const ServiceCard = ({ service }: { service: (typeof services)[0] }) => {
   const [hovered, setHovered] = useState(false);
   const Icon = service.icon;
 
   return (
     <motion.div
-      className="group relative flex flex-col items-center text-center md:items-start md:text-left rounded-sm border border-zinc-200/70 dark:border-white/10 md:border-none p-5 md:p-0 cursor-pointer"
+      variants={itemVariants}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      variants={itemVariants}
+      className={`
+        group relative flex flex-col items-start text-left h-full p-6 md:p-8 rounded-xl border transition-all duration-300
+        ${
+          hovered
+            ? "border-[#4A3728]/40 bg-white dark:bg-zinc-900/50 shadow-sm"
+            : "border-zinc-100 dark:border-white/5 bg-zinc-50/50 dark:bg-zinc-900/30 md:bg-transparent md:border-transparent"
+        }
+      `}
     >
       <motion.div
         animate={
           hovered
-            ? { x: 8, rotate: 4, scale: 1.1 }
+            ? { x: 5, rotate: 5, scale: 1.05 }
             : { x: 0, rotate: 0, scale: 1 }
         }
-        transition={{ type: "spring", stiffness: 260, damping: 16 }}
-        className="w-14 h-14 md:w-18 md:h-18 rounded-sm bg-white dark:bg-zinc-950 flex items-center justify-center text-[#4A3728] mb-4 border border-zinc-200 dark:border-white/10 shadow-sm transition-colors duration-300 group-hover:bg-[#4A3728] group-hover:text-white"
+        className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-white dark:bg-zinc-950 flex items-center justify-center text-[#4A3728] mb-5 border border-zinc-200 dark:border-white/10 shadow-sm group-hover:bg-[#4A3728] group-hover:text-white transition-colors duration-300"
       >
-        <Icon size={32} strokeWidth={1.5} />
+        <Icon size={24} className="md:size-7" strokeWidth={1.5} />
       </motion.div>
 
-      <div className="flex-1 flex flex-col">
-        <span className="text-md md:text-md font-black tracking-[0.15em] uppercase text-[#4A3728] mb-2">
+      <div className="flex-1 flex flex-col w-full">
+        <span className="text-[10px] font-black tracking-widest text-[#4A3728] mb-1 opacity-80 uppercase">
           {service.subtitle}
         </span>
 
-        <h4 className="text-md md:text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-2 md:mb-3">
+        <h4 className="text-[16px] md:text-[18px] font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-2">
           {service.title}
         </h4>
 
-        <p className="text-md md:text-sm font-medium text-zinc-500 dark:text-white/50 leading-relaxed max-w-xs mb-4">
+        <p className="text-[13px] md:text-[14px] font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6">
           {service.desc}
         </p>
 
-        <div className="flex items-center justify-between w-full">
-          <motion.div
-            className="h-1 rounded-full w-6 md:w-8"
-            animate={
-              hovered
-                ? { width: "48px", backgroundColor: "#4A3728" }
-                : { width: "24px", backgroundColor: "rgba(74,55,40,0.3)" }
-            }
-            transition={{ duration: 0.3 }}
-          />
-
-          <motion.a
+        <div className="mt-auto">
+          <a
             href={service.href}
-            animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
-            transition={{ duration: 0.3 }}
-            className="flex items-center gap-2 text-md font-black uppercase  text-zinc-900 dark:text-white pointer-events-auto"
+            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase text-zinc-900 dark:text-white hover:text-[#4A3728] dark:hover:text-white transition-colors"
           >
             {service.cta}
-          </motion.a>
+            <span
+              className={`block h-0.5 bg-[#4A3728] transition-all duration-300 ${hovered ? "w-8" : "w-4"}`}
+            />
+          </a>
         </div>
       </div>
     </motion.div>

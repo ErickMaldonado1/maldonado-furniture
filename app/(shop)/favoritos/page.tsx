@@ -8,10 +8,6 @@ import Link from "next/link";
 export default function FavoritesPage() {
   const { favorites } = useFavoritesStore();
 
-  // We need to map favorite items (small interface) to ProductCard anticipated interface
-  // ProductCard expects 'product' which has images[]. Favorites has image string.
-  // We can bridge this adaptively or basic props.
-
   return (
     <main className="min-h-screen pt-32 pb-20 bg-[#FDFCFB] dark:bg-[#050505] transition-colors">
       <div className="container mx-auto px-6">
@@ -44,16 +40,20 @@ export default function FavoritesPage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {favorites.map((fav) => {
-              
               const mockProduct = {
                 id: fav.id,
                 name: fav.name,
                 price: fav.price,
                 images: [{ url: fav.image }],
                 category: "Favorito",
-               
               };
-              return <ProductCard key={fav.id} product={mockProduct as any} index={0} />;
+              return (
+                <ProductCard
+                  key={fav.id}
+                  product={mockProduct as any}
+                  index={0}
+                />
+              );
             })}
           </div>
         )}

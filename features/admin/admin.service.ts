@@ -1,8 +1,6 @@
-// features/admin/admin.service.ts
 import prisma from "@/lib/prisma";
 
 export const AdminService = {
-  // Obtener productos con stock y variantes para la tabla
   async getInventory() {
     return await prisma.product.findMany({
       include: {

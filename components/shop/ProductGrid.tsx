@@ -15,7 +15,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, isLoading }) => {
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="aspect-[4/5] bg-zinc-100 dark:bg-zinc-900 rounded-[2rem] animate-pulse"
+            className="aspect-4/5 bg-zinc-100 dark:bg-zinc-900 rounded-4xl animate-pulse"
           />
         ))}
       </div>

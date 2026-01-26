@@ -14,12 +14,10 @@ interface FavoritesMenuProps {
 }
 
 const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
-  const { favorites, toggleFavorite } = useFavoritesStore();
+  const { favorites, toggleFavorite, clearFavorites } = useFavoritesStore();
   const { addToCart } = useCartStore();
 
   const handleAddToCart = (item: any) => {
-    // Usamos "as any" al final del objeto para evitar que TypeScript
-    // bloquee el build por la propiedad variantName
     addToCart({
       id: item.id,
       name: item.name,
@@ -39,6 +37,17 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
       title={`Mis Favoritos (${favorites.length})`}
     >
       <div className="flex flex-col h-full">
+        {favorites.length > 0 && (
+          <div className="flex justify-end mb-4">
+            <button
+              onClick={clearFavorites}
+              className="text-xs font-bold uppercase tracking-widest text-red-500 hover:text-red-600 transition-colors flex items-center gap-1"
+            >
+              <HiOutlineTrash size={14} />
+              Vaciar Lista
+            </button>
+          </div>
+        )}
         <div className="flex-1 overflow-y-auto pr-2 space-y-6">
           {favorites.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-64 text-center space-y-4 my-auto">
@@ -55,12 +64,12 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
           ) : (
             favorites.map((item) => (
               <div key={item.id} className="flex gap-4 group relative">
-                <div className="w-24 h-24 relative shrink-0 rounded-sm overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+                <div className="w-24 h-24 relative shrink-0 rounded-md overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
                   <Image
-                    src={item.image || "/icons/placeholder.png"}
+                    src={item.image}
                     alt={item.name}
                     fill
-                    className="object-contain p-2"
+                    className="object-cover"
                   />
                 </div>
                 <div className="flex-1 flex flex-col justify-between py-1">

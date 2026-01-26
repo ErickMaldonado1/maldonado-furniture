@@ -4,7 +4,7 @@ import { HiArrowLongRight } from "react-icons/hi2";
 export function ContactForm() {
   return (
     <section id="contacto" className="py-16 px-6 max-w-6xl mx-auto">
-      <div className="bg-white dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-900 rounded-sm shadow-sm overflow-hidden flex flex-col lg:flex-row max-h-none lg:h-[400px]">
+      <div className="bg-white dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-900 rounded-sm shadow-sm overflow-hidden flex flex-col lg:flex-row max-h-none lg:h-100">
         <div className="w-full lg:w-2/5 relative h-48 lg:h-full overflow-hidden bg-zinc-100 dark:bg-zinc-900">
           <img
             src="https://res.cloudinary.com/dwvruzkll/image/upload/v1769210579/contact-page_cbg6y3.webp"

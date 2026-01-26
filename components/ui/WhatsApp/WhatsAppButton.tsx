@@ -6,7 +6,6 @@ import { FaWhatsapp } from "react-icons/fa";
 import { HiXMark } from "react-icons/hi2";
 
 export default function WhatsAppButton() {
-  // 1. Iniciamos en false para que no estorbe al cargar
   const [isOpen, setIsOpen] = useState(false);
 
   const phoneNumber = "584120000000";
@@ -15,12 +14,10 @@ export default function WhatsAppButton() {
   return (
     <div
       className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4"
-      // 2. Controlamos que se cierre al alejar el mouse del contenedor completo
       onMouseLeave={() => setIsOpen(false)}
     >
-      {/* Tooltip Message */}
       {isOpen && (
-        <div className="relative bg-white dark:bg-zinc-800 p-4 rounded-sm shadow-xl shadow-zinc-200/50 dark:shadow-black/50 border border-zinc-100 dark:border-white/5 max-w-[250px] animate-in fade-in zoom-in duration-200 origin-bottom-right">
+        <div className="relative bg-white dark:bg-zinc-800 p-4 rounded-sm shadow-xl shadow-zinc-200/50 dark:shadow-black/50 border border-zinc-100 dark:border-white/5 max-w-62.5 animate-in fade-in zoom-in duration-200 origin-bottom-right">
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -36,7 +33,7 @@ export default function WhatsAppButton() {
               ¡Escríbenos al WhatsApp!
             </span>
           </p>
-          {/* Flechita del tooltip */}
+
           <div className="absolute bottom-0 right-6 translate-y-1/2 rotate-45 w-4 h-4 bg-white dark:bg-zinc-800 border-r border-b border-zinc-100 dark:border-white/5"></div>
         </div>
       )}

@@ -7,7 +7,7 @@ export const getProductsAction = async (filters: any) => {
 
 export const createProductAction = async (data: any) => {
   const product = await ProductService.create(data);
-  revalidatePath("/admin/products"); 
+  revalidatePath("/admin/products");
   return product;
 };
 
@@ -25,7 +25,7 @@ export const deleteVariantAction = async (variantId: string) => {
 export async function deleteProductAction(id: string) {
   try {
     await ProductService.deactivateProduct(id);
-    revalidatePath("/admin/products"); 
+    revalidatePath("/admin/products");
     return { success: true };
   } catch (error) {
     return { error: "No se pudo desactivar el producto" };

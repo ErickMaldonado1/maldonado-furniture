@@ -5,7 +5,6 @@ import {
   VariantDimensions,
 } from "@prisma/client";
 
-// Para crear un producto
 export type ProductInput = {
   name: string;
   sku: string;
@@ -22,7 +21,6 @@ export type ProductInput = {
   isFlashDeal?: boolean;
 };
 
-// Para actualizar un producto
 export type ProductUpdateInput = Partial<ProductInput> & {
   isActive?: boolean;
 };

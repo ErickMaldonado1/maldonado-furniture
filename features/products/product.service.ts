@@ -7,6 +7,7 @@ export const ProductService = {
       where: {
         isActive: true,
         category: filters.category || undefined,
+        subcategory: filters.subcategory || undefined,
         price: {
           gte: filters.minPrice || undefined,
           lte: filters.maxPrice || undefined,
@@ -38,37 +39,50 @@ export const ProductService = {
     });
   },
 
+  async getBySlug(slug: string) {
+    const slugNormalized = slug.trim().toLowerCase();
+    const slugWithSpaces = slugNormalized.replace(/-/g, " ");
 
-async getBySlug(slug: string) {
-  // 1. Generamos versiones de búsqueda
-  const nameWithSpaces = slug.replace(/-/g, ' '); // "escritorio industrial prowork"
-  
-  return await prisma.product.findFirst({
-    where: {
-      isActive: true,
-      OR: [
-        { sku: { equals: slug, mode: 'insensitive' } }, 
-        { 
-          name: { 
-            contains: nameWithSpaces, 
-            mode: 'insensitive' 
-          } 
-        },
-       
-        {
-          name: {
-            contains: slug,
-            mode: 'insensitive'
-          }
-        }
-      ],
-    },
-    include: {
-      images: true,
-      variants: { include: { dimensions: true } },
-    },
-  });
-},
+    let product = await prisma.product.findFirst({
+      where: {
+        isActive: true,
+        OR: [
+          { sku: { equals: slug, mode: "insensitive" } },
+          { name: { equals: slug, mode: "insensitive" } },
+          { name: { contains: slugWithSpaces, mode: "insensitive" } },
+        ],
+      },
+      include: {
+        images: true,
+        variants: { include: { dimensions: true } },
+      },
+    });
+
+    if (product) return product;
+
+    const candidates = await prisma.product.findMany({
+      where: { isActive: true },
+      select: { id: true, name: true },
+    });
+
+    const normalize = (txt: string) =>
+      txt
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+    const targetSlug = normalize(slug);
+
+    const match = candidates.find((p) => normalize(p.name) === targetSlug);
+
+    if (match) {
+      return await this.getById(match.id);
+    }
+
+    return null;
+  },
   async create(data: any) {
     return await prisma.product.create({
       data: {

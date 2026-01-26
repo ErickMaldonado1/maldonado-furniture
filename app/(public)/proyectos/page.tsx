@@ -49,7 +49,7 @@ export default function ProyectosPage() {
 
   return (
     <main className="mt-20 min-h-screen bg-white dark:bg-[#050505] transition-colors duration-300">
-      <section className="pt-16 pb-12 max-w-[1360px] mx-auto px-6">
+      <section className="pt-16 pb-12 max-w-340 mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-8 border-b border-zinc-100 dark:border-zinc-900 pb-12">
           <div className="text-center md:text-left">
             <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter dark:text-white leading-[0.85]">
@@ -78,7 +78,7 @@ export default function ProyectosPage() {
         </div>
       </section>
 
-      <section className="pb-12 max-w-[1360px] mx-auto px-6">
+      <section className="pb-12 max-w-340 mx-auto px-6">
         <motion.div
           layout
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
@@ -140,11 +140,11 @@ export default function ProyectosPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
+            className="fixed inset-0 z-100 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
           >
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-8 right-8 text-white text-4xl hover:text-[#4A3728] transition-all z-[110]"
+              className="absolute top-8 right-8 text-white text-4xl hover:text-[#4A3728] transition-all z-110"
             >
               <HiXMark />
             </button>

@@ -16,7 +16,7 @@ import { slugify } from "@/utils/slug_url";
 interface ProductCardProps {
   product: any;
   index: number;
-  addToCart?: (product: any) => void; 
+  addToCart?: (product: any) => void;
 }
 
 export default function ProductCard({ product, index }: ProductCardProps) {
@@ -28,14 +28,13 @@ export default function ProductCard({ product, index }: ProductCardProps) {
     product.images?.[0]?.url ||
     "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80";
 
-  // Calcular precio con descuento si existiera
   const hasDiscount = product.discount > 0;
   const finalPrice = hasDiscount
     ? product.price - (product.price * product.discount) / 100
     : product.price;
 
   const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent link navigation
+    e.preventDefault();
     e.stopPropagation();
 
     addToCart({
@@ -68,68 +67,124 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       transition={{ duration: 0.3, delay: index * 0.05 }}
       className="group bg-white dark:bg-[#0A0A0A] flex flex-col h-full border border-transparent hover:border-zinc-200 dark:hover:border-zinc-800 transition-all duration-300"
     >
-      <div className="relative aspect-square w-full bg-[#F3F3F3] dark:bg-[#121212] overflow-hidden">
-        <Image
-          src={imageUrl}
-          alt={product.name}
-          fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-contain transition-transform duration-500 group-hover:scale-105"
-        />
-        <button className="absolute top-3 right-3 p-2 bg-white/90 dark:bg-black/50 backdrop-blur-md rounded-full shadow-sm hover:text-red-500 transition-colors z-10">
-          <HiOutlineHeart className="text-xl" />
-        </button>
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/5 backdrop-blur-[2px]">
-          <Link
-            href={`/${product.category}/${product.subcategory}/${slugify(product.name)}`}
-            className="bg-white text-black px-4 py-2 rounded-full text-[12px] font-black uppercase tracking-[0.15em] shadow-xl flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+      <div className="relative w-full border border-zinc-100 dark:border-white/5 rounded-sm bg-white dark:bg-[#0A0A0A]">
+        <div className="relative aspect-square w-full overflow-hidden group/img cursor-pointer">
+          <Image
+            src={imageUrl}
+            alt={product.name}
+            fill
+            priority
+            sizes="(max-width: 640px) 50vw, 33vw"
+            className="object-cover object-center transition-transform duration-1000 group-hover/img:scale-110"
+          />
+          <button
+            onClick={handleToggleFavorite}
+            className={`absolute top-3 right-3 z-20 transition-all duration-300 drop-shadow-md hover:scale-110 ${
+              isFav
+                ? "text-red-500"
+                : "text-zinc-900 dark:text-white hover:text-red-500"
+            }`}
+            aria-label="Favorito"
           >
-            <HiOutlineEye className="text-xl" />
-            Vista Rápida
-          </Link>
-        </div>
-
-        {/* Badge de Envío (Estilo imagen) */}
-        <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-white/90 dark:bg-black/60 px-2 py-1 rounded text-[12px] text-teal-600 dark:text-teal-400 font-bold">
-          <HiOutlineTruck />
-          Envío en 8 días
+            {isFav ? (
+              <HiHeart className="text-2xl" />
+            ) : (
+              <HiOutlineHeart className="text-2xl" />
+            )}
+          </button>
+          <div className="hidden md:flex absolute inset-0 items-end justify-end p-2 opacity-0 group-hover/img:opacity-100 transition-all duration-300 bg-black/5">
+            <Link
+              href={`/${product.category}/${product.subcategory}/${slugify(product.name)}`}
+              className="bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 px-4 py-2 rounded-sm text-[10px] font-black uppercase tracking-[0.2em] shadow-xl transform translate-y-1 group-hover/img:translate-y-0 transition-all duration-300 hover:bg-[#4A3728] hover:text-white dark:hover:bg-[#4A3728] dark:hover:text-white"
+            >
+              Vista Rápida
+            </Link>
+          </div>
+          <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-sm border border-teal-600/30 dark:border-teal-400/30 text-[9px] text-teal-600 dark:text-teal-400 font-black uppercase tracking-[0.15em] backdrop-blur-sm">
+            <HiOutlineTruck className="text-sm" />
+            <span>Envío 8 días</span>
+          </div>
         </div>
       </div>
 
-      {/* Info del Producto */}
-      <div className="p-4 flex flex-col grow">
+      <div className="p-2 md:p-2 flex flex-col grow bg-white dark:bg-[#0A0A0A]">
         <div className="grow">
           <Link
             href={`/${product.category}/${product.subcategory}/${product.id}`}
           >
-            <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-tight hover:underline">
+            <h3 className="text-[13px] md:text-[14px] font-black uppercase tracking-tight text-zinc-900 dark:text-zinc-100 line-clamp-1 leading-tight hover:text-[#4A3728] transition-colors">
               {product.name}
             </h3>
           </Link>
 
-          {/* Medidas (Extraídas de la lógica de la imagen) */}
-          <div className="mt-2 flex items-center gap-3 text-[11px] text-zinc-500 font-medium">
-            <span className="flex items-center gap-0.5">↕ 76 cm</span>
-            <span className="flex items-center gap-0.5">↔ 154 cm</span>
-            <span className="flex items-center gap-0.5">↗ 55 cm</span>
+          <div className="mt-2 flex items-center gap-2 text-[11px] text-zinc-500 dark:text-zinc-400 font-bold">
+            <div className="flex items-center gap-1">
+              <svg
+                className="w-3 h-3 text-zinc-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
+                />
+              </svg>
+              <span>76cm</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <svg
+                className="w-3 h-3 text-zinc-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  d="M8 7h12m0 0l-4-4m4 4l-4 4M16 17H4m0 0l4-4m-4 4l4 4"
+                />
+              </svg>
+              <span>154cm</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <svg
+                className="w-3 h-3 text-zinc-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                style={{ transform: "rotate(45deg)" }}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  d="M8 7h12m0 0l-4-4m4 4l-4 4M16 17H4m0 0l4-4m-4 4l4 4"
+                />
+              </svg>
+              <span>55cm</span>
+            </div>
           </div>
         </div>
 
-        <div className="mt-4 flex items-end justify-between">
+        <div className="mt-2 flex items-center justify-between gap-3 border-t border-zinc-100 dark:border-white/5 pt-1">
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase text-zinc-400 font-bold tracking-widest leading-none mb-1">
-              Precio
-            </span>
-            <p className="text-xl font-black text-black dark:text-white leading-none">
-              {product.price}€
+            <p className="text-lg md:text-xl font-black text-zinc-900 dark:text-white leading-none">
+              ${product.price}
             </p>
           </div>
 
           <button
-            onClick={() => addToCart(product)}
-            className="p-3 bg-black text-white dark:bg-white dark:text-black rounded-full hover:scale-110 active:scale-95 transition-all shadow-lg"
+            onClick={handleAddToCart}
+            className="flex items-center gap-2 px-3 py-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-sm hover:bg-[#4A3728] dark:hover:bg-zinc-200 transition-all active:scale-95"
           >
-            <HiOutlineShoppingBag className="text-xl" />
+            <span className="text-[9px] font-black uppercase tracking-widest hidden sm:block">
+              Añadir
+            </span>
+            <HiOutlineShoppingBag className="text-lg" />
           </button>
         </div>
       </div>

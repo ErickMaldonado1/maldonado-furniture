@@ -115,7 +115,7 @@ export const categories: Category[] = [
       },
       {
         sub: "comedores",
-        label: "Comedores",
+        label: "comedores",
         href: "/sala/comedores",
         imageSrc:
           "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190710/comedor_sm9shq.webp",
@@ -123,11 +123,11 @@ export const categories: Category[] = [
       },
       {
         sub: "muebles-tv",
-        label: "Muebles TV",
+        label: "muebles tv",
         href: "/sala/muebles-tv",
         imageSrc:
           "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190713/muebletv_vmoebu.webp",
-        imageAlt: "muebletv",
+        imageAlt: "mueble tv",
       },
       {
         sub: "mesas-de-centro",

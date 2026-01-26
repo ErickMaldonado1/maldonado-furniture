@@ -11,7 +11,7 @@ export async function getProducts(params: {
 
     const where: any = {
       isActive: true,
-      category: { equals: category, mode: "insensitive" }, // Case-insensitive match
+      category: { equals: category, mode: "insensitive" },
     };
 
     if (subcategory) {

@@ -7,7 +7,7 @@ export interface CartItem {
   price: number;
   quantity: number;
   image?: string;
-  variantId?: string; // Optional for compatibility, but recommended for variants
+  variantId?: string;
   maxQuantity?: number;
 }
 

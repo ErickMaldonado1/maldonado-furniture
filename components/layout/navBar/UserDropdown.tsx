@@ -75,7 +75,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
         <div className="w-8 h-8 rounded-full bg-[#4A3728] text-white flex items-center justify-center font-bold text-sm uppercase">
           {user?.name?.[0] || user?.email?.[0] || "U"}
         </div>
-        <span className="text-sm font-medium hidden md:block max-w-[100px] truncate">
+        <span className="text-sm font-medium hidden md:block max-w-25 truncate">
           {user?.name?.split(" ")[0] || "Usuario"}
         </span>
       </button>

@@ -77,7 +77,7 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <main className="mt-20 min-h-screen bg-white dark:bg-[#050505] transition-colors">
       <section className="bg-[#FDFCFB] dark:bg-black">
-        <div className="max-w-[1360px] mx-auto flex flex-col lg:flex-row h-auto lg:h-[360px]">
+        <div className="max-w-340 mx-auto flex flex-col lg:flex-row h-auto lg:h-90">
           <div className="w-full lg:w-1/2 p-4 lg:p-16 flex flex-col justify-center">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
@@ -93,7 +93,7 @@ export default async function CategoryPage({ params }: Props) {
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-1/2 h-[280px] lg:h-full">
+          <div className="w-full lg:w-1/2 h-70 lg:h-full">
             <img
               src={heroImage}
               className="w-full h-full object-cover"

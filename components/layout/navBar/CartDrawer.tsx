@@ -116,8 +116,6 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
             ))
           )}
         </div>
-
-        {/* Footer */}
         {items.length > 0 && (
           <div className="mt-6 pt-6 border-t border-zinc-100 dark:border-zinc-800">
             <div className="space-y-3 mb-6">
@@ -130,9 +128,11 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                 <span>${total.toLocaleString()}</span>
               </div>
             </div>
-            <button className="w-full py-4 bg-[#4A3728] hover:bg-[#3D2C1F] text-white rounded-sm font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
-              Proceder al Pago
-            </button>
+            <Link href="/checkout" onClick={onClose} className="block w-full">
+              <button className="w-full py-4 bg-[#4A3728] hover:bg-[#3D2C1F] text-white rounded-sm font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+                Proceder al Pago
+              </button>
+            </Link>
             <p className="text-center text-xs text-zinc-400 mt-3">
               Envío calculado en el siguiente paso
             </p>

@@ -4,7 +4,7 @@ export const productSchema = z.object({
   name: z.string().min(1, "Nombre requerido"),
   sku: z.string().min(1, "SKU requerido"),
   description: z.string().min(1, "Descripción requerida"),
-  price: z.coerce.number().min(0), // Coerce es clave aquí
+  price: z.coerce.number().min(0),
   category: z.string().min(1, "Categoría requerida"),
   images: z.array(
     z.object({

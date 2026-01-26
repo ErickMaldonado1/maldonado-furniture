@@ -15,7 +15,6 @@ const AuthDrawer: React.FC<AuthDrawerProps> = ({ isOpen, onClose }) => {
 
   React.useEffect(() => {
     if (!isOpen) {
-    
       const timer = setTimeout(() => setView("login"), 300);
       return () => clearTimeout(timer);
     }

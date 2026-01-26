@@ -15,7 +15,7 @@ import {
 } from "react-icons/hi";
 
 import MegaMenu from "@/components/layout/menu/MegaMenu";
-import MobileMenu from "@/components/layout/menu/MobileMenu";
+import MobileMenu from "@/components/layout/menu/MovileMenu";
 import DesktopNav from "@/components/layout/menu/DesktopNav";
 import { categories } from "@/lib/categories";
 import AuthDrawer from "@/components/layout/AuthDrawer";
@@ -23,6 +23,7 @@ import FavoritesMenu from "./FavoritesMenu";
 import CartDrawer from "./CartDrawer";
 import UserDropdown from "./UserDropdown";
 import { useCartStore } from "@/store/cart-store";
+import { useFavoritesStore } from "@/features/favorites/favorites-store";
 
 const Navbar = () => {
   const router = useRouter();
@@ -43,8 +44,11 @@ const Navbar = () => {
   const isAnyMenuOpen = activeMenu !== null || isHoveringMenu;
   const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
 
-  const totalItems = useCartStore((state) => state.getTotalItems());
+  const totalItems = useCartStore((state) =>
+    state.cart.reduce((acc, item) => acc + item.quantity, 0),
+  );
   const cartItems = useCartStore((state) => state.cart);
+  const favorites = useFavoritesStore((state) => state.favorites);
 
   const handleLinkMouseEnter = (item: string) => {
     if (closeTimeout) clearTimeout(closeTimeout);
@@ -139,16 +143,17 @@ const Navbar = () => {
             )}
           </button>
 
-          <Link
-            href="/"
-            className={`p-2.5 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"}`}
+          <button
+            onClick={() => setFavoritesOpen(true)}
+            className={`hidden sm:flex p-2.5 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"}`}
           >
-            <HiOutlineHeart
-              className="text-2xl group-hover:scale-110 transition-transform"
-              onClick={() => setFavoritesOpen(true)}
-            />
-            <span className="absolute top-2 right-2 w-2 h-2 bg-[#4A3728] rounded-full" />
-          </Link>
+            <HiOutlineHeart className="text-2xl group-hover:scale-110 transition-transform" />
+            {mounted && favorites.length > 0 && (
+              <span className="absolute top-1 right-1 bg-[#4A3728] text-white text-[10px] font-black h-5 w-5 rounded-full flex items-center justify-center shadow-lg animate-in zoom-in">
+                {favorites.length}
+              </span>
+            )}
+          </button>
 
           <UserDropdown
             onOpenAuth={() => setIsAuthDrawerOpen(true)}

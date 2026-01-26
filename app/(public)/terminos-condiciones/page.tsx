@@ -2,11 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  HiOutlineDocumentText,
-  HiOutlineScale,
-  HiOutlineShieldCheck,
-} from "react-icons/hi2";
+import { HiOutlineScale } from "react-icons/hi2";
 
 interface PolicySection {
   id: string;

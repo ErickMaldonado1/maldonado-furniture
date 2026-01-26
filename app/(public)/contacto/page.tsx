@@ -24,7 +24,7 @@ export default function ContactoPage() {
 
   return (
     <main className="mt-20 min-h-screen bg-white dark:bg-[#050505] transition-colors duration-300">
-      <section className="pt-16 pb-8 max-w-[1360px] mx-auto px-6">
+      <section className="pt-16 pb-8 max-w-340 mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-10 border-b border-zinc-100 dark:border-zinc-900 pb-12">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -34,7 +34,7 @@ export default function ContactoPage() {
           >
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter dark:text-white leading-[0.8]">
               Atención al{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A3728] to-[#5D4037]">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
                 Cliente
               </span>
             </h1>
@@ -56,13 +56,13 @@ export default function ContactoPage() {
       </section>
 
       <section className="py-20 bg-white dark:bg-[#050505]">
-        <div className="max-w-[1360px] mx-auto px-6">
+        <div className="max-w-340 mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-100 dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-800">
             <a
               href="https://api.whatsapp.com/send/?phone=593959504842&text=Hola%21+Necesito+ayuda+con+un+pedido.&type=phone_number&app_absent=0"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-[300px] hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors"
+              className="group flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-75 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors"
             >
               <div>
                 <FaWhatsapp className="text-3xl text-[#4A3728] mb-4" />
@@ -79,7 +79,7 @@ export default function ContactoPage() {
               </span>
             </a>
 
-            <div className="flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-[300px]">
+            <div className="flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-75">
               <div>
                 <HiOutlineEnvelope className="text-3xl text-[#4A3728] mb-4" />
                 <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-4">
@@ -94,7 +94,7 @@ export default function ContactoPage() {
               </span>
             </div>
 
-            <div className="flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-[300px]">
+            <div className="flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-75">
               <div>
                 <HiOutlinePhone className="text-3xl text-[#4A3728] mb-4" />
                 <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-4">
@@ -109,7 +109,7 @@ export default function ContactoPage() {
               </span>
             </div>
 
-            <div className="flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-[300px]">
+            <div className="flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-75">
               <div>
                 <div className="flex gap-5 mb-4">
                   <a
@@ -147,7 +147,7 @@ export default function ContactoPage() {
         </div>
       </section>
 
-      <section className="py-20 max-w-[1360px] mx-auto px-6">
+      <section className="py-20 max-w-340 mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-stretch">
           {/* COLUMNA IZQUIERDA: FORMULARIO */}
           <div className="flex flex-col h-full order-2 lg:order-1">
@@ -159,7 +159,7 @@ export default function ContactoPage() {
                 Completa tus datos y te contactaremos.
               </p>
             </div>
-            <div className="flex-grow border border-zinc-100 dark:border-zinc-900 rounded-sm bg-white dark:bg-[#050505]">
+            <div className="grow border border-zinc-100 dark:border-zinc-900 rounded-sm bg-white dark:bg-[#050505]">
               <ContactForm />
             </div>
           </div>
@@ -173,7 +173,7 @@ export default function ContactoPage() {
               </p>
             </div>
 
-            <div className="flex flex-col flex-grow space-y-4">
+            <div className="flex flex-col grow space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-zinc-100 dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-800 rounded-sm overflow-hidden">
                 <div className="bg-zinc-50 dark:bg-zinc-900/50 p-6 flex gap-4">
                   <HiOutlineMapPin className="text-2xl text-[#4A3728] shrink-0" />
@@ -191,7 +191,7 @@ export default function ContactoPage() {
                   </p>
                 </div>
               </div>
-              <div className="relative flex-grow min-h-[400px] overflow-hidden rounded-sm shadow-xl border border-zinc-100 dark:border-zinc-900">
+              <div className="relative grow min-h-100 overflow-hidden rounded-sm shadow-xl border border-zinc-100 dark:border-zinc-900">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.8131877759606!2d-78.52207852622!3d-0.09190273548446162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d5854e128da845%3A0xe91f40a9dd58a38a!2sMuebles%20Maldonado%20Ec!5e0!3m2!1ses-419!2sec!4v1765848391688!5m2!1ses-419!2sec"
                   className="absolute inset-0 w-full h-full grayscale contrast-125 dark:invert hover:grayscale-0 transition-all duration-1000"

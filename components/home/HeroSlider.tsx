@@ -16,7 +16,7 @@ const slides = [
     description: "Diseño y calidad en muebles de cocina a medida.",
     image:
       "https://res.cloudinary.com/dwvruzkll/image/upload/v1769127395/cocina_stp9o1.webp",
-    link: "/productos?category=cocina",
+    link: "/cocina",
     tag: "Cocinas a Medida ",
   },
   {
@@ -25,7 +25,7 @@ const slides = [
     description: "Modernos y elegantes que unen diseño, confort y calidad.",
     image:
       "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp",
-    link: "/productos?category=dormitorio",
+    link: "/dormitorio",
     tag: "Nuevos diseños",
   },
   {
@@ -34,7 +34,7 @@ const slides = [
     description: "Muebles de sala para cada espacio de tu hogar.",
     image:
       "https://res.cloudinary.com/dwvruzkll/image/upload/v1769124357/sala_jgxncz.webp",
-    link: "/productos?category=sala",
+    link: "/sala",
     tag: "Decoración de sala",
   },
   {
@@ -44,7 +44,7 @@ const slides = [
       "Muebles de oficina para home office y espacios profesionales.",
     image:
       "https://res.cloudinary.com/dwvruzkll/image/upload/v1769126235/oficina_rzbif0.webp",
-    link: "/productos?category=oficina",
+    link: "/oficina",
     tag: "Home Office",
   },
 ];
@@ -66,7 +66,7 @@ const HeroSlider = () => {
   }, []);
 
   return (
-    <section className="relative h-[85vh] min-h-125 w-full overflow-hidden bg-black dark:bg-[#0a0a0a] transition-colors duration-700">
+    <section className="relative h-[60vh] md:h-[85vh] min-h-125 w-full overflow-hidden bg-black dark:bg-[#0a0a0a] transition-colors duration-700">
       {slides.map((slide, index) => (
         <div
           key={slide.id}
@@ -120,8 +120,7 @@ const HeroSlider = () => {
 
               <Link
                 href={slide.link}
-                className=" inline-flex items-center gap-2 px-5 py-2.5 text-sm md:text-base font-semibold rounded-md bg-[#4A3728]/90 dark:bg-white/10 text-white dark:text-white backdrop-blur-sm border border-transparent hover:bg-[#4A3728] dark:hover:bg-white/20 transition-all duration-300 group
-  "
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-sm md:text-base font-semibold rounded-md bg-[#4A3728]/90 text-white dark:bg-white/10 dark:text-white backdrop-blur-sm border border-transparent hover:bg-black dark:hover:bg-white/20 transition-all duration-300 group"
               >
                 Ver colección
                 <HiOutlineArrowRight

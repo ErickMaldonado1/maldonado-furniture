@@ -6,6 +6,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const filters = {
       category: searchParams.get("category"),
+      subcategory: searchParams.get("subcategory"),
       minPrice: searchParams.get("minPrice")
         ? parseFloat(searchParams.get("minPrice")!)
         : undefined,
