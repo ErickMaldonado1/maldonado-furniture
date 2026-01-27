@@ -83,6 +83,7 @@ export default function CartPage() {
                           )
                         }
                         className="hover:text-[#4A3728] transition-colors"
+                        aria-label="add item"
                       >
                         <HiMinus />
                       </button>
@@ -94,6 +95,7 @@ export default function CartPage() {
                           updateQuantity(item.id, item.quantity + 1)
                         }
                         className="hover:text-[#4A3728] transition-colors"
+                        aria-label="quantity"
                       >
                         <HiPlus />
                       </button>
@@ -102,6 +104,7 @@ export default function CartPage() {
                     <button
                       onClick={() => removeFromCart(item.id)}
                       className="text-zinc-400 hover:text-red-500 transition-colors p-2"
+                      aria-label="remove-cart"
                     >
                       <HiOutlineTrash size={20} />
                     </button>
@@ -144,7 +147,8 @@ export default function CartPage() {
               </div>
 
               <Link href="/checkout">
-                <button className="w-full bg-[#1A1A1A] dark:bg-white text-white dark:text-black py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-[#4A3728] dark:hover:bg-[#E7DED4] transition-all shadow-lg hover:shadow-2xl hover:-translate-y-1">
+                <button className="w-full bg-[#1A1A1A] dark:bg-white text-white dark:text-black py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-[#4A3728] dark:hover:bg-[#E7DED4] transition-all shadow-lg hover:shadow-2xl hover:-translate-y-1"
+                aria-label="finish">
                   Finalizar Compra
                 </button>
               </Link>

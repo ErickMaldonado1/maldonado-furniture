@@ -1,14 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 import { HiXMark } from "react-icons/hi2";
 
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const phoneNumber = "584120000000";
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isVisible) return null;
+  const phoneNumber = "593959504842";
   const message = "Hola! Necesito ayuda con un pedido.";
 
   return (
@@ -24,6 +34,7 @@ export default function WhatsAppButton() {
               setIsOpen(false);
             }}
             className="absolute -top-2 -left-2 bg-zinc-100 dark:bg-zinc-700 rounded-full p-1 text-zinc-500 hover:text-red-500 transition-colors shadow-sm"
+            aria-label="whatsapp-button"
           >
             <HiXMark size={14} />
           </button>

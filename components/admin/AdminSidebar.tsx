@@ -65,7 +65,8 @@ export default function AdminSidebar() {
       </nav>
 
       <div className="p-6 border-t border-zinc-100 dark:border-zinc-800">
-        <button className="w-full flex items-center gap-4 px-4 py-3 rounded-xl font-bold uppercase text-xs tracking-widest text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all">
+        <button className="w-full flex items-center gap-4 px-4 py-3 rounded-xl font-bold uppercase text-xs tracking-widest text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all"
+        aria-label="close">
           <HiOutlineArrowLeftOnRectangle className="text-xl" />
           Cerrar Sesión
         </button>

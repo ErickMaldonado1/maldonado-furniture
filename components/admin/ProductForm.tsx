@@ -70,6 +70,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
         <button
           type="submit"
           disabled={loading}
+          aria-label="submit-product"
           className="bg-[#4A3728] text-white px-8 py-3 rounded-xl font-black uppercase tracking-widest text-sm hover:shadow-xl transition-all flex items-center gap-2 disabled:opacity-50"
         >
           <HiOutlineCheck className="text-lg" />
@@ -259,7 +260,8 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                       fill
                       className="object-cover"
                     />
-                    <button className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"
+                    aria-label="add-iamge">
                       <HiOutlineTrash size={12} />
                     </button>
                   </div>

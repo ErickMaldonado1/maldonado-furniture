@@ -249,7 +249,8 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              <button className="w-full bg-[#1A1A1A] dark:bg-white text-white dark:text-black py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-[#4A3728] dark:hover:bg-[#E7DED4] transition-all shadow-lg hover:shadow-2xl">
+              <button className="w-full bg-[#1A1A1A] dark:bg-white text-white dark:text-black py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-[#4A3728] dark:hover:bg-[#E7DED4] transition-all shadow-lg hover:shadow-2xl"
+              aria-label="pay-now">
                 Pagar Ahora
               </button>
 

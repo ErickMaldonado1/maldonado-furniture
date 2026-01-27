@@ -72,6 +72,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
             ? "border-white/20 text-white hover:bg-white/10"
             : "border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800"
         }`}
+        aria-label="efecto-navbar"
       >
         <div className="w-8 h-8 rounded-full bg-[#4A3728] text-white flex items-center justify-center font-bold text-sm uppercase">
           {user?.name?.[0] || user?.email?.[0] || "U"}
@@ -138,6 +139,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
           <button
             onClick={() => signOut({ callbackUrl: "/" })}
             className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-sm transition-colors"
+            aria-label="cerrar-sesión"
           >
             <HiOutlineLogout size={18} />
             Cerrar Sesión

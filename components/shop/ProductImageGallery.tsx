@@ -48,6 +48,7 @@ export function ProductImageGallery({
                   : "border-transparent hover:border-zinc-300 dark:hover:border-zinc-700"
               }
             `}
+            aria-label="display-images"
           >
             <Image
               src={img}
@@ -101,6 +102,7 @@ export function ProductImageGallery({
             <button
               onClick={() => setIsLightboxOpen(false)}
               className="absolute top-6 right-6 p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors z-110"
+              aria-label="lightbox"
             >
               <HiXMark className="text-2xl" />
             </button>
@@ -110,12 +112,14 @@ export function ProductImageGallery({
                 <button
                   onClick={handlePrev}
                   className="absolute left-4 lg:left-10 p-3 rounded-full bg-white dark:bg-zinc-900 shadow-xl hover:scale-110 transition-transform h-12 w-12 flex items-center justify-center z-110"
+                  aria-label="prev"
                 >
                   <HiChevronLeft className="text-xl" />
                 </button>
                 <button
                   onClick={handleNext}
                   className="absolute right-4 lg:right-10 p-3 rounded-full bg-white dark:bg-zinc-900 shadow-xl hover:scale-110 transition-transform h-12 w-12 flex items-center justify-center z-110"
+                  aria-label="next"
                 >
                   <HiChevronRight className="text-xl" />
                 </button>
@@ -145,6 +149,7 @@ export function ProductImageGallery({
                   key={idx}
                   onClick={() => setSelectedImageIndex(idx)}
                   className={`w-12 h-12 rounded-md overflow-hidden border-2 transition-all ${selectedImageIndex === idx ? "border-amber-500 scale-110" : "border-transparent opacity-50 hover:opacity-100"}`}
+                  aria-label="index-images"
                 >
                   <Image src={img} alt="" fill className="object-cover" />
                 </button>

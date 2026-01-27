@@ -7,12 +7,7 @@ import {
   HiOutlineClock,
   HiArrowUpRight,
 } from "react-icons/hi2";
-import {
-  FaInstagram,
-  FaFacebook,
-  FaPinterest,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { Icons } from "@/utils/icons";
 import { ContactForm } from "@/components/shop/ContactForm";
 
 export default function ContactoPage() {
@@ -65,7 +60,7 @@ export default function ContactoPage() {
               className="group flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-75 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors"
             >
               <div>
-                <FaWhatsapp className="text-3xl text-[#4A3728] mb-4" />
+                <Icons.Whatsapp className="w-8 h-8 text-[#4A3728] mb-4" />
                 <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-4">
                   Escríbenos
                 </h3>
@@ -81,7 +76,7 @@ export default function ContactoPage() {
 
             <div className="flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-75">
               <div>
-                <HiOutlineEnvelope className="text-3xl text-[#4A3728] mb-4" />
+                <Icons.Mail className="w-8 h-8 text-[#4A3728] mb-4" />
                 <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-4">
                   Email
                 </h3>
@@ -96,7 +91,7 @@ export default function ContactoPage() {
 
             <div className="flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-75">
               <div>
-                <HiOutlinePhone className="text-3xl text-[#4A3728] mb-4" />
+                <Icons.Phone className="w-8 h-8 text-[#4A3728] mb-4" />
                 <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-4">
                   Llamadas
                 </h3>
@@ -111,26 +106,7 @@ export default function ContactoPage() {
 
             <div className="flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-75">
               <div>
-                <div className="flex gap-5 mb-4">
-                  <a
-                    href="https://www.instagram.com/muebles_maldonad/"
-                    className="text-3xl text-zinc-400 hover:text-[#4A3728] transition-colors"
-                  >
-                    <FaInstagram />
-                  </a>
-                  <a
-                    href="https://www.facebook.com/MueblesMaldonad"
-                    className="text-3xl text-zinc-400 hover:text-[#4A3728] transition-colors"
-                  >
-                    <FaFacebook />
-                  </a>
-                  <a
-                    href="https://www.pinterest.com/mueblesmaldonadoec/"
-                    className="text-3xl text-zinc-400 hover:text-[#4A3728] transition-colors"
-                  >
-                    <FaPinterest />
-                  </a>
-                </div>
+                <Icons.Users className="text-3xl text-[#4A3728] mb-4 w-8 h-8" />
 
                 <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-4">
                   Comunidad

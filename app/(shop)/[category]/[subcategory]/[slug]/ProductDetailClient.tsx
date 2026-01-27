@@ -63,6 +63,7 @@ export function ProductDetailClient({
                 key={i}
                 onClick={() => setSelectedImage(i)}
                 className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${selectedImage === i ? "border-[#4A3728] scale-105" : "border-zinc-100 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-600"}`}
+                aria-label="images-app"
               >
                 <Image
                   src={img.url}
@@ -75,7 +76,7 @@ export function ProductDetailClient({
           </div>
           {/* IMAGEN PRINCIPAL */}
           <div className="flex-1">
-            <div className="relative aspect-[4/5] md:aspect-square rounded-[2rem] overflow-hidden bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 group cursor-zoom-in shadow-2xl shadow-zinc-200/50 dark:shadow-none">
+            <div className="relative aspect-4/5 md:aspect-square rounded-4xl overflow-hidden bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 group cursor-zoom-in shadow-2xl shadow-zinc-200/50 dark:shadow-none">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={selectedImage}
@@ -94,7 +95,10 @@ export function ProductDetailClient({
                   />
                 </motion.div>
               </AnimatePresence>
-              <div className="absolute top-6 right-6">
+              <div
+                className="absolute top-6 right-6"
+                aria-label="toggle-favorites"
+              >
                 <button
                   onClick={() =>
                     toggleFavorite({
@@ -152,6 +156,7 @@ export function ProductDetailClient({
                   <button
                     onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                     className="text-zinc-400 hover:text-[#4A3728] transition-colors p-2 active:scale-95"
+                    aria-label="set-button"
                   >
                     <HiMinus size={20} />
                   </button>
@@ -161,6 +166,7 @@ export function ProductDetailClient({
                   <button
                     onClick={() => setQuantity((q) => q + 1)}
                     className="text-zinc-400 hover:text-[#4A3728] transition-colors p-2 active:scale-95"
+                    aria-label="set-button"
                   >
                     <HiPlus size={20} />
                   </button>
@@ -169,6 +175,7 @@ export function ProductDetailClient({
                 <button
                   onClick={handleAddToCart}
                   className="flex-1 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 h-16 rounded-full flex items-center justify-center gap-4 font-black uppercase tracking-widest hover:bg-[#4A3728] dark:hover:bg-zinc-100 transition-all shadow-2xl shadow-zinc-900/20 active:scale-[0.98]"
+                  artia-label="add cart"
                 >
                   <HiOutlineShoppingBag className="text-2xl" />
                   Añadir al Carrito

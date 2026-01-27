@@ -67,6 +67,7 @@ export function ContactForm() {
               <button
                 type="submit"
                 className="w-full md:w-auto inline-flex items-center justify-center gap-4 bg-[#4A3728] hover:bg-black text-white px-8 py-3 rounded-full text-[12px] font-black uppercase tracking-[0.2em] transition-all group"
+                aria-label="enviar"
               >
                 Enviar Consulta
                 <HiArrowLongRight className="group-hover:translate-x-2 transition-transform text-xl" />

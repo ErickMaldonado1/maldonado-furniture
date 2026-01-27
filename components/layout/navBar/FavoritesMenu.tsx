@@ -42,6 +42,7 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
             <button
               onClick={clearFavorites}
               className="text-xs font-bold uppercase tracking-widest text-red-500 hover:text-red-600 transition-colors flex items-center gap-1"
+              aria-label="vaciar-lista"
             >
               <HiOutlineTrash size={14} />
               Vaciar Lista
@@ -87,6 +88,7 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
                   <button
                     onClick={() => handleAddToCart(item)}
                     className="text-xs font-bold uppercase tracking-wider text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800 self-start hover:border-[#4A3728] transition-colors"
+                    aria-label="add-cart"
                   >
                     Añadir al Carrito
                   </button>
@@ -94,6 +96,7 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
                 <button
                   onClick={() => toggleFavorite(item)}
                   className="absolute top-0 right-0 text-zinc-400 hover:text-red-500 transition-colors p-2"
+                  aria-label="close-trash"
                 >
                   <HiOutlineTrash size={18} />
                 </button>

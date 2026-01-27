@@ -28,6 +28,7 @@ export function DeleteProductBtn({ productId }: { productId: string }) {
       onClick={handleDelete}
       disabled={loading}
       className="text-red-600 hover:text-red-900 disabled:opacity-50 transition-all"
+      aria-label="delete"
     >
       <Trash2 size={18} className={loading ? "animate-pulse" : ""} />
     </button>

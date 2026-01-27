@@ -39,6 +39,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
             ? "bg-[#4A3728] text-white shadow-lg"
             : "bg-zinc-100 dark:bg-zinc-900 text-zinc-500 hover:bg-[#4A3728]/10"
         }`}
+        aria-label="all-search"
       >
         Todos
       </button>
@@ -51,6 +52,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
               ? "bg-[#4A3728] text-white shadow-lg"
               : "bg-zinc-100 dark:bg-zinc-900 text-zinc-500 hover:bg-[#4A3728]/10"
           }`}
+          aria-label="data"
         >
           {sub.label}
         </button>

@@ -83,6 +83,7 @@ const AccordionItem = ({
       <button
         onClick={onClick}
         className="w-full py-6 flex items-center justify-between text-left focus:outline-none"
+        aria-label="questions"
       >
         <span
           className={`text-sm md:text-base font-bold tracking-tight transition-colors ${isOpen ? "text-[#4A3728]" : "text-zinc-800 dark:text-zinc-200"}`}

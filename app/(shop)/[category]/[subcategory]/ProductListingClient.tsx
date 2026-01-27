@@ -158,6 +158,7 @@ export default function ProductListingClient({
       <button
         onClick={clearFilters}
         className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 hover:text-red-500 transition-colors pt-4"
+        aria-label="restablecer filtros"
       >
         <HiOutlineTrash size={16} /> Restablecer filtros
       </button>
@@ -183,12 +184,14 @@ export default function ProductListingClient({
                 <button
                   onClick={() => setGridCols(3)}
                   className={`p-1.5 rounded-sm transition-all ${gridCols === 3 ? "bg-white dark:bg-zinc-800 text-black shadow-sm" : "text-zinc-400"}`}
+                  aria-label="square"
                 >
                   <HiSquares2X2 size={18} />
                 </button>
                 <button
                   onClick={() => setGridCols(4)}
                   className={`p-1.5 rounded-sm transition-all ${gridCols === 4 ? "bg-white dark:bg-zinc-800 text-black shadow-sm" : "text-zinc-400"}`}
+                  aria-label="view-columns"
                 >
                   <HiViewColumns size={18} />
                 </button>
@@ -211,6 +214,7 @@ export default function ProductListingClient({
               <button
                 onClick={() => setIsMobileFiltersOpen(true)}
                 className="lg:hidden flex items-center gap-2 bg-[#1A1A1A] dark:bg-white text-white dark:text-black px-5 py-2.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all"
+                aria-label="fitros"
               >
                 <HiOutlineAdjustmentsHorizontal size={18} /> Filtros
               </button>
@@ -241,6 +245,7 @@ export default function ProductListingClient({
               <button
                 onClick={clearFilters}
                 className="mt-8 text-sm font-black uppercase tracking-widest border-b-2 border-zinc-900 dark:border-white pb-1"
+                aria-label="limpiar-filtros"
               >
                 Limpiar todo
               </button>
@@ -257,14 +262,14 @@ export default function ProductListingClient({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileFiltersOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-md z-[100] lg:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-md z-100 lg:hidden"
             />
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed inset-y-4 right-4 w-[280px] sm:w-[320px] bg-white dark:bg-[#0A0A0A] z-[101] rounded-3xl flex flex-col overflow-hidden shadow-2xl"
+              className="fixed inset-y-4 right-4 w-70 sm:w-[320px] bg-white dark:bg-[#0A0A0A] z-101 rounded-3xl flex flex-col overflow-hidden shadow-2xl"
             >
               <div className="px-8 py-8 flex justify-between items-center border-b border-zinc-50 dark:border-zinc-900">
                 <h2 className="text-sm font-black uppercase tracking-[0.2em] text-zinc-900 dark:text-white">
@@ -273,6 +278,7 @@ export default function ProductListingClient({
                 <button
                   onClick={() => setIsMobileFiltersOpen(false)}
                   className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-full transition-colors"
+                  aria-label="open-filtros"
                 >
                   <HiOutlineXMark size={24} />
                 </button>
@@ -284,6 +290,7 @@ export default function ProductListingClient({
                 <button
                   onClick={() => setIsMobileFiltersOpen(false)}
                   className="w-full py-5 bg-[#1A1A1A] dark:bg-white text-white dark:text-black rounded-xl font-black uppercase text-[10px] tracking-widest shadow-xl active:scale-95 transition-all"
+                  aria-label="resultados"
                 >
                   Ver resultados
                 </button>
@@ -303,6 +310,7 @@ function FilterSection({ title, children, defaultOpen = false }: any) {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex justify-between items-center w-full group py-2"
+        aria-label="filter-section"
       >
         <span className="text-[11px] font-black uppercase tracking-[0.2em] text-zinc-900 dark:text-zinc-100 group-hover:text-[#4A3728] transition-colors">
           {title}

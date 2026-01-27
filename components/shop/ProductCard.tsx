@@ -180,6 +180,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           <button
             onClick={handleAddToCart}
             className="flex items-center gap-2 px-3 py-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-sm hover:bg-[#4A3728] dark:hover:bg-zinc-200 transition-all active:scale-95"
+            aria-label="add-to-cart"
           >
             <span className="text-[9px] font-black uppercase tracking-widest hidden sm:block">
               Añadir

@@ -61,6 +61,7 @@ const MobileMenu = ({
           <button
             onClick={onClose}
             className="p-2 text-zinc-500 hover:text-black dark:hover:text-white transition-colors"
+            aria-label="logo"
           >
             <HiOutlineX size={22} />
           </button>

@@ -158,6 +158,7 @@ export default function NewProductPage() {
                 })
               }
               className="bg-gray-200 px-3 py-1 rounded text-sm"
+              aria-label="variantes"
             >
               + Añadir Variante
             </button>
@@ -200,6 +201,7 @@ export default function NewProductPage() {
                 type="button"
                 onClick={() => remove(index)}
                 className="text-red-500 text-xs"
+                aria-label="eliminar"
               >
                 Eliminar
               </button>
@@ -211,6 +213,7 @@ export default function NewProductPage() {
           type="submit"
           disabled={isSubmitting || uploading}
           className="w-full bg-blue-600 text-white p-3 rounded font-bold hover:bg-blue-700 disabled:bg-gray-400"
+          aria-label="submit-publicar"
         >
           {isSubmitting ? "Guardando en Base de Datos..." : "Publicar Producto"}
         </button>

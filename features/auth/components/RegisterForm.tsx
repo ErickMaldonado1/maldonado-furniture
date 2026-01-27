@@ -157,6 +157,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
               type="submit"
               disabled={loading}
               className="group relative w-full h-12 flex items-center justify-center rounded-sm bg-[#4A3728] text-white text-sm font-bold uppercase tracking-widest transition-all hover:bg-[#3d2d21] active:scale-[0.98] disabled:opacity-70 disabled:active:scale-100 shadow-sm shadow-[#4A3728]/20 overflow-hidden"
+              aria-label="register"
             >
               {loading ? (
                 <AiOutlineLoading3Quarters className="animate-spin text-xl" />
@@ -173,6 +174,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
             <button
               onClick={onSwitchToLogin}
               className="text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-[#6B4B36] transition-colors"
+              aria-label="sucess-cuenta"
             >
               ¿Ya tienes cuenta?{" "}
               <span className="text-[#6B4B36] underline underline-offset-4 decoration-2">

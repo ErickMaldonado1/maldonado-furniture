@@ -1,9 +1,14 @@
 import HeroSlider from "@/components/home/HeroSlider";
 import ValueProps from "@/components/home/ValueProps";
 import CategoryShowcase from "@/components/home/CategoryShowcase";
-import FeaturedCarousel from "@/components/home/FeaturedCarousel";
-import CategoryCarousel from "@/components/home/CategoryCarousel";
 import { ProductService } from "@/features/products/product.service";
+import dynamic from "next/dynamic";
+const FeaturedCarousel = dynamic(
+  () => import("@/components/home/FeaturedCarousel"),
+);
+const CategoryCarousel = dynamic(
+  () => import("@/components/home/CategoryCarousel"),
+);
 
 const HomePage = async () => {
   const [featured, bedroom, living, office] = await Promise.all([

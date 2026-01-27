@@ -129,6 +129,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
             type="submit"
             disabled={loading}
             className="group relative w-full h-12 flex items-center justify-center rounded-sm bg-[#4A3728] text-white text-sm font-bold uppercase tracking-widest transition-all hover:bg-[#3d2d21] active:scale-[0.98] disabled:opacity-70 disabled:active:scale-100 shadow-sm shadow-[#4A3728]/20 overflow-hidden"
+            aria-label="password"
           >
             {loading ? (
               <AiOutlineLoading3Quarters className="animate-spin text-xl" />
@@ -151,6 +152,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
           type="button"
           onClick={() => signIn("google")}
           className="flex h-12 w-full items-center justify-center gap-3 rounded-sm border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-sm font-bold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all shadow-sm hover:shadow active:scale-[0.98]"
+          aria-label="button-google"
         >
           <FcGoogle className="text-xl" />
           <span>Google</span>
@@ -162,6 +164,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
               type="button"
               onClick={onSwitchToRegister}
               className="text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-[#6B4B36] transition-colors"
+              aria-label="options-login"
             >
               ¿No tienes cuenta?{" "}
               <span className="text-[#6B4B36] underline underline-offset-4 decoration-2">

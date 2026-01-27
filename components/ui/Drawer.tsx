@@ -76,6 +76,7 @@ export default function Drawer({
               <button
                 onClick={onClose}
                 className="p-2 -mr-2 text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
+                aria-label="button-drawer"
               >
                 <HiXMark className="text-2xl" />
               </button>

@@ -65,7 +65,9 @@ export default function ProyectosPage() {
               <button
                 key={cat}
                 onClick={() => handleFilterChange(cat)}
-                className={`px-6 py-2.5 text-[11px] font-black uppercase tracking-widest transition-all duration-300 rounded-full border ${
+                aria-label="categorias"
+                className={`px-6 py-2.5 text-[11px] font-black uppercase tracking-widest transition-all duration-300 rounded-full border 
+                ${
                   filter === cat
                     ? "bg-[#4A3728] border-[#4A3728] text-white shadow-lg"
                     : "border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:border-[#4A3728]"
@@ -125,6 +127,7 @@ export default function ProyectosPage() {
           <div className="mt-20 flex justify-center">
             <button
               onClick={loadMore}
+              aria-label="proyectos"
               className="flex items-center gap-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-10 py-5 rounded-sm text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#4A3728] dark:hover:bg-[#4A3728] hover:text-white transition-all duration-300 group"
             >
               Cargar más proyectos
@@ -145,6 +148,7 @@ export default function ProyectosPage() {
             <button
               onClick={() => setSelectedProject(null)}
               className="absolute top-8 right-8 text-white text-4xl hover:text-[#4A3728] transition-all z-110"
+              aria-label="galery"
             >
               <HiXMark />
             </button>
@@ -155,12 +159,14 @@ export default function ProyectosPage() {
                   <>
                     <button
                       onClick={prevImg}
+                      aria-label="prev"
                       className="absolute left-0 md:-left-20 text-white text-4xl p-4 hover:text-[#4A3728] transition-colors"
                     >
                       <HiChevronLeft />
                     </button>
                     <button
                       onClick={nextImg}
+                      aria-label="next"
                       className="absolute right-0 md:-right-20 text-white text-4xl p-4 hover:text-[#4A3728] transition-colors"
                     >
                       <HiChevronRight />
