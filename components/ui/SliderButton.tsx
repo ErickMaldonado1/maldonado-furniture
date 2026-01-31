@@ -1,6 +1,6 @@
 "use client";
 
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
+import { Icons } from "@/utils/icons";
 
 interface SliderButtonProps {
   direction: "left" | "right";
@@ -11,27 +11,12 @@ export const SliderButton = ({ direction, onClick }: SliderButtonProps) => {
   const isLeft = direction === "left";
 
   const baseClasses = `
-    absolute top-1/2 -translate-y-1/2 z-40 
-    h-24 w-11 
-    /* Colores base y Glassmorphism */
-    bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl
-    border-zinc-200 dark:border-zinc-800
-    shadow-sm transition-all duration-300 ease-out
-    
-    /* Estado Hover: Fondo más sólido y sombra */
-    hover:bg-white/90 dark:hover:bg-zinc-800/90
-    hover:shadow-xl hover:w-12
-    
-    /* Estado Active: Efecto de pulsación al hacer clic */
-    active:scale-90 active:bg-zinc-100 dark:active:bg-zinc-700
-    
-    flex items-center justify-center group/btn
-    hidden md:flex
+    absolute top-1/2 -translate-y-1/2 z-40 h-28 w-10 bg-white/80 dark:bg-black/40 backdrop-blur-md border-zinc-200/50 dark:border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.05)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#4A3728] dark:hover:bg-[#4A3728] hover:w-12 hover:shadow-2xl active:scale-95 flex items-center justify-center group/btn hidden md:flex
   `;
 
   const directionClasses = isLeft
-    ? "left-0 border-y border-r rounded-r-2xl -translate-x-full group-hover/container:translate-x-0 group-hover/container:opacity-100 opacity-0"
-    : "right-0 border-y border-l rounded-l-2xl translate-x-full group-hover/container:translate-x-0 group-hover/container:opacity-100 opacity-0";
+    ? "left-0 border-y border-r rounded-r-3xl -translate-x-full group-hover/left:translate-x-0 group-hover/left:opacity-100 opacity-0"
+    : "right-0 border-y border-l rounded-l-3xl translate-x-full group-hover/right:translate-x-0 group-hover/right:opacity-100 opacity-0";
 
   return (
     <button
@@ -39,11 +24,13 @@ export const SliderButton = ({ direction, onClick }: SliderButtonProps) => {
       className={`${baseClasses} ${directionClasses}`}
       aria-label={isLeft ? "Anterior" : "Siguiente"}
     >
-      {isLeft ? (
-        <HiOutlineChevronLeft className="size-7 text-zinc-400 group-hover/btn:text-[#4A3728] dark:group-hover/btn:text-zinc-100 transition-colors" />
-      ) : (
-        <HiOutlineChevronRight className="size-7 text-zinc-400 group-hover/btn:text-[#4A3728] dark:group-hover/btn:text-zinc-100 transition-colors" />
-      )}
+      <div className="relative overflow-hidden flex items-center justify-center">
+        {isLeft ? (
+          <Icons.ChevronLeft className="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover/btn:text-white transition-all duration-300" />
+        ) : (
+          <Icons.ChevronRight className="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover/btn:text-white transition-all duration-300" />
+        )}
+      </div>
     </button>
   );
 };

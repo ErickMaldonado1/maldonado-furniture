@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { HiOutlineArrowLongLeft } from "react-icons/hi2";
+import { Icons } from "@/utils/icons";
 
 export default function NotFound() {
   const router = useRouter();
-  const [seconds, setSeconds] = useState(4);
+  const [seconds, setSeconds] = useState(10);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -16,7 +16,7 @@ export default function NotFound() {
 
     const redirect = setTimeout(() => {
       router.push("/");
-    }, 4000);
+    }, 10000);
 
     return () => {
       clearInterval(timer);
@@ -32,7 +32,7 @@ export default function NotFound() {
         </p>
 
         <h1 className="mt-4 text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white sm:text-6xl">
-          Pieza no <br className="sm:hidden" /> encontrada
+          Recurso no <br className="sm:hidden" /> encontrado
         </h1>
 
         <p className="mt-6 text-base leading-7 text-zinc-500 dark:text-zinc-400 max-w-md mx-auto">
@@ -46,16 +46,16 @@ export default function NotFound() {
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
           <Link
             href="/"
-            className="group flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-8 py-3 rounded-sm text-xs font-black uppercase tracking-widest hover:bg-[#4A3728] dark:hover:bg-zinc-200 transition-all duration-300 shadow-xl"
+            className="group flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-[#4A3728] dark:hover:bg-zinc-200 transition-all duration-300 shadow-xl"
           >
-            <HiOutlineArrowLongLeft className="text-lg group-hover:-translate-x-1 transition-transform" />
+            <Icons.ArrowLongLeft className="text-lg group-hover:-translate-x-1 transition-transform" />
             Volver ahora
           </Link>
         </div>
 
-        <div className="mt-20 opacity-10 dark:opacity-5">
-          <span className="text-[120px] font-black tracking-tighter select-none">
-            MF
+        <div className="mt-20 opacity-10 dark:opacity-5 select-none">
+          <span className="text-[20px] md:text-[30px] font-black tracking-[0.2em] uppercase text-zinc-900 dark:text-white leading-none">
+            Muebles <br className="md:hidden" /> Maldonado
           </span>
         </div>
       </div>

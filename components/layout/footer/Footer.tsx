@@ -131,7 +131,7 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-sm border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-[#4A3728] hover:border-[#4A3728] transition-all duration-300"
+                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-[#4A3728] hover:border-[#4A3728] transition-all duration-300"
                   aria-label={`Ir a ${social.label}`}
                 >
                   <span className="w-5 h-5">{social.icon}</span>

@@ -17,7 +17,7 @@ import {
 import MegaMenu from "@/components/layout/menu/MegaMenu";
 import MobileMenu from "@/components/layout/menu/MovileMenu";
 import DesktopNav from "@/components/layout/menu/DesktopNav";
-import { categories } from "@/lib/categories";
+import { categories } from "@/utils/categories";
 import AuthDrawer from "@/components/layout/AuthDrawer";
 import FavoritesMenu from "./FavoritesMenu";
 import CartDrawer from "./CartDrawer";

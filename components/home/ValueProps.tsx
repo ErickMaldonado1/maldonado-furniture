@@ -2,16 +2,11 @@
 
 import { useState } from "react";
 import { motion, Variants } from "framer-motion";
-import {
-  HiOutlineTruck,
-  HiOutlineSparkles,
-  HiOutlineUserGroup,
-  HiOutlineShieldCheck,
-} from "react-icons/hi";
+import { Icons } from "@/utils/icons";
 
 const services = [
   {
-    icon: HiOutlineTruck,
+    icon: Icons.Truck,
     subtitle: "LOGÍSTICA",
     title: "Envío y Montaje",
     desc: "Envío y montaje gratuito en la ciudad de Quito en compras superiores a $200.",
@@ -19,7 +14,7 @@ const services = [
     cta: "Consultar detalles",
   },
   {
-    icon: HiOutlineSparkles,
+    icon: Icons.Sparkles,
     subtitle: "PERSONALIZACIÓN",
     title: "Muebles a Medida",
     desc: "Diseñamos muebles personalizados según tu espacio, estilo y necesidades.",
@@ -27,7 +22,7 @@ const services = [
     cta: "Ver catálogo de colores",
   },
   {
-    icon: HiOutlineUserGroup,
+    icon: Icons.UserGroup,
     subtitle: "ASESORÍA",
     title: "Acompañamiento Total",
     desc: "Te guiamos desde la idea inicial hasta disfrutar tus muebles en casa.",
@@ -35,11 +30,11 @@ const services = [
     cta: "Ver más información",
   },
   {
-    icon: HiOutlineShieldCheck,
+    icon: Icons.ShieldCheck,
     subtitle: "CONFIANZA",
     title: "Garantía & Postventa",
     desc: "Respaldamos nuestro trabajo con garantía y soporte después de la entrega.",
-    href: "/servicios/garantia",
+    href: "/terminos-condiciones",
     cta: "Conocer garantía",
   },
 ];
@@ -70,7 +65,7 @@ const ValueProps = () => {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white"
+            className="text-xl sm:text-3xl md:text-4xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white"
           >
             Nuestros{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
@@ -126,7 +121,7 @@ const ServiceCard = ({ service }: { service: (typeof services)[0] }) => {
         }
         className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-white dark:bg-zinc-950 flex items-center justify-center text-[#4A3728] mb-5 border border-zinc-200 dark:border-white/10 shadow-sm group-hover:bg-[#4A3728] group-hover:text-white transition-colors duration-300"
       >
-        <Icon size={24} className="md:size-7" strokeWidth={1.5} />
+        <Icon width={24} height={24} className="md:size-7" strokeWidth={1.5} />
       </motion.div>
 
       <div className="flex-1 flex flex-col w-full">

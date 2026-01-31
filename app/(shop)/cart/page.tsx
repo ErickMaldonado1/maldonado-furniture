@@ -1,16 +1,8 @@
 "use client";
-
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCartStore } from "@/store/cart-store";
-import {
-  HiOutlineTrash,
-  HiMinus,
-  HiPlus,
-  HiOutlineMagnifyingGlass,
-  HiArrowRight,
-} from "react-icons/hi2";
+import { Icons } from "@/utils/icons";
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } =
@@ -22,7 +14,7 @@ export default function CartPage() {
         <div className="max-w-3xl mx-auto px-6 text-center space-y-8">
           <div className="w-24 h-24 bg-zinc-100 dark:bg-zinc-900 rounded-full flex items-center justify-center mx-auto relative">
             {" "}
-            <HiOutlineMagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 text-xl" />{" "}
+            <Icons.MagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 text-xl" />{" "}
           </div>
           <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">
             Tu carrito está vacío
@@ -35,7 +27,7 @@ export default function CartPage() {
             className="inline-flex items-center gap-3 bg-[#4A3728] text-white px-8 py-4 rounded-full font-black uppercase tracking-widest hover:shadow-xl hover:-translate-y-1 transition-all"
           >
             Explorar Catálogo
-            <HiArrowRight />
+            <Icons.ArrowRight />
           </Link>
         </div>
       </main>
@@ -85,19 +77,27 @@ export default function CartPage() {
                         className="hover:text-[#4A3728] transition-colors"
                         aria-label="add item"
                       >
-                        <HiMinus />
+                        <Icons.Minus />
                       </button>
                       <span className="font-black w-4 text-center">
                         {item.quantity}
                       </span>
                       <button
                         onClick={() =>
-                          updateQuantity(item.id, item.quantity + 1)
+                          updateQuantity(
+                            item.id,
+                            Math.min(3, item.quantity + 1),
+                          )
                         }
-                        className="hover:text-[#4A3728] transition-colors"
+                        className={`transition-colors ${
+                          item.quantity >= 3
+                            ? "text-zinc-300 cursor-not-allowed"
+                            : "hover:text-[#4A3728]"
+                        }`}
+                        disabled={item.quantity >= 3}
                         aria-label="quantity"
                       >
-                        <HiPlus />
+                        <Icons.Plus />
                       </button>
                     </div>
 
@@ -106,7 +106,7 @@ export default function CartPage() {
                       className="text-zinc-400 hover:text-red-500 transition-colors p-2"
                       aria-label="remove-cart"
                     >
-                      <HiOutlineTrash size={20} />
+                      <Icons.Trash width={20} height={20} />
                     </button>
                   </div>
                 </div>
@@ -147,8 +147,10 @@ export default function CartPage() {
               </div>
 
               <Link href="/checkout">
-                <button className="w-full bg-[#1A1A1A] dark:bg-white text-white dark:text-black py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-[#4A3728] dark:hover:bg-[#E7DED4] transition-all shadow-lg hover:shadow-2xl hover:-translate-y-1"
-                aria-label="finish">
+                <button
+                  className="w-full bg-[#1A1A1A] dark:bg-white text-white dark:text-black py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-[#4A3728] dark:hover:bg-[#E7DED4] transition-all shadow-lg hover:shadow-2xl hover:-translate-y-1"
+                  aria-label="finish"
+                >
                   Finalizar Compra
                 </button>
               </Link>

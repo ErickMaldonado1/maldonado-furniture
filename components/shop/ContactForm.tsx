@@ -15,14 +15,14 @@ export function ContactForm() {
         <div className="w-full lg:w-3/5 p-6 md:p-10 flex flex-col justify-center">
           <div className="mb-6">
             <h2 className="text-2xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
-              Iniciemos tu <span className="text-[#4A3728]">Proyecto</span>
+              Consulta tu <span className="text-[#4A3728]">Proyecto</span>
             </h2>
           </div>
 
           <form className="space-y-5">
             <div className="grid md:grid-cols-2 gap-x-8 gap-y-5">
               <div className="flex flex-col gap-1">
-                <label className="text-[12px] font-bold tracking-widest text-zinc-400 uppercase">
+                <label className="text-[12px] font-bold tracking-widest text-zinc-400">
                   Nombre
                 </label>
                 <input
@@ -32,8 +32,8 @@ export function ContactForm() {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-[12px] font-bold tracking-widest text-zinc-400 uppercase">
-                  WhatsApp
+                <label className="text-[12px] font-bold tracking-widest text-zinc-400 ">
+                  Teléfono
                 </label>
                 <input
                   type="tel"
@@ -42,8 +42,8 @@ export function ContactForm() {
                 />
               </div>
               <div className="md:col-span-2 flex flex-col gap-1">
-                <label className="text-[12px] font-bold tracking-widest text-zinc-400 uppercase">
-                  Correo Electrónico
+                <label className="text-[12px] font-bold tracking-widest text-zinc-400 ">
+                  Correo electrónico
                 </label>
                 <input
                   type="email"
@@ -53,7 +53,7 @@ export function ContactForm() {
               </div>
 
               <div className="md:col-span-2 flex flex-col gap-1">
-                <label className="text-[12px] font-bold tracking-widest text-zinc-400 uppercase">
+                <label className="text-[12px] font-bold tracking-widest text-zinc-400 ">
                   ¿Cómo ayudamos?
                 </label>
                 <textarea

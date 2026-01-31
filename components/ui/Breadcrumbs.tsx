@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HiChevronRight } from "react-icons/hi2";
+import { Icons } from "@/utils/icons";
 
 interface BreadcrumbStep {
   label: string;
@@ -18,7 +18,7 @@ export function Breadcrumbs({ steps }: { steps: BreadcrumbStep[] }) {
 
       {steps.map((step, index) => (
         <div key={index} className="flex items-center gap-2">
-          <HiChevronRight className="text-zinc-300 text-sm" />
+          <Icons.ChevronRight className="w-4 h-4" />
           {step.href ? (
             <Link
               href={step.href}

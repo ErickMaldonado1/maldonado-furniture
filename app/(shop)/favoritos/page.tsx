@@ -2,7 +2,7 @@
 
 import { useFavoritesStore } from "@/store/favorites-store";
 import ProductCard from "@/components/shop/ProductCard";
-import { HiOutlineHeart } from "react-icons/hi2";
+import { Icons } from "@/utils/icons";
 import Link from "next/link";
 
 export default function FavoritesPage() {
@@ -13,7 +13,7 @@ export default function FavoritesPage() {
       <div className="container mx-auto px-6">
         <div className="flex items-center gap-4 mb-12">
           <div className="p-4 bg-zinc-100 dark:bg-zinc-900 rounded-full">
-            <HiOutlineHeart className="text-3xl text-[#4A3728]" />
+            <Icons.Heart className="text-3xl text-[#4A3728]" />
           </div>
           <div>
             <h1 className="text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white">

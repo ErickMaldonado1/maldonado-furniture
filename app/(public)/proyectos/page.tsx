@@ -52,12 +52,12 @@ export default function ProyectosPage() {
       <section className="pt-16 pb-12 max-w-340 mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-8 border-b border-zinc-100 dark:border-zinc-900 pb-12">
           <div className="text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter dark:text-white leading-[0.85]">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
               Proyectos{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
                 Entregados
               </span>
-            </h1>
+            </h2>
           </div>
 
           <div className="flex flex-wrap justify-center gap-2">

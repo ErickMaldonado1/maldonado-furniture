@@ -3,13 +3,13 @@ export const slugify = (text: string): string => {
 
   return text
     .toString()
-    .normalize("NFD") 
+    .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase() 
-    .trim() 
-    .replace(/\s+/g, "-") 
-    .replace(/[^\w-]+/g, "") 
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "")
     .replace(/--+/g, "-")
-    .replace(/^-+/, "") 
-    .replace(/-+$/, ""); 
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
 };

@@ -1,12 +1,15 @@
-import ProductForm from "@/components/admin/ProductForm";
 import prisma from "@/lib/prisma";
+import ProductForm from "@/components/admin/ProductForm";
 import { notFound } from "next/navigation";
 
-export default async function EditProductPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+interface EditProductPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+export default async function EditProductPage(props: EditProductPageProps) {
+  const params = await props.params;
   const product = await prisma.product.findUnique({
     where: { id: params.id },
     include: {
@@ -17,10 +20,12 @@ export default async function EditProductPage({
     },
   });
 
-  if (!product) notFound();
+  if (!product) {
+    notFound();
+  }
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-7xl mx-auto p-6 md:p-8">
       <ProductForm initialData={product} />
     </div>
   );

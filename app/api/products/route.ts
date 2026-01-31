@@ -4,9 +4,17 @@ import { ProductService } from "@/features/products/product.service";
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
+    const getArrayParam = (key: string) => {
+      const val = searchParams.get(key);
+      return val ? val.split(",") : [];
+    };
+
     const filters = {
       category: searchParams.get("category"),
       subcategory: searchParams.get("subcategory"),
+      colors: getArrayParam("colors"),
+      styles: getArrayParam("styles"),
+      materials: getArrayParam("materials"),
       minPrice: searchParams.get("minPrice")
         ? parseFloat(searchParams.get("minPrice")!)
         : undefined,

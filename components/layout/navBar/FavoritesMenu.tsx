@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { HiOutlineTrash, HiOutlineHeart } from "react-icons/hi";
+import { Icons } from "@/utils/icons";
 import { useFavoritesStore } from "@/store/favorites-store";
 import Drawer from "@/components/ui/Drawer";
 import { useCartStore } from "@/store/cart-store";
@@ -44,7 +44,7 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
               className="text-xs font-bold uppercase tracking-widest text-red-500 hover:text-red-600 transition-colors flex items-center gap-1"
               aria-label="vaciar-lista"
             >
-              <HiOutlineTrash size={14} />
+              <Icons.Trash width={14} height={14} />
               Vaciar Lista
             </button>
           </div>
@@ -53,7 +53,7 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
           {favorites.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-64 text-center space-y-4 my-auto">
               <div className="w-20 h-20 bg-zinc-100 dark:bg-zinc-900 rounded-full flex items-center justify-center text-zinc-400">
-                <HiOutlineHeart size={30} />
+                <Icons.Heart width={30} height={30} />
               </div>
               <p className="text-lg font-bold text-zinc-900 dark:text-white">
                 Sin favoritos aún
@@ -98,7 +98,7 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
                   className="absolute top-0 right-0 text-zinc-400 hover:text-red-500 transition-colors p-2"
                   aria-label="close-trash"
                 >
-                  <HiOutlineTrash size={18} />
+                  <Icons.Trash width={18} height={18} />
                 </button>
               </div>
             ))

@@ -22,8 +22,6 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
   const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -53,8 +51,8 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
           !showSolidNavbar
             ? "text-white hover:bg-white/10"
             : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"
-          }`}
-          aria-label="Abrir perfil"
+        }`}
+        aria-label="Abrir perfil"
       >
         <HiOutlineUser className="text-2xl group-hover:scale-110 transition-transform" />
       </button>
@@ -81,8 +79,6 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
           {user?.name?.split(" ")[0] || "Usuario"}
         </span>
       </button>
-
-      {/* Dropdown Menu */}
       <div
         className={`absolute right-0 top-full mt-2 w-64 bg-white dark:bg-zinc-900 rounded-sm shadow-xl border border-zinc-100 dark:border-zinc-800 transform transition-all duration-200 origin-top-right z-50 overflow-hidden ${
           isOpen
@@ -138,7 +134,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
         <div className="border-t border-zinc-100 dark:border-zinc-800 p-2">
           <button
             onClick={() => signOut({ callbackUrl: "/" })}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-sm transition-colors"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full transition-colors"
             aria-label="cerrar-sesión"
           >
             <HiOutlineLogout size={18} />

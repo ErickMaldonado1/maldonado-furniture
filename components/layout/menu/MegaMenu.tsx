@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { HiOutlineChevronRight } from "react-icons/hi";
+import { Icons } from "@/utils/icons";
 
 const badgeStyles: Record<string, string> = {
   accent: "bg-[#4A3728] text-white",
@@ -48,8 +48,9 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                             {cat.label}
                           </span>
 
-                          <HiOutlineChevronRight
-                            size={18}
+                          <Icons.ChevronRight
+                            width={18}
+                            height={18}
                             className="text-zinc-400 opacity-0 -translate-x-1
                   group-hover:opacity-100 group-hover:translate-x-0 transition"
                           />

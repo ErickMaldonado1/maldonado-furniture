@@ -8,6 +8,15 @@ export const ProductService = {
         isActive: true,
         category: filters.category || undefined,
         subcategory: filters.subcategory || undefined,
+        colors:
+          filters.colors?.length > 0 ? { hasSome: filters.colors } : undefined,
+        styles:
+          filters.styles?.length > 0 ? { hasSome: filters.styles } : undefined,
+        materials:
+          filters.materials?.length > 0
+            ? { hasSome: filters.materials }
+            : undefined,
+
         price: {
           gte: filters.minPrice || undefined,
           lte: filters.maxPrice || undefined,
@@ -83,6 +92,7 @@ export const ProductService = {
 
     return null;
   },
+
   async create(data: any) {
     return await prisma.product.create({
       data: {
@@ -95,19 +105,38 @@ export const ProductService = {
         subcategory: data.subcategory,
         isFlashDeal: data.isFlashDeal,
         isActive: data.isActive ?? true,
+        colors: data.colors || [],
+        styles: data.styles || [],
+        materials: data.materials || [],
+
         variants: data.variants
           ? {
               create: data.variants.map((v: any) => ({
                 name: v.name,
                 sku: v.sku,
                 thickness: v.thickness,
+                color: v.color || null,
+                material: v.material || null,
                 dimensions: v.dimensions ? { create: v.dimensions } : undefined,
               })),
             }
           : undefined,
-        images: data.images ? { create: data.images } : undefined,
+
+        images: data.images
+          ? {
+              create: data.images.map((img: any) => ({
+                url: img.url,
+                publicId: img.publicId,
+                color: img.color || null,
+                variantId: img.variantId || null,
+              })),
+            }
+          : undefined,
       },
-      include: { variants: true, images: true },
+      include: {
+        variants: { include: { dimensions: true } },
+        images: true,
+      },
     });
   },
 
@@ -115,6 +144,25 @@ export const ProductService = {
     return await prisma.product.update({
       where: { id },
       data: { isActive: false },
+    });
+  },
+
+  async updateProduct(id: string, data: any) {
+    return await prisma.product.update({
+      where: { id },
+      data: {
+        name: data.name,
+        description: data.description,
+        price: data.price,
+        discount: data.discount,
+        category: data.category,
+        subcategory: data.subcategory,
+        colors: data.colors,
+        styles: data.styles,
+        materials: data.materials,
+        isActive: data.isActive,
+        isFlashDeal: data.isFlashDeal,
+      },
     });
   },
 

@@ -43,7 +43,7 @@ export default function NewsletterForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="tu@email.com"
           disabled={loading}
-          className="w-full bg-white/5 border border-white/10 rounded-sm py-3 px-4 text-md text-white placeholder:text-zinc-600 focus:outline-none focus:border-[#4A3728] transition-all disabled:opacity-50"
+          className="w-full bg-white/5 border border-white/10 rounded-full py-3 px-4 text-md text-white placeholder:text-zinc-600 focus:outline-none focus:border-[#4A3728] transition-all disabled:opacity-50"
         />
         <button
           type="submit"

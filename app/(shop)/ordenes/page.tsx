@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/features/auth/auth.options";
 import { redirect } from "next/navigation";
 import Image from "next/image";
-import { HiOutlineCube } from "react-icons/hi2";
+import { Icons } from "@/utils/icons";
 
 export default async function OrdersPage() {
   const session = await getServerSession(authOptions);
@@ -40,15 +40,15 @@ export default async function OrdersPage() {
 
         <div className="space-y-6">
           {orders.length === 0 ? (
-            <div className="p-12 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-sm text-center">
-              <HiOutlineCube className="text-4xl text-zinc-300 mx-auto mb-4" />
+            <div className="p-12 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-full text-center">
+              <Icons.Cube className="text-4xl text-zinc-300 mx-auto mb-4" />
               <p className="text-zinc-500 font-medium">No hay pedidos aún.</p>
             </div>
           ) : (
             orders.map((order) => (
               <div
                 key={order.id}
-                className="bg-white dark:bg-[#111] border border-zinc-100 dark:border-zinc-800 rounded-sm overflow-hidden shadow-sm"
+                className="bg-white dark:bg-[#111] border border-zinc-100 dark:border-zinc-800 rounded-full overflow-hidden shadow-sm"
               >
                 <div className="p-6 border-b border-zinc-100 dark:border-zinc-800 flex justify-between items-center bg-zinc-50/50 dark:bg-zinc-900/50">
                   <div className="flex gap-4 text-sm">

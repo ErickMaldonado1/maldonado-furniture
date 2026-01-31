@@ -84,7 +84,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {globalError && (
-            <div className="rounded-sm bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4 text-sm font-medium text-red-600 dark:text-red-400 text-center animate-pulse">
+            <div className="rounded-full bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4 text-sm font-medium text-red-600 dark:text-red-400 text-center animate-pulse">
               {globalError}
             </div>
           )}
@@ -97,7 +97,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
               {...register("name")}
               type="text"
               placeholder="Nombre"
-              className={`w-full rounded-sm border bg-zinc-50 dark:bg-zinc-900/50 py-3.5 px-4 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 transition-all ${
+              className={`w-full rounded-full border bg-zinc-50 dark:bg-zinc-900/50 py-3.5 px-4 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 transition-all ${
                 errors.name
                   ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
                   : "border-zinc-200 dark:border-zinc-800 focus:border-[#6B4B36] focus:ring-[#6B4B36]/20"
@@ -118,7 +118,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
               {...register("email")}
               type="email"
               placeholder="ejemplo@muebles.com"
-              className={`w-full rounded-sm border bg-zinc-50 dark:bg-zinc-900/50 py-3.5 px-4 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 transition-all ${
+              className={`w-full rounded-full border bg-zinc-50 dark:bg-zinc-900/50 py-3.5 px-4 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 transition-all ${
                 errors.email
                   ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
                   : "border-zinc-200 dark:border-zinc-800 focus:border-[#6B4B36] focus:ring-[#6B4B36]/20"
@@ -139,7 +139,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
               {...register("password")}
               type="password"
               placeholder="••••••••"
-              className={`w-full rounded-sm border bg-zinc-50 dark:bg-zinc-900/50 py-3.5 px-4 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 transition-all ${
+              className={`w-full rounded-full border bg-zinc-50 dark:bg-zinc-900/50 py-3.5 px-4 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 transition-all ${
                 errors.password
                   ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
                   : "border-zinc-200 dark:border-zinc-800 focus:border-[#6B4B36] focus:ring-[#6B4B36]/20"
@@ -156,7 +156,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full h-12 flex items-center justify-center rounded-sm bg-[#4A3728] text-white text-sm font-bold uppercase tracking-widest transition-all hover:bg-[#3d2d21] active:scale-[0.98] disabled:opacity-70 disabled:active:scale-100 shadow-sm shadow-[#4A3728]/20 overflow-hidden"
+              className="group relative w-full h-12 flex items-center justify-center rounded-full bg-[#4A3728] text-white text-sm font-bold uppercase tracking-widest transition-all hover:bg-[#3d2d21] active:scale-[0.98] disabled:opacity-70 disabled:active:scale-100 shadow-sm shadow-[#4A3728]/20 overflow-hidden"
               aria-label="register"
             >
               {loading ? (
@@ -164,7 +164,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
               ) : (
                 <span className="relative z-10 filter">REGISTRARSE</span>
               )}
-              <div className="absolute inset-0 h-full w-full scale-0 rounded-sm transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10" />
+              <div className="absolute inset-0 h-full w-full scale-0 rounded-full transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10" />
             </button>
           </div>
         </form>

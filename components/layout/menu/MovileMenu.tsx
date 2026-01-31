@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   HiOutlineX,
-  HiOutlineSearch,
   HiOutlineHome,
   HiOutlineBriefcase,
   HiOutlineMail,
@@ -90,7 +89,7 @@ const MobileMenu = ({
                       key={cat.name}
                       href={`/${cat.name.toLowerCase()}`}
                       onClick={onClose}
-                      className="flex flex-row gap-2 p-4 bg-zinc-50 dark:bg-zinc-900/40 rounded-sm border border-zinc-100 dark:border-zinc-800/50 active:scale-95 transition-all"
+                      className="flex flex-row gap-2 p-4 bg-zinc-50 dark:bg-zinc-900/40 rounded-full border border-zinc-100 dark:border-zinc-800/50 active:scale-95 transition-all"
                     >
                       <IconComponent className="text-[#4A3728] dark:text-[#8B6F47] text-xl" />
                       <span className="text-[13px] font-bold text-zinc-800 dark:text-zinc-200">

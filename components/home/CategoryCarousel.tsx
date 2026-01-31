@@ -1,11 +1,7 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
-import {
-  HiOutlineChevronLeft,
-  HiOutlineChevronRight,
-  HiOutlineArrowRight,
-} from "react-icons/hi2";
+import { useEffect, useState, useCallback, useMemo } from "react";
+import { HiOutlineArrowRight } from "react-icons/hi2";
 import { useCartStore } from "@/store/cart-store";
 import { Product } from "@prisma/client";
 import ProductCard from "@/components/shop/ProductCard";
@@ -24,15 +20,17 @@ export default function CategoryCarousel({
   categorySlug,
 }: Props) {
   const { addToCart } = useCartStore();
-  const extendedProducts = [...products, ...products, ...products];
-  const [currentIndex, setCurrentIndex] = useState(products.length);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [visibleCount, setVisibleCount] = useState(4);
-
   const words = title.split(" ");
   const lastWord = words.pop();
   const firstPart = words.join(" ");
+  const maxIndex = useMemo(() => {
+    return Math.max(0, products.length - visibleCount);
+  }, [products.length, visibleCount]);
+
+  const shouldShowControls = products.length > visibleCount;
 
   useEffect(() => {
     const updateCount = () => {
@@ -45,39 +43,27 @@ export default function CategoryCarousel({
     return () => window.removeEventListener("resize", updateCount);
   }, []);
 
-  const handleTransitionEnd = () => {
-    setIsTransitioning(false);
-    if (currentIndex >= products.length * 2) {
-      setCurrentIndex(products.length);
-    }
-    if (currentIndex <= 0) {
-      setCurrentIndex(products.length);
-    }
-  };
-
   const handleNext = useCallback(() => {
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev + 1);
-  }, []);
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  }, [maxIndex]);
 
-  const handlePrev = () => {
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev - 1);
-  };
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  }, [maxIndex]);
 
   useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(handleNext, 5000);
+    if (isPaused || !shouldShowControls) return;
+    const interval = setInterval(handleNext, 6000);
     return () => clearInterval(interval);
-  }, [handleNext, isPaused]);
+  }, [handleNext, isPaused, shouldShowControls]);
 
   if (products.length === 0) return null;
 
   return (
-    <section className="py-6 md:py-12 bg-white dark:bg-[#050505] transition-colors duration-500">
+    <section className="py-6 md:py-12 bg-white dark:bg-[#050505] transition-colors duration-500 overflow-hidden">
       <div className="max-w-360 mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-6 md:mb-12 border-b border-zinc-100 dark:border-zinc-800/50 pb-5">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
             {firstPart}{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
               {lastWord}
@@ -95,42 +81,43 @@ export default function CategoryCarousel({
         </div>
 
         <div
-          className="relative group/container"
+          className="relative"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <SliderButton direction="left" onClick={handlePrev} />
+          {shouldShowControls && (
+            <>
+              <div className="absolute left-0 top-0 bottom-0 w-[15%] z-50 group/left">
+                <SliderButton direction="left" onClick={handlePrev} />
+              </div>
+              <div className="absolute right-0 top-0 bottom-0 w-[15%] z-50 group/right">
+                <SliderButton direction="right" onClick={handleNext} />
+              </div>
+            </>
+          )}
 
           <div className="overflow-hidden">
             <div
-              onTransitionEnd={handleTransitionEnd}
-              className={`flex -mx-2 md:-mx-4 ${
-                isTransitioning
-                  ? "transition-transform duration-700 ease-in-out"
-                  : ""
-              }`}
+              className="flex -mx-2 md:-mx-4 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
               style={{
                 transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
               }}
             >
-              {extendedProducts.map((product, idx) => (
+              {products.map((product, idx) => (
                 <div
-                  key={`${product.id}-${idx}`}
+                  key={product.id}
                   className="flex-none px-2 md:px-4"
                   style={{ width: `${100 / visibleCount}%` }}
                 >
                   <ProductCard
                     product={product}
                     addToCart={addToCart}
-                    index={0}
+                    index={idx}
                   />
                 </div>
               ))}
             </div>
-            
           </div>
-
-          <SliderButton direction="right" onClick={handleNext} />
         </div>
       </div>
     </section>

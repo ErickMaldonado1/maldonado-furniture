@@ -1,0 +1,31 @@
+export const COLOR_TEXTURES: Record<string, string> = {
+  roble: "/textures/roble-natural.jpg",
+  nogal: "/textures/nogal-oscuro.jpg",
+  marmol: "/textures/marmol-carrara.jpg",
+  textil: "/textures/lino-beige.jpg",
+};
+
+export const COLOR_MAP: Record<string, string> = {
+  negro: "#1A1A1A",
+  blanco: "#FFFFFF",
+  gris: "#9E9E9E",
+  oro: "#D4AF37",
+  plata: "#C0C0C0",
+  beige: "#F5F5DC",
+  marrón: "#8B4513",
+  marron: "#8B4513",
+  azul: "#0000FF",
+  verde: "#008000",
+  rojo: "#FF0000",
+  amarillo: "#FFFF00",
+  rosa: "#FFC0CB",
+  morado: "#800080",
+  naranja: "#FFA500",
+  crema: "#FFFDD0",
+  café: "#6F4E37",
+  cafe: "#6F4E37",
+  taupe: "#483C32",
+  "roble oscuro": "#4A3728",
+  "roble claro": "#D2B48C",
+  nogal: "#5D4037",
+};

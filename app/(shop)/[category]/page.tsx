@@ -1,4 +1,4 @@
-import { categories } from "@/lib/categories";
+import { categories } from "@/utils/categories";
 import ProductCard from "@/components/shop/ProductCard";
 import { ContactForm } from "@/components/shop/ContactForm";
 import prisma from "@/lib/prisma";

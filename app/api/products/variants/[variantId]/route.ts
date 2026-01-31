@@ -15,11 +15,27 @@ export async function PUT(
         { status: 400 },
       );
     }
-
     const updated = await ProductService.updateVariant(variantId, body);
-    return NextResponse.json(updated);
+
+    return NextResponse.json(updated, { status: 200 });
   } catch (e: any) {
     console.error("Error actualizando variante:", e);
+    return NextResponse.json(
+      { error: "No se pudo actualizar la variante: " + e.message },
+      { status: 500 },
+    );
+  }
+}
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: Promise<{ variantId: string }> },
+) {
+  try {
+    const { variantId } = await params;
+    await ProductService.deleteVariant(variantId);
+    return NextResponse.json({ message: "Variante eliminada correctamente" });
+  } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }
 }

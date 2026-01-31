@@ -2,11 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  HiOutlinePlus,
-  HiOutlineMinus,
-  HiOutlineQuestionMarkCircle,
-} from "react-icons/hi2";
+import { Icons } from "@/utils/icons";
 
 interface FAQItem {
   question: string;
@@ -31,7 +27,7 @@ const faqData: FAQCategory[] = [
       {
         question: "¿Cuál es el tiempo de entrega estimado?",
         answer:
-          "El tiempo de fabricación varía entre 15 a 25 días laborables, dependiendo de la complejidad del diseño y la carga de trabajo en fábrica al momento de confirmar el pedido.",
+          "El tiempo de fabricación varía entre 8 a 25 días laborables, dependiendo de la complejidad del diseño y la carga de trabajo en fábrica al momento de confirmar el pedido.",
       },
     ],
   },
@@ -56,12 +52,12 @@ const faqData: FAQCategory[] = [
       {
         question: "¿Qué garantía ofrecen en sus productos?",
         answer:
-          "Ofrecemos una garantía de 2 años contra defectos de fabricación y problemas estructurales en la madera. Nuestra calidad está respaldada por décadas de experiencia.",
+          "Ofrecemos una garantía de 1 año contra defectos de fabricación y problemas estructurales en la madera. Nuestra calidad está respaldada por décadas de experiencia.",
       },
       {
         question: "¿Cuáles son las formas de pago?",
         answer:
-          "Aceptamos transferencia bancaria, tarjetas de crédito (con opción a diferidos) y efectivo. Generalmente solicitamos un 50% de anticipo para iniciar la fabricación.",
+          "Aceptamos efectivo y transferencia bancaria. Generalmente solicitamos un 50%-60% de anticipo para iniciar la fabricación.",
       },
     ],
   },
@@ -92,9 +88,9 @@ const AccordionItem = ({
         </span>
         <div className="shrink-0 ml-4">
           {isOpen ? (
-            <HiOutlineMinus className="text-[#4A3728]" />
+            <Icons.Minus className="text-[#4A3728]" />
           ) : (
-            <HiOutlinePlus className="text-zinc-400" />
+            <Icons.Plus className="text-zinc-400" />
           )}
         </div>
       </button>
@@ -118,17 +114,16 @@ const AccordionItem = ({
 };
 
 export default function FAQPage() {
-  const [openIndex, setOpenIndex] = useState<string | null>("0-0"); // Primer item abierto por defecto
+  const [openIndex, setOpenIndex] = useState<string | null>("0-0");
 
   return (
-    <main className="min-h-screen bg-[#FDFCFB] dark:bg-[#0A0A0A] pt-32 pb-24 px-6 md:px-8">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
+    <main className="min-h-screen bg-[#FDFCFB] dark:bg-[#0A0A0A] md:pt-32 pt-24 pb-24 px-6 md:px-8">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16 space-y-4">
           <span className="text-md font-black uppercase tracking-[0.2em] text-[#4A3728]">
             Soporte al Cliente
           </span>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+          <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
             Preguntas <span className="text-[#4A3728]">Frecuentes</span>
           </h1>
           <div className="h-1.5 w-36 bg-[#4A3728] mx-auto mt-6" />
@@ -158,9 +153,9 @@ export default function FAQPage() {
         </div>
         <div className="mt-16 p-8 md:p-12 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-sm text-center space-y-6 shadow-sm">
           <div className="inline-flex p-4 bg-[#4A3728]/10 rounded-sm mb-2">
-            <HiOutlineQuestionMarkCircle className="text-3xl text-[#4A3728]" />
+            <Icons.QuestionMarkCircle className="text-3xl text-[#4A3728]" />
           </div>
-          <h3 className="text-2xl font-black uppercase tracking-tight dark:text-white text-zinc-900">
+          <h3 className="text-xl font-black uppercase tracking-tight dark:text-white text-zinc-900">
             ¿Aún tienes dudas?
           </h3>
           <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-md mx-auto">
@@ -170,7 +165,7 @@ export default function FAQPage() {
           <div className="pt-4">
             <a
               href="/contacto"
-              className="inline-block bg-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 text-white px-10 py-4 rounded-sm text-md font-black uppercase tracking-[0.2em] hover:bg-[#4A3728] hover:text-white transition-all duration-300"
+              className="inline-block bg-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 text-white px-10 py-4 rounded-full text-sm font-black uppercase hover:bg-[#4A3728] hover:text-white transition-all duration-300"
             >
               Contactar con un Asesor
             </a>

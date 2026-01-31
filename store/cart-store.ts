@@ -17,6 +17,7 @@ interface CartState {
   removeFromCart: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
   clearCart: () => void;
+  isInCart: (itemId: string) => boolean;
   getTotalItems: () => number;
   getTotalPrice: () => number;
 }
@@ -30,15 +31,18 @@ export const useCartStore = create<CartState>()(
         const exists = cart.find((i) => i.id === item.id);
 
         if (exists) {
+          // If already in cart, don't add more if checking for "already added" strictness
+          // Or update quantity but cap at 3
+          const newQuantity = Math.min(exists.quantity + item.quantity, 3);
           set({
             cart: cart.map((i) =>
-              i.id === item.id
-                ? { ...i, quantity: i.quantity + item.quantity }
-                : i,
+              i.id === item.id ? { ...i, quantity: newQuantity } : i,
             ),
           });
         } else {
-          set({ cart: [...cart, item] });
+          // Ensure initial quantity is max 3
+          const quantity = Math.min(item.quantity, 3);
+          set({ cart: [...cart, { ...item, quantity }] });
         }
       },
       removeFromCart: (itemId) => {
@@ -46,12 +50,14 @@ export const useCartStore = create<CartState>()(
       },
       updateQuantity: (itemId, quantity) => {
         if (quantity < 1) return;
+        const safeQuantity = Math.min(quantity, 3); // Max limit 3
         set({
           cart: get().cart.map((i) =>
-            i.id === itemId ? { ...i, quantity } : i,
+            i.id === itemId ? { ...i, quantity: safeQuantity } : i,
           ),
         });
       },
+      isInCart: (itemId) => get().cart.some((i) => i.id === itemId),
       clearCart: () => set({ cart: [] }),
       getTotalItems: () =>
         get().cart.reduce((acc, item) => acc + item.quantity, 0),

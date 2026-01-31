@@ -43,7 +43,7 @@ const CategoryShowcase = () => {
     <section className="py-6 md:py-12 bg-white dark:bg-[#050505] transition-colors duration-500">
       <div className="max-w-360 mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-8 md:mb-12 border-b border-zinc-100 dark:border-zinc-800/50 pb-6">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
             Espacios{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
               que inspiran
@@ -84,7 +84,7 @@ const CategoryShowcase = () => {
 
                 <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-end">
                   <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="inline-block px-2 py-0.5 rounded-sm bg-white/10 backdrop-blur-md border border-white/20 text-[9px] md:text-[11px] font-black text-white uppercase tracking-[0.2em] mb-2">
+                    <span className="inline-block px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[9px] md:text-[11px] font-black text-white uppercase tracking-[0.2em] mb-2">
                       {cat.tag}
                     </span>
 

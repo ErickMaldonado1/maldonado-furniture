@@ -1,10 +1,10 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import { categories } from "@/lib/categories";
+import { categories } from "@/utils/categories";
 import Link from "next/link";
 import Image from "next/image";
-import { HiMiniViewfinderCircle } from "react-icons/hi2";
+import { Icons } from "@/utils/icons";
 import ProductCard from "@/components/shop/ProductCard";
 
 interface CategoryLayoutProps {
@@ -73,7 +73,7 @@ export default function CategoryLayout({
             Explorar {category.label}
           </h2>
           <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800 mx-10 hidden md:block" />
-          <HiMiniViewfinderCircle className="text-4xl text-[#4A3728]" />
+          <Icons.Viewfinder className="text-4xl text-[#4A3728]" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -81,7 +81,7 @@ export default function CategoryLayout({
             <Link
               href={`/${category.slug}/${sub.sub}`}
               key={sub.sub}
-              className="group relative h-96 overflow-hidden rounded-sm cursor-pointer block"
+              className="group relative h-96 overflow-hidden rounded-full cursor-pointer block"
             >
               <Image
                 src={sub.imageSrc}

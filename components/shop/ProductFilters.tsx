@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { categories } from "@/lib/categories";
+import { categories } from "@/utils/categories";
 
 interface ProductFiltersProps {
   currentCategory?: string;

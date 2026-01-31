@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { HiOutlineScale } from "react-icons/hi2";
+import { Icons } from "@/utils/icons";
 
 interface PolicySection {
   id: string;
@@ -65,10 +65,10 @@ const sections: PolicySection[] = [
     title: "4. Garantía Limitada",
     content: (
       <p>
-        Ofrecemos una garantía de <strong>2 años</strong> que cubre defectos de
-        fabricación y estructura. Esta garantía no cubre daños por mal uso,
-        exposición directa al sol, humedad excesiva o el uso de productos de
-        limpieza abrasivos no recomendados por nuestra fábrica.
+        Ofrecemos una garantía de <strong>6 meses a 1 año</strong> que cubre
+        defectos de fabricación y estructura. Esta garantía no cubre daños por
+        mal uso, exposición directa al sol, humedad excesiva o el uso de
+        productos de limpieza abrasivos no recomendados por nuestra fábrica.
       </p>
     ),
   },
@@ -82,17 +82,15 @@ export default function TerminosPage() {
           <div className="flex items-center gap-4">
             <div className="h-1px w-12 bg-[#4A3728]" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
-            Términos <br />{" "}
-            <span className="text-[#4A3728]">y Condiciones</span>
+          <h1 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+            Términos <span className="text-[#4A3728]"> y Condiciones</span>
           </h1>
           <p className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">
-            Última actualización: 22 de enero, 2026
+            Última actualización: 9 de febrero, 2026
           </p>
         </header>
 
         <div className="grid lg:grid-cols-4 gap-16">
-          {/* NAVEGACIÓN RÁPIDA (STICKY) */}
           <aside className="hidden lg:block space-y-4 sticky top-32 h-fit">
             <p className="text-md font-black uppercase tracking-widest text-zinc-400 mb-4">
               Índice
@@ -130,7 +128,7 @@ export default function TerminosPage() {
 
             <div className="p-8 md:p-12 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-sm space-y-6">
               <div className="flex items-center gap-4 text-[#4A3728]">
-                <HiOutlineScale size={32} />
+                <Icons.Scale width={32} height={32} />
                 <h3 className="text-xl font-black uppercase tracking-tighter dark:text-white text-zinc-900">
                   ¿Dudas sobre nuestras políticas?
                 </h3>

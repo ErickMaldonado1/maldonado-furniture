@@ -2,11 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  HiOutlineTruck,
-  HiOutlineShieldCheck,
-  HiOutlineHomeModern,
-} from "react-icons/hi2";
+import { Icons } from "@/utils/icons";
 
 interface StepProps {
   icon: React.ElementType;
@@ -83,17 +79,17 @@ export default function EnvioMontajePage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16  p-10 md:p-16 rounded-sm bg-white dark:bg-[#0A0A0A]">
             <ProcessStep
-              icon={HiOutlineShieldCheck}
+              icon={Icons.ShieldCheck}
               title="Embalaje de Seguridad"
               description="Protección multicapa con espumas y cartón paa embalaje reforzado."
             />
             <ProcessStep
-              icon={HiOutlineTruck}
+              icon={Icons.Truck}
               title="Transporte Directo"
               description="Aliados logísticos expertos encargados del manejo de mobiliario."
             />
             <ProcessStep
-              icon={HiOutlineHomeModern}
+              icon={Icons.HomeModern}
               title="Instalación Final"
               description="Montaje y nivelación profesional incluido en todos nuestros servicios."
             />
@@ -130,7 +126,7 @@ export default function EnvioMontajePage() {
 
           <div className="p-10 bg-zinc-900 dark:bg-zinc-950 text-white rounded-sm space-y-8 relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-              <HiOutlineTruck size={80} />
+              <Icons.Truck width={80} height={80} />
             </div>
             <div>
               <h3 className="text-xl font-black uppercase tracking-tighter text-[#4A3728] mb-2">

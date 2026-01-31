@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { HiOutlineSearch } from "react-icons/hi";
+import Image from "next/image";
+import { Icons } from "@/utils/icons";
+import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 interface SearchBarProps {
@@ -19,15 +21,15 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      router.push(`/productos/search?q=${encodeURIComponent(query.trim())}`);
+      router.push(`/productos?q=${encodeURIComponent(query.trim())}`);
       if (onSearchResolved) onSearchResolved();
     }
   };
 
   return (
     <form onSubmit={handleSearch} className="flex-1 max-w-xl relative group">
-      <HiOutlineSearch
-        className={`absolute left-4 top-1/2 -translate-y-1/2 text-xl transition-colors ${
+      <Icons.Search
+        className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${
           !showSolidNavbar
             ? "text-white/40 group-focus-within:text-white"
             : "text-zinc-400 dark:text-zinc-500 group-focus-within:text-[#4A3728]"

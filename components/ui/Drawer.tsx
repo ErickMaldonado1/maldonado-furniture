@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { HiXMark } from "react-icons/hi2";
+import { Icons } from "@/utils/icons";
 
 interface DrawerProps {
   isOpen: boolean;
@@ -78,7 +78,7 @@ export default function Drawer({
                 className="p-2 -mr-2 text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
                 aria-label="button-drawer"
               >
-                <HiXMark className="text-2xl" />
+                <Icons.XMark className="w-6 h-6" />
               </button>
             </div>
 

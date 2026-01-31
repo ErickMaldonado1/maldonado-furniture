@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { HiXMark, HiChevronLeft, HiChevronRight } from "react-icons/hi2";
+import { Icons } from "@/utils/icons";
 
 interface ProductImageGalleryProps {
   images: string[];
@@ -104,7 +104,7 @@ export function ProductImageGallery({
               className="absolute top-6 right-6 p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors z-110"
               aria-label="lightbox"
             >
-              <HiXMark className="text-2xl" />
+              <Icons.XMark className="w-6 h-6" />
             </button>
 
             {displayImages.length > 1 && (
@@ -114,14 +114,14 @@ export function ProductImageGallery({
                   className="absolute left-4 lg:left-10 p-3 rounded-full bg-white dark:bg-zinc-900 shadow-xl hover:scale-110 transition-transform h-12 w-12 flex items-center justify-center z-110"
                   aria-label="prev"
                 >
-                  <HiChevronLeft className="text-xl" />
+                  <Icons.ChevronLeft className="w-6 h-6" />
                 </button>
                 <button
                   onClick={handleNext}
                   className="absolute right-4 lg:right-10 p-3 rounded-full bg-white dark:bg-zinc-900 shadow-xl hover:scale-110 transition-transform h-12 w-12 flex items-center justify-center z-110"
                   aria-label="next"
                 >
-                  <HiChevronRight className="text-xl" />
+                  <Icons.ChevronRight className="w-6 h-6" />
                 </button>
               </>
             )}
