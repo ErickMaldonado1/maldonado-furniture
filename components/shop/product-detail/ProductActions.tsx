@@ -1,6 +1,6 @@
 "use client";
 
-import { Icons } from "@/utils/icons";
+import { Minus, Plus, ShoppingBag, Whatsapp } from "@/utils/icons/index";
 
 interface ProductActionsProps {
   productName: string;
@@ -51,7 +51,7 @@ export function ProductActions({
             className="w-8 h-8 flex items-center justify-center rounded-full text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
             disabled={quantity <= 1}
           >
-            <Icons.Minus width={14} height={14} />
+            <Minus width={14} height={14} />
           </button>
           <span className="font-black text-sm tabular-nums text-zinc-900 dark:text-white">
             {quantity}
@@ -60,12 +60,11 @@ export function ProductActions({
             onClick={() => setQuantity(Math.min(quantity + 1, 10))}
             className="w-8 h-8 flex items-center justify-center rounded-full text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
           >
-            <Icons.Plus width={14} height={14} />
+            <Plus width={14} height={14} />
           </button>
         </div>
       </div>
 
-      {/* Botones de Acción - MISMA FILA */}
       <div className="flex gap-3">
         <button
           onClick={isInCart ? undefined : onAddToCart}
@@ -77,7 +76,7 @@ export function ProductActions({
           }`}
         >
           <span>{isInCart ? "En el carrito" : "Añadir"}</span>
-          <Icons.ShoppingBag className="text-lg" />
+          <ShoppingBag className="text-lg" />
         </button>
 
         <button
@@ -90,7 +89,7 @@ export function ProductActions({
           className="w-14 h-14 rounded-full flex items-center justify-center border border-green-500/30 text-green-500 hover:bg-green-500 hover:text-white transition-all active:scale-[0.98]"
           title="Pedir por WhatsApp"
         >
-          <Icons.Whatsapp width={20} height={20} />
+          <Whatsapp width={20} height={20} />
         </button>
       </div>
     </div>

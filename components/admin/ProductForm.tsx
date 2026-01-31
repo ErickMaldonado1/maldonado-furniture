@@ -14,11 +14,11 @@ import {
 } from "@/features/admin/product.actions";
 import { useRouter } from "next/navigation";
 import { categories } from "@/utils/categories";
-import { Trash2, Plus, Upload, X, Save } from "lucide-react";
+import { Trash2, Plus, Upload, X, Save, ChevronDown } from "lucide-react";
 import Image from "next/image";
 
 interface ProductFormProps {
-  initialData?: any; // We can refine this type later if needed
+  initialData?: any;
 }
 
 export default function ProductForm({ initialData }: ProductFormProps) {
@@ -71,11 +71,8 @@ export default function ProductForm({ initialData }: ProductFormProps) {
     name: "variants",
   });
 
-  // Load initial data
   useEffect(() => {
     if (initialData) {
-      // Transform initialData to match form values if necessary
-      // e.g. images might need mapping if structure differs
       const formData = {
         ...initialData,
         price: Number(initialData.price),
@@ -113,9 +110,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
   const watchedImages = watch("images");
   const watchedColors = watch("colors") || [];
 
-  // Update subcategories when category changes
   useEffect(() => {
-    // Current behavior: watchedCategory is now the SLUG because the select value is c.slug
     const cat = categories.find((c) => c.slug === watchedCategory);
     if (cat) {
       setSelectedCategorySlug(cat.slug);
@@ -130,7 +125,6 @@ export default function ProductForm({ initialData }: ProductFormProps) {
 
     setUploading(true);
     try {
-      // Loop through files if multiple (currently input is single but logic supports expansion)
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const reader = new FileReader();
@@ -185,23 +179,40 @@ export default function ProductForm({ initialData }: ProductFormProps) {
     }
   };
 
-  // Helper to get subcategories based on selected category
   const subcategories =
     categories.find((c) => c.slug === selectedCategorySlug)?.subcategories ||
     [];
 
-  // Hardcoded options for multi-selects (can be moved to a config file)
   const AVAILABLE_COLORS = [
+    "Artiko",
+    "Bardolino",
+    "Wengué",
+    "Bellota",
+    "Capri",
+    "Caramelo",
     "Blanco",
     "Negro",
-    "Gris",
-    "Café",
-    "Beige",
-    "Azul",
-    "Verde",
-    "Rojo",
-    "Madera Natural",
-    "Nogal",
+    "Coñac",
+    "Duna",
+    "Fumé",
+    "Lino",
+    "Macadamia",
+    "Nacar",
+    "Niebla",
+    "Panela",
+    "Rovere",
+    "Tivoli",
+    "Alaska",
+    "Catania",
+    "Cedro Merak",
+    "Nogal Paris",
+    "Roble Natural",
+    "Tintiretto",
+    "Carvalo",
+    "Cava",
+    "Cedro",
+    "Fibra",
+    "Magma",
   ];
   const AVAILABLE_STYLES = [
     "Minimalista",
@@ -215,7 +226,6 @@ export default function ProductForm({ initialData }: ProductFormProps) {
     "Madera Sólida",
     "Melamina",
     "Mixto (Melamina y Madera)",
-    "Metal",
     "Vidrio",
     "Tela",
   ];
@@ -223,12 +233,11 @@ export default function ProductForm({ initialData }: ProductFormProps) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-8 animate-in fade-in duration-500"
+      className="space-y-4 animate-in fade-in duration-500"
     >
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-zinc-200 dark:border-zinc-800 pt-2 md:pt-16">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-zinc-200 dark:border-zinc-800 pt-2 md:pt-16">
         <div>
-          <h1 className="text-3xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight">
+          <h1 className="text-2xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight">
             {initialData ? "Editar Producto" : "Nuevo Producto"}
           </h1>
           <p className="text-zinc-500 text-sm mt-1">
@@ -241,7 +250,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
           <button
             type="button"
             onClick={() => router.back()}
-            className="px-6 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 font-bold text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
+            className="px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 font-bold text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
           >
             Cancelar
           </button>
@@ -260,11 +269,9 @@ export default function ProductForm({ initialData }: ProductFormProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left Column: Main Info */}
-        <div className="lg:col-span-2 space-y-8">
-          {/* Basic Details Card */}
-          <div className="bg-white dark:bg-[#111111] p-6 rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800/60">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 space-y-6">
+          <div className="bg-white dark:bg-[#111111] p-4 rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800/60">
             <h2 className="text-lg font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
               <span className="w-1 h-6 bg-[#A6866A] rounded-full"></span>
               Información Básica
@@ -349,7 +356,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                   </p>
                 )}
               </div>
-              <div className="flex items-center gap-4 pt-6 col-span-2">
+              <div className="flex items-center gap-4 pt-3 col-span-2">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
@@ -379,7 +386,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                 <textarea
                   {...register("description")}
                   rows={4}
-                  className="w-full bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#A6866A]/50 transition-all text-zinc-900 dark:text-white resize-none"
+                  className="w-full bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 rounded-xl px-3 py-3 outline-none focus:ring-2 focus:ring-[#A6866A]/50 transition-all text-zinc-900 dark:text-white resize-none"
                   placeholder="Describe las características, materiales y beneficios del producto..."
                 />
                 {errors.description && (
@@ -391,7 +398,6 @@ export default function ProductForm({ initialData }: ProductFormProps) {
             </div>
           </div>
 
-          {/* Classification & Attributes */}
           <div className="bg-white dark:bg-[#111111] p-6 rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800/60">
             <h2 className="text-lg font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
               <span className="w-1 h-6 bg-[#A6866A] rounded-full"></span>
@@ -438,86 +444,90 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                 </select>
               </div>
 
-              <div className="col-span-2 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-xs font-bold uppercase text-zinc-500">
-                    Estilos
+              <div className="col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4 transition-all">
+                <div className="space-y-3">
+                  <label className="block text-[11px] font-black uppercase tracking-widest text-[#A6866A] dark:text-[#D4A373]">
+                    Estilos de Diseño
                   </label>
-                  <div className="max-h-40 overflow-y-auto border border-zinc-200 dark:border-zinc-800 rounded-xl p-2 bg-zinc-50 dark:bg-zinc-900/30">
-                    {AVAILABLE_STYLES.map((style) => (
-                      <label
-                        key={style}
-                        className="flex items-center gap-2 p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded cursor-pointer"
-                      >
-                        <input
-                          type="checkbox"
-                          value={style}
-                          {...register("styles")}
-                          className="rounded text-[#A6866A] focus:ring-[#A6866A]"
-                        />
-                        <span className="text-sm text-zinc-700 dark:text-zinc-300">
-                          {style}
-                        </span>
-                      </label>
-                    ))}
+                  <div className="max-h-48 overflow-y-auto border border-zinc-200 dark:border-zinc-800 rounded-2xl p-3 bg-white dark:bg-zinc-950/50 shadow-inner custom-scrollbar">
+                    <div className="space-y-1">
+                      {AVAILABLE_STYLES.map((style) => (
+                        <label
+                          key={style}
+                          className="flex items-center gap-3 p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-xl cursor-pointer transition-colors group"
+                        >
+                          <input
+                            type="checkbox"
+                            value={style}
+                            {...register("styles")}
+                            className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-700 text-[#A6866A] focus:ring-[#A6866A] bg-transparent"
+                          />
+                          <span className="text-sm text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors">
+                            {style}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
                   </div>
                 </div>
-
-                <div className="space-y-2">
-                  <label className="block text-xs font-bold uppercase text-zinc-500">
-                    Materiales
+                <div className="space-y-3">
+                  <label className="block text-[11px] font-black uppercase tracking-widest text-[#A6866A] dark:text-[#D4A373]">
+                    Cuerpo y Estructura
                   </label>
-                  <div className="max-h-40 overflow-y-auto border border-zinc-200 dark:border-zinc-800 rounded-xl p-2 bg-zinc-50 dark:bg-zinc-900/30">
-                    {AVAILABLE_MATERIALS.map((mat) => (
-                      <label
-                        key={mat}
-                        className="flex items-center gap-2 p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded cursor-pointer"
-                      >
-                        <input
-                          type="checkbox"
-                          value={mat}
-                          {...register("materials")}
-                          className="rounded text-[#A6866A] focus:ring-[#A6866A]"
-                        />
-                        <span className="text-sm text-zinc-700 dark:text-zinc-300">
-                          {mat}
-                        </span>
-                      </label>
-                    ))}
+                  <div className="max-h-48 overflow-y-auto border border-zinc-200 dark:border-zinc-800 rounded-2xl p-3 bg-white dark:bg-zinc-950/50 shadow-inner custom-scrollbar">
+                    <div className="space-y-1">
+                      {AVAILABLE_MATERIALS.map((mat) => (
+                        <label
+                          key={mat}
+                          className="flex items-center gap-3 p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-xl cursor-pointer transition-colors group"
+                        >
+                          <input
+                            type="checkbox"
+                            value={mat}
+                            {...register("materials")}
+                            className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-700 text-[#A6866A] focus:ring-[#A6866A] bg-transparent"
+                          />
+                          <span className="text-sm text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors">
+                            {mat}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
                   </div>
                 </div>
-
-                <div className="space-y-2">
-                  <label className="block text-xs font-bold uppercase text-zinc-500">
-                    Colores Disponibles
+                <div className="space-y-3">
+                  <label className="block text-[11px] font-black uppercase tracking-widest text-[#A6866A] dark:text-[#D4A373]">
+                    Paleta de Colores
                   </label>
-                  <div className="max-h-40 overflow-y-auto border border-zinc-200 dark:border-zinc-800 rounded-xl p-2 bg-zinc-50 dark:bg-zinc-900/30">
-                    {AVAILABLE_COLORS.map((col) => (
-                      <label
-                        key={col}
-                        className="flex items-center gap-2 p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded cursor-pointer"
-                      >
-                        <input
-                          type="checkbox"
-                          value={col}
-                          {...register("colors")}
-                          className="rounded text-[#A6866A] focus:ring-[#A6866A]"
-                        />
-                        <span className="text-sm text-zinc-700 dark:text-zinc-300">
-                          {col}
-                        </span>
-                      </label>
-                    ))}
+                  <div className="max-h-48 overflow-y-auto border border-zinc-200 dark:border-zinc-800 rounded-2xl p-3 bg-white dark:bg-zinc-950/50 shadow-inner custom-scrollbar">
+                    <div className="grid grid-cols-2 gap-x-1 gap-y-1">
+                      {AVAILABLE_COLORS.map((col) => (
+                        <label
+                          key={col}
+                          className="flex items-center gap-2 p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-xl cursor-pointer transition-colors group"
+                        >
+                          <input
+                            type="checkbox"
+                            value={col}
+                            {...register("colors")}
+                            className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-700 text-[#A6866A] focus:ring-[#A6866A] bg-transparent"
+                          />
+                          <span className="text-[13px] leading-tight text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors truncate">
+                            {col}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-[#111111] p-6 rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800/60">
+          <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800 transition-colors duration-300">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-lg font-bold text-zinc-900 dark:text-white flex items-center gap-2">
-                <span className="w-1 h-6 bg-[#A6866A] rounded-full"></span>
+              <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+                <span className="w-1.5 h-6 bg-[#A6866A] rounded-full"></span>
                 Variantes & Dimensiones
               </h2>
               <button
@@ -530,13 +540,17 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                     height: 0,
                     depth: 0,
                     thickness: null,
-                    color: null,
-                    material: null,
+                    color: "", 
+                    material: "",
                   })
                 }
-                className="text-[#A6866A] bg-[#A6866A]/10 hover:bg-[#A6866A]/20 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all flex items-center gap-1"
+                className="group text-[#A6866A] bg-[#A6866A]/10 hover:bg-[#A6866A] hover:text-white px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border border-[#A6866A]/20"
               >
-                <Plus size={14} /> Nueva Variante
+                <Plus
+                  size={16}
+                  className="group-hover:rotate-90 transition-transform"
+                />
+                Nueva Variante
               </button>
             </div>
 
@@ -544,107 +558,117 @@ export default function ProductForm({ initialData }: ProductFormProps) {
               {fields.map((field, index) => (
                 <div
                   key={field.id}
-                  className="p-4 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/20 relative group"
+                  className="p-5 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-zinc-50/50 dark:bg-zinc-950/40 relative group hover:border-[#A6866A]/40 transition-colors"
                 >
                   <button
                     type="button"
                     onClick={() => remove(index)}
-                    className="absolute top-2 right-2 text-zinc-400 hover:text-red-500 p-1 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20 transition-all opacity-0 group-hover:opacity-100"
+                    className="absolute -top-2 -right-2 bg-white dark:bg-zinc-800 text-zinc-400 hover:text-red-500 p-1.5 rounded-full border border-zinc-200 dark:border-zinc-700 shadow-sm opacity-0 group-hover:opacity-100 transition-all z-10"
                   >
-                    <Trash2 size={16} />
+                    <Trash2 size={14} />
                   </button>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                    <div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  
+                    <div className="space-y-1">
+                      <label className="text-[10px] uppercase text-zinc-500 font-bold ml-1">
+                        Nombre
+                      </label>
                       <input
                         {...register(`variants.${index}.name`)}
-                        placeholder="Nombre Variantes (ej. King)"
-                        className="w-full text-sm border-zinc-200 dark:border-zinc-700 rounded-lg p-2 bg-white dark:bg-black"
+                        placeholder="Ej: King Size"
+                        className="w-full text-sm border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-[#A6866A]/20 outline-none"
                       />
-                      {errors.variants?.[index]?.name && (
-                        <span className="text-red-500 text-[10px]">
-                          {errors.variants[index]?.name?.message}
-                        </span>
-                      )}
                     </div>
-                    <div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] uppercase text-zinc-500 font-bold ml-1">
+                        SKU
+                      </label>
                       <input
                         {...register(`variants.${index}.sku`)}
-                        placeholder="SKU Variante"
-                        className="w-full text-sm border-zinc-200 dark:border-zinc-700 rounded-lg p-2 bg-white dark:bg-black font-mono"
+                        placeholder="SKU-001"
+                        className="w-full text-sm border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 bg-white dark:bg-zinc-900 font-mono"
                       />
                     </div>
-                    <select
-                      {...register(`variants.${index}.color`)}
-                      className="w-full text-sm border-zinc-200 dark:border-zinc-700 rounded-lg p-2 bg-white dark:bg-black"
-                    >
-                      <option value="">Color...</option>
-                      {watchedColors.map((c) => (
-                        <option key={c} value={c}>
-                          {c}
-                        </option>
-                      ))}
-                    </select>
-                    <select
-                      {...register(`variants.${index}.material`)}
-                      className="w-full text-sm border-zinc-200 dark:border-zinc-700 rounded-lg p-2 bg-white dark:bg-black"
-                    >
-                      <option value="">Material...</option>
-                      {AVAILABLE_MATERIALS.map((m) => (
-                        <option key={m} value={m}>
-                          {m}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="space-y-1">
+                      <label className="text-[10px] uppercase text-zinc-500 font-bold ml-1">
+                        Color
+                      </label>
+                      <div className="relative">
+                        <select
+                          {...register(`variants.${index}.color`)}
+                          className="w-full text-sm border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-[#A6866A]/20 outline-none appearance-none cursor-pointer"
+                        >
+                          <option value="">Seleccionar color...</option>
+                          {AVAILABLE_COLORS.map((c) => (
+                            <option
+                              key={c}
+                              value={c}
+                              className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                            >
+                              {c}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-400">
+                          <ChevronDown size={14} />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] uppercase text-zinc-500 font-bold ml-1">
+                        Material
+                      </label>
+                      <div className="relative">
+                        <select
+                          {...register(`variants.${index}.material`)}
+                          className="w-full text-sm border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-[#A6866A]/20 outline-none appearance-none cursor-pointer"
+                        >
+                          <option value="">Seleccionar material...</option>
+                          {AVAILABLE_MATERIALS.map((m) => (
+                            <option key={m} value={m}>
+                              {m}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-400">
+                          <ChevronDown size={14} />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="grid grid-cols-4 gap-3 mt-3">
-                    <div>
-                      <label className="text-[10px] uppercase text-zinc-500 font-bold">
-                        Ancho (cm)
-                      </label>
-                      <input
-                        type="number"
-                        {...register(`variants.${index}.width`)}
-                        className="w-full text-sm border-zinc-200 dark:border-zinc-700 rounded-lg p-2 bg-white dark:bg-black font-mono"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-[10px] uppercase text-zinc-500 font-bold">
-                        Alto (cm)
-                      </label>
-                      <input
-                        type="number"
-                        {...register(`variants.${index}.height`)}
-                        className="w-full text-sm border-zinc-200 dark:border-zinc-700 rounded-lg p-2 bg-white dark:bg-black font-mono"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-[10px] uppercase text-zinc-500 font-bold">
-                        Fondo (cm)
-                      </label>
-                      <input
-                        type="number"
-                        {...register(`variants.${index}.depth`)}
-                        className="w-full text-sm border-zinc-200 dark:border-zinc-700 rounded-lg p-2 bg-white dark:bg-black font-mono"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-[10px] uppercase text-zinc-500 font-bold">
-                        Espesor (mm)
-                      </label>
-                      <input
-                        type="number"
-                        {...register(`variants.${index}.thickness`)}
-                        className="w-full text-sm border-zinc-200 dark:border-zinc-700 rounded-lg p-2 bg-white dark:bg-black font-mono"
-                      />
-                    </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-800">
+                    {[
+                      { label: "Ancho", field: "width", unit: "cm" },
+                      { label: "Alto", field: "height", unit: "cm" },
+                      { label: "Fondo", field: "depth", unit: "cm" },
+                      { label: "Espesor", field: "thickness", unit: "mm" },
+                    ].map((dim) => (
+                      <div key={dim.field}>
+                        <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-black mb-1 block">
+                          {dim.label}{" "}
+                          <span className="font-normal">({dim.unit})</span>
+                        </label>
+                        <input
+                          type="number"
+                          step="0.01"
+                          {...register(`variants.${index}.${dim.field}` as any)}
+                          className="w-full text-sm font-bold border-zinc-200 dark:border-zinc-800 rounded-xl p-2 bg-zinc-100 dark:bg-zinc-800/50 text-[#A6866A] dark:text-[#D4A373] outline-none focus:bg-white dark:focus:bg-zinc-900 transition-all"
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
+
               {errors.variants && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.variants.message}
-                </p>
+                <div className="p-3 rounded-xl bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-900/30">
+                  <p className="text-red-500 dark:text-red-400 text-xs font-bold flex items-center gap-2">
+                    <span>⚠️</span>{" "}
+                    {errors.variants.root?.message ||
+                      "Revisa los datos de las variantes"}
+                  </p>
+                </div>
               )}
             </div>
           </div>

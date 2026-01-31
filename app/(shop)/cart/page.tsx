@@ -2,7 +2,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useCartStore } from "@/store/cart-store";
-import { Icons } from "@/utils/icons";
+import {
+  Trash,
+  Plus,
+  ArrowRight,
+  MagnifyingGlass,
+  Minus,
+} from "@/utils/icons/index";
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } =
@@ -12,11 +18,10 @@ export default function CartPage() {
     return (
       <main className="pt-40 pb-20 min-h-screen bg-white dark:bg-[#050505]">
         <div className="max-w-3xl mx-auto px-6 text-center space-y-8">
-          <div className="w-24 h-24 bg-zinc-100 dark:bg-zinc-900 rounded-full flex items-center justify-center mx-auto relative">
-            {" "}
-            <Icons.MagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 text-xl" />{" "}
+          <div className="w-16 h-16 p-4 bg-zinc-100 dark:bg-zinc-900 rounded-full flex items-center justify-center mx-auto">
+            <MagnifyingGlass className="text-zinc-400 text-lg" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">
+          <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tighter">
             Tu carrito está vacío
           </h1>
           <p className="text-zinc-500 font-medium text-lg">
@@ -27,7 +32,7 @@ export default function CartPage() {
             className="inline-flex items-center gap-3 bg-[#4A3728] text-white px-8 py-4 rounded-full font-black uppercase tracking-widest hover:shadow-xl hover:-translate-y-1 transition-all"
           >
             Explorar Catálogo
-            <Icons.ArrowRight />
+            <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </main>
@@ -77,7 +82,7 @@ export default function CartPage() {
                         className="hover:text-[#4A3728] transition-colors"
                         aria-label="add item"
                       >
-                        <Icons.Minus />
+                        <Minus className="w-5 h-5" />
                       </button>
                       <span className="font-black w-4 text-center">
                         {item.quantity}
@@ -97,7 +102,7 @@ export default function CartPage() {
                         disabled={item.quantity >= 3}
                         aria-label="quantity"
                       >
-                        <Icons.Plus />
+                        <Plus />
                       </button>
                     </div>
 
@@ -106,7 +111,7 @@ export default function CartPage() {
                       className="text-zinc-400 hover:text-red-500 transition-colors p-2"
                       aria-label="remove-cart"
                     >
-                      <Icons.Trash width={20} height={20} />
+                      <Trash width={20} height={20} />
                     </button>
                   </div>
                 </div>

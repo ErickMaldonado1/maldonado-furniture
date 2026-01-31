@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import { Icons } from "@/utils/icons";
+import { ArrowRight } from "@/utils/icons/index";
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");
@@ -54,7 +54,7 @@ export default function NewsletterForm() {
           {loading ? (
             <div className="w-5 h-5 border-2 border-[#8B735B] border-t-transparent animate-spin rounded-full" />
           ) : (
-            <Icons.ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-5 h-5" />
           )}
         </button>
       </form>

@@ -1,11 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
 import {
-  HiOutlineMapPin,
-  HiOutlineClock,
-  HiArrowUpRight,
-} from "react-icons/hi2";
-import { Icons } from "@/utils/icons";
+  Whatsapp,
+  ArrowUpRight,
+  Mail,
+  Phone,
+  Users,
+  MapPin,
+  Clock,
+} from "@/utils/icons/index";
 import { ContactForm } from "@/components/shop/ContactForm";
 
 export default function ContactoPage() {
@@ -28,7 +31,7 @@ export default function ContactoPage() {
           >
             <h2 className="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
               Atención al{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A3728] to-[#5D4037]">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
                 Cliente
               </span>
             </h2>
@@ -61,7 +64,7 @@ export default function ContactoPage() {
               className="group flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-75 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors"
             >
               <div>
-                <Icons.Whatsapp className="w-8 h-8 text-[#4A3728] mb-4" />
+                <Whatsapp className="w-8 h-8 text-[#4A3728] mb-4" />
                 <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-4">
                   Escríbenos
                 </h3>
@@ -71,13 +74,13 @@ export default function ContactoPage() {
                 </p>
               </div>
               <span className="flex items-center gap-2 text-[14px] font-black uppercase tracking-widest text-[#4A3728] mt-4">
-                Enviar Mensaje <HiArrowUpRight />
+                Enviar Mensaje <ArrowUpRight className="w-5 h-5" />
               </span>
             </a>
 
             <div className="flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-75">
               <div>
-                <Icons.Mail className="w-8 h-8 text-[#4A3728] mb-4" />
+                <Mail className="w-8 h-8 text-[#4A3728] mb-4" />
                 <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-4">
                   Email
                 </h3>
@@ -92,7 +95,7 @@ export default function ContactoPage() {
 
             <div className="flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-75">
               <div>
-                <Icons.Phone className="w-8 h-8 text-[#4A3728] mb-4" />
+                <Phone className="w-8 h-8 text-[#4A3728] mb-4" />
                 <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-4">
                   Llamadas
                 </h3>
@@ -107,7 +110,7 @@ export default function ContactoPage() {
 
             <div className="flex flex-col justify-between p-10 bg-white dark:bg-[#050505] min-h-75">
               <div>
-                <Icons.Users className="text-3xl text-[#4A3728] mb-4 w-8 h-8" />
+                <Users className="text-3xl text-[#4A3728] mb-4 w-8 h-8" />
 
                 <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-4">
                   Comunidad
@@ -153,13 +156,13 @@ export default function ContactoPage() {
             <div className="flex flex-col grow space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-zinc-100 dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-800 rounded-sm overflow-hidden">
                 <div className="bg-zinc-50 dark:bg-zinc-900/50 p-6 flex gap-4">
-                  <HiOutlineMapPin className="text-2xl text-[#4A3728] shrink-0" />
+                  <MapPin className=" w-5 h-5text-2xl text-[#4A3728] shrink-0" />
                   <p className="text-sm font-bold text-zinc-700 dark:text-zinc-200">
                     El Condado Alto, Quito <br />
                   </p>
                 </div>
                 <div className="bg-zinc-50 dark:bg-zinc-900/50 p-6 flex gap-4">
-                  <HiOutlineClock className="text-2xl text-[#4A3728] shrink-0" />
+                  <Clock className="w-5 h-6 text-2xl text-[#4A3728] shrink-0" />
                   <p className="text-sm font-bold text-zinc-700 dark:text-zinc-200">
                     Horario{" "}
                     <span className="text-[12px] font-normal text-zinc-400 uppercase">

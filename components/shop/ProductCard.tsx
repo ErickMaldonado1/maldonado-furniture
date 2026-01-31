@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Icons } from "@/utils/icons";
+import { CheckBadge, Heart, HeartFilled, ShoppingBag, Truck } from "@/utils/icons/index";
 import { toast } from "sonner";
 import { useCartStore } from "@/store/cart-store";
 import { useFavoritesStore } from "@/store/favorites-store";
@@ -71,7 +71,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 
     if (!isFav) {
       toast.success("Añadido a favoritos", {
-        icon: <Icons.HeartFilled className="text-red-500" />,
+        icon: <HeartFilled className="text-red-500" />,
         duration: 2000,
       });
     } else {
@@ -117,9 +117,9 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             aria-label="Favorito"
           >
             {isFav ? (
-              <Icons.HeartFilled className="text-2xl" />
+              <HeartFilled className="text-2xl" />
             ) : (
-              <Icons.Heart className="text-2xl" />
+              <Heart className="text-2xl" />
             )}
           </button>
           <div className="hidden md:flex absolute inset-0 items-end justify-end p-2 opacity-0 group-hover/img:opacity-100 transition-all duration-300 bg-black/5 z-20">
@@ -131,7 +131,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             </Link>
           </div>
           <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border border-teal-600/30 dark:border-teal-400/30 text-[9px] text-teal-600 dark:text-teal-400 font-black uppercase tracking-[0.15em] backdrop-blur-sm z-20">
-            <Icons.Truck className="text-sm" />
+            <Truck className="text-sm" />
             <span>Envío {product.deliveryDays || 8} días</span>
           </div>
         </div>
@@ -233,11 +233,11 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             </span>
 
             {!isMounted ? (
-              <Icons.ShoppingBag className="text-lg" />
+              <ShoppingBag className="text-lg" />
             ) : inCart ? (
-              <Icons.CheckBadge className="text-lg" />
+              <CheckBadge className="text-lg" />
             ) : (
-              <Icons.ShoppingBag className="text-lg" />
+              <ShoppingBag className="text-lg" />
             )}
           </button>
         </div>

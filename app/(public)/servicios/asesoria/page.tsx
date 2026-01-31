@@ -2,7 +2,12 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Icons } from "@/utils/icons";
+import {
+  LightBulb,
+  PencilSquare,
+  Cube,
+  Sparkles,
+} from "@/utils/icons/index";
 import { ContactForm } from "@/components/shop/ContactForm";
 
 interface ProcessStepProps {
@@ -29,9 +34,9 @@ const ProcessStep = ({
       {stepNumber < 10 ? `0${stepNumber}` : stepNumber}
     </div>
     <div className="w-20 h-20 bg-[#4A3728]/10 dark:bg-[#4A3728]/20 text-[#4A3728] rounded-full flex items-center justify-center mb-6 relative z-10">
-      <Icon className="text-3xl" />
+      <Icon className="w-10 h-10 text-3xl" />
     </div>
-    <h3 className="text-[15px] font-black uppercase tracking-[0.1em] mb-2 dark:text-white/90 relative z-10">
+    <h3 className="text-[15px] font-black uppercase tracking-widest mb-2 dark:text-white/90 relative z-10">
       {title}
     </h3>
     <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed relative z-10">
@@ -69,25 +74,25 @@ export default function AsesoriaDisenoPage() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <ProcessStep
             stepNumber={1}
-            icon={Icons.LightBulb}
+            icon={LightBulb}
             title="Exploración de Ideas"
             description="Comprendemos tus necesidades, estilo y el entorno del proyecto. Creamos un concepto inicial."
           />
           <ProcessStep
             stepNumber={2}
-            icon={Icons.PencilSquare}
+            icon={PencilSquare}
             title="Diseño y Visualización"
             description="Desarrollamos bocetos, planos técnicos y renders 3D para que veas tu mobiliario antes de crearlo."
           />
           <ProcessStep
             stepNumber={3}
-            icon={Icons.Cube}
+            icon={Cube}
             title="Selección de Materiales"
             description="Te asesoramos en la elección de maderas, acabados y herrajes que se ajusten a tu visión y presupuesto."
           />
           <ProcessStep
             stepNumber={4}
-            icon={Icons.Sparkles}
+            icon={Sparkles}
             title="Fabricación y Montaje"
             description="Una vez aprobado el diseño, nuestros artesanos dan vida a tu pieza con la más alta calidad."
           />

@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { HiOutlineArrowRight } from "react-icons/hi2";
 import { useCartStore } from "@/store/cart-store";
 import { Product } from "@prisma/client";
 import ProductCard from "@/components/shop/ProductCard";
 import Link from "next/link";
 import { SliderButton } from "../ui/SliderButton";
+import { ArrowRight } from "@/utils/icons/index";
 
 interface Props {
   products: Product[];
@@ -76,7 +76,7 @@ export default function CategoryCarousel({
           >
             <span className="hidden sm:inline">VER COLECCIÓN</span>
             <span className="sm:hidden mt-1">COLECCIÓN</span>
-            <HiOutlineArrowRight className="text-[#4A3728] group-hover:translate-x-1 transition-transform mt-1" />
+            <ArrowRight className="w-6 h-6 text-[#4A3728] group-hover:translate-x-1 transition-transform mt-1" />
           </Link>
         </div>
 

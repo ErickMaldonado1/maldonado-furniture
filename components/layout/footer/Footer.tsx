@@ -1,6 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Icons } from "@/utils/icons";
+import {
+  Instagram,
+  Whatsapp,
+  Facebook,
+  Pinterest,
+  BackgroundPattern,
+} from "@/utils/icons/index";
 import NewsletterForm from "./NewsletterForm";
 
 const Footer = () => {
@@ -9,7 +15,7 @@ const Footer = () => {
   return (
     <footer className="relative bg-[#141414] text-white pt-16 pb-16 font-sans overflow-hidden border-t border-white/5 selection:bg-[#4A3728] selection:text-white">
       <div className="absolute inset-0 opacity-[0.08] pointer-events-none overflow-hidden">
-        <Icons.BackgroundPattern />
+        <BackgroundPattern />
       </div>
 
       <div className="relative z-10 max-w-screen-2xl mx-auto px-4 lg:px-12">
@@ -106,22 +112,22 @@ const Footer = () => {
             <div className="flex gap-4">
               {[
                 {
-                  icon: <Icons.Instagram />,
+                  icon: <Instagram />,
                   href: "https://www.instagram.com/muebles_maldonad/",
                   label: "Instagram",
                 },
                 {
-                  icon: <Icons.Facebook />,
+                  icon: <Facebook />,
                   href: "https://www.facebook.com/MueblesMaldonad/",
                   label: "Facebook",
                 },
                 {
-                  icon: <Icons.Whatsapp />,
+                  icon: <Whatsapp />,
                   href: "https://api.whatsapp.com/send?phone=+593959504842&text=%C2%A1Hola!%20%F0%9F%91%8B%20Muebles%20Maldonado.%20Estoy%20interesado%20en%20obtener%20informaci%C3%B3n%20sobre%20sus%20productos%20y%20servicios.%20%C2%BFPodr%C3%ADan%20proporcionarme%20m%C3%A1s%20detalles?%20acerca%20de",
                   label: "WhatsApp",
                 },
                 {
-                  icon: <Icons.Pinterest />,
+                  icon: <Pinterest />,
                   href: "https://www.pinterest.com/mueblesmaldonadoec/",
                   label: "Pinterest",
                 },

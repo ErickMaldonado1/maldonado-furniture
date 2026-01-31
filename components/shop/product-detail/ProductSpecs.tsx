@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Icons } from "@/utils/icons";
+import { InformationCircle , Sparkles, Cube, Truck} from "@/utils/icons/index";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ProductSpecsProps {
@@ -27,7 +27,7 @@ export function ProductSpecs({
     {
       id: "materials",
       label: "Materiales",
-      icon: <Icons.Sparkles />,
+      icon: <Sparkles />,
       content: (
         <div className="space-y-4">
           <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
@@ -68,7 +68,7 @@ export function ProductSpecs({
     {
       id: "dimensions",
       label: "Dimensiones",
-      icon: <Icons.Cube />,
+      icon: <Cube />,
       content: (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-1">
@@ -109,7 +109,7 @@ export function ProductSpecs({
     {
       id: "care",
       label: "Cuidado",
-      icon: <Icons.InformationCircle />,
+      icon: <InformationCircle />,
       content: (
         <div className="space-y-4">
           <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
@@ -118,7 +118,7 @@ export function ProductSpecs({
           </p>
           <div className="flex items-center gap-4 pt-4">
             <div className="flex items-center gap-2 px-3 py-1.5 bg-[#4A3728]/5 border border-[#4A3728]/10 rounded-full">
-              <Icons.Truck className="text-lg text-[#4A3728]" />
+              <Truck className="text-lg text-[#4A3728]" />
               <span className="text-[10px] font-black uppercase tracking-widest text-[#4A3728]">
                 Envío Seguro
               </span>
@@ -160,7 +160,7 @@ export function ProductSpecs({
           ))}
         </div>
 
-        <div className="min-h-[200px]">
+        <div className="min-h-50">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}

@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { motion, Variants } from "framer-motion";
-import { Icons } from "@/utils/icons";
+import { UserGroup, Sparkles , ShieldCheck, Truck } from "@/utils/icons/index";
 
 const services = [
   {
-    icon: Icons.Truck,
+    icon: Truck,
     subtitle: "LOGÍSTICA",
     title: "Envío y Montaje",
     desc: "Envío y montaje gratuito en la ciudad de Quito en compras superiores a $200.",
@@ -14,7 +14,7 @@ const services = [
     cta: "Consultar detalles",
   },
   {
-    icon: Icons.Sparkles,
+    icon: Sparkles,
     subtitle: "PERSONALIZACIÓN",
     title: "Muebles a Medida",
     desc: "Diseñamos muebles personalizados según tu espacio, estilo y necesidades.",
@@ -22,7 +22,7 @@ const services = [
     cta: "Ver catálogo de colores",
   },
   {
-    icon: Icons.UserGroup,
+    icon: UserGroup,
     subtitle: "ASESORÍA",
     title: "Acompañamiento Total",
     desc: "Te guiamos desde la idea inicial hasta disfrutar tus muebles en casa.",
@@ -30,7 +30,7 @@ const services = [
     cta: "Ver más información",
   },
   {
-    icon: Icons.ShieldCheck,
+    icon: ShieldCheck,
     subtitle: "CONFIANZA",
     title: "Garantía & Postventa",
     desc: "Respaldamos nuestro trabajo con garantía y soporte después de la entrega.",

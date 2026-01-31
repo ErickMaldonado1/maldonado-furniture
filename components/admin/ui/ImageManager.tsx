@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Icons } from "@/utils/icons";
+import { XMark, CloudArrowUp } from "@/utils/icons/index";
 import Image from "next/image";
 
 interface ImageItem {
@@ -69,7 +69,7 @@ export function ImageManager({ images, onChange }: ImageManagerProps) {
           onClick={handleAddImage}
           className="bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-xl font-bold hover:shadow-lg transition-all flex items-center gap-2 justify-center"
         >
-          <Icons.CloudArrowUp className="text-xl" />
+          <CloudArrowUp className="text-xl" />
           <span>Agregar</span>
         </button>
       </div>
@@ -87,7 +87,7 @@ export function ImageManager({ images, onChange }: ImageManagerProps) {
                 onClick={() => removeImage(idx)}
                 className="bg-red-500 text-white p-2 rounded-full hover:scale-110 transition-transform"
               >
-                <Icons.XMark />
+                <XMark />
               </button>
               <input
                 type="text"

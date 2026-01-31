@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Icons } from "@/utils/icons";
+import { Cube, Plus, Trash } from "@/utils/icons/index";
 
 interface Variant {
   name: string;
@@ -64,7 +64,7 @@ export function VariantBuilder({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h3 className="text-xs font-black uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2">
-          <Icons.Cube className="text-lg" />
+          <Cube className="text-lg" />
           Constructor de Variantes
         </h3>
       </div>
@@ -165,7 +165,7 @@ export function VariantBuilder({
             disabled={!newVariant.color || !newVariant.material}
             className="ml-auto bg-[#4A3728] text-white px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest hover:shadow-lg disabled:opacity-50 disabled:shadow-none transition-all flex items-center gap-2"
           >
-            <Icons.Plus />
+            <Plus />
             Agregar Variante
           </button>
         </div>
@@ -195,7 +195,7 @@ export function VariantBuilder({
               onClick={() => removeVariant(idx)}
               className="p-2 text-zinc-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors"
             >
-              <Icons.Trash className="text-lg" />
+              <Trash className="text-lg" />
             </button>
           </div>
         ))}

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Icons } from "@/utils/icons";
+import { ShieldCheck, Truck, HomeModern } from "@/utils/icons/index";
 
 interface StepProps {
   icon: React.ElementType;
@@ -13,7 +13,7 @@ interface StepProps {
 const ProcessStep = ({ icon: Icon, title, description }: StepProps) => (
   <div className="flex flex-col items-center text-center group p-4">
     <div className="w-20 h-20 bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-sm flex items-center justify-center mb-6 transition-all duration-500 group-hover:border-[#4A3728] group-hover:shadow-xl group-hover:shadow-[#4A3728]/10 group-hover:-translate-y-1">
-      <Icon className="text-3xl text-[#4A3728]" />
+      <Icon className="w-12 h-12 text-3xl text-[#4A3728]" />
     </div>
 
     <h3 className="text-[13px] font-black uppercase tracking-[0.15em] mb-3 dark:text-white/80">
@@ -28,7 +28,7 @@ const ProcessStep = ({ icon: Icon, title, description }: StepProps) => (
 export default function EnvioMontajePage() {
   return (
     <main className="min-h-screen bg-[#FDFCFB] dark:bg-[#0A0A0A] pt-32 pb-24 selection:bg-[#4A3728]/20">
-      <section className="px-6 md:px-8 max-w-6xl mx-auto mb-32 py-12">
+      <section className="px-6 md:px-8 max-w-6xl mx-auto mb-4 py-12">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -43,7 +43,7 @@ export default function EnvioMontajePage() {
               <div className="h-1 w-12 bg-[#4A3728] mx-auto lg:mx-0" />
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-[0.9]">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-[0.9]">
               Del taller a <br />
               <span className="text-[#4A3728]">tu hogar</span>
             </h1>
@@ -58,14 +58,15 @@ export default function EnvioMontajePage() {
             <div className="relative w-full max-w-340px px-4 group">
               <div className="absolute inset-0 bg-[#4A3728]/5 -rotate-3 rounded-sm -z-10 group-hover:rotate-0 transition-transform duration-700" />
 
-              <div className="relative overflow-hidden rounded-sm border-12px border-white dark:border-zinc-900 shadow aspect-4/5">
+              <div className="group relative overflow-hidden rounded-sm border border-zinc-200 dark:border-zinc-800 shadow-lg aspect-square sm:aspect-4/3">
                 <img
                   src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop"
                   alt="Logística Muebles Maldonado"
-                  className="absolute inset-0 w-full h-full object-cover grayscale-[0.4] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
                 />
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[85%] bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-3 border border-zinc-100 dark:border-zinc-800 shadow-xl">
-                  <p className="text-md font-black uppercase tracking-[0.2em] text-center dark:text-white/60">
+
+                <div className="absolute bottom-4 left-4 right-4 bg-white/10 backdrop-blur-xl border border-white/20 p-3 rounded-lg shadow-2xl transform transition-transform duration-500 group-hover:-translate-y-1">
+                  <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-center text-white drop-shadow-sm">
                     Manejo Especializado
                   </p>
                 </div>
@@ -77,19 +78,19 @@ export default function EnvioMontajePage() {
 
       <section className="bg-zinc-50/50 dark:bg-zinc-900/20 border-y border-zinc-100 dark:border-zinc-800 py-12 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16  p-10 md:p-16 rounded-sm bg-white dark:bg-[#0A0A0A]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 p-10 md:p-16 rounded-sm bg-white dark:bg-[#0A0A0A]">
             <ProcessStep
-              icon={Icons.ShieldCheck}
+              icon={ShieldCheck}
               title="Embalaje de Seguridad"
               description="Protección multicapa con espumas y cartón paa embalaje reforzado."
             />
             <ProcessStep
-              icon={Icons.Truck}
+              icon={Truck}
               title="Transporte Directo"
               description="Aliados logísticos expertos encargados del manejo de mobiliario."
             />
             <ProcessStep
-              icon={Icons.HomeModern}
+              icon={HomeModern}
               title="Instalación Final"
               description="Montaje y nivelación profesional incluido en todos nuestros servicios."
             />
@@ -126,7 +127,7 @@ export default function EnvioMontajePage() {
 
           <div className="p-10 bg-zinc-900 dark:bg-zinc-950 text-white rounded-sm space-y-8 relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-              <Icons.Truck width={80} height={80} />
+              <Truck width={60} height={60} />
             </div>
             <div>
               <h3 className="text-xl font-black uppercase tracking-tighter text-[#4A3728] mb-2">

@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 
-import { Icons } from "@/utils/icons";
+import { ChevronDown } from "@/utils/icons/index";
 
 interface FilterSectionProps {
   title: string;
@@ -29,7 +29,7 @@ export function FilterSection({
           {title}
         </span>
         <div className="text-zinc-400 group-hover:text-[#4A3728] transition-colors">
-          <Icons.ChevronDown
+          <ChevronDown
             className={`w-4 h-4 transition-transform ${
               isOpen ? "rotate-180" : ""
             }`}

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Icons } from "@/utils/icons";
+import { Scale } from "@/utils/icons/index";
 
 interface PolicySection {
   id: string;
@@ -128,7 +128,7 @@ export default function TerminosPage() {
 
             <div className="p-8 md:p-12 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-sm space-y-6">
               <div className="flex items-center gap-4 text-[#4A3728]">
-                <Icons.Scale width={32} height={32} />
+                <Scale width={32} height={32} />
                 <h3 className="text-xl font-black uppercase tracking-tighter dark:text-white text-zinc-900">
                   ¿Dudas sobre nuestras políticas?
                 </h3>

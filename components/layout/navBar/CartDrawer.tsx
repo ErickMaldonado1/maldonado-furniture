@@ -3,16 +3,10 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  HiOutlineTrash,
-  HiOutlinePlus,
-  HiOutlineMinus,
-  HiOutlineShoppingCart,
-} from "react-icons/hi";
 import { useCartStore } from "@/store/cart-store";
 import { CartItem } from "@/store/cart-store";
 import Drawer from "@/components/ui/Drawer";
-
+import { Cart, Minus, Plus, Trash } from "@/utils/icons/index";
 interface CartDrawerProps {
   isOpen: boolean;
   onClose: () => void;
@@ -34,7 +28,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-64 text-center space-y-4 my-auto">
               <div className="w-20 h-20 bg-zinc-100 dark:bg-zinc-900 rounded-full flex items-center justify-center text-zinc-400">
-                <HiOutlineShoppingCart size={30} />
+                <Cart className="w-7 h-7" />
               </div>
               <div className="space-y-1">
                 <p className="text-lg font-bold text-zinc-900 dark:text-white">
@@ -79,7 +73,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                         className="text-zinc-400 hover:text-red-500 transition-colors p-1"
                         aria-label="remove-from-cart"
                       >
-                        <HiOutlineTrash size={18} />
+                        <Trash className="w-5 h-5" />
                       </button>
                     </div>
                     <p className="text-sm font-bold text-[#4A3728] dark:text-[#D4BAA5] mt-1">
@@ -99,7 +93,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                         className="w-8 h-full flex items-center justify-center text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-l-lg transition"
                         aria-label="update"
                       >
-                        <HiOutlineMinus size={12} />
+                        <Minus className="w-5 h-5" />
                       </button>
                       <span className="w-8 text-center text-sm font-bold text-zinc-900 dark:text-white">
                         {item.quantity}
@@ -111,7 +105,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                         className="w-8 h-full flex items-center justify-center text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-r-lg transition"
                         aria-label="update-quantity"
                       >
-                        <HiOutlinePlus size={12} />
+                        <Plus className="w-5 h-5" />
                       </button>
                     </div>
                   </div>

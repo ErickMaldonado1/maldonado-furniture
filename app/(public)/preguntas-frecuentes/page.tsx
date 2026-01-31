@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Icons } from "@/utils/icons";
+import { Minus, Plus, QuestionMarkCircle } from "@/utils/icons/index";
 
 interface FAQItem {
   question: string;
@@ -88,9 +88,9 @@ const AccordionItem = ({
         </span>
         <div className="shrink-0 ml-4">
           {isOpen ? (
-            <Icons.Minus className="text-[#4A3728]" />
+            <Minus className="text-[#4A3728]" />
           ) : (
-            <Icons.Plus className="text-zinc-400" />
+            <Plus className="text-zinc-400" />
           )}
         </div>
       </button>
@@ -153,7 +153,7 @@ export default function FAQPage() {
         </div>
         <div className="mt-16 p-8 md:p-12 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-sm text-center space-y-6 shadow-sm">
           <div className="inline-flex p-4 bg-[#4A3728]/10 rounded-sm mb-2">
-            <Icons.QuestionMarkCircle className="text-3xl text-[#4A3728]" />
+            <QuestionMarkCircle className=" w-8 h-8 text-3xl text-[#4A3728]" />
           </div>
           <h3 className="text-xl font-black uppercase tracking-tight dark:text-white text-zinc-900">
             ¿Aún tienes dudas?

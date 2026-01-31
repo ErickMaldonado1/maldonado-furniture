@@ -32,13 +32,13 @@ export default async function OrdersPage() {
           </h1>
         </div>
 
-        <div className="bg-zinc-50 dark:bg-[#0a0a0a] rounded-full border border-zinc-200 dark:border-white/5 overflow-hidden shadow-xl dark:shadow-2xl relative">
+        <div className="bg-zinc-50 dark:bg-[#0a0a0a] rounded-sm border border-zinc-200 dark:border-white/5 overflow-hidden shadow-xl dark:shadow-2xl relative">
           <div className="absolute inset-0 bg-radial-gradient from-zinc-200/50 dark:from-white/5 to-transparent pointer-events-none opacity-50" />
 
           <div className="overflow-x-auto relative z-10">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="text-[10px]  text-zinc-500 border-b border-zinc-200 dark:border-white/5 bg-zinc-100/50 dark:bg-white/[0.02]">
+                <tr className="text-[10px]  text-zinc-500 border-b border-zinc-200 dark:border-white/5 bg-zinc-100/50 dark:bg-white/2">
                   <th className="py-5 px-6 font-black">ID</th>
                   <th className="py-5 px-6 font-black">Cliente</th>
                   <th className="py-5 px-6 font-black">Fecha</th>
@@ -50,7 +50,7 @@ export default async function OrdersPage() {
                 {orders.map((order) => (
                   <tr
                     key={order.id}
-                    className="hover:bg-zinc-100 dark:hover:bg-white/[0.03] transition-all duration-300 group cursor-default"
+                    className="hover:bg-zinc-100 dark:hover:bg-white/3 transition-all duration-300 group cursor-default"
                   >
                     <td className="py-6 px-6 font-mono text-[9px] text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-600 dark:group-hover:text-zinc-400">
                       #{order.id.slice(-8).toUpperCase()}

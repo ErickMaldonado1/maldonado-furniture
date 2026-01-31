@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useMemo } from "react";
 import { Product } from "@prisma/client";
-import { Icons } from "@/utils/icons";
-import { motion, AnimatePresence } from "framer-motion";
+import { CheckBadge } from "@/utils/icons/index";
+
 import { COLOR_MAP, COLOR_TEXTURES } from "@/utils/filter-textures";
 
 interface ProductInfoProps {
@@ -70,7 +70,7 @@ export function ProductInfo({
 
           <div className="flex flex-col gap-2 mb-6 border-b border-zinc-100 dark:border-zinc-800 pb-6">
             <div className="flex items-center gap-2 text-[11px] text-green-600 font-bold bg-green-50 dark:bg-green-900/10 w-fit px-2 py-0.5 rounded-full border border-green-200 dark:border-green-500/20">
-              <Icons.CheckBadge className="text-sm" />
+              <CheckBadge className="text-sm" />
               <span className="uppercase tracking-widest font-black">
                 Disponible
               </span>

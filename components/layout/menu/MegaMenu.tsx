@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Icons } from "@/utils/icons";
+import { ChevronRight} from "@/utils/icons/index";
 
 const badgeStyles: Record<string, string> = {
   accent: "bg-[#4A3728] text-white",
@@ -48,7 +48,7 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                             {cat.label}
                           </span>
 
-                          <Icons.ChevronRight
+                          <ChevronRight
                             width={18}
                             height={18}
                             className="text-zinc-400 opacity-0 -translate-x-1

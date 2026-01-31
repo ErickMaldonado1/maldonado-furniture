@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Icons } from "@/utils/icons";
+import { Whatsapp, XMark } from "@/utils/icons/index";
 
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +35,7 @@ export default function WhatsAppButton() {
             className="absolute -top-2 -left-2 bg-zinc-100 dark:bg-zinc-700 rounded-full p-1 text-zinc-500 hover:text-red-500 transition-colors shadow-sm"
             aria-label="whatsapp-button"
           >
-            <Icons.XMark className="w-6 h-6" />
+            <XMark className="w-6 h-6" />
           </button>
           <p className="text-sm text-zinc-600 dark:text-zinc-300 font-medium">
             👋 ¿Necesitas ayuda? <br />
@@ -63,7 +63,7 @@ export default function WhatsAppButton() {
           }
         }}
       >
-        <Icons.Whatsapp className="w-6 h-6" />
+        <Whatsapp className="w-6 h-6" />
 
         <span className="absolute inset-0 rounded-full border border-[#25D366] animate-ping opacity-20"></span>
       </Link>

@@ -1,20 +1,20 @@
 "use client";
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  HiXMark,
-  HiChevronLeft,
-  HiChevronRight,
-  HiOutlineMagnifyingGlassPlus,
-  HiPlus,
-} from "react-icons/hi2";
 import { proyectos, categorias, Proyecto } from "@/utils/proyectos";
+import { Plus, ChevronLeft, ChevronRight, Close } from "@/utils/icons/index";
 
 export default function ProyectosPage() {
   const [filter, setFilter] = useState("Todos");
   const [selectedProject, setSelectedProject] = useState<Proyecto | null>(null);
   const [currentImgIdx, setCurrentImgIdx] = useState(0);
   const [visibleItems, setVisibleItems] = useState(12);
+  const allImages = useMemo(() => {
+    if (!selectedProject) return [];
+    const combined = [selectedProject.mainImg, ...selectedProject.gallery];
+    return Array.from(new Set(combined));
+  }, [selectedProject]);
+
   const filtered = useMemo(() => {
     return filter === "Todos"
       ? proyectos
@@ -32,17 +32,16 @@ export default function ProyectosPage() {
 
   const nextImg = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (selectedProject) {
-      setCurrentImgIdx((currentImgIdx + 1) % selectedProject.gallery.length);
+    if (allImages.length > 0) {
+      setCurrentImgIdx((currentImgIdx + 1) % allImages.length);
     }
   };
 
   const prevImg = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (selectedProject) {
+    if (allImages.length > 0) {
       setCurrentImgIdx(
-        (currentImgIdx - 1 + selectedProject.gallery.length) %
-          selectedProject.gallery.length,
+        (currentImgIdx - 1 + allImages.length) % allImages.length,
       );
     }
   };
@@ -66,7 +65,7 @@ export default function ProyectosPage() {
                 key={cat}
                 onClick={() => handleFilterChange(cat)}
                 aria-label="categorias"
-                className={`px-6 py-2.5 text-[11px] font-black uppercase tracking-widest transition-all duration-300 rounded-full border 
+                className={`px-6 py-2.5 text-[12px] font-black uppercase tracking-widest transition-all duration-300 rounded-full border 
                 ${
                   filter === cat
                     ? "bg-[#4A3728] border-[#4A3728] text-white shadow-lg"
@@ -107,7 +106,7 @@ export default function ProyectosPage() {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <HiOutlineMagnifyingGlassPlus className="text-white text-3xl" />
+                    <Plus className="w-5 h-6 text-white text-3xl" />
                   </div>
                 </div>
                 <div className="mt-4 px-1">
@@ -131,7 +130,7 @@ export default function ProyectosPage() {
               className="flex items-center gap-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-10 py-5 rounded-sm text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#4A3728] dark:hover:bg-[#4A3728] hover:text-white transition-all duration-300 group"
             >
               Cargar más proyectos
-              <HiPlus className="text-xl group-hover:rotate-90 transition-transform" />
+              <Plus className="w-5 h-6 text-xl group-hover:rotate-90 transition-transform" />
             </button>
           </div>
         )}
@@ -150,26 +149,26 @@ export default function ProyectosPage() {
               className="absolute top-8 right-8 text-white text-4xl hover:text-[#4A3728] transition-all z-110"
               aria-label="galery"
             >
-              <HiXMark />
+              <Close className="w-5 h-5" />
             </button>
 
             <div className="relative w-full max-w-5xl flex flex-col items-center">
               <div className="relative w-full flex items-center justify-center">
-                {selectedProject.gallery.length > 1 && (
+                {allImages.length > 1 && (
                   <>
                     <button
                       onClick={prevImg}
                       aria-label="prev"
                       className="absolute left-0 md:-left-20 text-white text-4xl p-4 hover:text-[#4A3728] transition-colors"
                     >
-                      <HiChevronLeft />
+                      <ChevronLeft className="w-6 h-6" />
                     </button>
                     <button
                       onClick={nextImg}
                       aria-label="next"
                       className="absolute right-0 md:-right-20 text-white text-4xl p-4 hover:text-[#4A3728] transition-colors"
                     >
-                      <HiChevronRight />
+                      <ChevronRight className="w-6 h-6" />
                     </button>
                   </>
                 )}
@@ -177,7 +176,7 @@ export default function ProyectosPage() {
                   key={currentImgIdx}
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
-                  src={selectedProject.gallery[currentImgIdx]}
+                  src={allImages[currentImgIdx]}
                   className="max-h-[75vh] object-contain rounded shadow-sm"
                 />
               </div>
@@ -186,7 +185,7 @@ export default function ProyectosPage() {
                   {selectedProject.title}
                 </h4>
                 <p className="text-zinc-500 text-[12px] uppercase mt-2">
-                  {currentImgIdx + 1} / {selectedProject.gallery.length}
+                  {currentImgIdx + 1} / {allImages.length}
                 </p>
               </div>
             </div>

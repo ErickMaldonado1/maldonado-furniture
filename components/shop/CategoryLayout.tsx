@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { categories } from "@/utils/categories";
 import Link from "next/link";
 import Image from "next/image";
-import { Icons } from "@/utils/icons";
+import { Viewfinder } from "@/utils/icons/index";
 import ProductCard from "@/components/shop/ProductCard";
 
 interface CategoryLayoutProps {
@@ -73,7 +73,7 @@ export default function CategoryLayout({
             Explorar {category.label}
           </h2>
           <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800 mx-10 hidden md:block" />
-          <Icons.Viewfinder className="text-4xl text-[#4A3728]" />
+          <Viewfinder className="text-4xl text-[#4A3728]" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

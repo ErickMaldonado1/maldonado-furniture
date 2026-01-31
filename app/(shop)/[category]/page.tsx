@@ -1,63 +1,104 @@
+import { Metadata } from "next";
 import { categories } from "@/utils/categories";
 import ProductCard from "@/components/shop/ProductCard";
 import { ContactForm } from "@/components/shop/ContactForm";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { HiOutlineSquares2X2 } from "react-icons/hi2";
+import { Squares2X2 } from "@/utils/icons/index";
 
-const seoContent: Record<string, { prefix: string; content: React.ReactNode }> =
+const seoContent: Record<
+  string,
   {
-    dormitorio: {
-      prefix: "Proyectamos tu",
-      content: (
-        <p className="text-justify text-md leading-relaxed text-zinc-800 dark:text-zinc-400">
-          En <strong>Muebles Maldonado</strong> ofrecemos{" "}
-          <strong>camas modernas, cómodas, closets y veladores</strong> de
-          diseño lineal. Confort con materiales de alta calidad
-        </p>
-      ),
-    },
-    sala: {
-      prefix: "Creamos tu",
-      content: (
-        <p className="text-justify text-md leading-relaxed text-zinc-800 dark:text-zinc-400">
-          Diseñamos{" "}
-          <strong>
-            muebles de sala vanguardistas, aparadores , mesas de centro ,
-            muebles de tv y paneles
-          </strong>{" "}
-          que combinan confort y elegancia para ambientes modernos.
-        </p>
-      ),
-    },
-    cocina: {
-      prefix: "Diseñamos tu",
-      content: (
-        <p className="text-justify text-md leading-relaxed text-zinc-800 dark:text-zinc-400">
-          Nuestro equipo especializado en dsieño te ayuda a proyectar tu{" "}
-          <strong>cocina de melamina y madera a tu gusto</strong>, logrando un
-          diseño funcional.
-        </p>
-      ),
-    },
-    oficina: {
-      prefix: "Equipamos tu",
-      content: (
-        <p className="text-justify text-md leading-relaxed text-zinc-800 dark:text-zinc-400">
-          Optimiza tu productividad con{" "}
-          <strong>
-            escritorios ergonómicos, estanterías, libreros a medida
-          </strong>{" "}
-          de alta resistencia con acabados profesionales.
-        </p>
-      ),
-    },
-  };
+    prefix: string;
+    content: React.ReactNode;
+    title: string;
+    description: string;
+  }
+> = {
+  dormitorio: {
+    prefix: "Proyectamos tu",
+    title: "Muebles de Dormitorio Modernos en Quito | Camas y Closets",
+    description:
+      "Diseño y fabricación de camas, closets y veladores a medida. Confort y estilo lineal para tu descanso en Muebles Maldonado.",
+    content: (
+      <p className="text-justify text-lg leading-relaxed text-zinc-800 dark:text-zinc-400">
+        En <strong>Muebles Maldonado</strong> ofrecemos{" "}
+        <strong>camas modernas, cómodas, closets y veladores</strong> de diseño
+        lineal. Confort con materiales de alta calidad.
+      </p>
+    ),
+  },
+  sala: {
+    prefix: "Creamos tu",
+    title: "Muebles de Sala | Centros de TV y Aparadores",
+    description:
+      "Creamos ambientes elegantes con muebles de sala modernos, paneles de TV y mesas de centro personalizadas.",
+    content: (
+      <p className="text-justify text-lg leading-relaxed text-zinc-800 dark:text-zinc-400">
+        Diseñamos{" "}
+        <strong>
+          muebles de sala vanguardistas, aparadores, mesas de centro, muebles de
+          tv y paneles
+        </strong>{" "}
+        que combinan confort y elegancia para ambientes modernos.
+      </p>
+    ),
+  },
+  cocina: {
+    prefix: "Diseñamos tu",
+    title: "Cocinas de Melamina y Madera a Medida | Diseño de Interiores",
+    description:
+      "Especialistas en muebles de cocina funcionales. Proyectamos tu cocina ideal con materiales de alta resistencia.",
+    content: (
+      <p className="text-justify text-lg leading-relaxed text-zinc-800 dark:text-zinc-400">
+        Nuestro equipo especializado en diseño te ayuda a proyectar tu{" "}
+        <strong>cocina de melamina y madera a tu gusto</strong>, logrando un
+        diseño funcional.
+      </p>
+    ),
+  },
+  oficina: {
+    prefix: "Equipamos tu",
+    title: "Muebles de Oficina | Escritorios y Libreros",
+    description:
+      "Optimiza tu productividad con mobiliario de oficina a medida. Escritorios resistentes y estanterías profesionales.",
+    content: (
+      <p className="text-justify text-lg leading-relaxed text-zinc-800 dark:text-zinc-400">
+        Optimiza tu productividad con{" "}
+        <strong>escritorios ergonómicos, estanterías, libreros a medida</strong>{" "}
+        de alta resistencia con acabados profesionales.
+      </p>
+    ),
+  },
+};
 
 type Props = {
   params: Promise<{ category: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { category: categorySlug } = await params;
+  const categoryConfig = categories.find((c) => c.slug === categorySlug);
+
+  if (!categoryConfig) return { title: "Categoría no encontrada" };
+
+  const data = seoContent[categorySlug];
+
+  return {
+    title:
+      data?.title || `${categoryConfig.label} Modernos | Muebles Maldonado`,
+    description:
+      data?.description || `Explora nuestra línea de ${categoryConfig.label}.`,
+    alternates: { canonical: `https://mueblesmaldonadoec.com/${categorySlug}` },
+    openGraph: {
+      title: data?.title,
+      description: data?.description,
+      url: `https://mueblesmaldonadoec.com/${categorySlug}`,
+      images: [{ url: categoryConfig.featuredContent[0]?.imageSrc || "" }],
+    },
+  };
+}
 
 export default async function CategoryPage({ params }: Props) {
   const { category: categorySlug } = await params;
@@ -105,8 +146,8 @@ export default async function CategoryPage({ params }: Props) {
 
       <section className="py-12 bg-[#FDFCFB] dark:bg-black">
         <div className="max-w-360 mx-auto px-4 sm:px-6">
-          <div className="flex items-center gap-4 mb-8  pl-4">
-            <HiOutlineSquares2X2 className="text-[#4A3728] text-2xl" />
+          <div className="flex items-center gap-4 mb-8 pl-4">
+            <Squares2X2 className="w-6 h-6 text-[#4A3728] text-2xl" />
             <h2 className="text-2xl font-black uppercase text-zinc-800 dark:text-zinc-200">
               Lineas Especializadas
             </h2>
@@ -137,13 +178,9 @@ export default async function CategoryPage({ params }: Props) {
 
       <section className="py-12 bg-[#FDFCFB] dark:bg-black">
         <div className="max-w-360 mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between mb-14">
-            <div className="flex items-center gap-3">
-              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white">
-                Productos <span className="text-[#4A3728]">Destacados</span>
-              </h2>
-            </div>
-          </div>
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white mb-14">
+            Productos <span className="text-[#4A3728]">Destacados</span>
+          </h2>
 
           {productsFromDB.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">

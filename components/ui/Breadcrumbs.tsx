@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Icons } from "@/utils/icons";
+import { ChevronRight } from "@/utils/icons/index";
 
 interface BreadcrumbStep {
   label: string;
@@ -18,7 +18,7 @@ export function Breadcrumbs({ steps }: { steps: BreadcrumbStep[] }) {
 
       {steps.map((step, index) => (
         <div key={index} className="flex items-center gap-2">
-          <Icons.ChevronRight className="w-4 h-4" />
+          <ChevronRight className="w-4 h-4" />
           {step.href ? (
             <Link
               href={step.href}

@@ -3,13 +3,21 @@ import React, { useState } from "react";
 import { useCartStore } from "@/store/cart-store";
 import Image from "next/image";
 import Link from "next/link";
-import { Icons } from "@/utils/icons";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
+import {
+  ChevronLeft,
+  CreditCard,
+  Loading,
+  ShieldCheck,
+  ShoppingBag,
+  Truck,
+  Users,
+} from "@/utils/icons/index";
 
 const checkoutSchema = z.object({
   fullName: z.string().min(3, "El nombre debe tener al menos 3 caracteres"),
@@ -46,7 +54,7 @@ export default function CheckoutPage() {
       <div className="min-h-screen bg-zinc-50 dark:bg-[#0b0b0b] pt-32 pb-20 px-4">
         <div className="max-w-2xl mx-auto text-center space-y-6">
           <div className="w-24 h-24 bg-white dark:bg-zinc-900 rounded-full flex items-center justify-center mx-auto shadow-sm">
-            <Icons.ShoppingBag
+            <ShoppingBag
               className="text-zinc-300 dark:text-zinc-700"
               width={40}
               height={40}
@@ -103,24 +111,22 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-[#0b0b0b] pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-zinc-500 mb-8">
           <Link href="/cart" className="hover:text-[#4A3728] transition-colors">
             Carrito
           </Link>
-          <Icons.ChevronLeft className="rotate-180 text-xs" />
+          <ChevronLeft className="rotate-180 text-xs" />
           <span className="font-bold text-zinc-900 dark:text-white">
             Checkout
           </span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Form */}
           <div className="lg:col-span-7 space-y-8">
             <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 md:p-8 shadow-sm border border-zinc-100 dark:border-zinc-800">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-10 h-10 rounded-full bg-[#4A3728]/10 flex items-center justify-center text-[#4A3728]">
-                  <Icons.User width={20} height={20} />
+                  <Users className="w-6 h-6" />
                 </div>
                 <div>
                   <h2 className="text-xl font-black text-zinc-900 dark:text-white">
@@ -250,7 +256,7 @@ export default function CheckoutPage() {
             <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 md:p-8 shadow-sm border border-zinc-100 dark:border-zinc-800">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-900/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
-                  <Icons.CreditCard width={20} height={20} />
+                  <CreditCard width={20} height={20} />
                 </div>
                 <div>
                   <h2 className="text-xl font-black text-zinc-900 dark:text-white">
@@ -264,7 +270,7 @@ export default function CheckoutPage() {
 
               <div className="p-4 bg-zinc-50 dark:bg-zinc-800 rounded-xl border border-zinc-100 dark:border-zinc-700">
                 <div className="flex items-center gap-3">
-                  <Icons.ShieldCheck
+                  <ShieldCheck
                     className="text-green-500"
                     width={20}
                     height={20}
@@ -344,23 +350,19 @@ export default function CheckoutPage() {
               >
                 {isProcessing ? (
                   <>
-                    <Icons.Loading
-                      className="animate-spin"
-                      width={18}
-                      height={18}
-                    />
+                    <Loading className="animate-spin" width={18} height={18} />
                     <span>Procesando...</span>
                   </>
                 ) : (
                   <>
                     <span>Confirmar Pedido</span>
-                    <Icons.Truck width={18} height={18} />
+                    <Truck width={18} height={18} />
                   </>
                 )}
               </button>
 
               <div className="mt-6 flex items-start gap-3 p-3 bg-zinc-50 dark:bg-zinc-800 rounded-lg">
-                <Icons.Truck
+                <Truck
                   className="text-zinc-400 shrink-0"
                   width={20}
                   height={20}

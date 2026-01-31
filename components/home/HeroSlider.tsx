@@ -1,14 +1,9 @@
 "use client";
-
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  HiOutlineArrowRight,
-  HiOutlineChevronLeft,
-  HiOutlineChevronRight,
-} from "react-icons/hi";
 import { slides } from "@/utils/SlidesHero";
+import { ArrowRight, ChevronLeft, ChevronRight } from "@/utils/icons/index";
 
 const HeroSlider = () => {
   const [current, setCurrent] = useState(0);
@@ -88,10 +83,7 @@ const HeroSlider = () => {
                 className="inline-flex items-center gap-2 px-5 py-2.5 text-sm md:text-base font-semibold rounded-md bg-[#4A3728]/90 text-white dark:bg-white/10 dark:text-white backdrop-blur-sm border border-transparent hover:bg-black dark:hover:bg-white/20 transition-all duration-300 group"
               >
                 Ver colección
-                <HiOutlineArrowRight
-                  size={18}
-                  className="group-hover:translate-x-1 transition-transform duration-300"
-                />
+                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
             </div>
           </div>
@@ -132,12 +124,12 @@ const HeroSlider = () => {
           <div className="flex gap-2 md:gap-3 ">
             {[
               {
-                icon: <HiOutlineChevronLeft className="text-lg md:text-xl" />,
+                icon: <ChevronLeft className="w-6 h-6 text-lg md:text-xl" />,
                 onClick: prevSlide,
                 label: "Anterior",
               },
               {
-                icon: <HiOutlineChevronRight className="text-lg md:text-xl" />,
+                icon: <ChevronRight className="w-6 h-6text-lg md:text-xl" />,
                 onClick: nextSlide,
                 label: "Siguiente",
               },

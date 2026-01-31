@@ -2,7 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Icons } from "@/utils/icons";
+import {
+  ViewColumns,
+  AdjustmentsHorizontal,
+  XMark,
+  MagnifyingGlass,
+  Squares2X2,
+} from "@/utils/icons/index";
 
 import { FilterGroup } from "@/components/shop/filter-group/FilterGroup";
 import { useProductFilters } from "@/hooks/useProductFilters";
@@ -73,7 +79,7 @@ export default function ProductListingClient({
                       : "text-zinc-400 hover:text-zinc-600"
                   }`}
                 >
-                  <Icons.Squares2X2 width={20} height={20} />
+                  <Squares2X2 width={20} height={20} />
                 </button>
                 <button
                   onClick={() => setGridCols(4)}
@@ -83,7 +89,7 @@ export default function ProductListingClient({
                       : "text-zinc-400 hover:text-zinc-600"
                   }`}
                 >
-                  <Icons.ViewColumns width={20} height={20} />
+                  <ViewColumns width={20} height={20} />
                 </button>
               </div>
               <span className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.2em] text-zinc-400">
@@ -106,12 +112,11 @@ export default function ProductListingClient({
                 onClick={() => setIsMobileFiltersOpen(true)}
                 className="lg:hidden flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-5 py-2.5 rounded-full text-[11px] font-black uppercase tracking-widest shadow-lg active:scale-95 transition-transform"
               >
-                <Icons.AdjustmentsHorizontal width={18} height={18} /> Filtros
+                <AdjustmentsHorizontal width={18} height={18} /> Filtros
               </button>
             </div>
           </div>
 
-          {/* GRID DE PRODUCTOS O ESTADO VACÍO */}
           <AnimatePresence mode="wait">
             {filteredProducts.length > 0 ? (
               <motion.div
@@ -146,17 +151,17 @@ export default function ProductListingClient({
                 className="flex flex-col items-center justify-center py-32 text-center"
               >
                 <div className="w-20 h-20 bg-zinc-50 dark:bg-zinc-900 rounded-full flex items-center justify-center mb-6">
-                  <Icons.MagnifyingGlass className="w-10 h-10 text-zinc-300 dark:text-zinc-700" />
+                  <MagnifyingGlass className="w-10 h-10 text-zinc-300 dark:text-zinc-700" />
                 </div>
                 <h3 className="text-xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white">
                   Sin coincidencias
                 </h3>
-                <p className="text-zinc-500 mt-2 max-w-xs mx-auto text-sm font-medium italic">
+                <p className="text-zinc-500 mt-2 max-w-xs mx-auto text-md font-medium italic">
                   No hay productos que coincidan con los filtros seleccionados.
                 </p>
                 <button
                   onClick={() => clearFilters()}
-                  className="mt-8 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-[11px] font-black uppercase tracking-[0.2em] rounded-full hover:opacity-90 transition-all active:scale-95 shadow-xl"
+                  className="mt-8 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-[12px] font-black uppercase tracking-[0.2em] rounded-full hover:opacity-90 transition-all active:scale-95 shadow-xl"
                 >
                   Limpiar Filtros
                 </button>
@@ -192,7 +197,7 @@ export default function ProductListingClient({
                   onClick={() => setIsMobileFiltersOpen(false)}
                   className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-full transition-colors"
                 >
-                  <Icons.XMark width={24} height={24} />
+                  <XMark width={24} height={24} />
                 </button>
               </div>
 

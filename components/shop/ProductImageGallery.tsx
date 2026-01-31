@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Icons } from "@/utils/icons";
+import { ChevronLeft, ChevronRight, XMark } from "@/utils/icons/index";
 
 interface ProductImageGalleryProps {
   images: string[];
@@ -104,7 +104,7 @@ export function ProductImageGallery({
               className="absolute top-6 right-6 p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors z-110"
               aria-label="lightbox"
             >
-              <Icons.XMark className="w-6 h-6" />
+              <XMark className="w-6 h-6" />
             </button>
 
             {displayImages.length > 1 && (
@@ -114,14 +114,14 @@ export function ProductImageGallery({
                   className="absolute left-4 lg:left-10 p-3 rounded-full bg-white dark:bg-zinc-900 shadow-xl hover:scale-110 transition-transform h-12 w-12 flex items-center justify-center z-110"
                   aria-label="prev"
                 >
-                  <Icons.ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-6 h-6" />
                 </button>
                 <button
                   onClick={handleNext}
                   className="absolute right-4 lg:right-10 p-3 rounded-full bg-white dark:bg-zinc-900 shadow-xl hover:scale-110 transition-transform h-12 w-12 flex items-center justify-center z-110"
                   aria-label="next"
                 >
-                  <Icons.ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-6 h-6" />
                 </button>
               </>
             )}

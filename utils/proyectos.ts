@@ -16,251 +16,240 @@ export const categorias = [
 
 export const proyectos: Proyecto[] = [
   // --- COCINAS ---
+
   {
     id: 1,
-    title: "Cocina Minimalista White",
+    title: "Cocina High Gloss Blanco",
     category: "Cocina",
     mainImg:
-      "https://images.unsplash.com/photo-1556912177-f5133322749a?q=80&w=800&auto=format&fit=crop",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899061/cocina-13_o7lfle.webp",
     gallery: [
-      "https://images.unsplash.com/photo-1556912177-f5133322749a?q=80&w=1200",
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=1200",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899067/cocina-12_xznbzg.webp",
     ],
   },
   {
     id: 2,
-    title: "Isla Central en Roble",
+    title: "Cocina High Gloss Negro",
     category: "Cocina",
     mainImg:
-      "https://images.unsplash.com/photo-1556912167-750f08a665a7?q=80&w=800&auto=format&fit=crop",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899212/cocina-2_qx9ukx.webp",
     gallery: [
-      "https://images.unsplash.com/photo-1556912167-750f08a665a7?q=80&w=1200",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899215/cocina-2a_aniwk7.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899211/cocina-1_f70jox.webp",
     ],
   },
   {
     id: 3,
-    title: "Gabinete RH Antihumedad",
+    title: "Cocina Alaska RH",
     category: "Cocina",
     mainImg:
-      "https://images.unsplash.com/photo-1565183248280-ca871162bce9?q=80&w=800&auto=format&fit=crop",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899366/cocina7a_og5set.webp",
     gallery: [
-      "https://images.unsplash.com/photo-1565183248280-ca871162bce9?q=80&w=1200",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899365/cocina-7_h2vkxi.webp",
     ],
   },
   {
     id: 4,
-    title: "Cocina Concepto Abierto",
+    title: "Cocina modular Blanco",
     category: "Cocina",
     mainImg:
-      "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?q=80&w=800&auto=format&fit=crop",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899437/cocina-6_nx4cx7.webp",
     gallery: [
-      "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?q=80&w=1200",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899436/cocina-5_xrzzqt.webp",
     ],
   },
   {
     id: 5,
-    title: "Alacena Vertical Extraíble",
+    title: "Mobiliario Cocina Nacar y Alaska",
     category: "Cocina",
     mainImg:
-      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=800&auto=format&fit=crop",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899500/cocina-4_ewzxo3.webp",
     gallery: [
-      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1200",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899503/cocina-4a_prwpcb.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899504/cocina-9_ctguia.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899500/cocina-3_fqulao.webp",
     ],
   },
   {
     id: 6,
-    title: "Mobiliario Negro Mate",
+    title: "Cocina Minimalista Ceniza",
     category: "Cocina",
     mainImg:
-      "https://images.unsplash.com/photo-1539139102612-f158f2130b6b?q=80&w=800&auto=format&fit=crop",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769898876/cocina-10_lkkqrb.webp",
     gallery: [
-      "https://images.unsplash.com/photo-1539139102612-f158f2130b6b?q=80&w=1200",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769898883/cocina-11_mmdftw.webp",
+    ],
+  },
+  {
+    id: 7,
+    title: "Muebles de Baño a medida",
+    category: "Cocina",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899696/mueble-ba%C3%B1o-1_tscub3.webp",
+    gallery: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899694/mueble-ba%C3%B1o_ynmcfr.webp",
     ],
   },
 
   // --- DORMITORIOS ---
   {
-    id: 7,
-    title: "Walk-in Closet Luxury",
-    category: "Dormitorio",
-    mainImg:
-      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=1200",
-    ],
-  },
-  {
     id: 8,
-    title: "Cama Flotante con LED",
+    title: "Cama lineal M101",
     category: "Dormitorio",
     mainImg:
-      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200",
-    ],
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899825/cama-lineal-1_f1zutq.webp",
+    gallery: [],
   },
   {
     id: 9,
-    title: "Escritorio Integrado",
+    title: "Cama lineal M105",
     category: "Dormitorio",
     mainImg:
-      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200",
-    ],
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899885/cama-lineal-2_lf1qib.webp",
+    gallery: [],
   },
   {
     id: 10,
-    title: "Veladores en Madera Real",
+    title: "Walking Closet a medida",
     category: "Dormitorio",
     mainImg:
-      "https://images.unsplash.com/photo-1617331140180-e8262094733a?q=80&w=800&auto=format&fit=crop",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899947/closet-4_i77msn.webp",
     gallery: [
-      "https://images.unsplash.com/photo-1617331140180-e8262094733a?q=80&w=1200",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899950/closet-5a_kxsvzo.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899949/closet-5_jye7fg.webp",
     ],
   },
   {
     id: 11,
-    title: "Closet Moderno de Pared",
+    title: "Closet Carvalo",
     category: "Dormitorio",
     mainImg:
-      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=800&auto=format&fit=crop",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900116/closet-6a_mvpwxv.webp",
     gallery: [
-      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=1200",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900101/closet-6_rics1f.webp",
     ],
   },
   {
     id: 12,
-    title: "Tocador con Espejo",
+    title: "Closet estilo Moderno y Metálico",
     category: "Dormitorio",
     mainImg:
-      "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=800&auto=format&fit=crop",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900255/closet-9_lnrjyc.webp",
     gallery: [
-      "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=1200",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900250/closet-8a_ouuecx.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900252/closet-8_ih3hij.webp",
     ],
   },
-
-  // --- SALAS ---
   {
     id: 13,
-    title: "Panel de TV Madera Nogal",
-    category: "Sala",
+    title: "Closet modular Sahara",
+    category: "Dormitorio",
     mainImg:
-      "https://images.unsplash.com/photo-1593062096033-9a26b09da705?q=80&w=800&auto=format&fit=crop",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900326/closet-7a_q8iguk.webp",
     gallery: [
-      "https://images.unsplash.com/photo-1593062096033-9a26b09da705?q=80&w=1200",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900323/closet-7_t2jvjo.webp",
     ],
   },
   {
     id: 14,
-    title: "Repisas Flotantes Minimal",
-    category: "Sala",
+    title: "Closet modular Coñac",
+    category: "Dormitorio",
     mainImg:
-      "https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?q=80&w=1200",
-    ],
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900398/closet-1_b2pnpw.webp",
+    gallery: [],
   },
   {
     id: 15,
-    title: "Consola de Entrada",
-    category: "Sala",
+    title: "Litera a medida",
+    category: "Dormitorio",
     mainImg:
-      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=1200",
-    ],
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900439/litera_faqq52.webp",
+    gallery: [],
   },
+
+  // --- SALAS ---
   {
     id: 16,
-    title: "Mesa de Centro Roble",
+    title: "Mueble de tv - Panel Blanco",
     category: "Sala",
     mainImg:
-      "https://images.unsplash.com/photo-1532323544230-7191fd51bc1b?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1532323544230-7191fd51bc1b?q=80&w=1200",
-    ],
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900575/mueble-tv-3_aq9bzu.webp",
+    gallery: [],
   },
   {
     id: 17,
-    title: "Aparador Moderno",
+    title: "Mueble de tv grande",
     category: "Sala",
     mainImg:
-      "https://images.unsplash.com/photo-1595428774754-3480ff99d284?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1595428774754-3480ff99d284?q=80&w=1200",
-    ],
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900567/mueble-tv-2_jzkve5.webp",
+    gallery: [],
   },
   {
     id: 18,
-    title: "Biblioteca Empotrada",
+    title: "Mueble de Tv Manzano con luz led",
     category: "Sala",
     mainImg:
-      "https://images.unsplash.com/photo-1594620302200-9a7622d4a13c?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1594620302200-9a7622d4a13c?q=80&w=1200",
-    ],
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900631/mueble-tv-1_zumg0q.webp",
+    gallery: [],
+  },
+  {
+    id: 19,
+    title: "Panel de Tv Rovere y Wengué",
+    category: "Sala",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900624/sala-1_nlzj95.webp",
+    gallery: [],
+  },
+  {
+    id: 20,
+    title: "Mueble de tv panel Gales Poro",
+    category: "Sala",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900627/mueble-tv-4_zfzjon.webp",
+    gallery: [],
+  },
+  {
+    id: 21,
+    title: "Mueble decorativo",
+    category: "Sala",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900775/bar_asgeqw.webp",
+    gallery: [],
+  },
+  {
+    id: 22,
+    title: "Repisas flotante tipo bar",
+    category: "Sala",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900834/repisa_yu5ywx.webp",
+    gallery: [],
   },
 
   // --- OFICINAS ---
   {
-    id: 19,
+    id: 23,
     title: "Escritorio Corporativo",
     category: "Oficina",
     mainImg:
-      "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=1200",
-    ],
-  },
-  {
-    id: 20,
-    title: "Home Office Moderno",
-    category: "Oficina",
-    mainImg:
-      "https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=1200",
-    ],
-  },
-  {
-    id: 21,
-    title: "Estación de Trabajo Dual",
-    category: "Oficina",
-    mainImg:
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200",
-    ],
-  },
-  {
-    id: 22,
-    title: "Librero de Oficina",
-    category: "Oficina",
-    mainImg:
-      "https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?q=80&w=1200",
-    ],
-  },
-  {
-    id: 23,
-    title: "Escritorio de Melamina Premium",
-    category: "Oficina",
-    mainImg:
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200",
-    ],
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900873/oficina-1_fokkrg.webp",
+    gallery: [],
   },
   {
     id: 24,
-    title: "Mueble de Archivo",
+    title: "Muebles de Local Comercial",
     category: "Oficina",
     mainImg:
-      "https://images.unsplash.com/photo-1503387762-592dee58c160?q=80&w=800&auto=format&fit=crop",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900864/muebles-local_n5gayy.webp",
     gallery: [
-      "https://images.unsplash.com/photo-1503387762-592dee58c160?q=80&w=1200",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900867/muebles-local-1_wgto03.webp",
     ],
+  },
+  {
+    id: 25,
+    title: "Decorativo de Pared modular con luces",
+    category: "Oficina",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900982/mueble-pared_fqqf7d.webp",
+    gallery: [],
   },
 ];

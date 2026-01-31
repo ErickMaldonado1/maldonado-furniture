@@ -1,4 +1,4 @@
-import { Icons } from "@/utils/icons";
+import { Trash, XMark } from "@/utils/icons/index";
 import { FilterSection } from "./FilterSection";
 import { ColorFilter } from "./ColorFilter";
 
@@ -40,7 +40,7 @@ export const FilterGroup = ({
           ${isActive ? "bg-[#4A3728] border-[#4A3728]" : "border-zinc-300 dark:border-zinc-700"}
         `}
       >
-        <Icons.XMark
+        <XMark
           className={`text-white w-3 h-3 transition-opacity ${isActive ? "opacity-100" : "opacity-0"}`}
         />
       </div>
@@ -145,7 +145,7 @@ export const FilterGroup = ({
         onClick={clearFilters}
         className="flex items-center gap-2 text-[12px] justify-center font-black uppercase tracking-widest text-zinc-400 hover:text-red-500 transition-colors pt-6 border-t border-zinc-100 dark:border-zinc-900 w-full"
       >
-        <Icons.Trash className="w-4 h-4" /> Restablecer
+        <Trash className="w-4 h-4" /> Restablecer
       </button>
     </div>
   );

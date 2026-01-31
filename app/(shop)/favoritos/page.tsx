@@ -2,21 +2,21 @@
 
 import { useFavoritesStore } from "@/store/favorites-store";
 import ProductCard from "@/components/shop/ProductCard";
-import { Icons } from "@/utils/icons";
+import { Heart } from "@/utils/icons/index";
 import Link from "next/link";
 
 export default function FavoritesPage() {
   const { favorites } = useFavoritesStore();
 
   return (
-    <main className="min-h-screen pt-32 pb-20 bg-[#FDFCFB] dark:bg-[#050505] transition-colors">
+    <main className="min-h-screen pt-24 md:pt-32 pb-20 bg-[#FDFCFB] dark:bg-[#050505] transition-colors">
       <div className="container mx-auto px-6">
         <div className="flex items-center gap-4 mb-12">
           <div className="p-4 bg-zinc-100 dark:bg-zinc-900 rounded-full">
-            <Icons.Heart className="text-3xl text-[#4A3728]" />
+            <Heart className="w-4 h-4 text-3xl text-[#4A3728]" />
           </div>
           <div>
-            <h1 className="text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white">
+            <h1 className="text-3xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white">
               Mis Favoritos
             </h1>
             <p className="text-zinc-500 font-medium">

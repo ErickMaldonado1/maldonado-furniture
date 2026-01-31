@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, KeyboardEvent } from "react";
-import { Icons } from "@/utils/icons";
+import { Plus, XMark } from "@/utils/icons/index";
 
 interface ArrayInputProps {
   label: string;
@@ -56,7 +56,7 @@ export function ArrayInput({
           onClick={addValue}
           className="bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 px-4 rounded-xl hover:bg-[#4A3728] hover:text-white transition-colors"
         >
-          <Icons.Plus className="text-xl" />
+          <Plus className="text-xl" />
         </button>
       </div>
 
@@ -74,7 +74,7 @@ export function ArrayInput({
                 className="hover:text-red-500 transition-colors"
                 aria-label="remove-tag"
               >
-                <Icons.XMark className="text-lg" />
+                <XMark className="text-lg" />
               </button>
             </span>
           ))}

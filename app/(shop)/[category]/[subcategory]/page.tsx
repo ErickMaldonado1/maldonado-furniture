@@ -1,15 +1,8 @@
-import React from "react";
-
 import { categories } from "@/utils/categories";
-import ProductCard from "@/components/shop/ProductCard";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import ProductListingClient from "../../../../components/ProductListingClient";
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
-
-type Props = {
-  params: Promise<{ category: string; subcategory: string }>;
-};
 
 export default async function SubcategoryPage({
   params,

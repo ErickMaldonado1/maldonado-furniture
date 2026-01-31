@@ -1,6 +1,5 @@
 "use client";
-import { HiArrowLongRight } from "react-icons/hi2";
-
+import { ArrowLongRight } from "@/utils/icons/index";
 export function ContactForm() {
   return (
     <section id="contacto" className="py-16 px-6 max-w-6xl mx-auto">
@@ -70,7 +69,7 @@ export function ContactForm() {
                 aria-label="enviar"
               >
                 Enviar Consulta
-                <HiArrowLongRight className="group-hover:translate-x-2 transition-transform text-xl" />
+                <ArrowLongRight className="w-5 h-6group-hover:translate-x-2 transition-transform text-xl" />
               </button>
             </div>
           </form>

@@ -1,4 +1,4 @@
-import { Icons } from "@/utils/icons";
+import { XMark } from "@/utils/icons/index";
 
 export const FilterOption = ({
   label,
@@ -30,7 +30,7 @@ export const FilterOption = ({
         ${isActive ? "bg-[#4A3728] border-[#4A3728]" : "border-zinc-300 dark:border-zinc-700"}
       `}
     >
-      <Icons.XMark
+      <XMark
         className={`w-3 h-3 text-white transition-opacity ${isActive ? "opacity-100" : "opacity-0"}`}
       />
     </div>

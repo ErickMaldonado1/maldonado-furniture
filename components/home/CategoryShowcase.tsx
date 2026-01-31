@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { HiOutlineArrowNarrowRight } from "react-icons/hi";
-
+import { ArrowNarrowRight } from "@/utils/icons/index";
 const categories = [
   {
     name: "Dormitorio",
@@ -56,10 +55,7 @@ const CategoryShowcase = () => {
           >
             <span className="hidden sm:inline">VER CATÁLOGO COMPLETO</span>
             <span className="sm:hidden">CATÁLOGO</span>
-            <HiOutlineArrowNarrowRight
-              size={18}
-              className="group-hover:translate-x-1 transition-transform text-[#4A3728]"
-            />
+            <ArrowNarrowRight className=" w-6 h-6 group-hover:translate-x-1 transition-transform text-[#4A3728]" />
           </Link>
         </div>
 
@@ -97,7 +93,7 @@ const CategoryShowcase = () => {
                         Descubrir
                       </span>
                       <div className="w-4 h-px bg-[#4A3728]" />
-                      <HiOutlineArrowNarrowRight className="size-6 text-zinc-500 group-hover/btn:text-[#4A3728] transition-colors stroke-[2.5]" />
+                      <ArrowNarrowRight className=" w-6 h-6 size-6 text-zinc-500 group-hover/btn:text-[#4A3728] transition-colors stroke-[2.5]" />
                     </div>
                   </div>
                 </div>

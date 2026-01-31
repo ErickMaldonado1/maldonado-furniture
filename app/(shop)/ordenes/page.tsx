@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/features/auth/auth.options";
 import { redirect } from "next/navigation";
 import Image from "next/image";
-import { Icons } from "@/utils/icons";
+import { Cube, Icons } from "@/utils/icons/index";
 
 export default async function OrdersPage() {
   const session = await getServerSession(authOptions);
@@ -41,7 +41,7 @@ export default async function OrdersPage() {
         <div className="space-y-6">
           {orders.length === 0 ? (
             <div className="p-12 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-full text-center">
-              <Icons.Cube className="text-4xl text-zinc-300 mx-auto mb-4" />
+              <Cube className="text-4xl text-zinc-300 mx-auto mb-4" />
               <p className="text-zinc-500 font-medium">No hay pedidos aún.</p>
             </div>
           ) : (

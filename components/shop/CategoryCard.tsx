@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Icons } from "@/utils/icons";
+import { ArrowNarrowRight } from "@/utils/icons/index";
 
 interface CategoryCardProps {
   label: string;
@@ -45,7 +45,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           <span className="text-white uppercase tracking-widest text-md">
             Ver Colección
           </span>{" "}
-          <Icons.ArrowNarrowRight width={20} height={20} />
+          <ArrowNarrowRight width={20} height={20} />
         </div>
       </div>
     </Link>

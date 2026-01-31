@@ -1,6 +1,6 @@
 "use client";
 
-import { Icons } from "@/utils/icons";
+import { ChevronLeft, ChevronRight } from "@/utils/icons/index";
 
 interface SliderButtonProps {
   direction: "left" | "right";
@@ -26,9 +26,9 @@ export const SliderButton = ({ direction, onClick }: SliderButtonProps) => {
     >
       <div className="relative overflow-hidden flex items-center justify-center">
         {isLeft ? (
-          <Icons.ChevronLeft className="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover/btn:text-white transition-all duration-300" />
+          <ChevronLeft className="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover/btn:text-white transition-all duration-300" />
         ) : (
-          <Icons.ChevronRight className="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover/btn:text-white transition-all duration-300" />
+          <ChevronRight className="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover/btn:text-white transition-all duration-300" />
         )}
       </div>
     </button>

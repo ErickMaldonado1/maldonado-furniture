@@ -3,18 +3,25 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Icons } from "@/utils/icons";
+import {
+  Cube,
+  ShoppingBag,
+  Users,
+  ChartBar,
+  PlusCircle,
+  Logout,
+} from "@/utils/icons/index";
 
 const menuItems = [
-  { name: "Dashboard", href: "/admin", icon: Icons.ChartBar },
-  { name: "Productos", href: "/admin/products", icon: Icons.Cube },
+  { name: "Dashboard", href: "/admin", icon: ChartBar },
+  { name: "Productos", href: "/admin/products", icon: Cube },
   {
     name: "Nuevo Producto",
     href: "/admin/products/new",
-    icon: Icons.PlusCircle,
+    icon: PlusCircle,
   },
-  { name: "Pedidos", href: "/admin/orders", icon: Icons.ShoppingBag },
-  { name: "Usuarios", href: "/admin/users", icon: Icons.Users },
+  { name: "Pedidos", href: "/admin/orders", icon: ShoppingBag },
+  { name: "Usuarios", href: "/admin/users", icon: Users },
 ];
 
 export default function AdminSidebar() {
@@ -36,7 +43,7 @@ export default function AdminSidebar() {
                   : "text-zinc-500 dark:text-zinc-500 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-zinc-200"
               }`}
             >
-              <Icon className="text-lg" />
+              <Icon className="w-5 h-5 text-md" />
               {item.name}
             </Link>
           );
@@ -47,7 +54,7 @@ export default function AdminSidebar() {
           className="w-full flex items-center gap-4 px-4 py-3 rounded-lg font-bold uppercase text-[10px] tracking-[0.12em] text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition-all"
           aria-label="Cerrar sesión"
         >
-          <Icons.Logout className="text-lg" />
+          <Logout className="w-5 h-5 text-lg" />
           Cerrar Sesión
         </button>
       </div>

@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { useCartStore } from "@/store/cart-store";
 import { useFavoritesStore } from "@/store/favorites-store";
@@ -123,7 +122,6 @@ export function ProductDetailClient({
           </div>
         </section>
       )}
-
       <RecentlyViewed currentProduct={product as unknown as Product} />
     </div>
   );

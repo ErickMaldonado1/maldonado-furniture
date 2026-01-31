@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Icons } from "@/utils/icons";
+import { Heart, HeartFilled } from "@/utils/icons/index";
 import { Product } from "@prisma/client";
 
 interface ProductGalleryProps {
@@ -40,7 +40,7 @@ export function ProductGallery({
     <>
       <div className="flex flex-col md:flex-row gap-4 h-full">
         {/* Thumbnails */}
-        <div className="flex flex-row md:flex-col gap-2 md:w-16 shrink-0 overflow-x-auto md:overflow-y-auto max-h-[500px] custom-scrollbar hide-scrollbar-mobile order-2 md:order-1">
+        <div className="flex flex-row md:flex-col gap-2 md:w-16 shrink-0 overflow-x-auto md:overflow-y-auto max-h-125 custom-scrollbar hide-scrollbar-mobile order-2 md:order-1">
           {product.images?.map((img, i) => (
             <button
               key={i}
@@ -65,8 +65,8 @@ export function ProductGallery({
         {/* Main Image */}
         <div className="flex-1 relative z-10 w-full order-1 md:order-2">
           <div
-            className="relative aspect-square md:aspect-[4/5] lg:aspect-square w-full max-h-[700px] rounded-full overflow-hidden bg-[#fafafa] dark:bg-[#0a0a0a] border border-white/5 cursor-zoom-in group"
-            onClick={() => setIsZoomed(true)} // Or dedicated Lightbox trigger
+            className="relative aspect-square md:aspect-4/5 lg:aspect-square w-full max-h-175 rounded-full overflow-hidden bg-[#fafafa] dark:bg-[#0a0a0a] border border-white/5 cursor-zoom-in group"
+            onClick={() => setIsZoomed(true)}
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -100,7 +100,7 @@ export function ProductGallery({
                     : "bg-white/90 text-zinc-900 hover:bg-white hover:scale-110"
                 }`}
               >
-                {isFav ? <Icons.HeartFilled /> : <Icons.Heart />}
+                {isFav ? <HeartFilled /> : <Heart />}
               </button>
             </div>
 
