@@ -6,7 +6,7 @@ const categories = [
   {
     name: "Dormitorio",
     image:
-      "https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769904217/dormitorio-show_gl5bwz.webp?auto=compress&cs=tinysrgb&w=2070",
     href: "/dormitorio",
     span: "md:col-span-2 md:row-span-2 col-span-1",
     tag: "Minimalista",
@@ -14,7 +14,7 @@ const categories = [
   {
     name: "Sala",
     image:
-      "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769904224/sala-show_z1kgsz.webp?auto=compress&cs=tinysrgb&w=2070",
     href: "/sala",
     span: "col-span-1",
     tag: "Escultural",
@@ -22,7 +22,7 @@ const categories = [
   {
     name: "Cocina",
     image:
-      "https://images.pexels.com/photos/2062426/pexels-photo-2062426.jpeg?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769904227/cocina-show_wxsnsz.webp?auto=compress&cs=tinysrgb&w=2070",
     href: "/cocina",
     span: "md:col-span-1 md:row-span-2 col-span-1",
     tag: "Artesanal",
@@ -30,7 +30,7 @@ const categories = [
   {
     name: "Oficina",
     image:
-      "https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769904220/office-show_okcuef.webp?auto=compress&cs=tinysrgb&w=2070",
     href: "/oficina",
     span: "col-span-1",
     tag: "Productivo",
