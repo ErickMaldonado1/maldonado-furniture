@@ -115,7 +115,7 @@ export const categories: Category[] = [
       },
       {
         sub: "comedores",
-        label: "comedores",
+        label: "Comedores",
         href: "/sala/comedores",
         imageSrc:
           "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190710/comedor_sm9shq.webp",
@@ -123,7 +123,7 @@ export const categories: Category[] = [
       },
       {
         sub: "muebles-tv",
-        label: "muebles tv",
+        label: "Muebles tv",
         href: "/sala/muebles-tv",
         imageSrc:
           "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190713/muebletv_vmoebu.webp",
@@ -161,8 +161,8 @@ export const categories: Category[] = [
     ],
   },
   {
-    label: "Cocina",
     slug: "cocina",
+    label: "Cocina",
     subcategories: [
       {
         sub: "modulares",
@@ -196,8 +196,8 @@ export const categories: Category[] = [
     ],
   },
   {
-    label: "Oficina",
     slug: "oficina",
+    label: "Oficina",
     subcategories: [
       {
         sub: "archivadores",

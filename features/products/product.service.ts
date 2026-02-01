@@ -1,13 +1,20 @@
 import prisma from "@/lib/prisma";
 import { uploadImage } from "@/lib/cloudinary";
+import { slugify } from "@/utils/slug_url";
 
 export const ProductService = {
   async getAll(filters: any) {
     return await prisma.product.findMany({
       where: {
         isActive: true,
-        category: filters.category || undefined,
-        subcategory: filters.subcategory || undefined,
+        category: filters.category
+          ? { equals: filters.category, mode: "insensitive" }
+          : undefined,
+        subcategory: filters.subcategory
+          ? { equals: filters.subcategory, mode: "insensitive" }
+          : undefined,
+        isFlashDeal:
+          filters.isFeatured !== undefined ? filters.isFeatured : undefined,
         colors:
           filters.colors?.length > 0 ? { hasSome: filters.colors } : undefined,
         styles:
@@ -30,6 +37,7 @@ export const ProductService = {
             ]
           : undefined,
       },
+      take: filters.limit || undefined,
       include: {
         images: true,
         variants: { include: { dimensions: true } },
@@ -74,17 +82,9 @@ export const ProductService = {
       select: { id: true, name: true },
     });
 
-    const normalize = (txt: string) =>
-      txt
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
+    const targetSlug = slugify(slug);
 
-    const targetSlug = normalize(slug);
-
-    const match = candidates.find((p) => normalize(p.name) === targetSlug);
+    const match = candidates.find((p) => slugify(p.name) === targetSlug);
 
     if (match) {
       return await this.getById(match.id);
@@ -101,8 +101,10 @@ export const ProductService = {
         description: data.description,
         price: data.price,
         discount: data.discount,
-        category: data.category,
-        subcategory: data.subcategory,
+        category: data.category ? slugify(data.category) : data.category,
+        subcategory: data.subcategory
+          ? slugify(data.subcategory)
+          : data.subcategory,
         isFlashDeal: data.isFlashDeal,
         isActive: data.isActive ?? true,
         colors: data.colors || [],
@@ -155,8 +157,10 @@ export const ProductService = {
         description: data.description,
         price: data.price,
         discount: data.discount,
-        category: data.category,
-        subcategory: data.subcategory,
+        category: data.category ? slugify(data.category) : data.category,
+        subcategory: data.subcategory
+          ? slugify(data.subcategory)
+          : data.subcategory,
         colors: data.colors,
         styles: data.styles,
         materials: data.materials,
@@ -222,7 +226,12 @@ export const ProductService = {
         },
       },
       take: limit,
-      include: { images: true, variants: true },
+      include: {
+        images: true,
+        variants: {
+          include: { dimensions: true },
+        },
+      },
       orderBy: { createdAt: "desc" },
     });
   },

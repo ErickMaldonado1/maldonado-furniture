@@ -2,10 +2,10 @@ import { Metadata } from "next";
 import { categories } from "@/utils/categories";
 import ProductCard from "@/components/shop/ProductCard";
 import { ContactForm } from "@/components/shop/ContactForm";
-import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Squares2X2 } from "@/utils/icons/index";
+import { ProductService } from "@/features/products/product.service";
 
 const seoContent: Record<
   string,
@@ -18,7 +18,7 @@ const seoContent: Record<
 > = {
   dormitorio: {
     prefix: "Proyectamos tu",
-    title: "Muebles de Dormitorio Modernos en Quito | Camas y Closets",
+    title: "Muebles de Dormitorio | Camas, Cómodas, Veladores, Closets",
     description:
       "Diseño y fabricación de camas, closets y veladores a medida. Confort y estilo lineal para tu descanso en Muebles Maldonado.",
     content: (
@@ -31,7 +31,7 @@ const seoContent: Record<
   },
   sala: {
     prefix: "Creamos tu",
-    title: "Muebles de Sala | Centros de TV y Aparadores",
+    title: "Muebles de Sala | Aparadores, Muebles Tv,  Mesas de Centro",
     description:
       "Creamos ambientes elegantes con muebles de sala modernos, paneles de TV y mesas de centro personalizadas.",
     content: (
@@ -47,7 +47,8 @@ const seoContent: Record<
   },
   cocina: {
     prefix: "Diseñamos tu",
-    title: "Cocinas de Melamina y Madera a Medida | Diseño de Interiores",
+    title:
+      "Cocinas modernas | Muebles de cocina de Melamina y Madera | Diseño de Interiores",
     description:
       "Especialistas en muebles de cocina funcionales. Proyectamos tu cocina ideal con materiales de alta resistencia.",
     content: (
@@ -106,11 +107,9 @@ export default async function CategoryPage({ params }: Props) {
 
   if (!categoryConfig) return notFound();
 
-  const productsFromDB = await prisma.product.findMany({
-    where: { category: categorySlug },
-    take: 8,
-    orderBy: { createdAt: "desc" },
-    include: { images: true, variants: true },
+  const productsFromDB = await ProductService.getAll({
+    category: categorySlug,
+    limit: 8,
   });
 
   const heroImage = categoryConfig.featuredContent[0]?.imageSrc;

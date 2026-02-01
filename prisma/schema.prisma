@@ -53,7 +53,7 @@ model User {
   accounts  Account[]
   sessions  Session[]
   favorites Favorite[]
-  orders    Order[] // <- RELACIÓN INVERSA
+  orders    Order[] 
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 }
@@ -132,18 +132,28 @@ model Favorite {
 }
 
 model Order {
-  id        String      @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String      @db.ObjectId
-  user      User        @relation(fields: [userId], references: [id])
-  status    OrderStatus @default(PENDING)
-  total     Float
-  items     OrderItem[]
-  createdAt DateTime    @default(now())
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String      @db.ObjectId
+  user       User        @relation(fields: [userId], references: [id])
+  status     OrderStatus @default(PENDING)
+  total      Float
+  fullName   String
+  email      String
+  phone      String
+  address    String
+  city       String
+  postalCode String
+  notes      String?
+  
+  items      OrderItem[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
 }
 
 enum OrderStatus {
   PENDING
   PAID
+  COMPLETED
   CANCELLED
 }
 

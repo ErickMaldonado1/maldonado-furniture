@@ -8,6 +8,8 @@ export const getProductsAction = async (filters: any) => {
 export const createProductAction = async (data: any) => {
   const product = await ProductService.create(data);
   revalidatePath("/admin/products");
+  revalidatePath("/");
+  revalidatePath("/shop");
   return product;
 };
 

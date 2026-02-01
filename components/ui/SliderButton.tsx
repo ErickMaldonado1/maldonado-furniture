@@ -26,9 +26,9 @@ export const SliderButton = ({ direction, onClick }: SliderButtonProps) => {
     >
       <div className="relative overflow-hidden flex items-center justify-center">
         {isLeft ? (
-          <ChevronLeft className="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover/btn:text-white transition-all duration-300" />
+          <ChevronLeft className="w-6 h-6 text-zinc-500 dark:text-zinc-400 group-hover/btn:text-white transition-all duration-300" />
         ) : (
-          <ChevronRight className="w-5 h-5 text-zinc-500 dark:text-zinc-400 group-hover/btn:text-white transition-all duration-300" />
+          <ChevronRight className="w-6 h-6 text-zinc-500 dark:text-zinc-400 group-hover/btn:text-white transition-all duration-300" />
         )}
       </div>
     </button>

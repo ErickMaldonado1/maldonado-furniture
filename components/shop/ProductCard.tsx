@@ -2,7 +2,13 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckBadge, Heart, HeartFilled, ShoppingBag, Truck } from "@/utils/icons/index";
+import {
+  CheckBadge,
+  Heart,
+  HeartFilled,
+  ShoppingBag,
+  Truck,
+} from "@/utils/icons/index";
 import { toast } from "sonner";
 import { useCartStore } from "@/store/cart-store";
 import { useFavoritesStore } from "@/store/favorites-store";
@@ -16,9 +22,14 @@ interface ProductCardProps {
   addToCart?: (product: any) => void;
 }
 
-export default function ProductCard({ product, index }: ProductCardProps) {
+export default function ProductCard({
+  product,
+  index,
+  addToCart: propAddToCart,
+}: ProductCardProps) {
   const router = useRouter();
-  const { addToCart, isInCart } = useCartStore();
+  const { addToCart: storeAddToCart, isInCart } = useCartStore();
+  const addToCart = propAddToCart || storeAddToCart;
   const { isFavorite, toggleFavorite } = useFavoritesStore();
   const isFav = isFavorite(product.id);
   const inCart = isInCart(product.id);
@@ -43,13 +54,21 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 
     if (inCart) return;
 
+    const firstVariant = product.variants?.[0];
     addToCart({
       id: product.id,
       name: product.name,
       price: finalPrice,
       quantity: 1,
       image: imageUrl,
-      variantId: product.variants?.[0]?.id,
+      variantId: firstVariant?.id,
+      sku: firstVariant?.sku || "N/A",
+      variantName: firstVariant?.color || "No especificado",
+      dimensions: firstVariant?.dimensions
+        ? `${firstVariant.dimensions.height}x${firstVariant.dimensions.width}x${firstVariant.dimensions.depth}cm`
+        : "Estándar",
+      materials: product.materials?.join(", ") || "Melamina",
+      material: product.materials?.[0] || "Melamina",
     });
 
     toast.success("¡Añadido al carrito!", {
@@ -94,7 +113,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <div
           onClick={() =>
             router.push(
-              `/${product.category}/${product.subcategory}/${slugify(product.name)}`,
+              `/${slugify(product.category)}/${slugify(product.subcategory)}/${slugify(product.name)}`,
             )
           }
           className="relative aspect-square w-full overflow-hidden group/img cursor-pointer"
@@ -117,33 +136,32 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             aria-label="Favorito"
           >
             {isFav ? (
-              <HeartFilled className="text-2xl" />
+              <HeartFilled className="w-5 h-6 text-2xl" />
             ) : (
-              <Heart className="text-2xl" />
+              <Heart className=" w-5 h-5 text-2xl" />
             )}
           </button>
           <div className="hidden md:flex absolute inset-0 items-end justify-end p-2 opacity-0 group-hover/img:opacity-100 transition-all duration-300 bg-black/5 z-20">
             <Link
-              href={`/${product.category}/${product.subcategory}/${slugify(product.name)}`}
+              href={`/${slugify(product.category)}/${slugify(product.subcategory)}/${slugify(product.name)}`}
               className="bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl transform translate-y-1 group-hover/img:translate-y-0 transition-all duration-300 hover:bg-[#4A3728] hover:text-white dark:hover:bg-[#4A3728] dark:hover:text-white"
             >
               Vista Rápida
             </Link>
           </div>
-          <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border border-teal-600/30 dark:border-teal-400/30 text-[9px] text-teal-600 dark:text-teal-400 font-black uppercase tracking-[0.15em] backdrop-blur-sm z-20">
-            <Truck className="text-sm" />
-            <span>Envío {product.deliveryDays || 8} días</span>
+          <div className="absolute bottom-3 left-3 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-sm z-20 transition-all group-hover/img:scale-105">
+            <Truck className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
+            <span className="text-[9px] text-zinc-900 dark:text-zinc-100 font-black uppercase tracking-[0.15em]">
+              Envío {product.deliveryDays || 8} días
+            </span>
           </div>
         </div>
       </div>
 
-      <div
-        className="p-2 md
-      :p-2 flex flex-col grow bg-white dark:bg-[#0A0A0A]"
-      >
+      <div className="p-2 md:p-2 flex flex-col grow bg-white dark:bg-[#0A0A0A]">
         <div className="grow">
           <Link
-            href={`/${product.category}/${product.subcategory}/${slugify(product.name)}`}
+            href={`/${slugify(product.category)}/${slugify(product.subcategory)}/${slugify(product.name)}`}
           >
             <h3 className="text-[13px] md:text-[14px] font-black uppercase tracking-tight text-zinc-900 dark:text-zinc-100 line-clamp-1 leading-tight hover:text-[#4A3728] transition-colors">
               {product.name}

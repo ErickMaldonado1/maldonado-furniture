@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Muebles Maldonado | ¡A medida y modernos con los mejores precios!",
+  title: "Muebles Maldonado | ¡Muebles a medida y modernos con los mejores precios!",
   description:
     "Muebles Maldonado: Fabricación de muebles a medida, modernos y con los mejores precios. Especialistas en dormitorios, muebles de tv, muebles de cocina, oficina y todo para tu hogar.",
   keywords: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     canonical: "https://mueblesmaldonadoec.com",
   },
   openGraph: {
-    title: "Muebles Maldonado | ¡A medida y modernos con los mejores precios!",
+    title: "Muebles Maldonado | ¡Muebles a medida y modernos con los mejores precios!",
     description:
       "Muebles Maldonado: Fabricación de muebles a medida, modernos y con los mejores precios. Especialistas en dormitorios, muebles de tv, muebles de cocina, oficina y todo para tu hogar.",
     url: "https://mueblesmaldonadoec.com",

@@ -2,6 +2,7 @@
 import { uploadImage, deleteImage } from "@/lib/cloudinary";
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { slugify } from "@/utils/slug_url";
 
 interface UploadSuccess {
   success: true;
@@ -29,23 +30,13 @@ export async function uploadProductImage(
   }
 }
 
-const toSlug = (str: string) => {
-  if (!str) return "";
-  return str
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/[^\w-]+/g, "")
-    .replace(/--+/g, "-");
-};
-
 export async function createFullProduct(data: any) {
   try {
     const normalizedSubcategory = data.subcategory
-      ? toSlug(data.subcategory)
+      ? slugify(data.subcategory)
       : data.subcategory;
     const normalizedCategory = data.category
-      ? data.category.toLowerCase()
+      ? slugify(data.category)
       : data.category;
 
     const product = await prisma.product.create({
@@ -89,6 +80,8 @@ export async function createFullProduct(data: any) {
       },
     });
     revalidatePath("/admin/products");
+    revalidatePath("/");
+    revalidatePath(`/${normalizedCategory}`);
     return { success: true, product };
   } catch (error: any) {
     console.error(error);
@@ -99,11 +92,11 @@ export async function createFullProduct(data: any) {
 export async function updateFullProduct(id: string, data: any) {
   try {
     const normalizedSubcategory = data.subcategory
-      ? toSlug(data.subcategory)
+      ? slugify(data.subcategory)
       : data.subcategory;
 
     const normalizedCategory = data.category
-      ? data.category.toLowerCase()
+      ? slugify(data.category)
       : data.category;
 
     await prisma.$transaction(async (tx) => {
@@ -203,6 +196,9 @@ export async function updateFullProduct(id: string, data: any) {
 
     revalidatePath("/admin/products");
     revalidatePath(`/admin/products/${id}`);
+    revalidatePath("/");
+    revalidatePath(`/${normalizedCategory}`);
+    revalidatePath(`/(shop)/[category]`, "page");
     return { success: true };
   } catch (error: any) {
     console.error("Update Error:", error);

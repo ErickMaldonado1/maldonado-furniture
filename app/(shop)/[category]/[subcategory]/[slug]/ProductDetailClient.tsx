@@ -50,6 +50,13 @@ export function ProductDetailClient({
       quantity: quantity,
       image: product.images?.[0]?.url || "",
       variantId: selectedVariant?.id || product.variants?.[0]?.id,
+      sku: selectedVariant?.sku || product.variants?.[0]?.sku || "N/A",
+      variantName: selectedVariant?.color || "No especificado",
+      dimensions: selectedVariant?.dimensions
+        ? `${selectedVariant.dimensions.height}x${selectedVariant.dimensions.width}x${selectedVariant.dimensions.depth}cm`
+        : "Estándar",
+      materials: product.materials?.join(", ") || "Melamina",
+      material: product.materials?.[0] || "Melamina",
     });
     toast.success("Producto añadido al carrito");
   };

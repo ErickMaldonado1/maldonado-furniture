@@ -1,8 +1,8 @@
 import { categories } from "@/utils/categories";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import ProductListingClient from "../../../../components/ProductListingClient";
-import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
+import { ProductService } from "@/features/products/product.service";
 
 export default async function SubcategoryPage({
   params,
@@ -19,13 +19,9 @@ export default async function SubcategoryPage({
   );
   if (!subcategoryConfig) return notFound();
 
-  const productsFromDB = await prisma.product.findMany({
-    where: {
-      category: { equals: categorySlug, mode: "insensitive" },
-      subcategory: { equals: subcategoryConfig.label, mode: "insensitive" },
-    },
-    include: { images: true, variants: true },
-    orderBy: { createdAt: "desc" },
+  const productsFromDB = await ProductService.getAll({
+    category: categorySlug,
+    subcategory: subcategorySlug,
   });
 
   return (

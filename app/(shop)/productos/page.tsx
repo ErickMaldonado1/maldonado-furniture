@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+import { ProductService } from "@/features/products/product.service";
 import ProductListingClient from "@/components/ProductListingClient";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SearchX } from "lucide-react";
@@ -12,27 +12,14 @@ export default async function SearchPage({
 }) {
   const { q: query = "" } = await searchParams;
 
-  const products = await prisma.product.findMany({
-    where: {
-      OR: [
-        { name: { contains: query, mode: "insensitive" } },
-        { description: { contains: query, mode: "insensitive" } },
-        { category: { contains: query, mode: "insensitive" } },
-        { subcategory: { contains: query, mode: "insensitive" } },
-      ],
-      isActive: true,
-    },
-    include: { images: true, variants: true },
-    orderBy: { createdAt: "desc" },
+  const products = await ProductService.getAll({
+    search: query,
   });
 
   let suggestions: any[] = [];
   if (products.length === 0) {
-    suggestions = await prisma.product.findMany({
-      where: { isActive: true },
-      take: 4,
-      include: { images: true, variants: true },
-      orderBy: { createdAt: "desc" },
+    suggestions = await ProductService.getAll({
+      limit: 4,
     });
   }
 

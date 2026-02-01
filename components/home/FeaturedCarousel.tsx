@@ -5,6 +5,8 @@ import { useCartStore } from "@/store/cart-store";
 import { Product } from "@prisma/client";
 import ProductCard from "@/components/shop/ProductCard";
 import { SliderButton } from "../ui/SliderButton";
+import { ArrowNarrowRight } from '@/utils/icons';
+import Link from 'next/link';
 
 interface FeaturedProps {
   products: Product[];
@@ -48,14 +50,22 @@ export default function FeaturedCarousel({ products }: FeaturedProps) {
   return (
     <section className="py-8 md:py-14 bg-white dark:bg-[#050505] overflow-hidden">
       <div className="max-w-360 mx-auto px-4 sm:px-6">
-        <div className="mb-10 space-y-1">
+        <div className="flex items-center justify-between mb-8 md:mb-12 border-b border-zinc-100 dark:border-zinc-800/50 pb-6">
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
             Productos{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
               Destacados
             </span>
           </h2>
-          <div className="h-1.5 w-24 bg-black dark:bg-white" />
+
+          <Link
+            href="/productos"
+            className="group flex items-center gap-2 text-zinc-500 dark:text-zinc-400 font-bold uppercase text-[10px] md:text-xs tracking-[0.15em] transition-all"
+          >
+            <span className="hidden sm:inline">VER CATÁLOGO COMPLETO</span>
+            <span className="sm:hidden">CATÁLOGO</span>
+            <ArrowNarrowRight className=" w-6 h-6 group-hover:translate-x-1 transition-transform text-[#4A3728]" />
+          </Link>
         </div>
 
         <div

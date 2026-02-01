@@ -92,7 +92,7 @@ const ProfilePage = () => {
                 </p>
               </div>
               <Link
-                href="/admin/dashboard"
+                href="/admin"
                 className="w-full md:w-auto flex items-center justify-center gap-2 bg-white text-[#4A3728] px-6 py-3 rounded-xl font-black text-sm uppercase tracking-tighter hover:bg-[#D4A373] hover:text-white transition-all transform hover:scale-105"
               >
                 <Dashboard className="w-5 h-5" />
@@ -112,7 +112,7 @@ const ProfilePage = () => {
               Revisa el estado de tus muebles pedidos y descarga tus facturas.
             </p>
             <Link
-              href="/orders"
+              href="/ordenes"
               className="text-sm font-bold text-[#6B4B36] underline underline-offset-4 hover:text-[#4A3728]"
             >
               Ver mis pedidos

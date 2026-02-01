@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { categories } from "@/utils/categories";
 import { Trash2, Plus, Upload, X, Save, ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { slugify } from "@/utils/slug_url";
 
 interface ProductFormProps {
   initialData?: any;
@@ -89,6 +90,10 @@ export default function ProductForm({ initialData }: ProductFormProps) {
           height: v.dimensions?.height || 0,
           depth: v.dimensions?.depth || 0,
         })),
+        subcategory: initialData.subcategory
+          ? slugify(initialData.subcategory)
+          : "",
+        category: initialData.category ? slugify(initialData.category) : "",
         images: initialData.images.map((img: any) => ({
           url: img.url,
           publicId: img.publicId,
@@ -540,7 +545,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                     height: 0,
                     depth: 0,
                     thickness: null,
-                    color: "", 
+                    color: "",
                     material: "",
                   })
                 }
@@ -569,7 +574,6 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                   </button>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  
                     <div className="space-y-1">
                       <label className="text-[10px] uppercase text-zinc-500 font-bold ml-1">
                         Nombre
