@@ -39,13 +39,12 @@ export function ProductGallery({
   return (
     <>
       <div className="flex flex-col md:flex-row gap-4 h-full">
-        {/* Thumbnails */}
         <div className="flex flex-row md:flex-col gap-2 md:w-16 shrink-0 overflow-x-auto md:overflow-y-auto max-h-125 custom-scrollbar hide-scrollbar-mobile order-2 md:order-1">
           {product.images?.map((img, i) => (
             <button
               key={i}
               onClick={() => onImageSelect(i)}
-              className={`relative w-16 h-16 md:w-full md:h-16 aspect-square rounded-full overflow-hidden border transition-all duration-300 ${
+              className={`relative w-16 h-16 md:w-full md:h-16 aspect-square rounded-sm overflow-hidden border transition-all duration-300 ${
                 selectedImage === i
                   ? "border-zinc-900 dark:border-white opacity-100"
                   : "border-transparent opacity-40 hover:opacity-100 hover:border-zinc-200 dark:hover:border-zinc-800"
@@ -62,10 +61,9 @@ export function ProductGallery({
           ))}
         </div>
 
-        {/* Main Image */}
         <div className="flex-1 relative z-10 w-full order-1 md:order-2">
           <div
-            className="relative aspect-square md:aspect-4/5 lg:aspect-square w-full max-h-175 rounded-full overflow-hidden bg-[#fafafa] dark:bg-[#0a0a0a] border border-white/5 cursor-zoom-in group"
+            className="relative aspect-square md:aspect-4/5 lg:aspect-square w-full max-h-175 rounded-md overflow-hidden bg-[#fafafa] dark:bg-[#0a0a0a] border border-white/5 cursor-zoom-in group"
             onClick={() => setIsZoomed(true)}
           >
             <AnimatePresence mode="wait">
@@ -87,7 +85,6 @@ export function ProductGallery({
               </motion.div>
             </AnimatePresence>
 
-            {/* Fav Button */}
             <div className="absolute top-4 right-4 z-20">
               <button
                 onClick={(e) => {
@@ -100,21 +97,19 @@ export function ProductGallery({
                     : "bg-white/90 text-zinc-900 hover:bg-white hover:scale-110"
                 }`}
               >
-                {isFav ? <HeartFilled /> : <Heart />}
+                {isFav ? <HeartFilled className="w-6 h-6"/> : <Heart className="w-6 h-6"/>}
               </button>
             </div>
 
-            {/* Discount Badge */}
             {product.discount && product.discount > 0 && (
               <div className="absolute top-4 left-4 z-20">
-                <span className="bg-white text-black dark:bg-[#050505] dark:text-white text-[9px] font-black uppercase tracking-widest px-3 py-1 border border-white/10 shadow-sm">
+                <span className="bg-white text-black dark:bg-[#050505] dark:text-white text-[12px] font-black uppercase tracking-widest px-3 py-1 border border-white/10 shadow-sm">
                   -{product.discount}%
                 </span>
               </div>
             )}
           </div>
         </div>
-        {/* TODO: Add Lightbox Overlay logic in a separate step or component if needed by user specifically */}
       </div>
 
       {/* Lightbox Modal */}
@@ -131,7 +126,6 @@ export function ProductGallery({
               className="absolute top-4 right-4 text-white p-4 hover:opacity-70 z-50"
               onClick={() => setIsZoomed(false)}
             >
-              Start closing
               <svg
                 className="w-8 h-8"
                 fill="none"
@@ -164,10 +158,10 @@ export function ProductGallery({
 
               {/* Navigation Buttons */}
               <button
-                className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur transition-all -ml-2 md:-ml-12"
+                className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-sm backdrop-blur transition-all -ml-2 md:-ml-12"
                 onClick={(e) => {
                   e.stopPropagation();
-                  // Cycle previous
+                  
                   const newIndex =
                     selectedImage === 0
                       ? (product.images?.length || 1) - 1
@@ -190,7 +184,7 @@ export function ProductGallery({
                 </svg>
               </button>
               <button
-                className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur transition-all -mr-2 md:-mr-12"
+                className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-sm backdrop-blur transition-all -mr-2 md:-mr-12"
                 onClick={(e) => {
                   e.stopPropagation();
                   // Cycle next

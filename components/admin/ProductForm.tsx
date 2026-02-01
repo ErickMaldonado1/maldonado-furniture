@@ -207,7 +207,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
     "Cedro Merak",
     "Nogal Paris",
     "Roble Natural",
-    "Tintiretto",
+    "Tintoretto",
     "Carvalo",
     "Cava",
     "Cedro",

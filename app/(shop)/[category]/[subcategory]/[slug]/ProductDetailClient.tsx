@@ -76,7 +76,7 @@ export function ProductDetailClient({
           />
         </div>
 
-        <div className="lg:col-span-5 pt-4">
+        <div className="lg:col-span-5 pt-2">
           <ProductInfo
             product={product}
             finalPrice={finalPrice}
@@ -97,12 +97,14 @@ export function ProductDetailClient({
         </div>
       </div>
 
-      <ProductSpecs
-        description={product.description || ""}
-        materials={product.materials as string[]}
-        dimensions={selectedVariant?.dimensions}
-        careInstructions={(product as any).careInstructions}
-      />
+      <div className="pt-16 mb:pb-24">
+        <ProductSpecs
+          description={product.description || ""}
+          materials={product.materials as string[]}
+          dimensions={selectedVariant?.dimensions}
+          careInstructions={(product as any).careInstructions}
+        />
+      </div>
 
       {relatedProducts && relatedProducts.length > 0 && (
         <section className="pt-24 border-t border-zinc-100 dark:border-zinc-900">
