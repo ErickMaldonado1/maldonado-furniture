@@ -100,6 +100,8 @@ export function ProductDetailClient({
             price={product.price}
             finalPrice={finalPrice}
             discount={product.discount}
+            sku={""}
+            color={""}
           />
         </div>
       </div>

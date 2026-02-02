@@ -12,7 +12,7 @@ import {
 } from "react-icons/hi";
 import { BiBed } from "react-icons/bi";
 import { MdOutlineKitchen } from "react-icons/md";
-import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa";
 import SearchBar from "@/components/shop/SearchBar";
 
 interface MobileMenuProps {
@@ -130,19 +130,25 @@ const MobileMenu = ({
           <div className="flex flex-col gap-5">
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.instagram.com/muebles_maldonad/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-zinc-400 hover:text-[#4A3728] transition-colors"
               >
                 <FaInstagram size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/MueblesMaldonad/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-zinc-400 hover:text-[#4A3728] transition-colors"
               >
-                <FaFacebookF size={18} />
+                <FaFacebook size={18} />
               </a>
               <a
-                href="https://wa.me/593959504842"
+                href="https://api.whatsapp.com/send/?phone=593959504842&text=Hola%21+Necesito+ayuda+con+un+pedido.&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-teal-600 dark:text-teal-500 transition-colors"
               >
                 <FaWhatsapp size={20} />

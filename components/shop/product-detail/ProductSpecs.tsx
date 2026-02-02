@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { InformationCircle, Sparkles, Cube, Truck } from "@/utils/icons/index";
 import { motion, AnimatePresence } from "framer-motion";
@@ -45,20 +44,23 @@ export function ProductSpecs({
   ];
 
   return (
-    <section className="py-16 w-full max-w-4xl mx-auto">
-      {/* Tab Navigation - Más limpia y con espaciado uniforme */}
-      <div className="flex gap-10 mb-10 border-b border-zinc-100 dark:border-zinc-800/50">
+    <section className="pt-12 pb-4 w-full max-w-4xl mx-auto px-4">
+      <div className="flex gap-8 md:gap-12 mb-10 border-b border-zinc-100 dark:border-zinc-800/50 overflow-x-auto no-scrollbar">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`relative flex items-center gap-2.5 pb-5 text-[14px] font-bold uppercase tracking-[0.15em] transition-all ${
+            className={`relative flex items-center gap-3 pb-4 text-[14px] font-black uppercase tracking-[0.2em] transition-all whitespace-nowrap ${
               activeTab === tab.id
                 ? "text-zinc-900 dark:text-white"
-                : "text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
+                : "text-zinc-400 hover:text-zinc-500"
             }`}
           >
-            <span className={activeTab === tab.id ? "text-[#4A3728]" : ""}>
+            <span
+              className={
+                activeTab === tab.id ? "text-[#4A3728]" : "text-zinc-300"
+              }
+            >
               {tab.icon}
             </span>
             {tab.label}
@@ -66,38 +68,36 @@ export function ProductSpecs({
               <motion.div
                 layoutId="activeTabUnderline"
                 className="absolute -bottom-px left-0 right-0 h-0.5 bg-[#4A3728]"
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                transition={{ type: "spring", stiffness: 350, damping: 30 }}
               />
             )}
           </button>
         ))}
       </div>
 
-      {/* Tab Content */}
-      <div className="relative min-h-45">
+      <div className="relative min-h-50">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -10 }}
+            transition={{ duration: 0.3 }}
           >
             {activeTab === "materials" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-                <p className="text-[14px] text-zinc-500 dark:text-zinc-400 leading-[1.8] font-light">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.8] font-medium">
                   Nuestra selección de materiales responde a un estándar de
                   excelencia, buscando el equilibrio perfecto entre la calidez
-                  de la madera natural y la resistencia de los acabados
-                  contemporáneos.
+                  de la madera natural y la resistencia de los acabados.
                 </p>
-                <ul className="space-y-4">
+                <ul className="grid grid-cols-1 gap-4">
                   {materials.map((m, i) => (
                     <li
                       key={i}
-                      className="flex items-center gap-4 text-[14px] text-zinc-800 dark:text-zinc-200 group"
+                      className="flex items-center gap-4 text-[16px] font-bold text-zinc-800 dark:text-zinc-200 group"
                     >
-                      <span className="w-1.5 h-px bg-[#4A3728] transition-all group-hover:w-3" />
+                      <div className="w-2 h-2 rounded-full border border-[#4A3728] group-hover:bg-[#4A3728] transition-colors" />
                       {m}
                     </li>
                   ))}
@@ -107,64 +107,69 @@ export function ProductSpecs({
 
             {activeTab === "dimensions" && (
               <div className="max-w-3xl">
-                <div className="grid grid-cols-3 gap-0 border border-zinc-100 dark:border-zinc-800 rounded-lg overflow-hidden bg-white dark:bg-transparent">
-                  <div className="p-8 text-center border-r border-zinc-100 dark:border-zinc-800">
-                    <span className="block text-[10px] uppercase tracking-widest text-zinc-400 mb-3 font-bold">
-                      Alto
-                    </span>
-                    <span className="text-[20px] font-light tracking-tight text-zinc-900 dark:text-white">
-                      {dimensions?.height || "76"}
-                      <span className="text-[14px] ml-1 text-zinc-400">cm</span>
-                    </span>
-                  </div>
-                  <div className="p-8 text-center border-r border-zinc-100 dark:border-zinc-800">
-                    <span className="block text-[10px] uppercase tracking-widest text-zinc-400 mb-3 font-bold">
-                      Ancho
-                    </span>
-                    <span className="text-[20px] font-light tracking-tight text-zinc-900 dark:text-white">
-                      {dimensions?.width || "154"}
-                      <span className="text-[14px] ml-1 text-zinc-400">cm</span>
-                    </span>
-                  </div>
-                  <div className="p-8 text-center">
-                    <span className="block text-[10px] uppercase tracking-widest text-zinc-400 mb-3 font-bold">
-                      Fondo
-                    </span>
-                    <span className="text-[20px] font-light tracking-tight text-zinc-900 dark:text-white">
-                      {dimensions?.depth || "55"}
-                      <span className="text-[14px] ml-1 text-zinc-400">cm</span>
-                    </span>
-                  </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  {[
+                    { label: "Alto", value: dimensions?.height || "76" },
+                    { label: "Ancho", value: dimensions?.width || "154" },
+                    { label: "Fondo", value: dimensions?.depth || "55" },
+                  ].map((dim, i) => (
+                    <div
+                      key={i}
+                      className="p-6 border border-zinc-100 dark:border-zinc-800 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/30 flex flex-col items-center"
+                    >
+                      <span className="text-[12px] uppercase tracking-[0.2em] text-zinc-400 font-black mb-2">
+                        {dim.label}
+                      </span>
+                      <div className="flex items-baseline">
+                        <span className="text-3xl font-light dark:text-white">
+                          {dim.value}
+                        </span>
+                        <span className="text-xs ml-1 text-[#4A3728] font-bold">
+                          cm
+                        </span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <p className="mt-6 text-[13px] text-zinc-400 font-light italic">
-                  * Las dimensiones son nominales y pueden variar +/- 2mm debido
-                  al carácter orgánico de la madera.
+                <p className="mt-8 text-[16px] text-zinc-400 font-medium italic flex items-center gap-2">
+                  <InformationCircle className="w-4 h-4" />* Dimensiones
+                  nominales con variación de +/- 4mm.
                 </p>
               </div>
             )}
 
             {activeTab === "care" && (
-              <div className="max-w-2xl space-y-8">
-                <p className="text-[14px] text-zinc-500 dark:text-zinc-400 leading-[1.8] font-light">
+              <div className="max-w-2xl">
+                <p className="text-[16px] text-zinc-600 dark:text-zinc-400 leading-[1.9] font-medium mb-10">
                   {careInstructions ||
-                    "Para preservar la integridad del material, recomendamos el uso de productos no abrasivos. Mantenga la pieza alejada de fuentes térmicas directas y limpie derrames de líquidos de forma inmediata con un paño seco."}
+                    "Para preservar la integridad del material, recomendamos el uso de productos no abrasivos. Mantenga la pieza alejada de fuentes térmicas directas."}
                 </p>
-                <div className="flex flex-wrap gap-6 pt-4 border-t border-zinc-50 dark:border-zinc-900">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-zinc-50 dark:bg-zinc-900 flex items-center justify-center">
-                      <Truck className="w-4 h-4 text-[#4A3728]" />
+                <div className="flex flex-col sm:flex-row gap-8 pt-8 border-t border-zinc-100 dark:border-zinc-800">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full bg-[#4A3728]/5 flex items-center justify-center">
+                      <Truck className="w-6 h-6 text-[#4A3728]" />
                     </div>
-                    <span className="text-[11px] font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">
-                      Envío Especializado
-                    </span>
+                    <div>
+                      <span className="block text-[14px] font-black uppercase tracking-widest text-zinc-900 dark:text-white">
+                        Envío Especializado
+                      </span>
+                      <span className="text-[14px] text-zinc-500">
+                        Manejo cuidadoso de piezas
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-zinc-50 dark:bg-zinc-900 flex items-center justify-center">
-                      <Sparkles className="w-4 h-4 text-[#4A3728]" />
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full bg-[#4A3728]/5 flex items-center justify-center">
+                      <Sparkles className="w-6 h-6 text-[#4A3728]" />
                     </div>
-                    <span className="text-[11px] font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">
-                      Garantía de Autor
-                    </span>
+                    <div>
+                      <span className="block text-[16px] font-black uppercase tracking-widest text-zinc-900 dark:text-white">
+                        Garantía de Fabricante
+                      </span>
+                      <span className="text-[14px] text-zinc-500">
+                        Según pedido
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

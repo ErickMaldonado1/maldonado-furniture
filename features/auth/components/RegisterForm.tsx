@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Loading } from "@/utils/icons/index";
-
+import { Eye, EyeOff } from "lucide-react";
 interface RegisterFormProps {
   onSuccess?: () => void;
   onSwitchToLogin?: () => void;
@@ -25,7 +25,7 @@ type RegisterFormData = z.infer<typeof registerSchema>;
 const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
   const [globalError, setGlobalError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -48,7 +48,6 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
       const resData = await res.json();
       if (!res.ok) throw new Error(resData.message || "Error en el registro");
 
-      // Auto login after registration
       const loginRes = await signIn("credentials", {
         email: data.email,
         password: data.password,
@@ -135,16 +134,30 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
             <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-widest ml-1">
               Contraseña
             </label>
-            <input
-              {...register("password")}
-              type="password"
-              placeholder="••••••••"
-              className={`w-full rounded-md border bg-zinc-50 dark:bg-zinc-900/50 py-3.5 px-4 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 transition-all ${
-                errors.password
-                  ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                  : "border-zinc-200 dark:border-zinc-800 focus:border-[#6B4B36] focus:ring-[#6B4B36]/20"
-              }`}
-            />
+            <div className="relative">
+              <input
+                {...register("password")}
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••"
+                className={`w-full rounded-md border bg-zinc-50 dark:bg-zinc-900/50 py-3.5 px-4 pr-12 text-sm text-zinc-900 dark:text-zinc-100 transition-all ${
+                  errors.password
+                    ? "border-red-300"
+                    : "border-zinc-200 dark:border-zinc-800 focus:border-[#6B4B36] focus:ring-2 focus:ring-[#6B4B36]/20"
+                }`}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors"
+                tabIndex={-1}
+              >
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5" />
+                ) : (
+                  <Eye className="w-5 h-5" />
+                )}
+              </button>
+            </div>
             {errors.password && (
               <p className="text-xs text-red-500 font-medium ml-1">
                 {errors.password.message}

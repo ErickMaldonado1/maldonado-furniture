@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -223,40 +223,62 @@ export default function ProductCard({
           )}
         </div>
 
-        <div className="mt-2 flex items-center justify-between gap-3 border-t border-zinc-100 dark:border-white/5 pt-1">
+        <div className="mt-2 flex items-center justify-between gap-3 border-t border-zinc-100 dark:border-white/5 pt-2">
           <div className="flex flex-col">
-            <p className="text-lg md:text-xl font-black text-zinc-900 dark:text-white leading-none italic tracking-tighter">
-              ${product.price}
+            {hasDiscount && (
+              <span className="text-[12px] text-zinc-400 line-through decoration-[#4A3728]/50 font-bold">
+                $
+                {product.price.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </span>
+            )}
+            <p className="text-[20px] font-black text-zinc-900 dark:text-white tracking-tighter italic">
+              $
+              {finalPrice.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
             </p>
           </div>
+
           <button
-            onClick={
-              isMounted && inCart
-                ? (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }
-                : handleAddToCart
-            }
-            disabled={isMounted ? inCart : false}
-            className={`flex items-center gap-2 px-3 py-2 rounded-full transition-all active:scale-95 ${
+            onClick={handleAddToCart}
+            disabled={isMounted && inCart}
+            className={`relative flex items-center justify-center gap-2 h-10 px-4 rounded-full transition-all duration-300 active:scale-95 ${
               isMounted && inCart
                 ? "bg-zinc-100 text-zinc-400 cursor-not-allowed dark:bg-zinc-800 dark:text-zinc-500"
-                : "bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 hover:bg-[#4A3728] dark:hover:bg-zinc-200"
+                : "bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 hover:bg-[#4A3728] dark:hover:bg-[#4A3728] dark:hover:text-white shadow-md"
             }`}
-            aria-label="add-to-cart"
           >
-            <span className="text-[9px] font-black uppercase tracking-widest hidden sm:block">
-              {!isMounted ? "Añadir" : inCart ? "En Carrito" : "Añadir"}
-            </span>
-
-            {!isMounted ? (
-              <ShoppingBag className="text-lg" />
-            ) : inCart ? (
-              <CheckBadge className="text-lg" />
-            ) : (
-              <ShoppingBag className="text-lg" />
-            )}
+            <AnimatePresence mode="wait">
+              {isMounted && inCart ? (
+                <motion.div
+                  key="check"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="flex items-center gap-2"
+                >
+                  <CheckBadge className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+                  <span className="text-[10px] font-black uppercase tracking-tighter hidden lg:block">
+                    Listo
+                  </span>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="bag"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="flex items-center gap-2"
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.15em]">
+                    Añadir
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </button>
         </div>
       </div>
