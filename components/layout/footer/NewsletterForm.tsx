@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import { ArrowRight } from "@/utils/icons/index";
+import { ArrowRight } from "@/utils/icons/navigation";
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");

@@ -7,7 +7,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useSession } from "next-auth/react";
 import { WhatsAppModal } from "@/components/ui/WhatsApp/WhatsAppModal";
-import { CreditCard, ShieldCheck, Truck, Users } from "@/utils/icons/index";
+import { CreditCard, Truck } from "@/utils/icons/shop";
+import { ShieldCheck} from "@/utils/icons/actions";
+import { Users } from "@/utils/icons/ui";
 import { useRouter } from "next/navigation";
 
 const checkoutSchema = z.object({

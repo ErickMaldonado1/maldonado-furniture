@@ -1,5 +1,5 @@
 "use client";
-import { Whatsapp } from "@/utils/icons/index";
+import { Whatsapp } from "@/utils/icons/social";
 import Image from "next/image";
 
 interface WhatsAppModalProps {

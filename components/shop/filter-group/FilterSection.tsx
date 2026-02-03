@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 
-import { ChevronDown } from "@/utils/icons/index";
+import { ChevronDown } from "@/utils/icons/navigation";
 
 interface FilterSectionProps {
   title: string;

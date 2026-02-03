@@ -3,12 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCartStore } from "@/store/cart-store";
 import {
-  Trash,
-  Plus,
-  ArrowRight,
   Minus,
   ShoppingBag,
-} from "@/utils/icons/index";
+} from "@/utils/icons/shop";
+import {
+  Trash,
+  Plus,
+} from "@/utils/icons/actions";
+import { ArrowRight } from "@/utils/icons/navigation";
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } =

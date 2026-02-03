@@ -3,14 +3,9 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Verified,
-  Mail,
-  Logout,
-  Dashboard,
-  Shopping,
-  Settings,
-} from "@/utils/icons/index";
+import { Mail, Logout, Shopping, Settings } from "@/utils/icons/ui";
+import { Dashboard } from "@/utils/icons/navigation";
+import { Verified } from "@/utils/icons/actions";
 
 const ProfilePage = () => {
   const { data: session, status } = useSession();

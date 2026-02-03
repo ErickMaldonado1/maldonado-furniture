@@ -24,6 +24,23 @@ export const ShoppingBag = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+export const UserGroup = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+  </svg>
+);
+
 export const Truck = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" {...commonProps} {...props}>
     <rect x="1" y="3" width="15" height="13" />
@@ -87,5 +104,19 @@ export const Scale = (props: React.SVGProps<SVGSVGElement>) => (
     <path d="M7 21h10" />
     <path d="M12 3v18" />
     <path d="M3 7h18" />
+  </svg>
+);
+
+export const Minus = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <line x1="5" y1="12" x2="19" y2="12" />
   </svg>
 );

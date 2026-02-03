@@ -2,8 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ShieldCheck, Truck, HomeModern } from "@/utils/icons/index";
-
+import { Truck } from "@/utils/icons/shop";
+import { ShieldCheck, HomeModern } from "@/utils/icons/actions";
 interface StepProps {
   icon: React.ElementType;
   title: string;

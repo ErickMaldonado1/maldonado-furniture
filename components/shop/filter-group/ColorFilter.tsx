@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { COLOR_MAP, COLOR_TEXTURES } from "@/utils/filter-textures";
-import { ChevronDown, ChevronUp } from "@/utils/icons/index";
+import { ChevronDown, ChevronUp } from "@/utils/icons/navigation";
 
 interface ColorFilterProps {
   colors: string[];

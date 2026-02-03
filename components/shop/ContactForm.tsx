@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactSchema, ContactFormData } from "@/lib/contact-validation";
-import { ArrowLongRight } from "@/utils/icons/index";
+import { ArrowLongRight } from "@/utils/icons/navigation";
 import { sendEmail } from "@/features/contact/actions";
 
 export function ContactForm() {

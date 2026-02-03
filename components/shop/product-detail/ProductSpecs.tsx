@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
-import { InformationCircle, Sparkles, Cube, Truck } from "@/utils/icons/index";
+import { Sparkles, Cube } from "@/utils/icons/actions";
+import { InformationCircle } from "@/utils/icons/layout";
+import { Truck } from "@/utils/icons/shop";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ProductSpecsProps {

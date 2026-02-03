@@ -4,7 +4,7 @@ import ProductCard from "@/components/shop/ProductCard";
 import { ContactForm } from "@/components/shop/ContactForm";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Squares2X2 } from "@/utils/icons/index";
+import { Squares2X2 } from "@/utils/icons/social";
 import { ProductService } from "@/features/products/product.service";
 
 const seoContent: Record<

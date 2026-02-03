@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Scale } from "@/utils/icons/index";
+import { Scale } from "@/utils/icons/shop";
 
 interface PolicySection {
   id: string;

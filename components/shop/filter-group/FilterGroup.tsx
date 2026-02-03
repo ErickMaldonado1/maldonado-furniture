@@ -1,4 +1,4 @@
-import { Trash, XMark } from "@/utils/icons/index";
+import { Trash , XMark } from "@/utils/icons/actions";
 import { FilterSection } from "./FilterSection";
 import { ColorFilter } from "./ColorFilter";
 

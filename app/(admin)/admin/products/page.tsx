@@ -4,21 +4,42 @@ import Link from "next/link";
 import { Edit, Plus } from "lucide-react";
 import { DeleteProductBtn } from "@/app/(admin)/admin/DeleteProductBtn";
 import { ProductSearchBtn } from "@/app/(admin)/admin/ProductSearchBtn";
+import { ProductFilters } from "./ProductFilters";
 
-export default async function InventoryPage({
-  searchParams,
-}: {
-  searchParams?: { query?: string };
+export default async function InventoryPage(props: {
+  searchParams: Promise<{
+    query?: string;
+    category?: string;
+    subcategory?: string;
+  }>;
 }) {
+  const searchParams = await props.searchParams;
   const query = searchParams?.query || "";
+  const category = searchParams?.category;
+  const subcategory = searchParams?.subcategory;
+
+  const whereClause: any = {
+    OR: [
+      { name: { contains: query, mode: "insensitive" } },
+      { sku: { contains: query, mode: "insensitive" } },
+    ],
+  };
+
+  if (category) whereClause.category = category;
+  if (subcategory) whereClause.subcategory = subcategory;
+
+  const allProducts = await prisma.product.findMany({
+    select: { category: true, subcategory: true },
+  });
+  const categories = Array.from(
+    new Set(allProducts.map((p) => p.category)),
+  ).filter((c): c is string => !!c);
+  const subcategories = Array.from(
+    new Set(allProducts.map((p) => p.subcategory)),
+  ).filter((s): s is string => !!s);
 
   const products = await prisma.product.findMany({
-    where: {
-      OR: [
-        { name: { contains: query, mode: "insensitive" } },
-        { sku: { contains: query, mode: "insensitive" } },
-      ],
-    },
+    where: whereClause,
     include: {
       images: true,
       _count: { select: { variants: true } },
@@ -40,8 +61,14 @@ export default async function InventoryPage({
             Gestiona tu catálogo, stock y variantes.
           </p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <ProductSearchBtn />
+          <div className="hidden md:block">
+            <ProductFilters
+              categories={categories}
+              subcategories={subcategories}
+            />
+          </div>
           <Link
             href="/admin/products/new"
             className="bg-zinc-900 dark:bg-[#A6866A] text-white dark:text-black px-5 py-2.5 rounded-sm flex items-center gap-2 font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all shadow-lg shadow-zinc-900/10 dark:shadow-none"
@@ -49,6 +76,9 @@ export default async function InventoryPage({
             <Plus size={18} /> Nuevo Producto
           </Link>
         </div>
+      </div>
+      <div className="md:hidden">
+        <ProductFilters categories={categories} subcategories={subcategories} />
       </div>
       <div className="bg-white dark:bg-[#111111] rounded-sm shadow-sm border border-zinc-200 dark:border-zinc-800/60 overflow-hidden transition-colors">
         <div className="overflow-x-auto">

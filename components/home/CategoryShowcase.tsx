@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowNarrowRight } from "@/utils/icons/index";
+import { ArrowNarrowRight } from "@/utils/icons/actions";
 const categories = [
   {
     name: "Dormitorio",

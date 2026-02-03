@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLongLeft } from "@/utils/icons/index";
+import { ArrowLongLeft } from "@/utils/icons/navigation";
 
 export default function NotFound() {
   const router = useRouter();

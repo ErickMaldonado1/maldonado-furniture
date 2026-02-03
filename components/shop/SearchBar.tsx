@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Search } from "@/utils/icons/index";
+import { Search } from "@/utils/icons/ui";
 import { useRouter } from "next/navigation";
 
 interface SearchBarProps {

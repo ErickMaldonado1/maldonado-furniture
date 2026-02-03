@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { categories } from "@/utils/categories";
 import Link from "next/link";
 import Image from "next/image";
-import { Viewfinder } from "@/utils/icons/index";
+import { Viewfinder } from "@/utils/icons/actions";
 import ProductCard from "@/components/shop/ProductCard";
 
 interface CategoryLayoutProps {

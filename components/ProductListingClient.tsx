@@ -6,9 +6,12 @@ import {
   ViewColumns,
   AdjustmentsHorizontal,
   XMark,
+} from "@/utils/icons/actions";
+import {
   MagnifyingGlass,
   Squares2X2,
-} from "@/utils/icons/index";
+} from "@/utils/icons/social";
+
 
 import { FilterGroup } from "@/components/shop/filter-group/FilterGroup";
 import { useProductFilters } from "@/hooks/useProductFilters";

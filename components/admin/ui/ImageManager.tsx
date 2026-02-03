@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { XMark, CloudArrowUp } from "@/utils/icons/index";
+import { CloudArrowUp } from "@/utils/icons/social";
+import { XMark} from "@/utils/icons/actions";
 import Image from "next/image";
 
 interface ImageItem {

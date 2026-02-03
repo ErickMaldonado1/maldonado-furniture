@@ -3,7 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, Trash } from "@/utils/icons/index";
+import { Heart } from "@/utils/icons/navigation";
+import { Trash } from "@/utils/icons/actions";
 import { useFavoritesStore } from "@/store/favorites-store";
 import Drawer from "@/components/ui/Drawer";
 import { useCartStore } from "@/store/cart-store";

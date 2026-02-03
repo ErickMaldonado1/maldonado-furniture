@@ -2,13 +2,17 @@
 import { motion } from "framer-motion";
 import {
   Whatsapp,
+} from "@/utils/icons/social";
+import {
   ArrowUpRight,
+} from "@/utils/icons/navigation";
+import {
   Mail,
   Phone,
   Users,
   MapPin,
   Clock,
-} from "@/utils/icons/index";
+} from "@/utils/icons/ui";
 import { ContactForm } from "@/components/shop/ContactForm";
 
 export default function ContactoPage() {

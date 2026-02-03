@@ -6,7 +6,8 @@ import Link from "next/link";
 import { useCartStore } from "@/store/cart-store";
 import { CartItem } from "@/store/cart-store";
 import Drawer from "@/components/ui/Drawer";
-import { Cart, Minus, Plus, Trash } from "@/utils/icons/index";
+import { Cart, Minus } from "@/utils/icons/shop";
+import { Plus, Trash } from "@/utils/icons/actions";
 interface CartDrawerProps {
   isOpen: boolean;
   onClose: () => void;

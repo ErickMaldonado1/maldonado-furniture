@@ -12,6 +12,7 @@ import {
   ClipboardList,
 } from "lucide-react";
 import { OrderStatusManager } from "./OrderStatusManager";
+import { DeleteOrderBtn } from "./DeleteOrderBtn";
 
 export default async function OrdersPage() {
   const session = await getServerSession(authOptions);
@@ -87,6 +88,7 @@ export default async function OrdersPage() {
                     orderId={order.id}
                     initialStatus={order.status}
                   />
+                  <DeleteOrderBtn orderId={order.id} />
                 </div>
               </div>
 

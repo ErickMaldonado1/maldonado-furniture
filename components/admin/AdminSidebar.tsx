@@ -5,12 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Cube,
-  ShoppingBag,
+} from "@/utils/icons/actions";
+import {
   Users,
   ChartBar,
   PlusCircle,
   Logout,
-} from "@/utils/icons/index";
+} from "@/utils/icons/ui";
+import {
+  ShoppingBag,
+} from "@/utils/icons/shop";
 
 const menuItems = [
   { name: "Dashboard", href: "/admin", icon: ChartBar },

@@ -2,7 +2,9 @@
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { proyectos, categorias, Proyecto } from "@/utils/proyectos";
-import { Plus, ChevronLeft, ChevronRight, Close } from "@/utils/icons/index";
+import { Close } from "@/utils/icons/layout";
+import { Plus} from "@/utils/icons/actions";
+import { ChevronLeft, ChevronRight } from "@/utils/icons/navigation";
 
 export default function ProyectosPage() {
   const [filter, setFilter] = useState("Todos");

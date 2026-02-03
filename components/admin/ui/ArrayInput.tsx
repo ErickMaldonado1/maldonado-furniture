@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, KeyboardEvent } from "react";
-import { Plus, XMark } from "@/utils/icons/index";
+import { Plus, XMark } from "@/utils/icons/actions";
 
 interface ArrayInputProps {
   label: string;

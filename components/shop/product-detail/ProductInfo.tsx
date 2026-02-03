@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { Product } from "@prisma/client";
-import { CheckBadge } from "@/utils/icons/index";
+import { CheckBadge } from "@/utils/icons/layout";
 import { COLOR_MAP, COLOR_TEXTURES } from "@/utils/filter-textures";
 
 interface ProductInfoProps {

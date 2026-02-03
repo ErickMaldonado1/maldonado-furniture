@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "@/utils/icons/index";
+import { ChevronLeft, ChevronRight } from "@/utils/icons/navigation";
 
 interface SliderButtonProps {
   direction: "left" | "right";

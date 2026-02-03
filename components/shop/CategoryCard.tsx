@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowNarrowRight } from "@/utils/icons/index";
+import { ArrowNarrowRight } from "@/utils/icons/actions";
 
 interface CategoryCardProps {
   label: string;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Cube, Plus, Trash } from "@/utils/icons/index";
+import { Cube, Plus, Trash } from "@/utils/icons/actions";
 
 interface Variant {
   name: string;

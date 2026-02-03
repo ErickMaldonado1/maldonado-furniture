@@ -5,21 +5,36 @@ import { useCartStore } from "@/store/cart-store";
 import { Product } from "@prisma/client";
 import ProductCard from "@/components/shop/ProductCard";
 import { SliderButton } from "../ui/SliderButton";
-import { ArrowNarrowRight } from '@/utils/icons';
-import Link from 'next/link';
+import { ArrowNarrowRight } from "@/utils/icons/actions";
+import Link from "next/link";
 
 interface FeaturedProps {
   products: Product[];
 }
 
-export default function FeaturedCarousel({ products }: FeaturedProps) {
+export default function FeaturedCarousel({
+  products: initialProducts,
+}: FeaturedProps) {
   const { addToCart } = useCartStore();
+  const [products, setProducts] = useState(initialProducts.slice(0, 5));
+  const [hasLoadedExtra, setHasLoadedExtra] = useState(false);
   const [visibleCount, setVisibleCount] = useState(4);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+
   const maxIndex = useMemo(() => {
     return Math.max(0, products.length - visibleCount);
   }, [products.length, visibleCount]);
+  useEffect(() => {
+    if (initialProducts.length > 5 && !hasLoadedExtra) {
+      const timer = setTimeout(() => {
+        setProducts(initialProducts);
+        setHasLoadedExtra(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [initialProducts, hasLoadedExtra]);
+
   useEffect(() => {
     const updateCount = () => {
       if (window.innerWidth < 768) setVisibleCount(2);
@@ -61,6 +76,7 @@ export default function FeaturedCarousel({ products }: FeaturedProps) {
           <Link
             href="/productos"
             className="group flex items-center gap-2 text-zinc-500 dark:text-zinc-400 font-bold uppercase text-[10px] md:text-xs tracking-[0.15em] transition-all"
+            aria-label="Ver colección de productos"
           >
             <span className="hidden sm:inline">VER CATÁLOGO COMPLETO</span>
             <span className="sm:hidden">CATÁLOGO</span>

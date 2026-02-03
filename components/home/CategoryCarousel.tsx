@@ -6,7 +6,7 @@ import { Product } from "@prisma/client";
 import ProductCard from "@/components/shop/ProductCard";
 import Link from "next/link";
 import { SliderButton } from "../ui/SliderButton";
-import { ArrowRight } from "@/utils/icons/index";
+import { ArrowRight } from "@/utils/icons/navigation";
 
 interface Props {
   products: Product[];
@@ -72,7 +72,8 @@ export default function CategoryCarousel({
 
           <Link
             href={`/${categorySlug}`}
-            className="group flex items-center gap-2 text-zinc-500 dark:text-zinc-400 font-bold uppercase text-[10px] md:text-xs tracking-[0.15em] transition-all"
+            className="group flex items-center gap-2 text-zinc-600 dark:text-zinc-400 font-bold uppercase text-[10px] md:text-xs tracking-[0.15em] transition-all"
+            aria-label={`Ver colección de ${categorySlug.replace("-", " ")}`}
           >
             <span className="hidden sm:inline">VER COLECCIÓN</span>
             <span className="sm:hidden mt-1">COLECCIÓN</span>

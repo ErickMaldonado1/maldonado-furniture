@@ -2,13 +2,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  CheckBadge,
-  Heart,
-  HeartFilled,
-  ShoppingBag,
-  Truck,
-} from "@/utils/icons/index";
+import { Heart } from "@/utils/icons/navigation";
+import { HeartFilled } from "@/utils/icons/actions";
+import { CheckBadge } from "@/utils/icons/layout";
+import { ShoppingBag, Truck } from "@/utils/icons/shop";
+
 import { toast } from "sonner";
 import { useCartStore } from "@/store/cart-store";
 import { useFavoritesStore } from "@/store/favorites-store";
@@ -39,9 +37,24 @@ export default function ProductCard({
     setIsMounted(true);
   }, []);
 
-  const imageUrl =
+  const getOptimizedImage = (url: string, width: number = 800) => {
+    if (!url || !url.includes("cloudinary.com")) return url;
+    return url.replace("/upload/", `/upload/f_auto,q_auto,w_${width}/`);
+  };
+
+  const imageUrl = getOptimizedImage(
     product.images?.[0]?.url ||
-    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80";
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80",
+    700,
+  );
+
+  const secondImageUrl = product.images?.[1]?.url
+    ? getOptimizedImage(product.images[1].url, 700)
+    : null;
+
+  const productPath = `/${slugify(product.category)}/${slugify(product.subcategory)}/${slugify(product.name)}`;
+
+  const [isHovered, setIsHovered] = useState(false);
 
   const hasDiscount = product.discount > 0;
   const finalPrice = hasDiscount
@@ -117,15 +130,28 @@ export default function ProductCard({
             )
           }
           className="relative aspect-square w-full overflow-hidden group/img cursor-pointer"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           <Image
             src={imageUrl}
             alt={product.name}
             fill
-            priority
-            sizes="(max-width: 640px) 50vw, 33vw"
-            className="object-cover object-center transition-transform duration-1000 group-hover/img:scale-110"
+            priority={index < 4}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover object-center transition-all duration-700 group-hover/img:scale-110"
           />
+          {secondImageUrl && (
+            <Image
+              src={secondImageUrl}
+              alt={`${product.name} - Vista alternativa`}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className={`object-cover object-center transition-all duration-700 group-hover/img:scale-110 absolute inset-0 z-10 ${
+                isHovered ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          )}
           <button
             onClick={handleToggleFavorite}
             className={`absolute top-3 right-3 z-30 transition-all duration-300 drop-shadow-md hover:scale-110 ${
@@ -133,17 +159,22 @@ export default function ProductCard({
                 ? "text-red-500"
                 : "text-zinc-900 dark:text-white hover:text-red-500"
             }`}
-            aria-label="Favorito"
+            aria-label={
+              isFav
+                ? `Quitar ${product.name} de favoritos`
+                : `Añadir ${product.name} a favoritos`
+            }
           >
             {isFav ? (
               <HeartFilled className="w-5 h-6 text-2xl" />
             ) : (
-              <Heart className=" w-5 h-5 text-2xl" />
+              <Heart className="w-5 h-5 text-2xl" />
             )}
           </button>
           <div className="hidden md:flex absolute inset-0 items-end justify-end p-2 opacity-0 group-hover/img:opacity-100 transition-all duration-300 bg-black/5 z-20">
             <Link
               href={`/${slugify(product.category)}/${slugify(product.subcategory)}/${slugify(product.name)}`}
+              aria-label={`Ver detalles de ${product.name}`}
               className="bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl transform translate-y-1 group-hover/img:translate-y-0 transition-all duration-300 hover:bg-[#4A3728] hover:text-white dark:hover:bg-[#4A3728] dark:hover:text-white"
             >
               Vista Rápida
@@ -226,7 +257,7 @@ export default function ProductCard({
         <div className="mt-2 flex items-center justify-between gap-3 border-t border-zinc-100 dark:border-white/5 pt-2">
           <div className="flex flex-col">
             {hasDiscount && (
-              <span className="text-[12px] text-zinc-400 line-through decoration-[#4A3728]/50 font-bold">
+              <span className="text-[12px] text-zinc-600 line-through decoration-[#4A3728]/50 font-bold">
                 $
                 {product.price.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
@@ -273,7 +304,10 @@ export default function ProductCard({
                   className="flex items-center gap-2"
                 >
                   <ShoppingBag className="w-4 h-4" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.15em]">
+                  <span
+                    className="text-[10px] font-black uppercase tracking-[0.15em]"
+                    aria-label="Añadir al carrito"
+                  >
                     Añadir
                   </span>
                 </motion.div>

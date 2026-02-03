@@ -235,4 +235,36 @@ export const ProductService = {
       orderBy: { createdAt: "desc" },
     });
   },
+
+  async getRandomProducts(limit = 8) {
+    const totalCount = await prisma.product.count({
+      where: { isActive: true },
+    });
+    const skip = Math.max(0, Math.floor(Math.random() * (totalCount - limit)));
+
+    return await prisma.product.findMany({
+      where: { isActive: true },
+      take: limit,
+      skip: skip,
+      include: {
+        images: true,
+        variants: {
+          include: { dimensions: true },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+  },
+
+  async getSubcategories(limit = 4) {
+    const products = await prisma.product.findMany({
+      where: { isActive: true, subcategory: { not: null } },
+      select: { subcategory: true, category: true, images: { take: 1 } },
+    });
+
+    const uniqueSubcategories = Array.from(
+      new Map(products.map((p) => [p.subcategory, p])).values(),
+    );
+    return uniqueSubcategories.sort(() => 0.5 - Math.random()).slice(0, limit);
+  },
 };

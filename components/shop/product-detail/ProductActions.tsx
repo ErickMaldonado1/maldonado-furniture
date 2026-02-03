@@ -1,6 +1,8 @@
 "use client";
-import { Minus, Plus, ShoppingBag, Whatsapp } from "@/utils/icons/index";
-
+import { Whatsapp } from "@/utils/icons/social";
+import { Minus} from "@/utils/icons/shop";
+import { Plus } from "@/utils/icons/actions";
+import { ShoppingBag } from "@/utils/icons/shop";
 interface ProductActionsProps {
   productName: string;
   sku: string;
@@ -56,7 +58,7 @@ export function ProductActions({
               })}
             </span>
             {discount && discount > 0 && (
-              <span className="text-md text-zinc-400 line-through decoration-[#4A3728]/40 font-bold">
+              <span className="text-md text-zinc-600 line-through decoration-[#4A3728]/40 font-bold">
                 $
                 {price.toLocaleString(undefined, {
                   minimumFractionDigits: 2,

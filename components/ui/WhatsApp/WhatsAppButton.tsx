@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Whatsapp, XMark } from "@/utils/icons/index";
+import { XMark } from "@/utils/icons/actions";
+import { Whatsapp } from "@/utils/icons/social";
 
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);

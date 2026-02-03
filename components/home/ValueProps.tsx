@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion, Variants } from "framer-motion";
-import { UserGroup, Sparkles , ShieldCheck, Truck } from "@/utils/icons/index";
+import { Sparkles, ShieldCheck } from "@/utils/icons/actions";
+import { Truck, UserGroup } from "@/utils/icons/shop";
 
 const services = [
   {

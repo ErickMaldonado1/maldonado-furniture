@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { XMark } from "@/utils/icons/index";
+import { XMark } from "@/utils/icons/actions";
 
 interface DrawerProps {
   isOpen: boolean;

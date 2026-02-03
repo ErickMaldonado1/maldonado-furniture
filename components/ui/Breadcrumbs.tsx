@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight } from "@/utils/icons/index";
+import { ChevronRight } from "@/utils/icons/navigation";
 
 interface BreadcrumbStep {
   label: string;

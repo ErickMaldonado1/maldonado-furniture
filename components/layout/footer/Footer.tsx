@@ -6,7 +6,7 @@ import {
   Facebook,
   Pinterest,
   BackgroundPattern,
-} from "@/utils/icons/index";
+} from "@/utils/icons/social";
 import NewsletterForm from "./NewsletterForm";
 
 const Footer = () => {

@@ -7,7 +7,7 @@ import {
   PencilSquare,
   Cube,
   Sparkles,
-} from "@/utils/icons/index";
+} from "@/utils/icons/actions";
 import { ContactForm } from "@/components/shop/ContactForm";
 
 interface ProcessStepProps {

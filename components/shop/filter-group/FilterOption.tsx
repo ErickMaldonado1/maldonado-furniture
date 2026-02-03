@@ -1,4 +1,4 @@
-import { XMark } from "@/utils/icons/index";
+import { XMark } from "@/utils/icons/actions";
 
 export const FilterOption = ({
   label,

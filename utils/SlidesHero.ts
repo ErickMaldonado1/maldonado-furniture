@@ -13,7 +13,7 @@ export const slides: SlideData[] = [
     title: "COCINAS",
     description: "Diseño y calidad en muebles de cocina a medida.",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/f_auto,q_auto,w_1440/v1769127395/cocina_stp9o1.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769127395/cocina_stp9o1.webp",
     link: "/cocina",
     tag: "Cocinas a Medida",
   },
@@ -22,7 +22,7 @@ export const slides: SlideData[] = [
     title: "DORMITORIOS",
     description: "Modernos y elegantes que unen diseño, confort y calidad.",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/f_auto,q_auto,w_1440/v1769123783/dormitorio_ig6v5k.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp",
     link: "/dormitorio",
     tag: "Nuevos diseños",
   },
@@ -31,7 +31,7 @@ export const slides: SlideData[] = [
     title: "SALA",
     description: "Muebles de sala para cada espacio de tu hogar.",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/f_auto,q_auto,w_1440/v1769124357/sala_jgxncz.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769124357/sala_jgxncz.webp",
     link: "/sala",
     tag: "Decoración de sala",
   },
@@ -41,7 +41,7 @@ export const slides: SlideData[] = [
     description:
       "Muebles de oficina para home office y espacios profesionales.",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/f_auto,q_auto,w_1440/v1769126235/oficina_rzbif0.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769126235/oficina_rzbif0.webp",
     link: "/oficina",
     tag: "Home Office",
   },

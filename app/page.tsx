@@ -11,12 +11,14 @@ const CategoryCarousel = dynamic(
 );
 
 const HomePage = async () => {
-  const [featured, bedroom, living, office] = await Promise.all([
-    ProductService.getAll({ isFeatured: true, limit: 8 }),
-    ProductService.getByCategory("Dormitorio", 8),
-    ProductService.getByCategory("Sala", 8),
-    ProductService.getByCategory("Oficina", 8),
-  ]);
+  const [featured, bedroom, living, office, randomSubcategories] =
+    await Promise.all([
+      ProductService.getRandomProducts(8),
+      ProductService.getByCategory("Dormitorio", 8),
+      ProductService.getByCategory("Sala", 8),
+      ProductService.getByCategory("Oficina", 8),
+      ProductService.getSubcategories(4),
+    ]);
 
   return (
     <div className="flex flex-col w-full dark:bg-[#050505] overflow-x-hidden mb-20">

@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, XMark } from "@/utils/icons/index";
+import { ChevronLeft, ChevronRight } from "@/utils/icons/navigation";
+import { XMark } from "@/utils/icons/actions";
 
 interface ProductImageGalleryProps {
   images: string[];

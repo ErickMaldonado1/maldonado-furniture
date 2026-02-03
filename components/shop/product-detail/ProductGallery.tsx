@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, HeartFilled } from "@/utils/icons/index";
+import { HeartFilled } from "@/utils/icons/actions";
+import { Heart } from "@/utils/icons/navigation";
 import { Product } from "@prisma/client";
 
 interface ProductGalleryProps {
@@ -55,7 +56,7 @@ export function ProductGallery({
                 src={img.url}
                 alt={`${product.name} vista ${i + 1}`}
                 fill
-                className="object-cover"
+                className="object-contain p-1"
               />
             </button>
           ))}
@@ -63,7 +64,7 @@ export function ProductGallery({
 
         <div className="flex-1 relative z-10 w-full order-1 md:order-2">
           <div
-            className="relative aspect-square md:aspect-4/5 lg:aspect-square w-full max-h-175 rounded-md overflow-hidden bg-[#fafafa] dark:bg-[#0a0a0a] border border-white/5 cursor-zoom-in group"
+            className="relative aspect-square md:aspect-[4/5] lg:aspect-square w-full max-h-[700px] rounded-sm overflow-hidden bg-[#fcfcfc] dark:bg-[#080808] border border-zinc-100 dark:border-white/5 cursor-zoom-in group flex items-center justify-center p-4 md:p-8"
             onClick={() => setIsZoomed(true)}
           >
             <AnimatePresence mode="wait">
@@ -79,7 +80,7 @@ export function ProductGallery({
                   src={currentImageUrl}
                   alt={product.name}
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-500"
+                  className="object-contain hover:scale-105 transition-transform duration-500"
                   priority
                 />
               </motion.div>
@@ -97,7 +98,11 @@ export function ProductGallery({
                     : "bg-white/90 text-zinc-900 hover:bg-white hover:scale-110"
                 }`}
               >
-                {isFav ? <HeartFilled className="w-6 h-6"/> : <Heart className="w-6 h-6"/>}
+                {isFav ? (
+                  <HeartFilled className="w-6 h-6" />
+                ) : (
+                  <Heart className="w-6 h-6" />
+                )}
               </button>
             </div>
 
@@ -112,7 +117,6 @@ export function ProductGallery({
         </div>
       </div>
 
-      {/* Lightbox Modal */}
       <AnimatePresence>
         {isZoomed && (
           <motion.div
@@ -156,12 +160,11 @@ export function ProductGallery({
                 />
               </div>
 
-              {/* Navigation Buttons */}
               <button
                 className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-sm backdrop-blur transition-all -ml-2 md:-ml-12"
                 onClick={(e) => {
                   e.stopPropagation();
-                  
+
                   const newIndex =
                     selectedImage === 0
                       ? (product.images?.length || 1) - 1
@@ -187,7 +190,6 @@ export function ProductGallery({
                 className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-sm backdrop-blur transition-all -mr-2 md:-mr-12"
                 onClick={(e) => {
                   e.stopPropagation();
-                  // Cycle next
                   const newIndex =
                     selectedImage === (product.images?.length || 1) - 1
                       ? 0
@@ -211,7 +213,6 @@ export function ProductGallery({
               </button>
             </div>
 
-            {/* Thumbs in Lightbox */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-full p-2">
               {product.images?.map((img, i) => (
                 <button

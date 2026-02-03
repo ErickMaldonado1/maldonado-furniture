@@ -10,7 +10,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Loading } from "@/utils/icons/index";
+import { Loading } from "@/utils/icons/actions";
 import { Eye, EyeOff } from "lucide-react";
 
 interface LoginFormProps {

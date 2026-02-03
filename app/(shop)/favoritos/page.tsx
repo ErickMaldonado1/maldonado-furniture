@@ -2,7 +2,7 @@
 
 import { useFavoritesStore } from "@/store/favorites-store";
 import ProductCard from "@/components/shop/ProductCard";
-import { Heart } from "@/utils/icons/index";
+import { Heart } from "@/utils/icons/navigation";
 import Link from "next/link";
 
 export default function FavoritesPage() {
