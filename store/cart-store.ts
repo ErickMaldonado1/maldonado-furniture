@@ -36,8 +36,6 @@ export const useCartStore = create<CartState>()(
         const exists = cart.find((i) => i.id === item.id);
 
         if (exists) {
-          // If already in cart, don't add more if checking for "already added" strictness
-          // Or update quantity but cap at 3
           const newQuantity = Math.min(exists.quantity + item.quantity, 3);
           set({
             cart: cart.map((i) =>
@@ -45,7 +43,6 @@ export const useCartStore = create<CartState>()(
             ),
           });
         } else {
-          // Ensure initial quantity is max 3
           const quantity = Math.min(item.quantity, 3);
           set({ cart: [...cart, { ...item, quantity }] });
         }
@@ -55,7 +52,7 @@ export const useCartStore = create<CartState>()(
       },
       updateQuantity: (itemId, quantity) => {
         if (quantity < 1) return;
-        const safeQuantity = Math.min(quantity, 3); // Max limit 3
+        const safeQuantity = Math.min(quantity, 3);
         set({
           cart: get().cart.map((i) =>
             i.id === itemId ? { ...i, quantity: safeQuantity } : i,
