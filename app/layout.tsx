@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/layout/navBar/NavBar";
-import Footer from "@/components/layout/footer/Footer";
 import { MainProvider } from "@/providers/MainProvider";
+import dynamic from "next/dynamic";
+const Footer = dynamic(() => import("@/components/layout/footer/Footer"), {
+  loading: () => <p>...Cargando</p>,
+});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -12,7 +15,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Muebles Maldonado | ¡Muebles a medida y modernos con los mejores precios!",
+  title:
+    "Muebles Maldonado | ¡Muebles a medida y modernos con los mejores precios!",
   description:
     "Muebles Maldonado: Fabricación de muebles a medida, modernos y con los mejores precios. Especialistas en dormitorios, muebles de tv, muebles de cocina, oficina y todo para tu hogar.",
   keywords: [
@@ -33,7 +37,8 @@ export const metadata: Metadata = {
     canonical: "https://mueblesmaldonadoec.com",
   },
   openGraph: {
-    title: "Muebles Maldonado | ¡Muebles a medida y modernos con los mejores precios!",
+    title:
+      "Muebles Maldonado | ¡Muebles a medida y modernos con los mejores precios!",
     description:
       "Muebles Maldonado: Fabricación de muebles a medida, modernos y con los mejores precios. Especialistas en dormitorios, muebles de tv, muebles de cocina, oficina y todo para tu hogar.",
     url: "https://mueblesmaldonadoec.com",
@@ -48,6 +53,10 @@ export const metadata: Metadata = {
     ],
     locale: "es_EC",
     type: "website",
+  },
+  other: {
+    preconnect: "https://res.cloudinary.com",
+    "dns-prefetch": "https://res.cloudinary.com",
   },
 };
 
