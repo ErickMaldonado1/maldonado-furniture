@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { HeartFilled } from "@/utils/icons/actions";
 import { Heart } from "@/utils/icons/navigation";
@@ -24,6 +25,17 @@ export function ProductGallery({
 }: ProductGalleryProps) {
   const [isZoomed, setIsZoomed] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (isZoomed) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isZoomed]);
 
   const currentImageUrl =
     product.images?.[selectedImage]?.url || product.images?.[0]?.url || "";
@@ -117,128 +129,135 @@ export function ProductGallery({
         </div>
       </div>
 
-      <AnimatePresence>
-        {isZoomed && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-10"
-            onClick={() => setIsZoomed(false)}
-          >
-            <button
-              className="absolute top-4 right-4 text-white p-4 hover:opacity-70 z-50"
-              onClick={() => setIsZoomed(false)}
-            >
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+      {typeof window !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {isZoomed && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex items-center justify-center"
+                onClick={() => setIsZoomed(false)}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-            </button>
-
-            <div
-              className="relative w-full max-w-5xl h-full flex items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative w-full h-full max-h-[85vh]">
-                <Image
-                  src={currentImageUrl}
-                  alt={product.name}
-                  fill
-                  className="object-contain"
-                  priority
-                  quality={100}
-                />
-              </div>
-
-              <button
-                className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-sm backdrop-blur transition-all -ml-2 md:-ml-12"
-                onClick={(e) => {
-                  e.stopPropagation();
-
-                  const newIndex =
-                    selectedImage === 0
-                      ? (product.images?.length || 1) - 1
-                      : selectedImage - 1;
-                  onImageSelect(newIndex);
-                }}
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 19l-7-7 7-7"
-                  ></path>
-                </svg>
-              </button>
-              <button
-                className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-sm backdrop-blur transition-all -mr-2 md:-mr-12"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  const newIndex =
-                    selectedImage === (product.images?.length || 1) - 1
-                      ? 0
-                      : selectedImage + 1;
-                  onImageSelect(newIndex);
-                }}
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5l7 7-7 7"
-                  ></path>
-                </svg>
-              </button>
-            </div>
-
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-full p-2">
-              {product.images?.map((img, i) => (
                 <button
-                  key={i}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onImageSelect(i);
-                  }}
-                  className={`relative w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${
-                    selectedImage === i
-                      ? "border-white scale-110"
-                      : "border-transparent opacity-50 hover:opacity-100"
-                  }`}
+                  className="absolute top-4 right-4 text-white p-4 hover:opacity-70 z-[10000] bg-white/10 rounded-full backdrop-blur-sm transition-all hover:bg-white/20"
+                  onClick={() => setIsZoomed(false)}
+                  aria-label="Cerrar vista ampliada"
                 >
-                  <Image
-                    src={img.url}
-                    alt="thumb"
-                    fill
-                    className="object-cover"
-                  />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
                 </button>
-              ))}
-            </div>
-          </motion.div>
+
+                <div
+                  className="relative w-full max-w-6xl h-full flex items-center justify-center px-4 md:px-20"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="relative w-full h-full max-h-[85vh]">
+                    <Image
+                      src={currentImageUrl}
+                      alt={product.name}
+                      fill
+                      className="object-contain"
+                      priority
+                      quality={100}
+                    />
+                  </div>
+
+                  <button
+                    className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-4 rounded-full backdrop-blur-sm transition-all hover:scale-110 shadow-xl"
+                    onClick={(e) => {
+                      e.stopPropagation();
+
+                      const newIndex =
+                        selectedImage === 0
+                          ? (product.images?.length || 1) - 1
+                          : selectedImage - 1;
+                      onImageSelect(newIndex);
+                    }}
+                    aria-label="Imagen anterior"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M15 19l-7-7 7-7"
+                      ></path>
+                    </svg>
+                  </button>
+                  <button
+                    className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-4 rounded-full backdrop-blur-sm transition-all hover:scale-110 shadow-xl"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const newIndex =
+                        selectedImage === (product.images?.length || 1) - 1
+                          ? 0
+                          : selectedImage + 1;
+                      onImageSelect(newIndex);
+                    }}
+                    aria-label="Imagen siguiente"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 5l7 7-7 7"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-full p-2 custom-scrollbar">
+                  {product.images?.map((img, i) => (
+                    <button
+                      key={i}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onImageSelect(i);
+                      }}
+                      className={`relative w-14 h-14 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
+                        selectedImage === i
+                          ? "border-white scale-110 shadow-lg"
+                          : "border-transparent opacity-50 hover:opacity-100 hover:border-white/50"
+                      }`}
+                    >
+                      <Image
+                        src={img.url}
+                        alt={`Vista miniatura ${i + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body,
         )}
-      </AnimatePresence>
     </>
   );
 }
