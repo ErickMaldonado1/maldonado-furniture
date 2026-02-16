@@ -13,7 +13,7 @@ export async function sendEmail(data: unknown) {
   const { name, email, phone, message } = result.data;
 
   try {
-    const { data: resendData, error } = await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: "Muebles Maldonado <onboarding@resend.dev>",
       to: ["mueblesmaldonadoec@gmail.com"],
       subject: `Nueva Consulta: ${name}`,

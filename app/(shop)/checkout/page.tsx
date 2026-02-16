@@ -8,7 +8,7 @@ import * as z from "zod";
 import { useSession } from "next-auth/react";
 import { WhatsAppModal } from "@/components/ui/WhatsApp/WhatsAppModal";
 import { CreditCard, Truck } from "@/utils/icons/shop";
-import { ShieldCheck} from "@/utils/icons/actions";
+import { ShieldCheck } from "@/utils/icons/actions";
 import { Users } from "@/utils/icons/ui";
 import { useRouter } from "next/navigation";
 

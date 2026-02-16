@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { CloudArrowUp } from "@/utils/icons/social";
-import { XMark} from "@/utils/icons/actions";
+import { XMark } from "@/utils/icons/actions";
 import Image from "next/image";
 
 interface ImageItem {

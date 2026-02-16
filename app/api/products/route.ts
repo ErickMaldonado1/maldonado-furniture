@@ -10,8 +10,8 @@ export async function GET(req: NextRequest) {
     };
 
     const filters = {
-      category: searchParams.get("category"),
-      subcategory: searchParams.get("subcategory"),
+      category: searchParams.get("category") || undefined,
+      subcategory: searchParams.get("subcategory") || undefined,
       colors: getArrayParam("colors"),
       styles: getArrayParam("styles"),
       materials: getArrayParam("materials"),
@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
       maxPrice: searchParams.get("maxPrice")
         ? parseFloat(searchParams.get("maxPrice")!)
         : undefined,
-      search: searchParams.get("search"),
+      search: searchParams.get("search") || undefined,
     };
 
     const products = await ProductService.getAll(filters);

@@ -1,9 +1,17 @@
 import prisma from "@/lib/prisma";
 import { uploadImage } from "@/lib/cloudinary";
 import { slugify } from "@/utils/slug_url";
+import type {
+  ProductFilters,
+  ProductCreateInput,
+  ProductUpdateInput,
+  VariantInput,
+  VariantUpdateInput,
+  ImageInput,
+} from "@/types/product-service";
 
 export const ProductService = {
-  async getAll(filters: any) {
+  async getAll(filters: ProductFilters) {
     return await prisma.product.findMany({
       where: {
         isActive: true,
@@ -16,11 +24,15 @@ export const ProductService = {
         isFlashDeal:
           filters.isFeatured !== undefined ? filters.isFeatured : undefined,
         colors:
-          filters.colors?.length > 0 ? { hasSome: filters.colors } : undefined,
+          filters.colors && filters.colors.length > 0
+            ? { hasSome: filters.colors }
+            : undefined,
         styles:
-          filters.styles?.length > 0 ? { hasSome: filters.styles } : undefined,
+          filters.styles && filters.styles.length > 0
+            ? { hasSome: filters.styles }
+            : undefined,
         materials:
-          filters.materials?.length > 0
+          filters.materials && filters.materials.length > 0
             ? { hasSome: filters.materials }
             : undefined,
 
@@ -60,7 +72,7 @@ export const ProductService = {
     const slugNormalized = slug.trim().toLowerCase();
     const slugWithSpaces = slugNormalized.replace(/-/g, " ");
 
-    let product = await prisma.product.findFirst({
+    const product = await prisma.product.findFirst({
       where: {
         isActive: true,
         OR: [
@@ -93,7 +105,7 @@ export const ProductService = {
     return null;
   },
 
-  async create(data: any) {
+  async create(data: ProductCreateInput) {
     return await prisma.product.create({
       data: {
         name: data.name,
@@ -113,7 +125,7 @@ export const ProductService = {
 
         variants: data.variants
           ? {
-              create: data.variants.map((v: any) => ({
+              create: data.variants.map((v: VariantInput) => ({
                 name: v.name,
                 sku: v.sku,
                 thickness: v.thickness,
@@ -126,7 +138,7 @@ export const ProductService = {
 
         images: data.images
           ? {
-              create: data.images.map((img: any) => ({
+              create: data.images.map((img: ImageInput) => ({
                 url: img.url,
                 publicId: img.publicId,
                 color: img.color || null,
@@ -149,7 +161,7 @@ export const ProductService = {
     });
   },
 
-  async updateProduct(id: string, data: any) {
+  async updateProduct(id: string, data: ProductUpdateInput) {
     return await prisma.product.update({
       where: { id },
       data: {
@@ -177,7 +189,7 @@ export const ProductService = {
     });
   },
 
-  async updateVariant(variantId: string, data: any) {
+  async updateVariant(variantId: string, data: VariantUpdateInput) {
     return await prisma.productVariant.update({
       where: { id: variantId },
       data: {

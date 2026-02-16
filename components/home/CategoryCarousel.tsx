@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { useCartStore } from "@/store/cart-store";
 import { Product } from "@prisma/client";
-import ProductCard from "@/components/shop/ProductCard";
+import ProductCard from "@/components/shop/product/ProductCard";
 import Link from "next/link";
 import { SliderButton } from "../ui/SliderButton";
 import { ArrowRight } from "@/utils/icons/navigation";

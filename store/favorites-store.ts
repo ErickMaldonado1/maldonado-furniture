@@ -6,6 +6,8 @@ export interface FavoriteItem {
   name: string;
   image: string;
   price: number;
+  category?: string;
+  subcategory?: string;
 }
 
 interface FavoritesState {

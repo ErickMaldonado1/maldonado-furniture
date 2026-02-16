@@ -44,7 +44,7 @@ export default function ProductCard({
 
   const imageUrl = getOptimizedImage(
     product.images?.[0]?.url ||
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp",
     700,
   );
 
@@ -52,7 +52,11 @@ export default function ProductCard({
     ? getOptimizedImage(product.images[1].url, 700)
     : null;
 
-  const productPath = `/${slugify(product.category)}/${slugify(product.subcategory)}/${slugify(product.name)}`;
+  const productPath =
+    `/${slugify(product.category || "")}/${slugify(product.subcategory || "")}/${slugify(product.name)}`.replace(
+      /\/+/g,
+      "/",
+    );
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -82,6 +86,8 @@ export default function ProductCard({
         : "Estándar",
       materials: product.materials?.join(", ") || "Melamina",
       material: product.materials?.[0] || "Melamina",
+      category: product.category,
+      subcategory: product.subcategory,
     });
 
     toast.success("¡Añadido al carrito!", {
@@ -99,6 +105,8 @@ export default function ProductCard({
       name: product.name,
       image: imageUrl,
       price: finalPrice,
+      category: product.category,
+      subcategory: product.subcategory,
     });
 
     if (!isFav) {
@@ -126,7 +134,10 @@ export default function ProductCard({
         <div
           onClick={() =>
             router.push(
-              `/${slugify(product.category)}/${slugify(product.subcategory)}/${slugify(product.name)}`,
+              `/${slugify(product.category || "")}/${slugify(product.subcategory || "")}/${slugify(product.name)}`.replace(
+                /\/+/g,
+                "/",
+              ),
             )
           }
           className="relative aspect-square w-full overflow-hidden group/img cursor-pointer"
@@ -173,7 +184,10 @@ export default function ProductCard({
           </button>
           <div className="hidden md:flex absolute inset-0 items-end justify-end p-2 opacity-0 group-hover/img:opacity-100 transition-all duration-300 bg-black/5 z-20">
             <Link
-              href={`/${slugify(product.category)}/${slugify(product.subcategory)}/${slugify(product.name)}`}
+              href={`/${slugify(product.category || "")}/${slugify(product.subcategory || "")}/${slugify(product.name)}`.replace(
+                /\/+/g,
+                "/",
+              )}
               aria-label={`Ver detalles de ${product.name}`}
               className="bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl transform translate-y-1 group-hover/img:translate-y-0 transition-all duration-300 hover:bg-[#4A3728] hover:text-white dark:hover:bg-[#4A3728] dark:hover:text-white"
             >
@@ -192,7 +206,10 @@ export default function ProductCard({
       <div className="p-2 md:p-2 flex flex-col grow bg-white dark:bg-[#0A0A0A]">
         <div className="grow">
           <Link
-            href={`/${slugify(product.category)}/${slugify(product.subcategory)}/${slugify(product.name)}`}
+            href={`/${slugify(product.category || "")}/${slugify(product.subcategory || "")}/${slugify(product.name)}`.replace(
+              /\/+/g,
+              "/",
+            )}
           >
             <h3 className="text-[13px] md:text-[14px] font-black uppercase tracking-tight text-zinc-900 dark:text-zinc-100 line-clamp-1 leading-tight hover:text-[#4A3728] transition-colors">
               {product.name}

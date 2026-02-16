@@ -1,15 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCartStore } from "@/store/cart-store";
 import { useFavoritesStore } from "@/store/favorites-store";
 import { toast } from "sonner";
 import { Product } from "@prisma/client";
-import ProductCard from "@/components/shop/ProductCard";
-import { RecentlyViewed } from "@/components/shop/RecentlyViewed";
+import { RecentlyViewed } from "@/components/shop/product/RecentlyViewed";
 import { ProductGallery } from "@/components/shop/product-detail/ProductGallery";
 import { ProductInfo } from "@/components/shop/product-detail/ProductInfo";
 import { ProductActions } from "@/components/shop/product-detail/ProductActions";
-import { ProductSpecs } from "@/components/shop/product-detail/ProductSpecs";
+import { RelatedProductsSection } from "@/components/shop/product/RelatedProductSection";
 
 interface ProductWithRelations extends Product {
   images: any[];
@@ -28,11 +27,16 @@ export function ProductDetailClient({
     product.variants?.[0] || null,
   );
   const [quantity, setQuantity] = useState(1);
+  const [mounted, setMounted] = useState(false);
   const { addToCart, isInCart } = useCartStore();
   const { isFavorite, toggleFavorite } = useFavoritesStore();
 
-  const isFav = isFavorite(product.id);
-  const inCart = isInCart(product.id);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isFav = mounted ? isFavorite(product.id) : false;
+  const inCart = mounted ? isInCart(product.id) : false;
   const finalPrice =
     product.price - (product.price * (product.discount || 0)) / 100;
 
@@ -57,6 +61,8 @@ export function ProductDetailClient({
         : "Estándar",
       materials: product.materials?.join(", ") || "Melamina",
       material: product.materials?.[0] || "Melamina",
+      category: product.category ?? undefined,
+      subcategory: product.subcategory ?? undefined,
     });
     toast.success("Producto añadido al carrito");
   };
@@ -67,13 +73,15 @@ export function ProductDetailClient({
       name: product.name,
       image: product.images?.[0]?.url || "",
       price: finalPrice,
+      category: product.category ?? undefined,
+      subcategory: product.subcategory ?? undefined,
     });
   };
 
   return (
     <div className="space-y-24 animate-fade-in-up pb-20">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 pt-6">
-        <div className="lg:col-span-7">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 pt-6 items-start">
+        <div className="lg:col-span-7 lg:sticky lg:top-40 h-fit">
           <ProductGallery
             product={product}
             selectedImage={selectedImageIndex}
@@ -82,8 +90,7 @@ export function ProductDetailClient({
             onToggleFav={handleToggleFav}
           />
         </div>
-
-        <div className="lg:col-span-5 pt-2">
+        <div className="lg:col-span-5 space-y-12 pb-12">
           <ProductInfo
             product={product}
             finalPrice={finalPrice}
@@ -100,39 +107,18 @@ export function ProductDetailClient({
             price={product.price}
             finalPrice={finalPrice}
             discount={product.discount}
-            sku={""}
-            color={""}
+            sku={selectedVariant?.sku || product.sku || ""}
+            color={selectedVariant?.color || ""}
+            description={product.description || ""}
+            dimensions={selectedVariant?.dimensions}
+            materials={product.materials as string[]}
+            careInstructions={(product as any).careInstructions}
           />
         </div>
       </div>
 
-      <div className="pt-16 mb:pb-24">
-        <ProductSpecs
-          description={product.description || ""}
-          materials={product.materials as string[]}
-          dimensions={selectedVariant?.dimensions}
-          careInstructions={(product as any).careInstructions}
-        />
-      </div>
+      <RelatedProductsSection relatedProducts={relatedProducts} />
 
-      {relatedProducts && relatedProducts.length > 0 && (
-        <section className="pt-24 border-t border-zinc-100 dark:border-zinc-900">
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
-              Los Clientes también{" "}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
-                vieron
-              </span>
-            </h2>
-            <div className="h-px flex-1 bg-zinc-100 dark:bg-zinc-900 mx-8 hidden md:block" />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {relatedProducts.slice(0, 4).map((p, idx) => (
-              <ProductCard key={p.id} product={p as any} index={idx} />
-            ))}
-          </div>
-        </section>
-      )}
       <RecentlyViewed currentProduct={product as unknown as Product} />
     </div>
   );

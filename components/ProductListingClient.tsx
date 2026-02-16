@@ -7,15 +7,11 @@ import {
   AdjustmentsHorizontal,
   XMark,
 } from "@/utils/icons/actions";
-import {
-  MagnifyingGlass,
-  Squares2X2,
-} from "@/utils/icons/social";
+import { MagnifyingGlass, Squares2X2 } from "@/utils/icons/social";
 
-
-import { FilterGroup } from "@/components/shop/filter-group/FilterGroup";
+import { FilterGroup } from "@/components/shop/filters/group/FilterGroup";
 import { useProductFilters } from "@/hooks/useProductFilters";
-import ProductCard from "@/components/shop/ProductCard";
+import ProductCard from "@/components/shop/product/ProductCard";
 
 export default function ProductListingClient({
   initialProducts = [],

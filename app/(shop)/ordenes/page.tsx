@@ -1,6 +1,5 @@
 import { ArrowLeft, Package, MapPin, Clock } from "lucide-react";
 import Link from "next/link";
-import { OrderStatus } from "@prisma/client";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/features/auth/auth.options";
@@ -85,7 +84,6 @@ export default async function OrdersPage() {
                 key={order.id}
                 className="group bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
               >
-                {/* Header del pedido */}
                 <div className="px-8 py-6 bg-zinc-50/50 dark:bg-white/2 flex flex-wrap items-center justify-between gap-6 border-b border-zinc-50 dark:border-zinc-800">
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-[#4A3728]/10 flex items-center justify-center text-[#4A3728]">
@@ -124,9 +122,7 @@ export default async function OrdersPage() {
                   </div>
                 </div>
 
-                {/* Contenido */}
                 <div className="p-8 grid grid-cols-1 md:grid-cols-12 gap-8">
-                  {/* Productos */}
                   <div className="md:col-span-7 space-y-4">
                     {order.items.map((item) => (
                       <div

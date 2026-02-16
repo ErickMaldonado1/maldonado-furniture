@@ -1,17 +1,17 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { toast } from "sonner";
 
-const INACTIVITY_TIMEOUT = 20 * 60 * 1000; 
-const WARNING_TIME = 2 * 60 * 1000; 
+const INACTIVITY_TIMEOUT = 20 * 60 * 1000;
+const WARNING_TIME = 2 * 60 * 1000;
 
 export function useSessionTimeout() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const warningShownRef = useRef(false);
 
-  const resetTimer = () => {
+  const resetTimer = useCallback(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
@@ -37,7 +37,7 @@ export function useSessionTimeout() {
         }
       }, INACTIVITY_TIMEOUT);
     }
-  };
+  }, [status]);
 
   useEffect(() => {
     if (status !== "authenticated") return;
@@ -54,7 +54,7 @@ export function useSessionTimeout() {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [status]);
+  }, [status, resetTimer]);
 
   return null;
 }

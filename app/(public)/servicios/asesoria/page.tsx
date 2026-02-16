@@ -2,13 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  LightBulb,
-  PencilSquare,
-  Cube,
-  Sparkles,
-} from "@/utils/icons/actions";
-import { ContactForm } from "@/components/shop/ContactForm";
+import { LightBulb, PencilSquare, Cube, Sparkles } from "@/utils/icons/actions";
+import { ContactForm } from "@/components/shop/contact/ContactForm";
 
 interface ProcessStepProps {
   icon: React.ElementType;

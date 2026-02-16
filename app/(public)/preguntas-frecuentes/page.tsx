@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Minus} from "@/utils/icons/shop";
+import { Minus } from "@/utils/icons/shop";
 import { QuestionMarkCircle } from "@/utils/icons/ui";
 import { Plus } from "@/utils/icons/actions";
 

@@ -8,6 +8,7 @@ import { CartItem } from "@/store/cart-store";
 import Drawer from "@/components/ui/Drawer";
 import { Cart, Minus } from "@/utils/icons/shop";
 import { Plus, Trash } from "@/utils/icons/actions";
+import { slugify } from "@/utils/slug_url";
 interface CartDrawerProps {
   isOpen: boolean;
   onClose: () => void;
@@ -53,18 +54,24 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                 key={`${item.id}-${item.variantId || "base"}`}
                 className="flex gap-4 group"
               >
-                <div className="w-24 h-24 relative shrink-0 rounded-full overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+                <div className="w-24 h-24 relative shrink-0 rounded overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
                   <Image
                     src={item.image || "/icons/placeholder.png"}
                     alt={item.name}
                     fill
-                    className="object-contain p-2"
+                    className="object-contain"
                   />
                 </div>
                 <div className="flex-1 flex flex-col justify-between py-1">
                   <div>
                     <div className="flex justify-between items-start">
-                      <Link href={`/productos/${item.id}`} onClick={onClose}>
+                      <Link
+                        href={`/${slugify(item.category || "")}/${slugify(item.subcategory || "")}/${slugify(item.name)}`.replace(
+                          /\/+/g,
+                          "/",
+                        )}
+                        onClick={onClose}
+                      >
                         <h3 className="text-base font-bold text-zinc-900 dark:text-white leading-tight hover:underline">
                           {item.name}
                         </h3>

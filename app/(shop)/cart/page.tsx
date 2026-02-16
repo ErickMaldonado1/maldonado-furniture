@@ -2,14 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useCartStore } from "@/store/cart-store";
-import {
-  Minus,
-  ShoppingBag,
-} from "@/utils/icons/shop";
-import {
-  Trash,
-  Plus,
-} from "@/utils/icons/actions";
+import { Minus, ShoppingBag } from "@/utils/icons/shop";
+import { Trash, Plus } from "@/utils/icons/actions";
 import { ArrowRight } from "@/utils/icons/navigation";
 
 export default function CartPage() {
@@ -150,7 +144,6 @@ export default function CartPage() {
             ))}
           </div>
 
-          {/* Resumen de Compra */}
           <div className="lg:col-span-5">
             <div className="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-zinc-100 dark:border-zinc-800 shadow-xl sticky top-28 space-y-8">
               <div className="flex items-center gap-4">

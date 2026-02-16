@@ -13,7 +13,7 @@ import {
 import { BiBed } from "react-icons/bi";
 import { MdOutlineKitchen } from "react-icons/md";
 import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa";
-import SearchBar from "@/components/shop/SearchBar";
+import SearchBar from "@/components/shop/filters/SearchBar";
 
 interface MobileMenuProps {
   isOpen: boolean;

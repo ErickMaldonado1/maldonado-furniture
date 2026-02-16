@@ -6,36 +6,36 @@ import { Product } from "@prisma/client";
 const MAX_RECENT_ITEMS = 8;
 const STORAGE_KEY = "recently_viewed_products";
 
+function getStoredProducts(): Product[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch (error) {
+    console.error("Error reading recently viewed from storage", error);
+    return [];
+  }
+}
+
 export function useRecentlyViewed(currentProduct?: Product) {
-  const [recentProducts, setRecentProducts] = useState<Product[]>([]);
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        setRecentProducts(JSON.parse(stored));
-      }
-    } catch (error) {
-      console.error("Error reading recently viewed from storage", error);
-    }
-  }, []);
+  const [recentProducts, setRecentProducts] =
+    useState<Product[]>(getStoredProducts);
+
   useEffect(() => {
     if (!currentProduct) return;
 
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      let items: Product[] = stored ? JSON.parse(stored) : [];
+    setRecentProducts((prevItems) => {
+      const filtered = prevItems.filter((p) => p.id !== currentProduct.id);
+      const updated = [currentProduct, ...filtered].slice(0, MAX_RECENT_ITEMS);
 
-      items = items.filter((p) => p.id !== currentProduct.id);
-      items.unshift(currentProduct);
-      if (items.length > MAX_RECENT_ITEMS) {
-        items = items.slice(0, MAX_RECENT_ITEMS);
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      } catch (error) {
+        console.error("Error updating recently viewed", error);
       }
 
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-      setRecentProducts(items);
-    } catch (error) {
-      console.error("Error updating recently viewed", error);
-    }
+      return updated;
+    });
   }, [currentProduct]);
 
   const history = currentProduct

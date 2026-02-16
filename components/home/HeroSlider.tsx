@@ -3,7 +3,11 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { slides } from "@/utils/SlidesHero";
-import { ArrowRight, ChevronLeft, ChevronRight } from "@/utils/icons/navigation";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+} from "@/utils/icons/navigation";
 
 const getOptimizedHeroImage = (url: string) => {
   if (!url || !url.includes("cloudinary.com")) return url;

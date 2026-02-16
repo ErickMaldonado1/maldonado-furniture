@@ -5,7 +5,7 @@ import { categories } from "@/utils/categories";
 import Link from "next/link";
 import Image from "next/image";
 import { Viewfinder } from "@/utils/icons/actions";
-import ProductCard from "@/components/shop/ProductCard";
+import ProductCard from "@/components/shop/product/ProductCard";
 
 interface CategoryLayoutProps {
   categorySlug: string;

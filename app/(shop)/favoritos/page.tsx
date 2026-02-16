@@ -1,7 +1,7 @@
 "use client";
 
 import { useFavoritesStore } from "@/store/favorites-store";
-import ProductCard from "@/components/shop/ProductCard";
+import ProductCard from "@/components/shop/product/ProductCard";
 import { Heart } from "@/utils/icons/navigation";
 import Link from "next/link";
 

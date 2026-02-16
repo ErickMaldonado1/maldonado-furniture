@@ -1,5 +1,4 @@
 import {
-  Product,
   ProductVariant,
   ProductImage,
   VariantDimensions,

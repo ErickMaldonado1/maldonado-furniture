@@ -14,6 +14,8 @@ export interface CartItem {
   image?: string;
   variantId?: string;
   maxQuantity?: number;
+  category?: string;
+  subcategory?: string;
 }
 
 interface CartState {

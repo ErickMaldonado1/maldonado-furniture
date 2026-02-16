@@ -1,8 +1,11 @@
 "use client";
 import { Whatsapp } from "@/utils/icons/social";
-import { Minus} from "@/utils/icons/shop";
+import { Minus, Truck } from "@/utils/icons/shop";
 import { Plus } from "@/utils/icons/actions";
 import { ShoppingBag } from "@/utils/icons/shop";
+import { ShieldCheck } from "@/utils/icons/ui";
+import { ProductAccordion } from "./ProductAccordion";
+
 interface ProductActionsProps {
   productName: string;
   sku: string;
@@ -15,6 +18,14 @@ interface ProductActionsProps {
   discount?: number | null;
   stock?: number;
   isInCart?: boolean;
+  description: string;
+  dimensions?: {
+    height: number;
+    width: number;
+    depth: number;
+  };
+  materials?: string[];
+  careInstructions?: string;
 }
 
 export function ProductActions({
@@ -29,6 +40,10 @@ export function ProductActions({
   discount,
   stock = 100,
   isInCart = false,
+  description,
+  dimensions,
+  materials,
+  careInstructions,
 }: ProductActionsProps) {
   const handleWhatsApp = () => {
     const message = `👋 ¡Hola! Me interesa este producto:
@@ -38,7 +53,7 @@ export function ProductActions({
 🎨 *Color:* ${color}
 🔢 *Cantidad:* ${quantity}
 💰 *Precio:* $${finalPrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-
+    
 📍 ¿Tienen disponibilidad inmediata?`;
 
     const encodedMessage = encodeURIComponent(message);
@@ -46,11 +61,14 @@ export function ProductActions({
   };
 
   return (
-    <div className="flex flex-col gap-8 mt-2 border-zinc-100 dark:border-zinc-800 pt-4 pb-24">
-      <div className="flex items-center justify-between gap-6">
-        <div className="flex flex-col">
-          <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black tracking-tight text-zinc-900 dark:text-white italic">
+    <div className="flex flex-col gap-6">
+      <div className="flex items-end justify-between gap-6">
+        <div className="flex flex-col gap-1">
+          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#4A3728]">
+            Precio final
+          </span>
+          <div className="flex items-baseline gap-3">
+            <span className="text-3xl font-black tracking-tighter text-zinc-900 dark:text-white italic">
               $
               {finalPrice.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
@@ -58,7 +76,7 @@ export function ProductActions({
               })}
             </span>
             {discount && discount > 0 && (
-              <span className="text-md text-zinc-600 line-through decoration-[#4A3728]/40 font-bold">
+              <span className="text-base text-zinc-400 line-through decoration-[#4A3728]/40 font-bold">
                 $
                 {price.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
@@ -67,27 +85,29 @@ export function ProductActions({
               </span>
             )}
           </div>
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">
-            Precio Final
-          </span>
         </div>
 
-        <div className="flex items-center border border-zinc-200 dark:border-zinc-800 rounded-full h-12 w-32 justify-between px-1 bg-white dark:bg-zinc-900/50 transition-all hover:border-zinc-300">
+        <div className="flex items-center h-14 w-36 justify-between px-2 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-900 transition-all duration-300 hover:border-[#4A3728]/40 focus-within:border-[#4A3728]">
           <button
             onClick={() => setQuantity(Math.max(1, quantity - 1))}
-            className="w-8 h-8 flex items-center justify-center text-zinc-400 hover:text-black dark:hover:text-white"
             disabled={quantity <= 1}
+            className="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-[#4A3728] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
           >
-            <Minus className="w-6 h-6" />
+            <Minus className="w-5 h-5" />
           </button>
-          <span className="font-black text-sm tabular-nums text-zinc-900 dark:text-white">
+
+          <span className="font-extrabold text-base tabular-nums text-zinc-900 dark:text-white">
             {quantity}
           </span>
+
           <button
-            onClick={() => setQuantity(Math.min(quantity + 1, stock))}
-            className="w-8 h-8 flex items-center justify-center text-zinc-400 hover:text-black dark:hover:text-white"
+            onClick={() =>
+              setQuantity(Math.min(quantity + 1, Math.min(stock, 3)))
+            }
+            disabled={quantity >= Math.min(stock, 3)}
+            className="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-[#4A3728] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
           >
-            <Plus className="w-6 h-6" />
+            <Plus className="w-5 h-5" />
           </button>
         </div>
       </div>
@@ -96,24 +116,53 @@ export function ProductActions({
         <button
           onClick={isInCart ? undefined : onAddToCart}
           disabled={isInCart}
-          className={`flex-1 h-14 rounded-full flex items-center justify-center gap-3 text-[12px] font-black uppercase tracking-[0.2em] transition-all active:scale-[0.98] ${
+          className={`flex-1 h-16 rounded-2xl flex items-center justify-center gap-3 text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 active:scale-[0.97] ${
             isInCart
-              ? "bg-zinc-100 text-zinc-400"
-              : "bg-black dark:bg-white text-white dark:text-black hover:bg-[#4A3728] dark:hover:bg-[#4A3728] dark:hover:text-white shadow-xl"
+              ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-400 cursor-not-allowed"
+              : "bg-black text-white hover:bg-[#4A3728]"
           }`}
         >
-          <span>{isInCart ? "En el carrito" : "Añadir al Carrito"}</span>
+          <span>{isInCart ? "En el carrito" : "Añadir al carrito"}</span>
           <ShoppingBag className="w-5 h-5" />
         </button>
 
         <button
           onClick={handleWhatsApp}
-          aria-label="pedir-por-whastapp"
-          className="w-14 h-14 rounded-full flex items-center justify-center border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition-all duration-300 active:scale-90 shadow-lg shadow-green-500/10"
+          className="w-16 h-16 rounded-2xl flex items-center justify-center border-2 border-green-500/30 text-green-600 hover:bg-green-600 hover:text-white transition-all duration-300 active:scale-95 group shadow-lg shadow-green-100/50 dark:shadow-none"
         >
-          <Whatsapp className="w-6 h-6" />
+          <Whatsapp className="w-7 h-7" />
         </button>
       </div>
+      <div className="mt-4 grid grid-cols-1 gap-4">
+        {[
+          {
+            label: "Envío gratis a domicilio",
+            icon: <Truck className="w-4 h-4" />,
+          },
+          {
+            label: "Entrega protegida y garantizada",
+            icon: <ShieldCheck className="w-4 h-4" />,
+          },
+        ].map((item, i) => (
+          <div
+            key={i}
+            className="flex items-center gap-3 text-zinc-500 dark:text-zinc-400 cursor-default"
+          >
+            <div className="w-8 h-8 rounded-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 flex items-center justify-center text-[#4A3728]">
+              {item.icon}
+            </div>
+            <span className="text-[11px] font-bold uppercase tracking-wider">
+              {item.label}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <ProductAccordion
+        dimensions={dimensions}
+        materials={materials}
+        careInstructions={careInstructions}
+      />
     </div>
   );
 }

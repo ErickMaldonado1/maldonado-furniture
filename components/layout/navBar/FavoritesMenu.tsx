@@ -8,6 +8,7 @@ import { Trash } from "@/utils/icons/actions";
 import { useFavoritesStore } from "@/store/favorites-store";
 import Drawer from "@/components/ui/Drawer";
 import { useCartStore } from "@/store/cart-store";
+import { slugify } from "@/utils/slug_url";
 
 interface FavoritesMenuProps {
   isOpen: boolean;
@@ -28,6 +29,8 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
       variantId: "base",
       variantName: "Base",
       maxStock: 99,
+      category: item.category,
+      subcategory: item.subcategory,
     } as any);
   };
 
@@ -76,7 +79,13 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
                 </div>
                 <div className="flex-1 flex flex-col justify-between py-1">
                   <div>
-                    <Link href={`/productos/${item.id}`} onClick={onClose}>
+                    <Link
+                      href={`/${slugify(item.category || "")}/${slugify(item.subcategory || "")}/${slugify(item.name)}`.replace(
+                        /\/+/g,
+                        "/",
+                      )}
+                      onClick={onClose}
+                    >
                       <h3 className="text-base font-bold text-zinc-900 dark:text-white leading-tight hover:underline">
                         {item.name}
                       </h3>

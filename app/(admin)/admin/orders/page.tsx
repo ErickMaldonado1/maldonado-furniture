@@ -54,9 +54,8 @@ export default async function OrdersPage() {
           {orders.map((order) => (
             <div
               key={order.id}
-              className="bg-white dark:bg-zinc-900 rounded-[2rem] border border-zinc-200 dark:border-white/5 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
+              className="bg-white dark:bg-zinc-900 rounded-4xl border border-zinc-200 dark:border-white/5 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
             >
-              {/* Header de la Orden */}
               <div className="bg-zinc-50 dark:bg-white/2 px-8 py-6 flex flex-wrap items-center justify-between gap-6 border-b border-zinc-200 dark:border-white/5">
                 <div className="space-y-1">
                   <div className="flex items-center gap-3">
@@ -91,10 +90,7 @@ export default async function OrdersPage() {
                   <DeleteOrderBtn orderId={order.id} />
                 </div>
               </div>
-
-              {/* Contenido de la Orden */}
               <div className="grid grid-cols-1 lg:grid-cols-12">
-                {/* Info del Cliente */}
                 <div className="lg:col-span-4 p-8 border-b lg:border-b-0 lg:border-r border-zinc-100 dark:border-white/5 space-y-6">
                   <div className="space-y-4">
                     <h3 className="text-xs font-black uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2">
@@ -113,7 +109,6 @@ export default async function OrdersPage() {
                     </div>
                   </div>
 
-                  {/* Contacto */}
                   <div className="space-y-4">
                     <h3 className="text-xs font-black uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2">
                       <Phone size={14} className="text-[#4A3728]" />
@@ -124,7 +119,6 @@ export default async function OrdersPage() {
                     </p>
                   </div>
 
-                  {/* Dirección */}
                   <div className="space-y-4">
                     <h3 className="text-xs font-black uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2">
                       <MapPin size={14} className="text-[#4A3728]" />
@@ -154,8 +148,7 @@ export default async function OrdersPage() {
                   )}
                 </div>
 
-                {/* Items del Pedido */}
-                <div className="lg:col-span-8 p-8 space-y-6 bg-zinc-50/50 dark:bg-white/[0.01]">
+                <div className="lg:col-span-8 p-8 space-y-6 bg-zinc-50/50 dark:bg-white/1">
                   <h3 className="text-xs font-black uppercase tracking-[0.2em] text-zinc-400 flex items-center gap-2">
                     <Package size={14} className="text-[#4A3728]" />
                     Productos ({order.items.length})

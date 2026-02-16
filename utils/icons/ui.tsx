@@ -7,9 +7,6 @@ const common = {
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
 };
-
-
-
 export const QuestionMarkCircle = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 24 24"
@@ -209,5 +206,32 @@ export const PlusCircle = (props: React.SVGProps<SVGSVGElement>) => (
     <circle cx="12" cy="12" r="10" />
     <line x1="12" y1="8" x2="12" y2="16" />
     <line x1="8" y1="12" x2="16" y2="12" />
+  </svg>
+);
+
+export const ChevronDown = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" {...common} {...props}>
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+);
+
+export const ShieldCheck = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" {...common} {...props}>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+    <path d="m9 12 2 2 4-4" />
+  </svg>
+);
+
+export const RotateCcw = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" {...common} {...props}>
+    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+    <path d="M3 3v5h5" />
+  </svg>
+);
+
+export const Tag = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" {...common} {...props}>
+    <path d="M12 2H2v10l9.29 9.29a1 1 0 0 0 1.41 0l7.29-7.29a1 1 0 0 0 0-1.41L12 2z" />
+    <path d="m7 7-.01.01" />
   </svg>
 );

@@ -1,19 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
-import {
-  Whatsapp,
-} from "@/utils/icons/social";
-import {
-  ArrowUpRight,
-} from "@/utils/icons/navigation";
-import {
-  Mail,
-  Phone,
-  Users,
-  MapPin,
-  Clock,
-} from "@/utils/icons/ui";
-import { ContactForm } from "@/components/shop/ContactForm";
+import { Whatsapp } from "@/utils/icons/social";
+import { ArrowUpRight } from "@/utils/icons/navigation";
+import { Mail, Phone, Users, MapPin, Clock } from "@/utils/icons/ui";
+import { ContactForm } from "@/components/shop/contact/ContactForm";
 
 export default function ContactoPage() {
   const whatsappNumber = "593959504842";

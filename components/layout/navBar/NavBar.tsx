@@ -13,7 +13,7 @@ import {
 } from "react-icons/hi";
 
 import DesktopNav from "@/components/layout/menu/DesktopNav";
-import SearchBar from "@/components/shop/SearchBar";
+import SearchBar from "@/components/shop/filters/SearchBar";
 import UserDropdown from "./UserDropdown";
 import { categories } from "@/utils/categories";
 import { useCartStore } from "@/store/cart-store";

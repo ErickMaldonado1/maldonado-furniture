@@ -3,7 +3,7 @@ import ProductListingClient from "@/components/ProductListingClient";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SearchX } from "lucide-react";
 import Link from "next/link";
-import ProductCard from "@/components/shop/ProductCard";
+import ProductCard from "@/components/shop/product/ProductCard";
 
 export default async function SearchPage({
   searchParams,

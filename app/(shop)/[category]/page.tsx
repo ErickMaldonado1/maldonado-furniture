@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { categories } from "@/utils/categories";
-import ProductCard from "@/components/shop/ProductCard";
-import { ContactForm } from "@/components/shop/ContactForm";
+import ProductCard from "@/components/shop/product/ProductCard";
+import { ContactForm } from "@/components/shop/contact/ContactForm";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Squares2X2 } from "@/utils/icons/social";
