@@ -82,7 +82,7 @@ export function ProductDetailClient({
   };
 
   return (
-    <div className="space-y-24 animate-fade-in-up pb-20">
+    <div className="space-y-10 animate-fade-in-up pb-20">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 pt-6 items-start">
         <div className="lg:col-span-7 lg:sticky lg:top-40 h-fit">
           <ProductGallery
@@ -93,7 +93,7 @@ export function ProductDetailClient({
             onToggleFav={handleToggleFav}
           />
         </div>
-        <div className="lg:col-span-5 space-y-12 pb-12">
+        <div className="lg:col-span-5 space-y-12">
           <ProductInfo
             product={product}
             finalPrice={finalPrice}

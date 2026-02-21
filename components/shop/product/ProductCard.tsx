@@ -138,7 +138,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
-      className="group bg-[#fffff] dark:bg-[#1C1C1C] flex flex-col h-full border border-[#EDE8E0] dark:border-white/5 rounded-md overflow-hidden   transition-all duration-500"
+      className="group bg-[#fffff] dark:bg-[#1C1C1C] flex flex-col h-full border border-[#EDE8E0] dark:border-white/5 rounded-md overflow-hidden transition-all duration-500 cursor-default"
     >
       <div
         className="relative w-full aspect-square overflow-hidden group/img cursor-pointer"
@@ -193,7 +193,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           </span>
         </div>
 
-        <div className="absolute bottom-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-black/60 backdrop-blur-md shadow-sm z-20">
+        <div className="hidden sm:flex absolute bottom-4 left-4 items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-black/60 backdrop-blur-md shadow-sm z-20">
           <Truck className="w-3.5 h-3.5 text-[#897156] dark:text-[#A68B67]" />
           <span className="text-[11px] text-[#4A4A4A] dark:text-zinc-300 font-bold uppercase tracking-wider">
             {product.deliveryDays || 8} días
@@ -211,7 +211,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         )}
       </div>
 
-      <div className="p-4 flex flex-col flex-1">
+      <div className="p-2 sm:p-3 flex flex-col flex-1 cursor-default">
         <div className="flex-1">
           <Link href={productPath}>
             <h3 className="text-[14px] font-bold text-[#4A4A4A] dark:text-zinc-100 truncate leading-snug hover:text-[#897156] transition-colors mb-1">
@@ -220,18 +220,18 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           </Link>
           {product.variants?.[0]?.dimensions && (
             <div className="flex items-center gap-3 text-[11px] text-[#4A4A4A] dark:text-zinc-300 font-bold mb-2">
-              <div className="flex items-center gap-1.5 p-1 px-2 bg-[#f4f4f4] dark:bg-white/10 rounded-xl">
-                <span className="flex items-center gap-0.5">
+              <div className="flex items-center gap-1 p-1 px-2 bg-[#f4f4f4] dark:bg-white/10 rounded-md">
+                <span className="flex items-center gap-0.4">
                   <span className="text-[11px] opacity-80">⇅</span>
                   {product.variants[0].dimensions.height}cm
                 </span>
-                <span className="w-px h-2.5 bg-[#897156]/30 mx-0.5" />
-                <span className="flex items-center gap-0.5">
+                <span className="w-px h-2.5 bg-[#897156]/30 mx-0.3" />
+                <span className="flex items-center gap-0.4">
                   <span className="text-[11px] opacity-80">⇄</span>
                   {product.variants[0].dimensions.width}cm
                 </span>
-                <span className="w-px h-2.5 bg-[#897156]/30 mx-0.5" />
-                <span className="flex items-center gap-0.5">
+                <span className="w-px h-2.5 bg-[#897156]/30 mx-0.3" />
+                <span className="flex items-center gap-0.4">
                   <span className="text-[11px] opacity-80">⤢</span>
                   {product.variants[0].dimensions.depth}cm
                 </span>
@@ -240,14 +240,14 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           )}
         </div>
 
-        <div className="flex items-center justify-between gap-2 pt-3 border-t border-[#EDE8E0] dark:border-white/5">
-          <div className="flex flex-col">
+        <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#EDE8E0] dark:border-white/5">
+          <div className="flex flex-col items-start cursor-default">
             {hasDiscount && (
               <span className="text-[11px] text-[#4A4A4A]/80 line-through font-medium leading-none mb-0.5">
                 ${product.price.toLocaleString()}
               </span>
             )}
-            <span className="text-xl font-black text-[#5D4037] dark:text-[#A68B67] tracking-tight leading-none">
+            <span className="text-lg font-black text-[#5D4037] dark:text-[#A68B67] tracking-tight leading-none">
               $
               {finalPrice.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
@@ -261,7 +261,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             aria-label={
               cartStatus ? "Producto en el carrito" : "Añadir al carrito"
             }
-            className={`flex items-center justify-center gap-2 h-10 px-4 rounded-xl transition-all duration-300 overflow-hidden shadow-md ${
+            className={`flex items-center justify-center gap-2 h-10 px-2 sm:px-4 rounded-xl transition-all duration-300 overflow-hidden shadow-md ${
               cartStatus
                 ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800"
                 : "bg-[#141414] text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 active:scale-95"
@@ -276,7 +276,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
                   className="flex items-center gap-1.5"
                 >
                   <CheckBadge className="w-4 h-4 text-emerald-500" />
-                  <span className="text-[9px] font-black uppercase tracking-wider">
+                  <span className="text-[10px] font-black uppercase tracking-wider">
                     Listo
                   </span>
                 </motion.div>

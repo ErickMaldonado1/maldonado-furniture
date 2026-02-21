@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { COLOR_MAP, COLOR_TEXTURES } from "@/utils/filter-textures";
 import { ChevronDown, ChevronUp } from "@/utils/icons/navigation";
 
@@ -18,17 +18,29 @@ export const ColorFilter = ({
   const [isExpanded, setIsExpanded] = useState(false);
 
   if (colors.length === 0) return null;
+
   const INITIAL_COUNT = 9;
   const displayedColors = isExpanded ? colors : colors.slice(0, INITIAL_COUNT);
   const hasMore = colors.length > INITIAL_COUNT;
 
+  const textureMap = useMemo(() => {
+    const map: Record<string, string> = {};
+    for (const brand in COLOR_TEXTURES) {
+      Object.entries(COLOR_TEXTURES[brand]).forEach(([key, value]) => {
+        map[key.toLowerCase()] = value;
+      });
+    }
+    return map;
+  }, []);
+
   return (
     <div className="flex flex-col w-full max-w-md mx-auto">
-      <div className="grid grid-cols-4 md:grid-cols-3 gap-y-5 gap-x-2 mt-4 justify-items-center">
+      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-y-5 gap-x-2 mt-3 justify-items-center">
         {displayedColors.map((color) => {
           const lowerColor = color.toLowerCase().trim();
           const isSelected = selectedColors.includes(color);
-          const texture = COLOR_TEXTURES[lowerColor];
+
+          const texture = textureMap[lowerColor] || null;
 
           const hexKey = Object.keys(COLOR_MAP).find(
             (k) => k.toLowerCase() === lowerColor,
@@ -47,7 +59,7 @@ export const ColorFilter = ({
                   flex items-center justify-center overflow-hidden
                   ${
                     isSelected
-                      ? "border-zinc-900 dark:border-white ring-offset-2 ring-1 ring-zinc-400"
+                      ? "border-zinc-900 dark:border-white ring-2 ring-[#4A3728]/50 ring-offset-1"
                       : "border-zinc-200 dark:border-zinc-800 group-hover:border-zinc-400"
                   }
                 `}
@@ -55,6 +67,7 @@ export const ColorFilter = ({
                   backgroundColor: hexColor,
                   backgroundImage: texture ? `url(${texture})` : "none",
                   backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
               >
                 {isSelected && (
@@ -74,7 +87,8 @@ export const ColorFilter = ({
 
               <span
                 className={`
-                  mt-1.5 text-[8px] md:text-[9px] font-medium uppercase tracking-wider text-center
+                  mt-1.5 text-[10px] md:text-[9px] font-medium normal-case sm:uppercase sm:tracking-wider
+                  whitespace-normal text-center
                   ${isSelected ? "text-zinc-900 dark:text-white font-bold" : "text-zinc-400"}
                 `}
               >

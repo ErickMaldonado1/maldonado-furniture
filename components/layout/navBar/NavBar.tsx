@@ -12,13 +12,18 @@ import {
   HiOutlineMoon,
 } from "react-icons/hi";
 import { useTheme } from "next-themes";
-import DesktopNav from "@/components/layout/menu/DesktopNav";
-import SearchBar from "@/components/shop/filters/SearchBar";
 import UserDropdown from "./UserDropdown";
 import { categories } from "@/utils/categories";
 import { useCartStore } from "@/store/cart-store";
 import { useFavoritesStore } from "@/store/favorites-store";
+const DesktopNav = dynamic(
+  () => import("@/components/layout/menu/DesktopNav"),
+  { ssr: false },
+);
 
+const SearchBar = dynamic(() => import("@/components/shop/filters/SearchBar"), {
+  ssr: false,
+});
 const MegaMenu = dynamic(() => import("@/components/layout/menu/MegaMenu"), {
   ssr: false,
 });

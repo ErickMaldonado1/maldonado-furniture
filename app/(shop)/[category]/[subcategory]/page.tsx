@@ -26,7 +26,7 @@ export default async function SubcategoryPage({
 
   return (
     <main className="pt-20 md:pt-32 pb-16 bg-white dark:bg-[#050505] min-h-screen">
-      <div className="max-w-350 mx-auto px-4 sm:px-6">
+      <div className="max-w-350 mx-auto px-4 sm:px-4">
         <header className="mb-8 border-b border-zinc-100 dark:border-zinc-900 pb-4">
           <Breadcrumbs
             steps={[

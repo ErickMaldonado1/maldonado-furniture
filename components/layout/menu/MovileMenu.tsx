@@ -33,7 +33,7 @@ const MobileMenu = ({ isOpen, onClose, isDarkMode }: MobileMenuProps) => {
       <div
         className={`absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white dark:bg-[#0b0b0b] shadow-2xl transition-transform duration-500 ease-out transform ${isOpen ? "translate-x-0" : "translate-x-full"} flex flex-col`}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-100 dark:border-zinc-800/50">
+        <div className="flex items-center justify-between px-4 py-2 border-b border-zinc-100 dark:border-zinc-800/50">
           <div className="relative w-24 aspect-400/113">
             <Image
               src={
@@ -57,13 +57,13 @@ const MobileMenu = ({ isOpen, onClose, isDarkMode }: MobileMenuProps) => {
         </div>
 
         <div className="flex-1 overflow-y-auto overscroll-contain">
-          <div className="px-6 py-6 space-y-8">
+          <div className="px-4 py-4 space-y-6">
             <div className="relative">
               <SearchBar showSolidNavbar={true} onSearchResolved={onClose} />
             </div>
 
             <div>
-              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-4">
+              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3">
                 Categorías
               </p>
               <div className="grid grid-cols-2 gap-2">
@@ -79,7 +79,7 @@ const MobileMenu = ({ isOpen, onClose, isDarkMode }: MobileMenuProps) => {
                       key={cat.name}
                       href={`/${cat.name.toLowerCase()}`}
                       onClick={onClose}
-                      className="flex flex-row gap-2 p-4 bg-zinc-50 dark:bg-zinc-900/40 rounded-full border border-zinc-100 dark:border-zinc-800/50 active:scale-95 transition-all"
+                      className="flex flex-row gap-2 p-3 bg-zinc-50 dark:bg-zinc-900/40 rounded-md border border-zinc-100 dark:border-zinc-800/50 active:scale-95 transition-all"
                     >
                       <IconComponent className="text-[#4A3728] dark:text-[#8B6F47] text-xl" />
                       <span className="text-[13px] font-bold text-zinc-800 dark:text-zinc-200">

@@ -1,12 +1,11 @@
 "use client";
-
 import { useEffect, useState, useCallback, useMemo } from "react";
+import { motion, PanInfo } from "framer-motion";
 import ProductCard from "@/components/shop/product/ProductCard";
 import Link from "next/link";
 import { SliderButton } from "../ui/SliderButton";
 import { ArrowRight } from "@/utils/icons/navigation";
 import { ProductWithRelations } from "@/types/product-service";
-
 import { shuffleArray } from "@/utils/shuffle";
 
 interface Props {
@@ -67,6 +66,23 @@ export default function CategoryCarousel({
     setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   }, [maxIndex]);
 
+  const handleDragEnd = (
+    _event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo,
+  ) => {
+    const threshold = 50;
+    const velocityThreshold = 500;
+
+    if (info.offset.x < -threshold || info.velocity.x < -velocityThreshold) {
+      handleNext();
+    } else if (
+      info.offset.x > threshold ||
+      info.velocity.x > velocityThreshold
+    ) {
+      handlePrev();
+    }
+  };
+
   useEffect(() => {
     if (isPaused || !shouldShowControls) return;
     const interval = setInterval(handleNext, 6000);
@@ -77,8 +93,8 @@ export default function CategoryCarousel({
 
   return (
     <section className="py-6 md:py-12 bg-white dark:bg-[#050505] transition-colors duration-500 overflow-hidden">
-      <div className="max-w-360 mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between mb-6 md:mb-12 border-b border-zinc-100 dark:border-zinc-800/50 pb-5">
+      <div className="max-w-360 mx-auto px-4 sm:px-4 text-center sm:text-left">
+        <div className="flex items-center justify-between mb-4 md:mb-8 border-b border-zinc-100 dark:border-zinc-800/50 pb-5">
           <h2 className="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
             {firstPart}{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
@@ -118,22 +134,25 @@ export default function CategoryCarousel({
           )}
 
           <div className="overflow-hidden">
-            <div
-              className="flex -mx-2 md:-mx-4 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
-              style={{
-                transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
-              }}
+            <motion.div
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.5}
+              onDragEnd={handleDragEnd}
+              animate={{ x: `-${currentIndex * (100 / visibleCount)}%` }}
+              transition={{ type: "spring", damping: 30, stiffness: 200 }}
+              className="flex -mx-2 md:-mx-4 cursor-grab active:cursor-grabbing"
             >
-              {products.map((product, idx) => (
+              {products.map((product: ProductWithRelations, idx: number) => (
                 <div
                   key={product.id}
-                  className="flex-none px-2 md:px-4"
+                  className="flex-none px-1 md:px-2"
                   style={{ width: `${100 / visibleCount}%` }}
                 >
                   <ProductCard product={product} index={idx} />
                 </div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

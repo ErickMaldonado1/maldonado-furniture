@@ -55,7 +55,7 @@ export default function ProductListingClient({
     <div className="relative min-h-screen">
       <div className="flex flex-col lg:flex-row gap-6">
         {/* SIDEBAR DESKTOP */}
-        <aside className="hidden lg:block w-48 shrink-0">
+        <aside className="hidden lg:block w-60 shrink-0">
           <div className="sticky top-32 pt-1">
             <FilterGroup
               options={cleanedOptions}
@@ -186,22 +186,24 @@ export default function ProductListingClient({
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 right-0 w-full max-w-[320px] bg-white dark:bg-[#0A0A0A] z-101 flex flex-col shadow-2xl"
+              transition={{ type: "spring", damping: 28, stiffness: 220 }}
+              className="fixed inset-y-0 right-0 w-full max-w-[340px] bg-white dark:bg-[#0A0A0A] z-101 flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.3)] border-l border-zinc-100 dark:border-zinc-900"
             >
-              <div className="px-6 py-5 flex justify-between items-center border-b border-zinc-100 dark:border-zinc-900">
-                <span className="text-[12px] font-black uppercase tracking-[0.2em]">
-                  Filtros
-                </span>
+              <div className="px-4 py-4 flex justify-between items-center border-b border-zinc-100 dark:border-zinc-900">
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-[14px] font-black uppercase tracking-[0.25em] text-zinc-900 dark:text-white">
+                    Filtros
+                  </span>
+                </div>
                 <button
                   onClick={() => setIsMobileFiltersOpen(false)}
-                  className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-full transition-colors"
+                  className="p-1 hover:bg-zinc-50 dark:hover:bg-zinc-900 rounded-2xl transition-all active:scale-95 border border-zinc-100 dark:border-zinc-800"
                 >
-                  <XMark width={24} height={24} />
+                  <XMark width={20} height={20} />
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto px-6 py-4">
+              <div className="flex-1 overflow-y-auto px-4 py-2 custom-scrollbar">
                 <FilterGroup
                   options={cleanedOptions}
                   filters={filters}
@@ -211,12 +213,12 @@ export default function ProductListingClient({
                 />
               </div>
 
-              <div className="p-6 border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-[#0A0A0A]">
+              <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-[#0A0A0A]">
                 <button
                   onClick={() => setIsMobileFiltersOpen(false)}
-                  className="w-full py-5 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-black uppercase text-[11px] tracking-[0.2em] shadow-lg active:scale-[0.98] transition-transform"
+                  className="w-full py-5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-2xl font-black uppercase text-[11px] tracking-[0.2em] shadow-xl active:scale-[0.96] transition-all hover:bg-zinc-800 dark:hover:bg-white"
                 >
-                  Ver {filteredProducts.length} Artículos
+                  Mostrar {filteredProducts.length} Artículos
                 </button>
               </div>
             </motion.div>

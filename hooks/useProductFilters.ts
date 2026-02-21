@@ -33,7 +33,12 @@ export function useProductFilters(initialProducts: ProductWithRelations[]) {
                 .map((v) => String(v.color || "").trim())
                 .filter(Boolean)
             : [],
-          styles: p.styles ? [String(p.styles).trim()] : [],
+          styles: p.styles
+            ? String(p.styles)
+                .split(",")
+                .map((s) => s.trim())
+                .filter(Boolean)
+            : [],
           materials: Array.isArray(p.materials)
             ? p.materials.map((m: string) => String(m).trim())
             : [],
@@ -54,11 +59,15 @@ export function useProductFilters(initialProducts: ProductWithRelations[]) {
       );
     };
 
+    const ALLOWED_STYLES = ["Minimalista", "Contemporáneo", "Moderno"];
+
     return {
       categories: getUniqueOptions("category"),
       subcategories: getUniqueOptions("subcategory"),
       colors: getUniqueOptions("colors"),
-      styles: getUniqueOptions("styles"),
+      styles: getUniqueOptions("styles").filter((s) =>
+        ALLOWED_STYLES.includes(s),
+      ),
       materials: getUniqueOptions("materials"),
     };
   }, [processedProducts]);

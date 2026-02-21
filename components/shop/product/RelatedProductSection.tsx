@@ -13,7 +13,7 @@ export function RelatedProductsSection({
   if (!relatedProducts || relatedProducts.length === 0) return null;
 
   return (
-    <section className="pt-24 border-t border-zinc-100 dark:border-zinc-900">
+    <section className="pt-12 border-t border-zinc-100 dark:border-zinc-900">
       <div className="flex items-center justify-between mb-12">
         <h2 className="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
           Los Clientes también{" "}

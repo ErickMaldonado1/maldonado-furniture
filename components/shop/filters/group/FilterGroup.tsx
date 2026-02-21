@@ -1,4 +1,4 @@
-import { Trash , XMark } from "@/utils/icons/actions";
+import { Trash, XMark } from "@/utils/icons/actions";
 import { FilterSection } from "./FilterSection";
 import { ColorFilter } from "./ColorFilter";
 
@@ -90,21 +90,23 @@ export const FilterGroup = ({
       )}
       {options.styles?.length > 0 && (
         <FilterSection title="Estilo">
-          <div className="grid grid-cols-2 gap-2 lg:grid-cols-1 lg:space-y-2 lg:block">
-            {options.styles.map((style: string) => (
-              <OptionCard
-                key={style}
-                label={style}
-                isActive={filters.styles.includes(style)}
-                onClick={() => toggleFilter("styles", style)}
-              />
-            ))}
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-1 lg:space-y-2 lg:block">
+            {["Minimalista", "Contemporáneo", "Moderno"].map(
+              (style: string) => (
+                <OptionCard
+                  key={style}
+                  label={style}
+                  isActive={filters.styles.includes(style)}
+                  onClick={() => toggleFilter("styles", style)}
+                />
+              ),
+            )}
           </div>
         </FilterSection>
       )}
       {options.materials?.length > 0 && (
         <FilterSection title="Material">
-          <div className="grid grid-cols-2 gap-2 lg:grid-cols-1 lg:space-y-2 lg:block">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-1 lg:space-y-2 lg:block">
             {options.materials.map((material: string) => (
               <OptionCard
                 key={material}
