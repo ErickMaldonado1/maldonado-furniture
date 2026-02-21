@@ -168,6 +168,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <div className="absolute top-3 right-3 z-30 flex flex-col gap-2">
           <button
             onClick={handleToggleFavorite}
+            aria-label={isFav ? "Eliminar de favoritos" : "Añadir a favoritos"}
             className={`p-2 rounded-full backdrop-blur-md transition-all duration-300 shadow-sm z-50 ${
               isFav
                 ? "bg-white text-red-500"
