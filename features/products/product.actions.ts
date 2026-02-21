@@ -29,7 +29,7 @@ export async function deleteProductAction(id: string) {
     await ProductService.deactivateProduct(id);
     revalidatePath("/admin/products");
     return { success: true };
-  } catch (error) {
+  } catch {
     return { error: "No se pudo desactivar el producto" };
   }
 }

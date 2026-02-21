@@ -12,13 +12,14 @@ import { MagnifyingGlass, Squares2X2 } from "@/utils/icons/social";
 import { FilterGroup } from "@/components/shop/filters/group/FilterGroup";
 import { useProductFilters } from "@/hooks/useProductFilters";
 import ProductCard from "@/components/shop/product/ProductCard";
+import { ProductWithRelations } from "@/types/product-service";
 
 export default function ProductListingClient({
   initialProducts = [],
   hideCategoryFilter = false,
   hideSubcategoryFilter = false,
 }: {
-  initialProducts: any[];
+  initialProducts: ProductWithRelations[];
   hideCategoryFilter?: boolean;
   hideSubcategoryFilter?: boolean;
 }) {
@@ -159,7 +160,7 @@ export default function ProductListingClient({
                   No hay productos que coincidan con los filtros seleccionados.
                 </p>
                 <button
-                  onClick={() => clearFilters()}
+                  onClick={clearFilters}
                   className="mt-8 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-[12px] font-black uppercase tracking-[0.2em] rounded-full hover:opacity-90 transition-all active:scale-95 shadow-xl"
                 >
                   Limpiar Filtros

@@ -5,6 +5,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/features/auth/auth.options";
 import { redirect } from "next/navigation";
 
+type OrderWithDetails = {
+  address?: string | null;
+  city?: string | null;
+  postalCode?: string | null;
+  notes?: string | null;
+};
+
 const statusColors = {
   PENDING: "bg-amber-500/10 text-amber-600 border-amber-500/20",
   PAID: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
@@ -158,21 +165,21 @@ export default async function OrdersPage() {
                           Dirección de Entrega
                         </p>
                         <p className="text-xs font-bold text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                          {(order as any).address ||
+                          {(order as OrderWithDetails).address ||
                             "Dirección no especificada"}
                           <br />
-                          {(order as any).city || "Ciudad"},{" "}
-                          {(order as any).postalCode || "CP"}
+                          {(order as OrderWithDetails).city || "Ciudad"},{" "}
+                          {(order as OrderWithDetails).postalCode || "CP"}
                         </p>
                       </div>
                     </div>
-                    {(order as any).notes && (
+                    {(order as OrderWithDetails).notes && (
                       <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800">
                         <p className="text-[10px] font-black uppercase tracking-[0.15em] text-zinc-400 mb-1">
                           Notas del pedido
                         </p>
                         <p className="text-[11px] font-medium text-zinc-500 italic">
-                          "{(order as any).notes}"
+                          &quot;{(order as OrderWithDetails).notes}&quot;
                         </p>
                       </div>
                     )}

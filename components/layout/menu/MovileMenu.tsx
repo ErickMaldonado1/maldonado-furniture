@@ -19,19 +19,9 @@ interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
   isDarkMode: boolean;
-  searchQuery: string;
-  setSearchQuery: (val: string) => void;
-  handleSearch: (e: React.FormEvent) => void;
 }
 
-const MobileMenu = ({
-  isOpen,
-  onClose,
-  isDarkMode,
-  searchQuery,
-  setSearchQuery,
-  handleSearch,
-}: MobileMenuProps) => {
+const MobileMenu = ({ isOpen, onClose, isDarkMode }: MobileMenuProps) => {
   return (
     <div
       className={`fixed inset-0 z-100 transition-opacity duration-500 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}`}

@@ -35,7 +35,10 @@ export async function DELETE(
     const { variantId } = await params;
     await ProductService.deleteVariant(variantId);
     return NextResponse.json({ message: "Variante eliminada correctamente" });
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+  } catch (e: unknown) {
+    return NextResponse.json(
+      { error: e instanceof Error ? e.message : "Error desconocido" },
+      { status: 500 },
+    );
   }
 }

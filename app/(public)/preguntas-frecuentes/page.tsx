@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Minus } from "@/utils/icons/shop";
 import { QuestionMarkCircle } from "@/utils/icons/ui";
 import { Plus } from "@/utils/icons/actions";
+import Link from "next/link";
 
 interface FAQItem {
   question: string;
@@ -165,12 +166,12 @@ export default function FAQPage() {
             asesores está listo para ayudarte personalmente.
           </p>
           <div className="pt-4">
-            <a
+            <Link
               href="/contacto"
               className="inline-block bg-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 text-white px-10 py-4 rounded-full text-sm font-black uppercase hover:bg-[#4A3728] hover:text-white transition-all duration-300"
             >
               Contactar con un Asesor
-            </a>
+            </Link>
           </div>
         </div>
       </div>

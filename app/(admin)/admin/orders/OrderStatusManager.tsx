@@ -43,7 +43,7 @@ export function OrderStatusManager({
       setStatus(newStatus);
       toast.success("Estado actualizado");
       router.refresh();
-    } catch (error) {
+    } catch {
       toast.error("Error al actualizar estado");
     } finally {
       setIsLoading(false);

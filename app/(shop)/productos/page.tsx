@@ -1,3 +1,4 @@
+
 import { ProductService } from "@/features/products/product.service";
 import ProductListingClient from "@/components/ProductListingClient";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -81,8 +82,8 @@ export default async function SearchPage({
               </h2>
               <p className="text-zinc-500 mt-2 max-w-xs mx-auto text-sm">
                 No hay resultados para{" "}
-                <span className="font-bold">"{query}"</span>. Intenta con
-                palabras más generales.
+                <span className="font-bold">&quot;{query}&quot;</span>. Intenta
+                con palabras más generales.
               </p>
               <Link
                 href="/productos"

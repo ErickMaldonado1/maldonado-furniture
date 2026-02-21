@@ -14,6 +14,16 @@ import {
 import { OrderStatusManager } from "./OrderStatusManager";
 import { DeleteOrderBtn } from "./DeleteOrderBtn";
 
+type OrderWithDetails = {
+  fullName?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  address?: string | null;
+  city?: string | null;
+  postalCode?: string | null;
+  notes?: string | null;
+};
+
 export default async function OrdersPage() {
   const session = await getServerSession(authOptions);
   if (!session || session.user.role !== "ADMIN") redirect("/");
@@ -99,10 +109,11 @@ export default async function OrdersPage() {
                     </h3>
                     <div className="space-y-1">
                       <p className="text-[15px] font-black text-zinc-900 dark:text-white uppercase">
-                        {(order as any).fullName || "Cliente no registrado"}
+                        {(order as OrderWithDetails).fullName ||
+                          "Cliente no registrado"}
                       </p>
                       <p className="text-[11px] font-medium text-zinc-500 lowercase">
-                        {(order as any).email ||
+                        {(order as OrderWithDetails).email ||
                           order.user?.email ||
                           "Sin email"}
                       </p>
@@ -115,7 +126,7 @@ export default async function OrdersPage() {
                       Contacto
                     </h3>
                     <p className="text-[13px] font-bold text-zinc-700 dark:text-zinc-300">
-                      {(order as any).phone || "No especificado"}
+                      {(order as OrderWithDetails).phone || "No especificado"}
                     </p>
                   </div>
 
@@ -126,11 +137,12 @@ export default async function OrdersPage() {
                     </h3>
                     <div className="space-y-1">
                       <p className="text-[13px] font-bold text-zinc-700 dark:text-zinc-300">
-                        {(order as any).address || "Dirección no especificada"}
+                        {(order as OrderWithDetails).address ||
+                          "Dirección no especificada"}
                       </p>
                       <p className="text-[11px] font-black uppercase tracking-tighter text-zinc-500">
-                        {(order as any).city || "N/A"} |{" "}
-                        {(order as any).postalCode || "N/A"}
+                        {(order as OrderWithDetails).city || "N/A"} |{" "}
+                        {(order as OrderWithDetails).postalCode || "N/A"}
                       </p>
                     </div>
                   </div>
@@ -142,7 +154,7 @@ export default async function OrdersPage() {
                         Notas
                       </h3>
                       <p className="text-[11px] font-medium text-zinc-500 italic leading-relaxed">
-                        "{(order as any).notes}"
+                        &quot;{(order as OrderWithDetails).notes}&quot;
                       </p>
                     </div>
                   )}

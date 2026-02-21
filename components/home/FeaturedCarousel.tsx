@@ -1,21 +1,19 @@
 "use client";
 
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { useCartStore } from "@/store/cart-store";
-import { Product } from "@prisma/client";
 import ProductCard from "@/components/shop/product/ProductCard";
+import { ProductWithRelations } from "@/types/product-service";
 import { SliderButton } from "../ui/SliderButton";
 import { ArrowNarrowRight } from "@/utils/icons/actions";
 import Link from "next/link";
 
 interface FeaturedProps {
-  products: Product[];
+  products: ProductWithRelations[];
 }
 
 export default function FeaturedCarousel({
   products: initialProducts,
 }: FeaturedProps) {
-  const { addToCart } = useCartStore();
   const [products, setProducts] = useState(initialProducts.slice(0, 5));
   const [hasLoadedExtra, setHasLoadedExtra] = useState(false);
   const [visibleCount, setVisibleCount] = useState(4);
@@ -91,11 +89,15 @@ export default function FeaturedCarousel({
         >
           {products.length > visibleCount && (
             <>
-              <div className="absolute left-0 top-0 bottom-0 w-[15%] z-50 group/left">
-                <SliderButton direction="left" onClick={handlePrev} />
+              <div className="absolute left-0 top-0 bottom-0 w-20 z-50 pointer-events-none group/left flex items-center">
+                <div className="pointer-events-auto w-full h-full flex items-center">
+                  <SliderButton direction="left" onClick={handlePrev} />
+                </div>
               </div>
-              <div className="absolute right-0 top-0 bottom-0 w-[15%] z-50 group/right">
-                <SliderButton direction="right" onClick={handleNext} />
+              <div className="absolute right-0 top-0 bottom-0 w-20 z-50 pointer-events-none group/right flex items-center">
+                <div className="pointer-events-auto w-full h-full flex items-center">
+                  <SliderButton direction="right" onClick={handleNext} />
+                </div>
               </div>
             </>
           )}
@@ -113,11 +115,7 @@ export default function FeaturedCarousel({
                   className="flex-none px-2 md:px-3"
                   style={{ width: `${100 / visibleCount}%` }}
                 >
-                  <ProductCard
-                    product={product}
-                    addToCart={addToCart}
-                    index={idx}
-                  />
+                  <ProductCard product={product} index={idx} />
                 </div>
               ))}
             </div>

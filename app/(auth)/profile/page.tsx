@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Mail, Logout, Shopping, Settings } from "@/utils/icons/ui";
 import { Dashboard } from "@/utils/icons/navigation";
-import { Verified } from "@/utils/icons/actions";
+import { ShieldCheck } from "@/utils/icons/actions";
 
 const ProfilePage = () => {
   const { data: session, status } = useSession();
@@ -49,7 +49,7 @@ const ProfilePage = () => {
                   className="absolute -bottom-1 -right-1 bg-amber-500 text-white p-1 rounded-full border-2 border-white dark:border-zinc-900"
                   title="Administrador"
                 >
-                  <Verified className="w-4.5 h-4.5 text-[#4A3728]" />
+                  <ShieldCheck className="w-4.5 h-4.5 text-[#4A3728]" />
                 </div>
               )}
             </div>

@@ -107,10 +107,13 @@ export default async function CategoryPage({ params }: Props) {
 
   if (!categoryConfig) return notFound();
 
-  const productsFromDB = await ProductService.getAll({
+  const allCategoryProducts = await ProductService.getAll({
     category: categorySlug,
-    limit: 8,
   });
+
+  const productsFromDB = allCategoryProducts
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 8);
 
   const heroImage = categoryConfig.featuredContent[0]?.imageSrc;
 

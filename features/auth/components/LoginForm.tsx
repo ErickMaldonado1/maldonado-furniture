@@ -76,7 +76,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
       }
 
       handleAuthSuccess();
-    } catch (error) {
+    } catch {
       setGlobalError("Ocurrió un error inesperado.");
       setIsCredentialsLoading(false);
     }
@@ -90,7 +90,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
       await signIn("google", {
         callbackUrl: "/",
       });
-    } catch (error) {
+    } catch {
       setGlobalError("No se pudo conectar con Google.");
       setIsGoogleLoading(false);
     }
@@ -125,7 +125,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
             <input
               {...register("email")}
               type="email"
-              placeholder="admin@ejemplo.com"
+              placeholder="usuario@ejemplo.com"
               disabled={isAnyLoading}
               className={`w-full rounded-md border bg-zinc-50 dark:bg-zinc-900/50 py-3.5 px-4 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 transition-all ${
                 errors.email

@@ -1,28 +1,34 @@
 "use client";
 
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { useCartStore } from "@/store/cart-store";
-import { Product } from "@prisma/client";
 import ProductCard from "@/components/shop/product/ProductCard";
 import Link from "next/link";
 import { SliderButton } from "../ui/SliderButton";
 import { ArrowRight } from "@/utils/icons/navigation";
+import { ProductWithRelations } from "@/types/product-service";
+
+import { shuffleArray } from "@/utils/shuffle";
 
 interface Props {
-  products: Product[];
+  products: ProductWithRelations[];
   title: string;
   categorySlug: string;
 }
 
 export default function CategoryCarousel({
-  products,
+  products: initialProducts,
   title,
   categorySlug,
 }: Props) {
-  const { addToCart } = useCartStore();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [products, setProducts] = useState<ProductWithRelations[]>([]);
   const [visibleCount, setVisibleCount] = useState(4);
+
+  useEffect(() => {
+    setProducts(shuffleArray(initialProducts).slice(0, 8));
+  }, [initialProducts]);
+
   const words = title.split(" ");
   const lastWord = words.pop();
   const firstPart = words.join(" ");
@@ -88,11 +94,15 @@ export default function CategoryCarousel({
         >
           {shouldShowControls && (
             <>
-              <div className="absolute left-0 top-0 bottom-0 w-[15%] z-50 group/left">
-                <SliderButton direction="left" onClick={handlePrev} />
+              <div className="absolute left-0 top-0 bottom-0 w-20 z-50 pointer-events-none group/left flex items-center">
+                <div className="pointer-events-auto w-full h-full flex items-center">
+                  <SliderButton direction="left" onClick={handlePrev} />
+                </div>
               </div>
-              <div className="absolute right-0 top-0 bottom-0 w-[15%] z-50 group/right">
-                <SliderButton direction="right" onClick={handleNext} />
+              <div className="absolute right-0 top-0 bottom-0 w-20 z-50 pointer-events-none group/right flex items-center">
+                <div className="pointer-events-auto w-full h-full flex items-center">
+                  <SliderButton direction="right" onClick={handleNext} />
+                </div>
               </div>
             </>
           )}
@@ -110,11 +120,7 @@ export default function CategoryCarousel({
                   className="flex-none px-2 md:px-4"
                   style={{ width: `${100 / visibleCount}%` }}
                 >
-                  <ProductCard
-                    product={product}
-                    addToCart={addToCart}
-                    index={idx}
-                  />
+                  <ProductCard product={product} index={idx} />
                 </div>
               ))}
             </div>

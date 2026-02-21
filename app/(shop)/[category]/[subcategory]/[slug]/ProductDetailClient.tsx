@@ -60,7 +60,6 @@ export function ProductDetailClient({
         ? `${selectedVariant.dimensions.height}x${selectedVariant.dimensions.width}x${selectedVariant.dimensions.depth}cm`
         : "Estándar",
       materials: product.materials?.join(", ") || "Melamina",
-      material: product.materials?.[0] || "Melamina",
       category: product.category ?? undefined,
       subcategory: product.subcategory ?? undefined,
     });
@@ -109,7 +108,6 @@ export function ProductDetailClient({
             discount={product.discount}
             sku={selectedVariant?.sku || product.sku || ""}
             color={selectedVariant?.color || ""}
-            description={product.description || ""}
             dimensions={selectedVariant?.dimensions}
             materials={product.materials as string[]}
             careInstructions={(product as any).careInstructions}

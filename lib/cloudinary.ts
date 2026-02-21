@@ -18,7 +18,9 @@ export const uploadImage = async (file: string, folder?: string) => {
       publicId: result.public_id,
     };
   } catch (error) {
-    throw new Error(`Cloudinary upload failed: ${(error as any).message}`);
+    throw new Error(
+      `Cloudinary upload failed: ${error instanceof Error ? error.message : "Unknown error"}`,
+    );
   }
 };
 
@@ -29,6 +31,8 @@ export const deleteImage = async (publicId: string) => {
     });
     return result;
   } catch (error) {
-    throw new Error(`Cloudinary delete failed: ${(error as any).message}`);
+    throw new Error(
+      `Cloudinary delete failed: ${error instanceof Error ? error.message : "Unknown error"}`,
+    );
   }
 };

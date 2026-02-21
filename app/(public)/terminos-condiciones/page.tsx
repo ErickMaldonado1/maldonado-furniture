@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Scale } from "@/utils/icons/shop";
+import Link from "next/link";
 
 interface PolicySection {
   id: string;
@@ -146,12 +147,12 @@ export default function TerminosPage() {
                 >
                   Enviar Correo
                 </a>
-                <a
+                <Link
                   href="/contacto"
                   className="text-md font-black uppercase tracking-widest border border-zinc-300 dark:border-zinc-700 px-6 py-3 rounded-sm hover:border-[#4A3728] transition-all dark:text-white"
                 >
                   Ir a Contacto
-                </a>
+                </Link>
               </div>
             </div>
           </div>

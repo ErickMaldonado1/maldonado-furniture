@@ -32,7 +32,7 @@ export async function POST(req: Request) {
       },
     });
     return NextResponse.json(favorite);
-  } catch (error) {
+  } catch {
     return new NextResponse("Error o ya existe en favoritos", { status: 400 });
   }
 }

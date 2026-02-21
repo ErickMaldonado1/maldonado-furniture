@@ -6,12 +6,6 @@ import { Mail, Phone, Users, MapPin, Clock } from "@/utils/icons/ui";
 import { ContactForm } from "@/components/shop/contact/ContactForm";
 
 export default function ContactoPage() {
-  const whatsappNumber = "593959504842";
-  const message = encodeURIComponent(
-    "Hola, vengo de su sitio web. Necesito información personalizada sobre sus productos.",
-  );
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${message}`;
-
   return (
     <main className="mt-20 min-h-screen bg-white dark:bg-[#050505] transition-colors duration-300">
       <section className="pt-16 pb-8 max-w-7xl mx-auto px-6">
@@ -40,8 +34,9 @@ export default function ContactoPage() {
           >
             <div className="relative border-l-2 border-[#4A3728] pl-6 py-1">
               <p className="text-sm md:text-base lg:text-lg font-medium text-zinc-500 dark:text-zinc-400 leading-tight text-left">
-                "Estamos aquí para materializar tus ideas. Conecta con nuestro
-                equipo especializado en diseño y fabricación de alta gama."
+                &quot;Estamos aquí para materializar tus ideas. Conecta con
+                nuestro equipo especializado en diseño y fabricación de alta
+                gama.&quot;
               </p>
             </div>
           </motion.div>

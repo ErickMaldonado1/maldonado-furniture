@@ -103,6 +103,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { ThemeProvider } from "@/providers/ThemeProvider";
+
 export default function RootLayout({
   children,
 }: {
@@ -114,13 +116,20 @@ export default function RootLayout({
         className={`${inter.variable} font-sans antialiased bg-white dark:bg-[#0a0a0a] transition-colors duration-500`}
         suppressHydrationWarning={true}
       >
-        <MainProvider>
-          <div className="flex flex-col min-h-screen">
-            <Navbar />
-            <main className="flex-1 ">{children}</main>
-            <Footer />
-          </div>
-        </MainProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          storageKey="maldonado-theme"
+        >
+          <MainProvider>
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <main className="flex-1 ">{children}</main>
+              <Footer />
+            </div>
+          </MainProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

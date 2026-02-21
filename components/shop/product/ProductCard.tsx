@@ -3,31 +3,25 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "@/utils/icons/navigation";
-import { HeartFilled } from "@/utils/icons/actions";
+import { CartPlusIcon, HeartFilled } from "@/utils/icons/actions";
 import { CheckBadge } from "@/utils/icons/layout";
-import { ShoppingBag, Truck } from "@/utils/icons/shop";
-
+import { Truck } from "@/utils/icons/shop";
 import { toast } from "sonner";
 import { useCartStore } from "@/store/cart-store";
 import { useFavoritesStore } from "@/store/favorites-store";
 import { slugify } from "@/utils/slug_url";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ProductWithRelations } from "@/types/product-service";
 
 interface ProductCardProps {
-  product: any;
+  product: ProductWithRelations;
   index: number;
-  addToCart?: (product: any) => void;
 }
 
-export default function ProductCard({
-  product,
-  index,
-  addToCart: propAddToCart,
-}: ProductCardProps) {
+export default function ProductCard({ product, index }: ProductCardProps) {
   const router = useRouter();
-  const { addToCart: storeAddToCart, isInCart } = useCartStore();
-  const addToCart = propAddToCart || storeAddToCart;
+  const { addToCart, isInCart } = useCartStore();
   const { isFavorite, toggleFavorite } = useFavoritesStore();
   const isFav = isFavorite(product.id);
   const inCart = isInCart(product.id);
@@ -60,9 +54,9 @@ export default function ProductCard({
 
   const [isHovered, setIsHovered] = useState(false);
 
-  const hasDiscount = product.discount > 0;
+  const hasDiscount = (product.discount ?? 0) > 0;
   const finalPrice = hasDiscount
-    ? product.price - (product.price * product.discount) / 100
+    ? product.price - (product.price * (product.discount ?? 0)) / 100
     : product.price;
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -85,14 +79,19 @@ export default function ProductCard({
         ? `${firstVariant.dimensions.height}x${firstVariant.dimensions.width}x${firstVariant.dimensions.depth}cm`
         : "Estándar",
       materials: product.materials?.join(", ") || "Melamina",
-      material: product.materials?.[0] || "Melamina",
-      category: product.category,
-      subcategory: product.subcategory,
+      category: product.category ?? undefined,
+      subcategory: product.subcategory ?? undefined,
     });
 
     toast.success("¡Añadido al carrito!", {
       description: product.name,
-      duration: 2000,
+      duration: 3000,
+      style: {
+        background: "#F9F7F4",
+        color: "#5D4037",
+        border: "1px solid #EDE8E0",
+      },
+      className: "font-bold",
     });
   };
 
@@ -105,18 +104,28 @@ export default function ProductCard({
       name: product.name,
       image: imageUrl,
       price: finalPrice,
-      category: product.category,
-      subcategory: product.subcategory,
+      category: product.category ?? undefined,
+      subcategory: product.subcategory ?? undefined,
     });
 
     if (!isFav) {
       toast.success("Añadido a favoritos", {
         icon: <HeartFilled className="text-red-500" />,
-        duration: 2000,
+        duration: 3000,
+        style: {
+          background: "#F9F7F4",
+          color: "#5D4037",
+          border: "1px solid #EDE8E0",
+        },
       });
     } else {
       toast.info("Eliminado de favoritos", {
-        duration: 2000,
+        duration: 3000,
+        style: {
+          background: "#F9F7F4",
+          color: "#5D4037",
+          border: "1px solid #EDE8E0",
+        },
       });
     }
   };
@@ -128,203 +137,150 @@ export default function ProductCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
-      className="group bg-white dark:bg-[#0A0A0A] flex flex-col h-full border border-transparent hover:border-zinc-200 dark:hover:border-zinc-800 transition-all duration-300"
+      className="group bg-[#fffff] dark:bg-[#1C1C1C] flex flex-col h-full border border-[#EDE8E0] dark:border-white/5 rounded-md overflow-hidden   transition-all duration-500"
     >
-      <div className="relative w-full border border-zinc-100 dark:border-white/5 rounded-full bg-white dark:bg-[#0A0A0A]">
-        <div
-          onClick={() =>
-            router.push(
-              `/${slugify(product.category || "")}/${slugify(product.subcategory || "")}/${slugify(product.name)}`.replace(
-                /\/+/g,
-                "/",
-              ),
-            )
-          }
-          className="relative aspect-square w-full overflow-hidden group/img cursor-pointer"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+      <div
+        className="relative w-full aspect-square overflow-hidden group/img cursor-pointer"
+        onClick={() => router.push(productPath)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <Image
+          src={imageUrl}
+          alt={product.name}
+          fill
+          priority={index < 4}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover object-center transition-transform duration-1000 group-hover/img:scale-110"
+        />
+        {secondImageUrl && (
           <Image
-            src={imageUrl}
-            alt={product.name}
+            src={secondImageUrl}
+            alt={`${product.name} - Vista alternativa`}
             fill
-            priority={index < 4}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover object-center transition-all duration-700 group-hover/img:scale-110"
+            className={`object-cover object-center transition-all duration-1000 group-hover/img:scale-110 absolute inset-0 z-10 ${
+              isHovered ? "opacity-100" : "opacity-0"
+            }`}
           />
-          {secondImageUrl && (
-            <Image
-              src={secondImageUrl}
-              alt={`${product.name} - Vista alternativa`}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className={`object-cover object-center transition-all duration-700 group-hover/img:scale-110 absolute inset-0 z-10 ${
-                isHovered ? "opacity-100" : "opacity-0"
-              }`}
-            />
-          )}
+        )}
+
+        <div className="absolute top-3 right-3 z-30 flex flex-col gap-2">
           <button
             onClick={handleToggleFavorite}
-            className={`absolute top-3 right-3 z-30 transition-all duration-300 drop-shadow-md hover:scale-110 ${
+            className={`p-2 rounded-full backdrop-blur-md transition-all duration-300 shadow-sm z-50 ${
               isFav
-                ? "text-red-500"
-                : "text-zinc-900 dark:text-white hover:text-red-500"
+                ? "bg-white text-red-500"
+                : "bg-black/20 text-white hover:bg-white hover:text-red-500 scale-90 hover:scale-100"
             }`}
-            aria-label={
-              isFav
-                ? `Quitar ${product.name} de favoritos`
-                : `Añadir ${product.name} a favoritos`
-            }
           >
             {isFav ? (
-              <HeartFilled className="w-5 h-6 text-2xl" />
+              <HeartFilled className="w-5 h-5" />
             ) : (
-              <Heart className="w-5 h-5 text-2xl" />
+              <Heart className="w-5 h-5" />
             )}
           </button>
-          <div className="hidden md:flex absolute inset-0 items-end justify-end p-2 opacity-0 group-hover/img:opacity-100 transition-all duration-300 bg-black/5 z-20">
-            <Link
-              href={`/${slugify(product.category || "")}/${slugify(product.subcategory || "")}/${slugify(product.name)}`.replace(
-                /\/+/g,
-                "/",
-              )}
-              aria-label={`Ver detalles de ${product.name}`}
-              className="bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl transform translate-y-1 group-hover/img:translate-y-0 transition-all duration-300 hover:bg-[#4A3728] hover:text-white dark:hover:bg-[#4A3728] dark:hover:text-white"
-            >
-              Vista Rápida
-            </Link>
-          </div>
-          <div className="absolute bottom-3 left-3 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-sm z-20 transition-all group-hover/img:scale-105">
-            <Truck className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
-            <span className="text-[9px] text-zinc-900 dark:text-zinc-100 font-black uppercase tracking-[0.15em]">
-              Envío {product.deliveryDays || 8} días
-            </span>
-          </div>
         </div>
+
+        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
+          <span className="bg-white/90 backdrop-blur-md text-[#4A4A4A] px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl transform translate-y-4 group-hover/img:translate-y-0 transition-transform duration-500">
+            Ver Detalles
+          </span>
+        </div>
+
+        <div className="absolute bottom-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-black/60 backdrop-blur-md shadow-sm z-20">
+          <Truck className="w-3.5 h-3.5 text-[#897156] dark:text-[#A68B67]" />
+          <span className="text-[11px] text-[#4A4A4A] dark:text-zinc-300 font-bold uppercase tracking-wider">
+            {product.deliveryDays || 8} días
+          </span>
+        </div>
+
+        {hasDiscount && (
+          <div
+            className="
+    absolute top-3 left-3 z-2  px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-wide backdrop-blur-md shadow-md bg-[#7A5C3E] text-white dark:bg-[#A98B6C] dark:text-[#1C1C1C] transition-all duration-300
+  "
+          >
+            - {product.discount} %
+          </div>
+        )}
       </div>
 
-      <div className="p-2 md:p-2 flex flex-col grow bg-white dark:bg-[#0A0A0A]">
-        <div className="grow">
-          <Link
-            href={`/${slugify(product.category || "")}/${slugify(product.subcategory || "")}/${slugify(product.name)}`.replace(
-              /\/+/g,
-              "/",
-            )}
-          >
-            <h3 className="text-[13px] md:text-[14px] font-black uppercase tracking-tight text-zinc-900 dark:text-zinc-100 line-clamp-1 leading-tight hover:text-[#4A3728] transition-colors">
+      <div className="p-4 flex flex-col flex-1">
+        <div className="flex-1">
+          <Link href={productPath}>
+            <h3 className="text-[14px] font-bold text-[#4A4A4A] dark:text-zinc-100 truncate leading-snug hover:text-[#897156] transition-colors mb-1">
               {product.name}
             </h3>
           </Link>
-
           {product.variants?.[0]?.dimensions && (
-            <div className="mt-2 flex items-center gap-2 text-[11px] text-zinc-500 dark:text-zinc-400 font-bold">
-              <div className="flex items-center gap-1">
-                <svg
-                  className="w-3 h-3 text-zinc-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2.5"
-                    d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
-                  />
-                </svg>
-                <span>{product.variants[0].dimensions.height}cm</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <svg
-                  className="w-3 h-3 text-zinc-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2.5"
-                    d="M8 7h12m0 0l-4-4m4 4l-4 4M16 17H4m0 0l4-4m-4 4l4 4"
-                  />
-                </svg>
-                <span>{product.variants[0].dimensions.width}cm</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <svg
-                  className="w-3 h-3 text-zinc-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  style={{ transform: "rotate(45deg)" }}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2.5"
-                    d="M8 7h12m0 0l-4-4m4 4l-4 4M16 17H4m0 0l4-4m-4 4l4 4"
-                  />
-                </svg>
-                <span>{product.variants[0].dimensions.depth}cm</span>
+            <div className="flex items-center gap-3 text-[11px] text-[#4A4A4A]/70 dark:text-zinc-400 font-bold mb-2">
+              <div className="flex items-center gap-1.5 p-1 px-2 bg-[#f8f8f8] dark:bg-white/5 rounded-xl">
+                <span className="flex items-center gap-0.5">
+                  <span className="text-[11px] opacity-60">⇅</span>
+                  {product.variants[0].dimensions.height}cm
+                </span>
+                <span className="w-px h-2.5 bg-[#897156]/20 mx-0.5" />
+                <span className="flex items-center gap-0.5">
+                  <span className="text-[11px] opacity-60">⇄</span>
+                  {product.variants[0].dimensions.width}cm
+                </span>
+                <span className="w-px h-2.5 bg-[#897156]/20 mx-0.5" />
+                <span className="flex items-center gap-0.5">
+                  <span className="text-[11px] opacity-60">⤢</span>
+                  {product.variants[0].dimensions.depth}cm
+                </span>
               </div>
             </div>
           )}
         </div>
 
-        <div className="mt-2 flex items-center justify-between gap-3 border-t border-zinc-100 dark:border-white/5 pt-2">
+        <div className="flex items-center justify-between gap-2 pt-3 border-t border-[#EDE8E0] dark:border-white/5">
           <div className="flex flex-col">
             {hasDiscount && (
-              <span className="text-[12px] text-zinc-600 line-through decoration-[#4A3728]/50 font-bold">
-                $
-                {product.price.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
+              <span className="text-[11px] text-[#4A4A4A]/60 line-through font-medium leading-none mb-0.5">
+                ${product.price.toLocaleString()}
               </span>
             )}
-            <p className="text-[20px] font-black text-zinc-900 dark:text-white tracking-tighter italic">
+            <span className="text-xl font-black text-[#5D4037] dark:text-[#A68B67] tracking-tight leading-none">
               $
               {finalPrice.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
               })}
-            </p>
+            </span>
           </div>
 
           <button
             onClick={handleAddToCart}
             disabled={isMounted && inCart}
-            className={`relative flex items-center justify-center gap-2 h-10 px-4 rounded-full transition-all duration-300 active:scale-95 ${
+            className={`flex items-center justify-center gap-2 h-10 px-4 rounded-xl transition-all duration-300 overflow-hidden shadow-md ${
               isMounted && inCart
-                ? "bg-zinc-100 text-zinc-400 cursor-not-allowed dark:bg-zinc-800 dark:text-zinc-500"
-                : "bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 hover:bg-[#4A3728] dark:hover:bg-[#4A3728] dark:hover:text-white shadow-md"
+                ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800"
+                : "bg-[#141414] text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 active:scale-95"
             }`}
           >
             <AnimatePresence mode="wait">
               {isMounted && inCart ? (
                 <motion.div
                   key="check"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="flex items-center gap-2"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex items-center gap-1.5"
                 >
-                  <CheckBadge className="w-5 h-5 text-teal-600 dark:text-teal-400" />
-                  <span className="text-[10px] font-black uppercase tracking-tighter hidden lg:block">
+                  <CheckBadge className="w-4 h-4 text-emerald-500" />
+                  <span className="text-[9px] font-black uppercase tracking-wider">
                     Listo
                   </span>
                 </motion.div>
               ) : (
                 <motion.div
                   key="bag"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex items-center gap-2"
+                  initial={{ opacity: 0, scale: 1.2 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex items-center gap-1.5"
                 >
-                  <ShoppingBag className="w-4 h-4" />
-                  <span
-                    className="text-[10px] font-black uppercase tracking-[0.15em]"
-                    aria-label="Añadir al carrito"
-                  >
+                  <CartPlusIcon className="w-4 h-4" />
+                  <span className="text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
                     Añadir
                   </span>
                 </motion.div>

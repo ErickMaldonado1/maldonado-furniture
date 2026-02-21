@@ -16,7 +16,6 @@ export const categorias = [
 
 export const proyectos: Proyecto[] = [
   // --- COCINAS ---
-
   {
     id: 1,
     title: "Cocina High Gloss Blanco",
@@ -90,18 +89,30 @@ export const proyectos: Proyecto[] = [
       "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899694/mueble-ba%C3%B1o_ynmcfr.webp",
     ],
   },
+  {
+    id: 8,
+    title: "Muebles de Baño",
+    category: "Cocina",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534706/17_fh8cts.webp",
+    gallery: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534702/17-B_oh9wnc.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534700/17-A_gx12ys.webp",
+    ],
+  },
 
   // --- DORMITORIOS ---
   {
-    id: 8,
+    id: 9,
     title: "Cama lineal M101",
     category: "Dormitorio",
     mainImg:
       "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899825/cama-lineal-1_f1zutq.webp",
     gallery: [],
   },
+
   {
-    id: 9,
+    id: 10,
     title: "Cama lineal M105",
     category: "Dormitorio",
     mainImg:
@@ -109,7 +120,55 @@ export const proyectos: Proyecto[] = [
     gallery: [],
   },
   {
-    id: 10,
+    id: 11,
+    title: "Cama lineal Moderna",
+    category: "Dormitorio",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534265/10_hd9t9s.webp",
+    gallery: [],
+  },
+  {
+    id: 12,
+    title: "Velador en madera",
+    category: "Dormitorio",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534435/14_tyacxy.webp",
+    gallery: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534436/14-A_xexzhx.webp",
+    ],
+  },
+  {
+    id: 13,
+    title: "Velador en melamina",
+    category: "Dormitorio",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534441/8A_adzmp6.webp",
+    gallery: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534439/8_sqog1x.webp",
+    ],
+  },
+  {
+    id: 14,
+    title: "Velador blanco",
+    category: "Dormitorio",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534461/16_eqhojh.webp",
+    gallery: [],
+  },
+  {
+    id: 15,
+    title: "Cama lacada con diseño",
+    category: "Dormitorio",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534202/9A_wih5nm.webp",
+    gallery: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534201/9_dqde8u.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534198/9B_k3opyv.webp",
+    ],
+  },
+
+  {
+    id: 16,
     title: "Walking Closet a medida",
     category: "Dormitorio",
     mainImg:
@@ -120,7 +179,48 @@ export const proyectos: Proyecto[] = [
     ],
   },
   {
-    id: 11,
+    id: 17,
+    title: "Closet corredizo",
+    category: "Dormitorio",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771533667/1_k1axnq.webp",
+    gallery: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771533671/2_mxowug.webp",
+    ],
+  },
+  {
+    id: 18,
+    title: "Closet a medida",
+    category: "Dormitorio",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771533741/3_dn4fom.webp",
+    gallery: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771533744/3A_qa8bnf.webp",
+    ],
+  },
+  {
+    id: 19,
+    title: "Closet color Luna",
+    category: "Dormitorio",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771533847/4_ffyuc7.webp",
+    gallery: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771533844/4B_bxeavd.webp",
+    ],
+  },
+  {
+    id: 20,
+    title: "Closet Roble Natural",
+    category: "Dormitorio",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771533965/6C_d7lbic.webp",
+    gallery: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771533963/6_jxvrwr.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771533969/6E_cnjte0.webp",
+    ],
+  },
+  {
+    id: 21,
     title: "Closet Carvalo",
     category: "Dormitorio",
     mainImg:
@@ -130,7 +230,7 @@ export const proyectos: Proyecto[] = [
     ],
   },
   {
-    id: 12,
+    id: 22,
     title: "Closet estilo Moderno y Metálico",
     category: "Dormitorio",
     mainImg:
@@ -141,7 +241,7 @@ export const proyectos: Proyecto[] = [
     ],
   },
   {
-    id: 13,
+    id: 23,
     title: "Closet modular Sahara",
     category: "Dormitorio",
     mainImg:
@@ -151,7 +251,7 @@ export const proyectos: Proyecto[] = [
     ],
   },
   {
-    id: 14,
+    id: 24,
     title: "Closet modular Coñac",
     category: "Dormitorio",
     mainImg:
@@ -159,17 +259,25 @@ export const proyectos: Proyecto[] = [
     gallery: [],
   },
   {
-    id: 15,
+    id: 25,
     title: "Litera a medida",
     category: "Dormitorio",
     mainImg:
       "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900439/litera_faqq52.webp",
     gallery: [],
   },
+  {
+    id: 26,
+    title: "Cómoda a medida",
+    category: "Dormitorio",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534888/7_zbcyqd.webp",
+    gallery: [],
+  },
 
   // --- SALAS ---
   {
-    id: 16,
+    id: 27,
     title: "Mueble de tv - Panel Blanco",
     category: "Sala",
     mainImg:
@@ -177,7 +285,7 @@ export const proyectos: Proyecto[] = [
     gallery: [],
   },
   {
-    id: 17,
+    id: 28,
     title: "Mueble de tv grande",
     category: "Sala",
     mainImg:
@@ -185,7 +293,15 @@ export const proyectos: Proyecto[] = [
     gallery: [],
   },
   {
-    id: 18,
+    id: 29,
+    title: "Mueble de tv personalizado",
+    category: "Sala",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771535008/15_qple6l.webp",
+    gallery: [],
+  },
+  {
+    id: 30,
     title: "Mueble de Tv Manzano con luz led",
     category: "Sala",
     mainImg:
@@ -193,7 +309,7 @@ export const proyectos: Proyecto[] = [
     gallery: [],
   },
   {
-    id: 19,
+    id: 31,
     title: "Panel de Tv Rovere y Wengué",
     category: "Sala",
     mainImg:
@@ -201,7 +317,7 @@ export const proyectos: Proyecto[] = [
     gallery: [],
   },
   {
-    id: 20,
+    id: 32,
     title: "Mueble de tv panel Gales Poro",
     category: "Sala",
     mainImg:
@@ -209,7 +325,7 @@ export const proyectos: Proyecto[] = [
     gallery: [],
   },
   {
-    id: 21,
+    id: 33,
     title: "Mueble decorativo",
     category: "Sala",
     mainImg:
@@ -217,17 +333,25 @@ export const proyectos: Proyecto[] = [
     gallery: [],
   },
   {
-    id: 22,
+    id: 34,
     title: "Repisas flotante tipo bar",
     category: "Sala",
     mainImg:
       "https://res.cloudinary.com/dwvruzkll/image/upload/v1769900834/repisa_yu5ywx.webp",
     gallery: [],
   },
+  {
+    id: 35,
+    title: "Bancos madera Seike",
+    category: "Sala",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771534993/13_fd9odi.webp",
+    gallery: [],
+  },
 
   // --- OFICINAS ---
   {
-    id: 23,
+    id: 36,
     title: "Escritorio Corporativo",
     category: "Oficina",
     mainImg:
@@ -235,7 +359,48 @@ export const proyectos: Proyecto[] = [
     gallery: [],
   },
   {
-    id: 24,
+    id: 37,
+    title: "Escritorio Lino",
+    category: "Oficina",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771536209/ttamzsiwatzc4b6gn4na_gqd9ou.webp",
+    gallery: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771536209/vguonaczrlvire0a72x5_xr8uff.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771536208/fzmvtrxojvuxfkn3eqrw_n12yvj.webp",
+    ],
+  },
+  {
+    id: 38,
+    title: "Escritorio a medida",
+    category: "Oficina",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771535121/11-A_mlo5k3.webp",
+    gallery: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771535152/11_lnuwbz.webp",
+    ],
+  },
+  {
+    id: 39,
+    title: "Escritorio personalizado",
+    category: "Oficina",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771535607/saavqpcbqikbsh1wclcf_fz4a1j.webp",
+    gallery: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771535607/a7ieraltmnyegpe6zozy_xfs5pi.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771535606/airmilplraoufvxx3fyi_vj7wrm.webp",
+    ],
+  },
+  {
+    id: 40,
+    title: "Escritorio blanco y negro",
+    category: "Oficina",
+    mainImg:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1771535607/hkk6n4cpkcc5daor6ku6_sgtc1d.webp",
+    gallery: [],
+  },
+
+  {
+    id: 41,
     title: "Muebles de Local Comercial",
     category: "Oficina",
     mainImg:
@@ -245,7 +410,7 @@ export const proyectos: Proyecto[] = [
     ],
   },
   {
-    id: 25,
+    id: 42,
     title: "Decorativo de Pared modular con luces",
     category: "Oficina",
     mainImg:

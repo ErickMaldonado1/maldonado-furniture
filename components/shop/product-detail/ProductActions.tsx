@@ -1,8 +1,7 @@
 "use client";
 import { Whatsapp } from "@/utils/icons/social";
 import { Minus, Truck } from "@/utils/icons/shop";
-import { Plus } from "@/utils/icons/actions";
-import { ShoppingBag } from "@/utils/icons/shop";
+import { CartPlusIcon, Plus } from "@/utils/icons/actions";
 import { ShieldCheck } from "@/utils/icons/ui";
 import { ProductAccordion } from "./ProductAccordion";
 
@@ -18,7 +17,6 @@ interface ProductActionsProps {
   discount?: number | null;
   stock?: number;
   isInCart?: boolean;
-  description: string;
   dimensions?: {
     height: number;
     width: number;
@@ -40,7 +38,6 @@ export function ProductActions({
   discount,
   stock = 100,
   isInCart = false,
-  description,
   dimensions,
   materials,
   careInstructions,
@@ -118,12 +115,12 @@ export function ProductActions({
           disabled={isInCart}
           className={`flex-1 h-16 rounded-2xl flex items-center justify-center gap-3 text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 active:scale-[0.97] ${
             isInCart
-              ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-400 cursor-not-allowed"
-              : "bg-black text-white hover:bg-[#4A3728]"
+              ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800"
+              : "bg-[#141414] text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 active:scale-95"
           }`}
         >
           <span>{isInCart ? "En el carrito" : "Añadir al carrito"}</span>
-          <ShoppingBag className="w-5 h-5" />
+          <CartPlusIcon className="w-5 h-5" />
         </button>
 
         <button

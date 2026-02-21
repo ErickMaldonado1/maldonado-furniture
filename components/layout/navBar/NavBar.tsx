@@ -11,7 +11,7 @@ import {
   HiOutlineSun,
   HiOutlineMoon,
 } from "react-icons/hi";
-
+import { useTheme } from "next-themes";
 import DesktopNav from "@/components/layout/menu/DesktopNav";
 import SearchBar from "@/components/shop/filters/SearchBar";
 import UserDropdown from "./UserDropdown";
@@ -39,7 +39,7 @@ const Navbar = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -69,14 +69,6 @@ const Navbar = () => {
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem("theme");
-    if (
-      savedTheme === "dark" ||
-      (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      setIsDarkMode(true);
-      document.documentElement.classList.add("dark");
-    }
 
     if (!isHomePage) {
       setIsScrolled(true);
@@ -97,10 +89,7 @@ const Navbar = () => {
   }, [isHomePage]);
 
   const toggleTheme = () => {
-    const nextDark = !isDarkMode;
-    setIsDarkMode(nextDark);
-    document.documentElement.classList.toggle("dark", nextDark);
-    localStorage.setItem("theme", nextDark ? "dark" : "light");
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   const handleSearch = (e: React.FormEvent) => {
@@ -124,7 +113,7 @@ const Navbar = () => {
           <div className="relative w-36 aspect-400/113 transition-transform group-hover:scale-105">
             <Image
               src={
-                !showSolidNavbar || isDarkMode
+                !showSolidNavbar || theme === "dark"
                   ? "/assets/images/logoA1.webp"
                   : "/assets/images/logoA.webp"
               }
@@ -147,7 +136,7 @@ const Navbar = () => {
             className={`p-2.5 rounded-full transition-all ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"}`}
             aria-label="Cambiar tema"
           >
-            {isDarkMode ? (
+            {theme === "dark" ? (
               <HiOutlineSun className="text-2xl" />
             ) : (
               <HiOutlineMoon className="text-2xl" />
@@ -230,10 +219,7 @@ const Navbar = () => {
         <MobileMenu
           isOpen={isMobileMenuOpen}
           onClose={() => setIsMobileMenuOpen(false)}
-          isDarkMode={isDarkMode}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          handleSearch={handleSearch}
+          isDarkMode={theme === "dark"}
         />
       )}
 

@@ -228,7 +228,22 @@ export const ProductService = {
     return { url: res.url, publicId: res.publicId };
   },
 
-  async getByCategory(categoryName: string, limit = 8) {
+  async getByCategory(categoryName: string, limit = 40) {
+    const totalCount = await prisma.product.count({
+      where: {
+        isActive: true,
+        category: {
+          contains: categoryName,
+          mode: "insensitive",
+        },
+      },
+    });
+
+    const skip = Math.max(
+      0,
+      Math.floor(Math.random() * Math.max(0, totalCount - limit)),
+    );
+
     return await prisma.product.findMany({
       where: {
         isActive: true,
@@ -238,17 +253,17 @@ export const ProductService = {
         },
       },
       take: limit,
+      skip: skip,
       include: {
         images: true,
         variants: {
           include: { dimensions: true },
         },
       },
-      orderBy: { createdAt: "desc" },
     });
   },
 
-  async getRandomProducts(limit = 8) {
+  async getRandomProducts(limit = 40) {
     const totalCount = await prisma.product.count({
       where: { isActive: true },
     });

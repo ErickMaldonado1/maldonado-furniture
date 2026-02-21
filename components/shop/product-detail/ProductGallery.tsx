@@ -24,7 +24,6 @@ export function ProductGallery({
   onToggleFav,
 }: ProductGalleryProps) {
   const [isZoomed, setIsZoomed] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (isZoomed) {
@@ -39,15 +38,6 @@ export function ProductGallery({
 
   const currentImageUrl =
     product.images?.[selectedImage]?.url || product.images?.[0]?.url || "";
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isZoomed) return;
-    const { left, top, width, height } =
-      e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - left) / width) * 100;
-    const y = ((e.clientY - top) / height) * 100;
-    setMousePos({ x, y });
-  };
 
   return (
     <>

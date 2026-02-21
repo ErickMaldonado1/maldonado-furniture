@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { ProductWithRelations } from "@/types/product-service";
 
 interface FilterState {
   categories: string[];
@@ -9,7 +10,7 @@ interface FilterState {
   priceRange: [number, number];
 }
 
-export function useProductFilters(initialProducts: any[]) {
+export function useProductFilters(initialProducts: ProductWithRelations[]) {
   const [filters, setFilters] = useState<FilterState>({
     categories: [],
     subcategories: [],
@@ -20,31 +21,24 @@ export function useProductFilters(initialProducts: any[]) {
   });
   const [sortBy, setSortBy] = useState("recent");
 
-  const normalize = (value: any) => {
-    if (typeof value !== "string") return "";
-    return value.trim();
-  };
-
-  const normalizeArray = (values: any[]) => {
-    if (!Array.isArray(values)) return [];
-    return values.map((v) => normalize(v)).filter(Boolean);
-  };
-
   const processedProducts = useMemo(() => {
-    return initialProducts.map((p: any) => ({
-      ...p,
-      category: p.category ? String(p.category).trim() : "",
-      subcategory: p.subcategory ? String(p.subcategory).trim() : "",
-      colors: Array.isArray(p.colors)
-        ? p.colors.map((c: string) => String(c).trim())
-        : [],
-      styles: Array.isArray(p.styles)
-        ? p.styles.map((s: string) => String(s).trim())
-        : [],
-      materials: Array.isArray(p.materials)
-        ? p.materials.map((m: string) => String(m).trim())
-        : [],
-    }));
+    return initialProducts.map(
+      (p) =>
+        ({
+          ...p,
+          category: p.category ? String(p.category).trim() : "",
+          subcategory: p.subcategory ? String(p.subcategory).trim() : "",
+          colors: Array.isArray(p.variants)
+            ? p.variants
+                .map((v) => String(v.color || "").trim())
+                .filter(Boolean)
+            : [],
+          styles: p.styles ? [String(p.styles).trim()] : [],
+          materials: Array.isArray(p.materials)
+            ? p.materials.map((m: string) => String(m).trim())
+            : [],
+        }) as any,
+    );
   }, [initialProducts]);
 
   const availableOptions = useMemo(() => {
