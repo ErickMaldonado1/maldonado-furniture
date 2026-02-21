@@ -24,18 +24,22 @@ export function useRecentlyViewed(currentProduct?: Product) {
   useEffect(() => {
     if (!currentProduct) return;
 
-    setRecentProducts((prevItems) => {
-      const filtered = prevItems.filter((p) => p.id !== currentProduct.id);
-      const updated = [currentProduct, ...filtered].slice(0, MAX_RECENT_ITEMS);
+    const stored = getStoredProducts();
+    const filtered = stored.filter((p) => p.id !== currentProduct.id);
+    const updated = [currentProduct, ...filtered].slice(0, MAX_RECENT_ITEMS);
 
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-      } catch (error) {
-        console.error("Error updating recently viewed", error);
-      }
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+    } catch (error) {
+      console.error("Error updating recently viewed", error);
+    }
 
-      return updated;
-    });
+    
+    const timeout = setTimeout(() => {
+      setRecentProducts(updated);
+    }, 0);
+
+    return () => clearTimeout(timeout);
   }, [currentProduct]);
 
   const history = currentProduct

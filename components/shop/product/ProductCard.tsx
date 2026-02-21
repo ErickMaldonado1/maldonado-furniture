@@ -58,6 +58,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
   const finalPrice = hasDiscount
     ? product.price - (product.price * (product.discount ?? 0)) / 100
     : product.price;
+  const cartStatus = isMounted && inCart;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -144,6 +145,9 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         onClick={() => router.push(productPath)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        aria-label={`Ver detalles de ${product.name}`}
+        role="button"
+        tabIndex={0}
       >
         <Image
           src={imageUrl}
@@ -215,20 +219,20 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             </h3>
           </Link>
           {product.variants?.[0]?.dimensions && (
-            <div className="flex items-center gap-3 text-[11px] text-[#4A4A4A]/70 dark:text-zinc-400 font-bold mb-2">
-              <div className="flex items-center gap-1.5 p-1 px-2 bg-[#f8f8f8] dark:bg-white/5 rounded-xl">
+            <div className="flex items-center gap-3 text-[11px] text-[#4A4A4A] dark:text-zinc-300 font-bold mb-2">
+              <div className="flex items-center gap-1.5 p-1 px-2 bg-[#f4f4f4] dark:bg-white/10 rounded-xl">
                 <span className="flex items-center gap-0.5">
-                  <span className="text-[11px] opacity-60">⇅</span>
+                  <span className="text-[11px] opacity-80">⇅</span>
                   {product.variants[0].dimensions.height}cm
                 </span>
-                <span className="w-px h-2.5 bg-[#897156]/20 mx-0.5" />
+                <span className="w-px h-2.5 bg-[#897156]/30 mx-0.5" />
                 <span className="flex items-center gap-0.5">
-                  <span className="text-[11px] opacity-60">⇄</span>
+                  <span className="text-[11px] opacity-80">⇄</span>
                   {product.variants[0].dimensions.width}cm
                 </span>
-                <span className="w-px h-2.5 bg-[#897156]/20 mx-0.5" />
+                <span className="w-px h-2.5 bg-[#897156]/30 mx-0.5" />
                 <span className="flex items-center gap-0.5">
-                  <span className="text-[11px] opacity-60">⤢</span>
+                  <span className="text-[11px] opacity-80">⤢</span>
                   {product.variants[0].dimensions.depth}cm
                 </span>
               </div>
@@ -239,7 +243,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <div className="flex items-center justify-between gap-2 pt-3 border-t border-[#EDE8E0] dark:border-white/5">
           <div className="flex flex-col">
             {hasDiscount && (
-              <span className="text-[11px] text-[#4A4A4A]/60 line-through font-medium leading-none mb-0.5">
+              <span className="text-[11px] text-[#4A4A4A]/80 line-through font-medium leading-none mb-0.5">
                 ${product.price.toLocaleString()}
               </span>
             )}
@@ -253,15 +257,18 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 
           <button
             onClick={handleAddToCart}
-            disabled={isMounted && inCart}
+            disabled={cartStatus}
+            aria-label={
+              cartStatus ? "Producto en el carrito" : "Añadir al carrito"
+            }
             className={`flex items-center justify-center gap-2 h-10 px-4 rounded-xl transition-all duration-300 overflow-hidden shadow-md ${
-              isMounted && inCart
+              cartStatus
                 ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800"
                 : "bg-[#141414] text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 active:scale-95"
             }`}
           >
             <AnimatePresence mode="wait">
-              {isMounted && inCart ? (
+              {cartStatus ? (
                 <motion.div
                   key="check"
                   initial={{ opacity: 0, scale: 0.8 }}

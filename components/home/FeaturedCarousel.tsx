@@ -39,9 +39,19 @@ export default function FeaturedCarousel({
       else if (window.innerWidth < 1024) setVisibleCount(3);
       else setVisibleCount(4);
     };
+
+    let timeoutId: NodeJS.Timeout;
+    const debouncedUpdateCount = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(updateCount, 150);
+    };
+
     updateCount();
-    window.addEventListener("resize", updateCount);
-    return () => window.removeEventListener("resize", updateCount);
+    window.addEventListener("resize", debouncedUpdateCount);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("resize", debouncedUpdateCount);
+    };
   }, []);
 
   const handleNext = useCallback(() => {

@@ -30,10 +30,6 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const searchParams = useSearchParams();
   const urlError = searchParams.get("error");
-  const [globalError, setGlobalError] = useState<string | null>(null);
-  const [isCredentialsLoading, setIsCredentialsLoading] = useState(false);
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -42,11 +38,12 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
     resolver: zodResolver(loginSchema),
   });
 
-  useEffect(() => {
-    if (urlError) {
-      setGlobalError("Hubo un problema al iniciar sesión con Google.");
-    }
-  }, [urlError]);
+  const [globalError, setGlobalError] = useState<string | null>(
+    urlError ? "Hubo un problema al iniciar sesión con Google." : null,
+  );
+
+  const [isCredentialsLoading, setIsCredentialsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const handleAuthSuccess = () => {
     if (onSuccess) {

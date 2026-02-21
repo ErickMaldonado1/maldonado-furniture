@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
-import ProductCard from "./ProductCard";
+import { ProductWithRelations } from "@/types/product-service";
+import ProductCard from "@/components/shop/product/ProductCard";
 
 interface ProductGridProps {
-  products: any[];
+  products: ProductWithRelations[];
   isLoading?: boolean;
 }
 
@@ -34,8 +35,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, isLoading }) => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} index={0} />
+      {products.map((product, idx) => (
+        <ProductCard key={product.id} product={product} index={idx} />
       ))}
     </div>
   );

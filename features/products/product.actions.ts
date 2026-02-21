@@ -1,11 +1,15 @@
 import { ProductService } from "./product.service";
 import { revalidatePath } from "next/cache";
+import {
+  ProductFilters,
+  ProductCreateInput,
+} from "@/types/product-service";
 
-export const getProductsAction = async (filters: any) => {
+export const getProductsAction = async (filters: ProductFilters) => {
   return await ProductService.getAll(filters);
 };
 
-export const createProductAction = async (data: any) => {
+export const createProductAction = async (data: ProductCreateInput) => {
   const product = await ProductService.create(data);
   revalidatePath("/admin/products");
   revalidatePath("/");

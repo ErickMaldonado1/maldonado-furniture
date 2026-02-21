@@ -1,19 +1,23 @@
 "use client";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { useCartStore } from "@/store/cart-store";
 import { useFavoritesStore } from "@/store/favorites-store";
 import { toast } from "sonner";
 import { Product } from "@prisma/client";
-import { RecentlyViewed } from "@/components/shop/product/RecentlyViewed";
+const RecentlyViewed = dynamic(
+  () =>
+    import("@/components/shop/product/RecentlyViewed").then(
+      (mod) => mod.RecentlyViewed,
+    ),
+  { ssr: false },
+);
 import { ProductGallery } from "@/components/shop/product-detail/ProductGallery";
 import { ProductInfo } from "@/components/shop/product-detail/ProductInfo";
 import { ProductActions } from "@/components/shop/product-detail/ProductActions";
 import { RelatedProductsSection } from "@/components/shop/product/RelatedProductSection";
 
-interface ProductWithRelations extends Product {
-  images: any[];
-  variants: any[];
-}
+import { ProductWithRelations } from "@/types/product-service";
 
 export function ProductDetailClient({
   product,
@@ -117,7 +121,7 @@ export function ProductDetailClient({
 
       <RelatedProductsSection relatedProducts={relatedProducts} />
 
-      <RecentlyViewed currentProduct={product as unknown as Product} />
+      <RecentlyViewed currentProduct={product} />
     </div>
   );
 }

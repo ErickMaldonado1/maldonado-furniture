@@ -1,9 +1,13 @@
 "use client";
+import dynamic from "next/dynamic";
 import { Whatsapp } from "@/utils/icons/social";
 import { Minus, Truck } from "@/utils/icons/shop";
 import { CartPlusIcon, Plus } from "@/utils/icons/actions";
 import { ShieldCheck } from "@/utils/icons/ui";
-import { ProductAccordion } from "./ProductAccordion";
+const ProductAccordion = dynamic(
+  () => import("./ProductAccordion").then((mod) => mod.ProductAccordion),
+  { ssr: false },
+);
 
 interface ProductActionsProps {
   productName: string;
@@ -73,7 +77,7 @@ export function ProductActions({
               })}
             </span>
             {discount && discount > 0 && (
-              <span className="text-base text-zinc-400 line-through decoration-[#4A3728]/40 font-bold">
+              <span className="text-base text-zinc-500 line-through decoration-[#4A3728]/40 font-bold">
                 $
                 {price.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
@@ -88,6 +92,7 @@ export function ProductActions({
           <button
             onClick={() => setQuantity(Math.max(1, quantity - 1))}
             disabled={quantity <= 1}
+            aria-label="Disminuir cantidad"
             className="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-[#4A3728] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <Minus className="w-5 h-5" />
@@ -102,6 +107,7 @@ export function ProductActions({
               setQuantity(Math.min(quantity + 1, Math.min(stock, 3)))
             }
             disabled={quantity >= Math.min(stock, 3)}
+            aria-label="Aumentar cantidad"
             className="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-[#4A3728] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <Plus className="w-5 h-5" />
@@ -125,6 +131,7 @@ export function ProductActions({
 
         <button
           onClick={handleWhatsApp}
+          aria-label="Contactar por WhatsApp"
           className="w-16 h-16 rounded-2xl flex items-center justify-center border-2 border-green-500/30 text-green-600 hover:bg-green-600 hover:text-white transition-all duration-300 active:scale-95 group shadow-lg shadow-green-100/50 dark:shadow-none"
         >
           <Whatsapp className="w-7 h-7" />

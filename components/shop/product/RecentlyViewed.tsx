@@ -3,21 +3,21 @@
 import { useState, useEffect } from "react";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import ProductCard from "@/components/shop/product/ProductCard";
-import { Product } from "@prisma/client";
+import { ProductWithRelations } from "@/types/product-service";
 
 export function RecentlyViewed({
   currentProduct,
 }: {
-  currentProduct: Product;
+  currentProduct: ProductWithRelations;
 }) {
-  const [mounted, setMounted] = useState(false);
   const { recentProducts } = useRecentlyViewed(currentProduct);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    setIsMounted(true);
   }, []);
 
-  if (!mounted || recentProducts.length === 0) return null;
+  if (!isMounted || recentProducts.length === 0) return null;
 
   const displayedProducts = recentProducts.slice(0, 8);
 
@@ -35,7 +35,11 @@ export function RecentlyViewed({
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 sm:gap-8">
         {displayedProducts.map((p, idx) => (
-          <ProductCard key={p.id} product={p as any} index={idx} />
+          <ProductCard
+            key={p.id}
+            product={p as ProductWithRelations}
+            index={idx}
+          />
         ))}
       </div>
     </section>
