@@ -133,12 +133,11 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 
   return (
     <motion.div
-      layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
-      className="group bg-[#fffff] dark:bg-[#1C1C1C] flex flex-col h-full border border-[#EDE8E0] dark:border-white/5 rounded-md overflow-hidden transition-all duration-500 cursor-default"
+      className="group bg-white dark:bg-[#1C1C1C] flex flex-col h-full border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-xl cursor-default"
     >
       <div
         className="relative w-full aspect-square overflow-hidden group/img cursor-pointer"
@@ -154,22 +153,22 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           alt={product.name}
           fill
           priority={index < 4}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover object-center transition-transform duration-1000 group-hover/img:scale-110"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          className="object-cover object-center transition-transform duration-700 group-hover/img:scale-105"
         />
         {secondImageUrl && (
           <Image
             src={secondImageUrl}
             alt={`${product.name} - Vista alternativa`}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className={`object-cover object-center transition-all duration-1000 group-hover/img:scale-110 absolute inset-0 z-10 ${
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className={`object-cover object-center transition-all duration-700 group-hover/img:scale-105 absolute inset-0 z-10 ${
               isHovered ? "opacity-100" : "opacity-0"
             }`}
           />
         )}
 
-        <div className="absolute top-3 right-3 z-30 flex flex-col gap-2">
+        <div className="absolute top-2 right-2 z-30 flex flex-col gap-2">
           <button
             onClick={handleToggleFavorite}
             aria-label={isFav ? "Eliminar de favoritos" : "Añadir a favoritos"}
@@ -193,7 +192,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           </span>
         </div>
 
-        <div className="hidden sm:flex absolute bottom-4 left-4 items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-black/60 backdrop-blur-md shadow-sm z-20">
+        <div className="hidden sm:flex absolute bottom-3 left-3 items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-black/60 backdrop-blur-md shadow-sm z-20">
           <Truck className="w-3.5 h-3.5 text-[#897156] dark:text-[#A68B67]" />
           <span className="text-[11px] text-[#4A4A4A] dark:text-zinc-300 font-bold uppercase tracking-wider">
             {product.deliveryDays || 8} días
@@ -203,7 +202,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         {hasDiscount && (
           <div
             className="
-    absolute top-3 left-3 z-2  px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-wide backdrop-blur-md shadow-md bg-[#7A5C3E] text-white dark:bg-[#A98B6C] dark:text-[#1C1C1C] transition-all duration-300
+    absolute top-3 left-3 z-2 px-2 py-1.5 rounded-full text-[11px] font-semibold tracking-wide backdrop-blur-md shadow-md bg-[#7A5C3E] text-white dark:bg-[#A98B6C] dark:text-[#1C1C1C] transition-all duration-300
   "
           >
             - {product.discount} %
@@ -219,8 +218,8 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             </h3>
           </Link>
           {product.variants?.[0]?.dimensions && (
-            <div className="flex items-center gap-3 text-[11px] text-[#4A4A4A] dark:text-zinc-300 font-bold mb-2">
-              <div className="flex items-center gap-1 p-1 px-2 bg-[#f4f4f4] dark:bg-white/10 rounded-md">
+            <div className="flex items-center gap-3 text-[11px] text-slate-500 dark:text-slate-400 font-semibold mb-2">
+              <div className="flex items-center gap-1 p-1 px-2 bg-zinc-100 dark:bg-zinc-800 rounded-md">
                 <span className="flex items-center gap-0.4">
                   <span className="text-[11px] opacity-80">⇅</span>
                   {product.variants[0].dimensions.height}cm
@@ -247,7 +246,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
                 ${product.price.toLocaleString()}
               </span>
             )}
-            <span className="text-lg font-black text-[#5D4037] dark:text-[#A68B67] tracking-tight leading-none">
+            <span className="text-xl font-black text-zinc-900 dark:text-white tracking-tight leading-none">
               $
               {finalPrice.toLocaleString(undefined, {
                 minimumFractionDigits: 2,

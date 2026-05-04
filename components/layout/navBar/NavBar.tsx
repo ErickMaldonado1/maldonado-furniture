@@ -138,7 +138,7 @@ const Navbar = () => {
         <div className="flex items-center gap-1 md:gap-4">
           <button
             onClick={toggleTheme}
-            className={`p-2.5 rounded-full transition-all ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"}`}
+            className={`p-2.5 rounded-full transition-all ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"}`}
             aria-label="Cambiar tema"
           >
             {theme === "dark" ? (
@@ -150,7 +150,7 @@ const Navbar = () => {
 
           <button
             onClick={() => setFavoritesOpen(true)}
-            className={`hidden sm:flex p-2.5 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"}`}
+            className={`hidden sm:flex p-2.5 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"}`}
             aria-label="Abrir favoritos"
           >
             <HiOutlineHeart className="text-2xl group-hover:scale-110 transition-transform" />
@@ -173,7 +173,7 @@ const Navbar = () => {
               setCartOpen(true);
             }}
             aria-label="Abrir carrito"
-            className={`p-2.5 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"}`}
+            className={`p-2.5 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"}`}
           >
             <HiOutlineShoppingBag className="text-2xl group-hover:scale-110 transition-transform" />
             {mounted && totalItems > 0 && (
@@ -185,7 +185,7 @@ const Navbar = () => {
 
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className={`lg:hidden p-2.5 text-3xl transition-all ${!showSolidNavbar ? "text-white" : "text-zinc-700 dark:text-white"}`}
+            className={`lg:hidden p-2.5 text-3xl transition-all ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white"}`}
             aria-label="Abrir menú móvil"
           >
             <HiOutlineMenuAlt3 size={32} />

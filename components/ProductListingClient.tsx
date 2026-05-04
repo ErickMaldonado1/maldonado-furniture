@@ -125,7 +125,7 @@ export default function ProductListingClient({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 layout
-                className={`grid gap-x-3 gap-y-12 
+                className={`grid gap-x-2 sm:gap-x-4 gap-y-10 sm:gap-y-12 
                   ${
                     gridCols === 3
                       ? "grid-cols-2 lg:grid-cols-3"

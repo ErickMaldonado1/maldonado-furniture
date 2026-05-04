@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { categories } from "@/utils/categories";
+import { ChevronRight } from "@/utils/icons/navigation";
 import {
   HiOutlineX,
   HiOutlineHome,
@@ -22,6 +24,8 @@ interface MobileMenuProps {
 }
 
 const MobileMenu = ({ isOpen, onClose, isDarkMode }: MobileMenuProps) => {
+  const [expandedCat, setExpandedCat] = useState<string | null>(null);
+
   return (
     <div
       className={`fixed inset-0 z-100 transition-opacity duration-500 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}`}
@@ -66,26 +70,34 @@ const MobileMenu = ({ isOpen, onClose, isDarkMode }: MobileMenuProps) => {
               <p className="text-[11px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3">
                 Categorías
               </p>
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  { name: "Sala", icon: HiOutlineHome },
-                  { name: "Dormitorio", icon: BiBed },
-                  { name: "Cocina", icon: MdOutlineKitchen },
-                  { name: "Oficina", icon: HiOutlineBriefcase },
-                ].map((cat) => {
-                  const IconComponent = cat.icon;
+              <div className="flex flex-col gap-2">
+                {categories.map((cat) => {
+                  const isExpanded = expandedCat === cat.slug;
                   return (
-                    <Link
-                      key={cat.name}
-                      href={`/${cat.name.toLowerCase()}`}
-                      onClick={onClose}
-                      className="flex flex-row gap-2 p-3 bg-zinc-50 dark:bg-zinc-900/40 rounded-md border border-zinc-100 dark:border-zinc-800/50 active:scale-95 transition-all"
-                    >
-                      <IconComponent className="text-[#4A3728] dark:text-[#8B6F47] text-xl" />
-                      <span className="text-[13px] font-bold text-zinc-800 dark:text-zinc-200">
-                        {cat.name}
-                      </span>
-                    </Link>
+                    <div key={cat.slug} className="flex flex-col border border-zinc-100 dark:border-zinc-800/50 rounded-md overflow-hidden transition-all bg-zinc-50 dark:bg-zinc-900/40">
+                      <div 
+                        className="flex items-center justify-between p-3 active:bg-zinc-100 dark:active:bg-zinc-800 cursor-pointer"
+                        onClick={() => setExpandedCat(isExpanded ? null : cat.slug)}
+                      >
+                        <span className="text-[13px] font-bold text-zinc-800 dark:text-zinc-200">
+                          {cat.label}
+                        </span>
+                        <ChevronRight width={20} height={20} className={`transition-transform duration-300 text-zinc-400 ${isExpanded ? "rotate-90" : ""}`} />
+                      </div>
+                      
+                      <div className={`transition-all duration-300 ease-in-out flex flex-col bg-white dark:bg-[#0b0b0b] overflow-hidden ${isExpanded ? "max-h-96 py-2 border-t border-zinc-100 dark:border-zinc-800/50" : "max-h-0 py-0"}`}>
+                        {cat.subcategories.map((sub) => (
+                          <Link
+                            key={sub.sub}
+                            href={sub.href}
+                            onClick={onClose}
+                            className="px-6 py-2.5 text-[13px] font-medium text-zinc-600 dark:text-zinc-400 active:bg-zinc-50 dark:active:bg-zinc-900/50 transition-colors"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   );
                 })}
               </div>

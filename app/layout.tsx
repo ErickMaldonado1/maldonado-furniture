@@ -97,19 +97,17 @@ export const metadata: Metadata = {
     locale: "es_EC",
     type: "website",
   },
-  other: {
-    preconnect: "https://res.cloudinary.com",
-    "dns-prefetch": "https://res.cloudinary.com",
-  },
 };
 
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import ReactDOM from "react-dom";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  ReactDOM.preconnect("https://res.cloudinary.com", { crossOrigin: "anonymous" });
   return (
     <html lang="es" suppressHydrationWarning>
       <body

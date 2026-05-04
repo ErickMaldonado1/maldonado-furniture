@@ -1,9 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight} from "@/utils/icons/navigation";
+import { ChevronRight } from "@/utils/icons/navigation";
 
 const badgeStyles: Record<string, string> = {
   accent: "bg-[#4A3728] text-white",
@@ -14,6 +15,12 @@ const badgeStyles: Record<string, string> = {
 };
 
 const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
+  const [hoveredSub, setHoveredSub] = useState<string | null>(null);
+
+  useEffect(() => {
+    setHoveredSub(null);
+  }, [data]);
+
   if (!data) return null;
 
   return (
@@ -37,26 +44,28 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                   </p>
 
                   <ul className="space-y-2">
-                    {data.subcategories.map((cat: any) => (
-                      <li key={cat.sub}>
+                    {data.subcategories.map((cat: any) => {
+                      const isHovered = hoveredSub === cat.sub;
+                      return (
+                      <li key={cat.sub} onMouseEnter={() => setHoveredSub(cat.sub)}>
                         <Link
                           href={cat.href}
-                          className="group flex items-center justify-between px-3 py-1 rounded-lg
-                hover:bg-zinc-100 dark:hover:bg-white/5 transition"
+                          className={`group flex items-center justify-between px-3 py-1.5 rounded-lg transition-all duration-300
+                            ${isHovered ? "bg-zinc-100 dark:bg-white/10 pl-4" : "hover:bg-zinc-50 dark:hover:bg-white/5"}
+                          `}
                         >
-                          <span className="text-md font-semibold text-zinc-800 dark:text-zinc-200 truncate">
+                          <span className={`text-md font-semibold truncate transition-colors ${isHovered ? "text-[#4A3728] dark:text-white" : "text-zinc-800 dark:text-zinc-200"}`}>
                             {cat.label}
                           </span>
 
                           <ChevronRight
                             width={18}
                             height={18}
-                            className="text-zinc-400 opacity-0 -translate-x-1
-                  group-hover:opacity-100 group-hover:translate-x-0 transition"
+                            className={`transition-all duration-300 ${isHovered ? "opacity-100 translate-x-0 text-[#4A3728] dark:text-white" : "opacity-0 -translate-x-2 text-zinc-400 group-hover:opacity-50"}`}
                           />
                         </Link>
                       </li>
-                    ))}
+                    )})}
                   </ul>
                 </div>
 
@@ -67,26 +76,30 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                   </p>
 
                   <div className="grid grid-cols-4 gap-x-6 gap-y-7">
-                    {data.subcategories.slice(0, 8).map((sub: any) => (
+                    {data.subcategories.slice(0, 8).map((sub: any) => {
+                      const isHovered = hoveredSub === sub.sub;
+                      const isDimmed = hoveredSub !== null && !isHovered;
+                      return (
                       <Link
                         key={sub.sub}
                         href={sub.href}
-                        className="group flex flex-col gap-2 min-w-0"
+                        onMouseEnter={() => setHoveredSub(sub.sub)}
+                        className={`group flex flex-col gap-2 min-w-0 transition-all duration-500 ${isDimmed ? "opacity-80" : "opacity-100 scale-100"}`}
                       >
-                        <div className="relative w-24 h-16 rounded-lg overflow-hidden bg-zinc-100 dark:bg-zinc-900">
+                        <div className={`relative w-24 h-16 rounded-lg overflow-hidden bg-zinc-100 dark:bg-zinc-900 transition-all duration-300 ${isHovered ? "ring-2 ring-[#4A3728] dark:ring-white/50 shadow-md" : ""}`}>
                           <Image
                             src={sub.imageSrc}
                             alt={sub.imageAlt}
                             fill
-                            className="p-2 object-cover transition-transform duration-300 group-hover:scale-105"
+                            className={`p-1.5 object-cover transition-transform duration-500 ${isHovered ? "scale-110" : "group-hover:scale-105"}`}
                           />
                         </div>
 
-                        <span className="text-[13px] font-medium text-zinc-700 dark:text-zinc-300 truncate">
+                        <span className={`text-[13px] truncate transition-colors duration-300 ${isHovered ? "text-[#4A3728] dark:text-white font-bold" : "font-medium text-zinc-700 dark:text-zinc-300"}`}>
                           {sub.label}
                         </span>
                       </Link>
-                    ))}
+                    )})}
                   </div>
                 </div>
                 <div className="min-w-0">

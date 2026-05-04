@@ -50,7 +50,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
         className={`p-2.5 rounded-full group transition-all ${
           !showSolidNavbar
             ? "text-white hover:bg-white/10"
-            : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10"
+            : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"
         }`}
         aria-label="Abrir perfil"
       >
@@ -68,7 +68,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
         className={`flex items-center gap-2 p-1.5 pr-3 rounded-full transition-all border ${
           !showSolidNavbar
             ? "border-white/20 text-white hover:bg-white/10"
-            : "border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800"
+            : "border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800"
         }`}
         aria-label="efecto-navbar"
       >
