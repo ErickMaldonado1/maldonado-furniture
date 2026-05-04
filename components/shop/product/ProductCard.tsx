@@ -218,7 +218,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             </h3>
           </Link>
           {product.variants?.[0]?.dimensions && (
-            <div className="flex items-center gap-3 text-[11px] text-slate-500 dark:text-slate-400 font-semibold mb-2">
+            <div className="flex items-center gap-3 text-[11px] text-zinc-700 dark:text-zinc-300 font-semibold mb-2">
               <div className="flex items-center gap-1 p-1 px-2 bg-zinc-100 dark:bg-zinc-800 rounded-md">
                 <span className="flex items-center gap-0.4">
                   <span className="text-[11px] opacity-80">⇅</span>
