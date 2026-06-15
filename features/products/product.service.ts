@@ -294,4 +294,49 @@ export const ProductService = {
     );
     return uniqueSubcategories.sort(() => 0.5 - Math.random()).slice(0, limit);
   },
+
+  async getSiblingProducts(
+    productName: string,
+    subcategory: string | null,
+    productId: string,
+  ) {
+    if (!subcategory) return [];
+
+    const cleanName = productName.trim();
+
+    const modelCodeMatch = cleanName.match(/\bM\d+\b/i);
+    const modelCode = modelCodeMatch ? modelCodeMatch[0] : null;
+
+    if (modelCode) {
+     
+      const siblings = await prisma.product.findMany({
+        where: {
+          isActive: true,
+          id: { not: productId },
+          subcategory: { equals: subcategory, mode: "insensitive" },
+          name: { contains: modelCode, mode: "insensitive" },
+        },
+        include: { images: { take: 1 } },
+        orderBy: { name: "asc" },
+      });
+      if (siblings.length > 0) return siblings;
+    }
+
+    const dashIndex = cleanName.lastIndexOf(" - ");
+    const baseModel =
+      dashIndex !== -1 ? cleanName.substring(0, dashIndex).trim() : null;
+
+    if (!baseModel) return [];
+
+    return await prisma.product.findMany({
+      where: {
+        isActive: true,
+        id: { not: productId },
+        subcategory: { equals: subcategory, mode: "insensitive" },
+        name: { contains: baseModel, mode: "insensitive" },
+      },
+      include: { images: { take: 1 } },
+      orderBy: { name: "asc" },
+    });
+  },
 };

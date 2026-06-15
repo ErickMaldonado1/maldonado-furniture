@@ -37,7 +37,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Encuentra tu mueble ideal..."
-        className={`w-full border-b py-2.5 pl-12 pr-4 focus:outline-none transition-all text-sm font-medium ${
+        className={`w-full border-b py-2.5 pl-12 pr-4 focus:outline-none transition-all text-md font-medium ${
           !showSolidNavbar
             ? "bg-transparent border-white/20 text-white placeholder:text-white/40 focus:border-white/60"
             : "bg-transparent border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 focus:border-[#4A3728] placeholder:text-zinc-400"

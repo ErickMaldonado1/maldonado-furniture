@@ -68,6 +68,8 @@ export async function createFullProduct(data: any) {
             thickness: v.thickness,
             color: v.color || null,
             material: v.material || null,
+            price: v.price || null,
+            sizeLabel: v.sizeLabel || null,
             dimensions: {
               create: {
                 width: v.width,
@@ -156,6 +158,8 @@ export async function updateFullProduct(id: string, data: any) {
               thickness: v.thickness,
               color: v.color || null,
               material: v.material || null,
+              price: v.price || null,
+              sizeLabel: v.sizeLabel || null,
               dimensions: {
                 upsert: {
                   create: {
@@ -181,6 +185,8 @@ export async function updateFullProduct(id: string, data: any) {
               thickness: v.thickness,
               color: v.color || null,
               material: v.material || null,
+              price: v.price || null,
+              sizeLabel: v.sizeLabel || null,
               dimensions: {
                 create: {
                   width: v.width,

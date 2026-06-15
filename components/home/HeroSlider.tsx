@@ -16,7 +16,6 @@ const getOptimizedHeroImage = (url: string) => {
 
 const HeroSlider = () => {
   const [current, setCurrent] = useState(0);
-
   const nextSlide = useCallback(() => {
     setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   }, []);
@@ -31,7 +30,7 @@ const HeroSlider = () => {
   }, [nextSlide]);
 
   return (
-    <section className="relative h-[60vh] md:h-[85vh] min-h-125 w-full overflow-hidden bg-black dark:bg-[#0a0a0a] transition-colors duration-700">
+    <section className="relative h-[80vh] md:h-[85vh] min-h-125 w-full overflow-hidden bg-black dark:bg-[#0a0a0a] transition-colors duration-700">
       {slides.map((slide, index) => (
         <div
           key={slide.id}
@@ -54,8 +53,8 @@ const HeroSlider = () => {
                 : { fetchPriority: "low" })}
               sizes="(max-width: 768px) 100vw, 1200px"
             />
-            <div className="absolute inset-0 bg-black/30 dark:bg-black/50 transition-colors duration-700" />
-            <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/20 to-transparent dark:from-black/70 dark:via-black/30 transition-colors duration-700" />
+            <div className="absolute inset-0 bg-black/20 dark:bg-black/30 transition-colors duration-700" />
+            <div className="absolute inset-0 bg-linear-to-r from-black/30 via-black/10 to-transparent dark:from-black/50 dark:via-black/20 transition-colors duration-700" />
           </div>
 
           <div className="relative h-full w-full max-w-360 mx-auto px-6 lg:px-12 flex flex-col justify-center items-start text-white pt-20 md:pt-24">
@@ -70,7 +69,7 @@ const HeroSlider = () => {
                 {slide.tag}
               </span>
 
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 md:mb-6 tracking-tighter leading-none sm:leading-[0.9] uppercase font-heading">
+              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 md:mb-6 tracking-tighter leading-none sm:leading-[0.9] uppercase">
                 {slide.title.split(" ").map((word, idx) => (
                   <span
                     key={idx}
@@ -85,14 +84,14 @@ const HeroSlider = () => {
                 ))}
               </h1>
 
-              <p className="text-sm md:text-base lg:text-lg opacity-90 max-w-xl font-medium leading-relaxed mb-8 md:mb-8 text-zinc-200">
+              <p className="text-base md:text-lg lg:text-xl opacity-90 max-w-xl font-medium leading-relaxed mb-8 md:mb-8 text-zinc-200">
                 {slide.description}
               </p>
 
               <Link
                 href={slide.link}
                 aria-label={`Ver colección de ${slide.title}`}
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-sm md:text-base font-semibold rounded-md bg-[#4A3728]/90 text-white dark:bg-white/10 dark:text-white backdrop-blur-sm border border-transparent hover:bg-black dark:hover:bg-white/20 transition-all duration-300 group"
+                className="inline-flex items-center gap-2 px-6 py-3 text-base md:text-lg font-semibold rounded-md bg-[#4A3728]/90 text-white dark:bg-white/10 dark:text-white backdrop-blur-sm border border-transparent hover:bg-black dark:hover:bg-white/20 transition-all duration-300 group"
               >
                 Ver colección
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />

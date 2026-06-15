@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { createPortal } from "react-dom";
@@ -41,7 +40,7 @@ export function ProductGallery({
 
   return (
     <>
-      <div className="flex flex-col md:flex-row gap-4 h-full">
+      <div className="flex flex-col md:flex-row gap-10 h-full">
         <div className="flex flex-row md:flex-col gap-2 md:w-16 shrink-0 overflow-x-auto md:overflow-y-auto max-h-125 custom-scrollbar hide-scrollbar-mobile order-2 md:order-1">
           {product.images?.map((img, i) => (
             <button
@@ -53,12 +52,13 @@ export function ProductGallery({
                   : "border-transparent opacity-40 hover:opacity-100 hover:border-zinc-200 dark:hover:border-zinc-800"
               }`}
               aria-label={`Ver imagen ${i + 1}`}
+              title={img.color || `Vista ${i + 1}`}
             >
               <Image
                 src={img.url}
                 alt={`${product.name} vista ${i + 1}`}
                 fill
-                className="object-contain p-1"
+                className="object-contain p-0"
               />
             </button>
           ))}
@@ -82,7 +82,7 @@ export function ProductGallery({
                   src={currentImageUrl}
                   alt={product.name}
                   fill
-                  className="object-contain hover:scale-105 transition-transform duration-500"
+                  className="object-contain hover:scale-103 transition-transform duration-400"
                   priority
                 />
               </motion.div>
@@ -110,7 +110,7 @@ export function ProductGallery({
 
             {product.discount && product.discount > 0 && (
               <div className="absolute top-4 left-4 z-20">
-                <span className="bg-white text-black dark:bg-[#050505] dark:text-white text-[12px] font-black uppercase tracking-widest px-3 py-1 border border-white/10 shadow-sm">
+                <span className="bg-white text-black dark:bg-[#050505] dark:text-white text-base font-black uppercase tracking-widest px-3 py-1 border border-white/10 shadow-sm">
                   -{product.discount}%
                 </span>
               </div>
@@ -233,6 +233,7 @@ export function ProductGallery({
                           ? "border-white scale-110 shadow-lg"
                           : "border-transparent opacity-50 hover:opacity-100 hover:border-white/50"
                       }`}
+                      title={img.color || `Vista ${i + 1}`}
                     >
                       <Image
                         src={img.url}

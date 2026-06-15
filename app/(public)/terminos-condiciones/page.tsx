@@ -87,7 +87,7 @@ export default function TerminosPage() {
             Términos <span className="text-[#4A3728]"> y Condiciones</span>
           </h1>
           <p className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">
-            Última actualización: 9 de febrero, 2026
+            Última actualización: 16 de Junio, 2026
           </p>
         </header>
 

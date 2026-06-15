@@ -35,9 +35,9 @@ const DesktopNav = ({
           : "h-12 opacity-100"
       }`}
     >
-      <div className="max-w-screen-2xl mx-auto px-8 h-full flex items-center justify-center font-heading">
+      <div className="max-w-screen-2xl mx-auto px-8 h-full flex items-center justify-center">
         <div
-          className={`flex gap-10 text-[14px] font-medium tracking-[0.20em] uppercase transition-colors duration-500 ${
+          className={`flex gap-10 text-base font-medium tracking-[0.20em] uppercase transition-colors duration-500 ${
             !showSolidNavbar
               ? "text-white/70"
               : "text-zinc-500 dark:text-zinc-400"

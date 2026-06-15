@@ -62,6 +62,8 @@ export default function ProductForm({ initialData }: ProductFormProps) {
           thickness: null,
           color: null,
           material: null,
+          price: null,
+          sizeLabel: "",
         },
       ],
     },
@@ -89,6 +91,8 @@ export default function ProductForm({ initialData }: ProductFormProps) {
           width: v.dimensions?.width || 0,
           height: v.dimensions?.height || 0,
           depth: v.dimensions?.depth || 0,
+          price: v.price || null,
+          sizeLabel: v.sizeLabel || "",
         })),
         subcategory: initialData.subcategory
           ? slugify(initialData.subcategory)
@@ -547,6 +551,8 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                     thickness: null,
                     color: "",
                     material: "",
+                    price: null,
+                    sizeLabel: "",
                   })
                 }
                 className="group text-[#A6866A] bg-[#A6866A]/10 hover:bg-[#A6866A] hover:text-white px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border border-[#A6866A]/20"
@@ -639,6 +645,30 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                           <ChevronDown size={14} />
                         </div>
                       </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-800">
+                    <div className="space-y-1">
+                      <label className="text-[10px] uppercase text-zinc-500 font-bold ml-1">
+                        Etiqueta de Tamaño
+                      </label>
+                      <input
+                        {...register(`variants.${index}.sizeLabel`)}
+                        placeholder="Ej: 2 plazas, 120cm, etc."
+                        className="w-full text-sm border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-[#A6866A]/20 outline-none"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] uppercase text-zinc-500 font-bold ml-1">
+                        Precio Variación ($)
+                      </label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        {...register(`variants.${index}.price` as any)}
+                        placeholder="Ej: 350.00"
+                        className="w-full text-sm font-bold border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 bg-zinc-100 dark:bg-zinc-800/50 text-[#A6866A] dark:text-[#D4A373] outline-none focus:bg-white dark:focus:bg-zinc-900 transition-all"
+                      />
                     </div>
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-800">

@@ -14,11 +14,14 @@ export default async function ProductDetailPage({ params }: Props) {
     return notFound();
   }
 
-  const images = product.images.map((img) => img.url);
-
-  const relatedProducts = await ProductService.getByCategory(
-    product.category || "",
-  );
+  const [relatedProducts, siblingProducts] = await Promise.all([
+    ProductService.getByCategory(product.category || ""),
+    ProductService.getSiblingProducts(
+      product.name,
+      product.subcategory,
+      product.id,
+    ),
+  ]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#050505] pt-24 pb-20 px-4 md:px-4">
@@ -26,6 +29,7 @@ export default async function ProductDetailPage({ params }: Props) {
         <ProductDetailClient
           product={product as any}
           relatedProducts={relatedProducts.filter((p) => p.id !== product.id)}
+          siblingProducts={siblingProducts as any}
         />
       </div>
     </div>

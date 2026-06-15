@@ -22,7 +22,7 @@ function AccordionItem({
         onClick={onToggle}
         className="w-full py-4 flex items-center justify-between text-left group"
       >
-        <span className="text-[13px] font-black uppercase tracking-widest text-zinc-900 dark:text-white group-hover:text-[#4A3728] transition-colors">
+        <span className="text-base font-bold  text-zinc-900 dark:text-white">
           {title}
         </span>
         <ChevronDown
@@ -38,7 +38,7 @@ function AccordionItem({
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="pb-6 text-[11px] leading-relaxed text-zinc-500 dark:text-zinc-400 font-medium">
+            <div className="pb-6 text-[12px] leading-relaxed text-zinc-500 dark:text-zinc-400 font-medium">
               {children}
             </div>
           </motion.div>
@@ -80,20 +80,20 @@ export function ProductAccordion({
         {dimensions ? (
           <div className="space-y-2">
             <div className="flex justify-between">
-              <span className="text-[12px]">Altura</span>
-              <span className="text-[12px] font-bold text-zinc-900 dark:text-white">
+              <span className="text-[14px]">Altura</span>
+              <span className="text-[14px] font-bold text-zinc-900 dark:text-white">
                 {dimensions.height} cm
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[12px]">Ancho</span>
-              <span className="text-[12px] font-bold text-zinc-900 dark:text-white">
+              <span className="text-[14px]">Ancho</span>
+              <span className="text-[14px] font-bold text-zinc-900 dark:text-white">
                 {dimensions.width} cm
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[12px]">Fondo</span>
-              <span className="text-[12px] font-bold text-zinc-900 dark:text-white">
+              <span className="text-[14px]">Fondo</span>
+              <span className="text-[14px] font-bold text-zinc-900 dark:text-white">
                 {dimensions.depth} cm
               </span>
             </div>
@@ -101,24 +101,6 @@ export function ProductAccordion({
         ) : (
           <p>Dimensiones no disponibles para esta variante.</p>
         )}
-      </AccordionItem>
-
-      <AccordionItem
-        title="Materiales"
-        isOpen={openIndices.includes(2)}
-        onToggle={() => toggle(2)}
-      >
-        <div className="space-y-4">
-          {materials && materials.length > 0 && (
-            <div>
-              <ul className="list-disc pl-4 space-y-1 text-[12px]">
-                {materials.map((m, i) => (
-                  <li key={i}>{m}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
       </AccordionItem>
     </div>
   );

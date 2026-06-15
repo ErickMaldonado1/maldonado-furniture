@@ -34,6 +34,8 @@ export const productSchema = z.object({
         height: z.coerce.number().min(0),
         depth: z.coerce.number().min(0),
         thickness: z.coerce.number().optional().nullable(),
+        price: z.coerce.number().optional().nullable(),
+        sizeLabel: z.string().optional().nullable(),
       }),
     )
     .min(1, "Debe haber al menos una variante"),

@@ -39,7 +39,7 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
             <div className="mx-auto max-w-360">
               <div className="grid grid-cols-[1fr_2fr_2fr] gap-10 px-10 py-4">
                 <div className="min-w-0">
-                  <p className="text-[12px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4">
+                  <p className="text-[14px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4">
                     {data.label}
                   </p>
 
@@ -54,7 +54,7 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                             ${isHovered ? "bg-zinc-100 dark:bg-white/10 pl-4" : "hover:bg-zinc-50 dark:hover:bg-white/5"}
                           `}
                         >
-                          <span className={`text-md font-semibold truncate transition-colors ${isHovered ? "text-[#4A3728] dark:text-white" : "text-zinc-800 dark:text-zinc-200"}`}>
+                          <span className={`text-base font-semibold truncate transition-colors ${isHovered ? "text-[#4A3728] dark:text-white" : "text-zinc-800 dark:text-zinc-200"}`}>
                             {cat.label}
                           </span>
 
@@ -69,9 +69,8 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                   </ul>
                 </div>
 
-                {/* EXPLORAR */}
                 <div className="min-w-0">
-                  <p className="text-[12px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4">
+                  <p className="text-[14px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4">
                     Explorar
                   </p>
 
@@ -95,7 +94,7 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                           />
                         </div>
 
-                        <span className={`text-[13px] truncate transition-colors duration-300 ${isHovered ? "text-[#4A3728] dark:text-white font-bold" : "font-medium text-zinc-700 dark:text-zinc-300"}`}>
+                        <span className={`text-[15px] truncate transition-colors duration-300 ${isHovered ? "text-[#4A3728] dark:text-white font-bold" : "font-medium text-zinc-700 dark:text-zinc-300"}`}>
                           {sub.label}
                         </span>
                       </Link>
@@ -103,7 +102,7 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                   </div>
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[12px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4">
+                  <p className="text-[14px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4">
                     Tendencias
                   </p>
 
@@ -129,7 +128,7 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                           />
                           {item.badge && (
                             <span
-                              className={`absolute top-4 left-4 px-3 py-1 text-[12px]
+                              className={`absolute top-4 left-4 px-3 py-1 text-sm
         font-black uppercase tracking-widest rounded-full backdrop-blur-md
         ${badgeStyles[item.badgeColor]}`}
                             >
@@ -139,16 +138,16 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                         </div>
 
                         <div className="relative p-5">
-                          <h4 className="text-[12px] font-semibold text-zinc-900 dark:text-white leading-tight mb-1">
+                          <h4 className="text-sm font-semibold text-zinc-900 dark:text-white leading-tight mb-1">
                             {item.title}
                           </h4>
 
-                          <p className="text-md text-zinc-500 dark:text-zinc-400 line-clamp-2">
+                          <p className="text-base text-zinc-500 dark:text-zinc-400 line-clamp-2">
                             {item.description}
                           </p>
 
                           <span
-                            className="mt-3 block text-[12px] uppercase tracking-widest text-zinc-400
+                            className="mt-3 block text-sm uppercase tracking-widest text-zinc-400
   group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition"
                           >
                             Explorar →

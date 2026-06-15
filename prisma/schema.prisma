@@ -85,19 +85,22 @@ model Product {
 }
 
 model ProductVariant {
-  id         String             @id @default(auto()) @map("_id") @db.ObjectId
-  name       String
-  sku        String             @unique
-  thickness  Float?
-  color      String?            
-  material   String?            
-  productId  String             @db.ObjectId
-  product    Product            @relation(fields: [productId], references: [id])
-  dimensions VariantDimensions?
-  favorites  Favorite[]
-  orderItems OrderItem[]
-  createdAt  DateTime           @default(now())
-  updatedAt  DateTime           @updatedAt
+  id              String             @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  sku             String             @unique
+  thickness       Float?
+  color           String?            
+  material        String?
+  price           Float?
+  sizeLabel       String?
+  dimensionLabel  String?            
+  productId       String             @db.ObjectId
+  product         Product            @relation(fields: [productId], references: [id])
+  dimensions      VariantDimensions?
+  favorites       Favorite[]
+  orderItems      OrderItem[]
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
 }
 
 model VariantDimensions {

@@ -187,14 +187,14 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         </div>
 
         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
-          <span className="bg-white/90 backdrop-blur-md text-[#4A4A4A] px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl transform translate-y-4 group-hover/img:translate-y-0 transition-transform duration-500">
+          <span className="bg-white/90 backdrop-blur-md text-[#4A4A4A] px-6 py-2.5 rounded-full text-sm font-bold uppercase tracking-widest shadow-xl transform translate-y-4 group-hover/img:translate-y-0 transition-transform duration-500">
             Ver Detalles
           </span>
         </div>
 
         <div className="hidden sm:flex absolute bottom-3 left-3 items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-black/60 backdrop-blur-md shadow-sm z-20">
           <Truck className="w-3.5 h-3.5 text-[#897156] dark:text-[#A68B67]" />
-          <span className="text-[11px] text-[#4A4A4A] dark:text-zinc-300 font-bold uppercase tracking-wider">
+          <span className="text-xs text-[#4A4A4A] dark:text-zinc-300 font-bold uppercase tracking-wider">
             {product.deliveryDays || 8} días
           </span>
         </div>
@@ -202,7 +202,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         {hasDiscount && (
           <div
             className="
-    absolute top-3 left-3 z-2 px-2 py-1.5 rounded-full text-[11px] font-semibold tracking-wide backdrop-blur-md shadow-md bg-[#7A5C3E] text-white dark:bg-[#A98B6C] dark:text-[#1C1C1C] transition-all duration-300
+    absolute top-3 left-3 z-2 px-2 py-1.5 rounded-full text-xs font-semibold tracking-wide backdrop-blur-md shadow-md bg-[#7A5C3E] text-white dark:bg-[#A98B6C] dark:text-[#1C1C1C] transition-all duration-300
   "
           >
             - {product.discount} %
@@ -213,25 +213,25 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       <div className="p-2 sm:p-3 flex flex-col flex-1 cursor-default">
         <div className="flex-1">
           <Link href={productPath}>
-            <h3 className="text-[14px] font-bold text-[#4A4A4A] dark:text-zinc-100 truncate leading-snug hover:text-[#897156] transition-colors mb-1">
+            <h3 className="text-base font-bold text-[#4A4A4A] dark:text-zinc-100 truncate leading-snug hover:text-[#897156] transition-colors mb-1">
               {product.name}
             </h3>
           </Link>
           {product.variants?.[0]?.dimensions && (
-            <div className="flex items-center gap-3 text-[11px] text-zinc-700 dark:text-zinc-300 font-semibold mb-2">
+            <div className="flex items-center gap-3 text-xs text-zinc-700 dark:text-zinc-300 font-semibold mb-2">
               <div className="flex items-center gap-1 p-1 px-2 bg-zinc-100 dark:bg-zinc-800 rounded-md">
                 <span className="flex items-center gap-0.4">
-                  <span className="text-[11px] opacity-80">⇅</span>
+                  <span className="text-xs opacity-80">⇅</span>
                   {product.variants[0].dimensions.height}cm
                 </span>
                 <span className="w-px h-2.5 bg-[#897156]/30 mx-0.3" />
                 <span className="flex items-center gap-0.4">
-                  <span className="text-[11px] opacity-80">⇄</span>
+                  <span className="text-xs opacity-80">⇄</span>
                   {product.variants[0].dimensions.width}cm
                 </span>
                 <span className="w-px h-2.5 bg-[#897156]/30 mx-0.3" />
                 <span className="flex items-center gap-0.4">
-                  <span className="text-[11px] opacity-80">⤢</span>
+                  <span className="text-xs opacity-80">⤢</span>
                   {product.variants[0].dimensions.depth}cm
                 </span>
               </div>
@@ -242,11 +242,11 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#EDE8E0] dark:border-white/5">
           <div className="flex flex-col items-start cursor-default">
             {hasDiscount && (
-              <span className="text-[11px] text-[#4A4A4A]/80 line-through font-medium leading-none mb-0.5">
+              <span className="text-xs text-[#4A4A4A]/80 line-through font-medium leading-none mb-0.5">
                 ${product.price.toLocaleString()}
               </span>
             )}
-            <span className="text-xl font-black text-zinc-900 dark:text-white tracking-tight leading-none">
+            <span className="text-2xl font-black text-zinc-900 dark:text-white tracking-tight leading-none">
               $
               {finalPrice.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
@@ -275,7 +275,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
                   className="flex items-center gap-1.5"
                 >
                   <CheckBadge className="w-4 h-4 text-emerald-500" />
-                  <span className="text-[10px] font-black uppercase tracking-wider">
+                  <span className="text-xs font-black uppercase tracking-wider">
                     Listo
                   </span>
                 </motion.div>
@@ -287,7 +287,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
                   className="flex items-center gap-1.5"
                 >
                   <CartPlusIcon className="w-4 h-4" />
-                  <span className="text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
+                  <span className="text-xs font-black uppercase tracking-widest whitespace-nowrap">
                     Añadir
                   </span>
                 </motion.div>
