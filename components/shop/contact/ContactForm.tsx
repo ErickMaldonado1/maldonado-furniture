@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactSchema, ContactFormData } from "@/lib/contact-validation";
 import { ArrowLongRight } from "@/utils/icons/navigation";
 import { sendEmail } from "@/features/contact/actions";
+import Image from "next/image";
 
 export function ContactForm() {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -37,10 +38,12 @@ export function ContactForm() {
     <section id="contacto" className="py-16 px-6 max-w-6xl mx-auto">
       <div className="bg-white dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-900 rounded-sm shadow-sm overflow-hidden flex flex-col lg:flex-row max-h-none lg:h-100">
         <div className="w-full lg:w-2/5 relative h-48 lg:h-full overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-          <img
+          <Image
             src="https://res.cloudinary.com/dwvruzkll/image/upload/v1769210579/contact-page_cbg6y3.webp"
             alt="Muebles Maldonado"
-            className="absolute inset-0 w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 40vw"
           />
         </div>
 
@@ -55,11 +58,12 @@ export function ContactForm() {
             <div className="grid md:grid-cols-2 gap-x-8 gap-y-5">
               {/* Nombre */}
               <div className="flex flex-col gap-1">
-                <label className="text-[12px] font-bold tracking-widest text-zinc-400 uppercase">
+                <label htmlFor="contact-name" className="text-[12px] font-bold tracking-widest text-zinc-400 uppercase">
                   Nombre
                 </label>
                 <input
                   {...register("name")}
+                  id="contact-name"
                   type="text"
                   className={`bg-transparent border-b ${errors.name ? "border-red-500" : "border-zinc-200 dark:border-zinc-800"} py-1 text-sm outline-none focus:border-[#4A3728] transition-all text-zinc-900 dark:text-white`}
                 />
@@ -71,11 +75,12 @@ export function ContactForm() {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-[12px] font-bold tracking-widest text-zinc-400 uppercase">
+                <label htmlFor="contact-phone" className="text-[12px] font-bold tracking-widest text-zinc-400 uppercase">
                   Teléfono
                 </label>
                 <input
                   {...register("phone")}
+                  id="contact-phone"
                   type="tel"
                   placeholder="09XXXXXXXX"
                   className={`bg-transparent border-b ${errors.phone ? "border-red-500" : "border-zinc-200 dark:border-zinc-800"} py-1 text-sm outline-none focus:border-[#4A3728] transition-all text-zinc-900 dark:text-white`}
@@ -88,11 +93,12 @@ export function ContactForm() {
               </div>
 
               <div className="md:col-span-2 flex flex-col gap-1">
-                <label className="text-[12px] font-bold tracking-widest text-zinc-400 uppercase">
+                <label htmlFor="contact-email" className="text-[12px] font-bold tracking-widest text-zinc-400 uppercase">
                   Correo electrónico
                 </label>
                 <input
                   {...register("email")}
+                  id="contact-email"
                   type="email"
                   className={`bg-transparent border-b ${errors.email ? "border-red-500" : "border-zinc-200 dark:border-zinc-800"} py-1 text-sm outline-none focus:border-[#4A3728] transition-all text-zinc-900 dark:text-white`}
                 />
@@ -104,11 +110,12 @@ export function ContactForm() {
               </div>
 
               <div className="md:col-span-2 flex flex-col gap-1">
-                <label className="text-[12px] font-bold tracking-widest text-zinc-400 uppercase">
+                <label htmlFor="contact-message" className="text-[12px] font-bold tracking-widest text-zinc-400 uppercase">
                   ¿Cómo ayudamos?
                 </label>
                 <textarea
                   {...register("message")}
+                  id="contact-message"
                   rows={1}
                   className={`bg-transparent border-b ${errors.message ? "border-red-500" : "border-zinc-200 dark:border-zinc-800"} py-1 text-sm outline-none focus:border-[#4A3728] transition-all text-zinc-900 dark:text-white resize-none`}
                 />

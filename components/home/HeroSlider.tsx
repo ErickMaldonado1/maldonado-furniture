@@ -65,7 +65,7 @@ const HeroSlider = () => {
                   : "translate-y-8 opacity-0 blur-sm"
               }`}
             >
-              <span className="inline-flex mb-4 px-3 py-1 text-md md:text-xs font-semibold tracking-[0.25em] uppercase text-white dark:text-white bg-[#4A3728]/90 dark:bg-white/10 backdrop-blur-sm rounded-md">
+              <span className="inline-flex mb-4 px-3 py-1 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-white dark:text-white bg-[#4A3728]/90 dark:bg-white/10 backdrop-blur-sm rounded-md">
                 {slide.tag}
               </span>
 

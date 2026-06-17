@@ -66,7 +66,7 @@ const ValueProps = () => {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-xl sm:text-3xl md:text-4xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white"
+            className="text-2xl md:text-4xl font-black tracking-tighter uppercase text-zinc-900 dark:text-white leading-none"
           >
             Nuestros{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
@@ -126,22 +126,22 @@ const ServiceCard = ({ service }: { service: (typeof services)[0] }) => {
       </motion.div>
 
       <div className="flex-1 flex flex-col w-full">
-        <span className="text-[10px] font-black tracking-widest text-[#4A3728] mb-1 opacity-80 uppercase">
+        <span className="text-[10px] md:text-xs font-black tracking-widest text-[#4A3728] mb-1 opacity-80 uppercase">
           {service.subtitle}
         </span>
 
-        <h2 className="text-[16px] md:text-[18px] font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-2">
+        <h2 className="text-base md:text-lg font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-2">
           {service.title}
         </h2>
 
-        <p className="text-[13px] md:text-[14px] font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6">
+        <p className="text-xs md:text-sm font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6">
           {service.desc}
         </p>
 
         <div className="mt-auto">
           <a
             href={service.href}
-            className="inline-flex items-center gap-2 text-[11px] font-bold uppercase text-zinc-900 dark:text-white hover:text-[#4A3728] dark:hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase text-zinc-900 dark:text-white hover:text-[#4A3728] dark:hover:text-[#A68B67] transition-colors"
           >
             {service.cta}
             <span

@@ -16,7 +16,7 @@ export default function FavoritesPage() {
             <Heart className="w-4 h-4 text-3xl text-[#4A3728]" />
           </div>
           <div>
-            <h1 className="text-3xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white">
+            <h1 className="text-3xl md:text-4xl font-black tracking-tighter leading-none text-zinc-900 dark:text-white">
               Mis Favoritos
             </h1>
             <p className="text-zinc-500 font-medium">
@@ -27,9 +27,9 @@ export default function FavoritesPage() {
 
         {favorites.length === 0 ? (
           <div className="py-20 text-center space-y-6">
-            <p className="text-2xl text-zinc-300 font-black uppercase tracking-tighter">
+            <h2 className="text-2xl md:text-3xl font-black tracking-tighter text-zinc-300 leading-tight">
               Tu lista está vacía
-            </p>
+            </h2>
             <Link
               href="/productos"
               className="inline-block px-8 py-3 bg-[#4A3728] text-white font-bold uppercase tracking-widest text-xs hover:bg-[#3D2C1F] transition-colors"

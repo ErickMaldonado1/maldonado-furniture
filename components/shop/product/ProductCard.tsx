@@ -213,7 +213,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       <div className="p-2 sm:p-3 flex flex-col flex-1 cursor-default">
         <div className="flex-1">
           <Link href={productPath}>
-            <h3 className="text-base font-bold text-[#4A4A4A] dark:text-zinc-100 truncate leading-snug hover:text-[#897156] transition-colors mb-1">
+            <h3 className="text-lg font-bold text-[#4A4A4A] dark:text-zinc-100 truncate tracking-tight leading-snug hover:text-[#897156] transition-colors mb-1">
               {product.name}
             </h3>
           </Link>
@@ -260,7 +260,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             aria-label={
               cartStatus ? "Producto en el carrito" : "Añadir al carrito"
             }
-            className={`flex items-center justify-center gap-2 h-10 px-2 sm:px-4 rounded-xl transition-all duration-300 overflow-hidden shadow-md ${
+            className={`hidden md:flex items-center justify-center gap-2 h-10 px-2 sm:px-4 rounded-xl transition-all duration-300 overflow-hidden shadow-md ${
               cartStatus
                 ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800"
                 : "bg-[#141414] text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 active:scale-95"

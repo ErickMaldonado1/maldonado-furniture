@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import { categories } from "@/utils/categories";
 import ProductCard from "@/components/shop/product/ProductCard";
 import { ContactForm } from "@/components/shop/contact/ContactForm";
@@ -128,7 +129,7 @@ export default async function CategoryPage({ params }: Props) {
                   {seoContent[categorySlug]?.prefix}
                 </span>
               </div>
-              <h1 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+              <h1 className="text-3xl md:text-5xl font-black tracking-tighter text-zinc-900 dark:text-white leading-none">
                 {categoryConfig.label}
               </h1>
               <div className="max-w-md">
@@ -136,11 +137,14 @@ export default async function CategoryPage({ params }: Props) {
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-1/2 h-70 lg:h-full">
-            <img
+          <div className="w-full lg:w-1/2 h-70 lg:h-full relative">
+            <Image
               src={heroImage}
-              className="w-full h-full object-cover"
+              fill
+              priority
+              className="object-cover"
               alt={categoryConfig.label}
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
         </div>
@@ -150,7 +154,7 @@ export default async function CategoryPage({ params }: Props) {
         <div className="max-w-360 mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-4 mb-8 pl-4">
             <Squares2X2 className="w-6 h-6 text-[#4A3728] text-2xl" />
-            <h2 className="text-2xl font-black uppercase text-zinc-800 dark:text-zinc-200">
+            <h2 className="text-2xl md:text-3xl font-black tracking-tighter text-zinc-900 dark:text-white leading-tight">
               Lineas Especializadas
             </h2>
           </div>
@@ -162,11 +166,13 @@ export default async function CategoryPage({ params }: Props) {
                 href={sub.href}
                 className="group flex flex-col items-center gap-3"
               >
-                <div className="w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden ring-2 ring-zinc-100 dark:ring-zinc-800 group-hover:ring-[#4A3728] transition-all duration-500 p-1 bg-white dark:bg-zinc-900 shadow-md">
-                  <img
+                <div className="w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden ring-2 ring-zinc-100 dark:ring-zinc-800 group-hover:ring-[#4A3728] transition-all duration-500 p-1 bg-white dark:bg-zinc-900 shadow-md relative">
+                  <Image
                     src={sub.imageSrc}
-                    className="p-2 w-full h-full object-contain rounded-full transition-transform duration-700 ease-in-out group-hover:scale-110"
+                    fill
+                    className="p-2 object-contain rounded-full transition-transform duration-700 ease-in-out group-hover:scale-110"
                     alt={sub.label}
+                    sizes="(max-width: 768px) 80px, 128px"
                   />
                 </div>
                 <span className="text-[14px] font-bold uppercase tracking-tight text-zinc-500 group-hover:text-black dark:group-hover:text-white text-center transition-colors">
@@ -180,7 +186,7 @@ export default async function CategoryPage({ params }: Props) {
 
       <section className="py-12 bg-[#FDFCFB] dark:bg-black">
         <div className="max-w-360 mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white mb-14">
+          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white mb-14">
             Productos <span className="text-[#4A3728]">Destacados</span>
           </h2>
 

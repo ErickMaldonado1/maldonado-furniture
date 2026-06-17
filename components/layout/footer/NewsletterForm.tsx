@@ -32,7 +32,7 @@ export default function NewsletterForm() {
 
   return (
     <div className="w-full space-y-4">
-      <p className="text-md text-zinc-500 font-medium">
+      <p className="text-sm text-zinc-500 font-medium">
         Sé el primero en ver nuestras últimas actualizaciones.
       </p>
       <form className="relative flex items-center" onSubmit={handleSubscribe}>
@@ -43,13 +43,13 @@ export default function NewsletterForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="tu@email.com"
           disabled={loading}
-          className="w-full bg-white/5 border border-white/10 rounded-full py-3 px-4 text-md text-white placeholder:text-zinc-600 focus:outline-none focus:border-[#4A3728] transition-all disabled:opacity-50"
+          className="w-full bg-white/5 border border-white/10 rounded-full py-3 px-4 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-[#8B735B] transition-all disabled:opacity-50"
         />
         <button
           type="submit"
           aria-label="Enviar suscripción"
           disabled={loading}
-          className="absolute right-2 p-1.5 text-[#8B735B] hover:text-[#4A3728] transition-colors disabled:cursor-not-allowed"
+          className="absolute right-2 p-1.5 text-[#8B735B] hover:text-white transition-colors disabled:cursor-not-allowed"
         >
           {loading ? (
             <div className="w-5 h-5 border-2 border-[#8B735B] border-t-transparent animate-spin rounded-full" />

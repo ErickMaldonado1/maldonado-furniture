@@ -109,7 +109,7 @@ export function ProductInfo({
             </span>
           </div>
 
-          <h1 className="text-2xl md:text-3xl font-black tracking-tight leading-tight text-zinc-900 dark:text-white transition-colors duration-300">
+          <h1 className="text-3xl md:text-4xl font-black tracking-tighter leading-none text-zinc-900 dark:text-white transition-colors duration-300">
             {selectedVariant?.name || product.name}
           </h1>
 

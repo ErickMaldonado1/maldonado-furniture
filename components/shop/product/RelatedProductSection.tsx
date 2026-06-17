@@ -24,7 +24,7 @@ export function RelatedProductsSection({
         <div className="h-px flex-1 bg-zinc-100 dark:bg-zinc-900 mx-8 hidden md:block" />
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-8">
         {relatedProducts.slice(0, 4).map((p, idx) => (
           <ProductCard key={p.id} product={p as any} index={idx} />
         ))}

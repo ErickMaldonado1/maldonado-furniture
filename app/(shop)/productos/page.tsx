@@ -49,7 +49,7 @@ export default async function SearchPage({
           />
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-6">
             <div>
-              <h1 className="text-2xl md:text-3xl font-black tracking-tighter text-zinc-900 dark:text-white leading-none">
+              <h1 className="text-3xl md:text-4xl font-black tracking-tighter text-zinc-900 dark:text-white leading-none">
                 {query ? `Buscas: "${query}"` : "Explorar Productos"}
               </h1>
               <p className="mt-3 text-zinc-500 font-medium italic text-sm">
@@ -77,7 +77,7 @@ export default async function SearchPage({
               <div className="w-20 h-20 bg-zinc-50 dark:bg-zinc-900 rounded-full flex items-center justify-center mb-6">
                 <SearchX className="w-10 h-10 text-zinc-300 dark:text-zinc-700" />
               </div>
-              <h2 className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight uppercase">
+              <h2 className="text-2xl md:text-3xl font-black tracking-tighter text-zinc-900 dark:text-white leading-tight">
                 No encontramos lo que buscas
               </h2>
               <p className="text-zinc-500 mt-2 max-w-xs mx-auto text-sm">
@@ -96,7 +96,7 @@ export default async function SearchPage({
             {serializedSuggestions.length > 0 && (
               <section className="animate-in fade-in duration-1000 delay-300">
                 <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-xl sm:text-3xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+                  <h2 className="text-2xl md:text-3xl font-black tracking-tighter text-zinc-900 dark:text-white leading-tight">
                     Productos que te{" "}
                     <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
                       podrían gustar

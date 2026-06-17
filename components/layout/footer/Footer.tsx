@@ -35,7 +35,7 @@ const Footer = () => {
                 />
               </div>
             </Link>
-            <p className="text-zinc-400 text-md font-semibold leading-relaxed">
+            <p className="text-zinc-400 text-sm font-normal leading-relaxed">
               Especialistas en muebles personalizados, combinando{" "}
               <span className="text-white">estilo</span>,{" "}
               <span className="text-white">calidad</span> y{" "}
@@ -45,7 +45,7 @@ const Footer = () => {
           </div>
 
           <div className="space-y-6 flex flex-col items-center md:items-start">
-            <h3 className="text-md font-black text-[#8B735B] tracking-widest uppercase">
+            <h3 className="text-sm font-bold text-[#8B735B] tracking-wider uppercase">
               Catálogo
             </h3>
             <nav className="flex flex-col gap-4">
@@ -58,7 +58,7 @@ const Footer = () => {
                 <Link
                   key={item.slug}
                   href={item.slug}
-                  className="text-zinc-400 hover:text-[#4A3728] dark:hover:text-white text-md font-semibold transition-all duration-300 hover:translate-x-1 w-fit"
+                  className="text-zinc-400 hover:text-white text-sm font-medium transition-all duration-300 hover:translate-x-1 w-fit"
                 >
                   {item.name}
                 </Link>
@@ -67,7 +67,7 @@ const Footer = () => {
           </div>
 
           <div className="space-y-6 flex flex-col items-center md:items-start">
-            <h3 className="text-md font-black text-[#8B735B] tracking-widest uppercase">
+            <h3 className="text-sm font-bold text-[#8B735B] tracking-wider uppercase">
               Servicios
             </h3>
             <nav className="flex flex-col gap-4">
@@ -80,7 +80,7 @@ const Footer = () => {
                 <Link
                   key={item.name}
                   href={item.path}
-                  className="text-zinc-400 hover:text-white text-md font-semibold transition-all duration-300 hover:translate-x-1"
+                  className="text-zinc-400 hover:text-white text-sm font-medium transition-all duration-300 hover:translate-x-1"
                 >
                   {item.name}
                 </Link>
@@ -89,7 +89,7 @@ const Footer = () => {
           </div>
 
           <div className="space-y-6 flex flex-col items-center md:items-start">
-            <h3 className="text-md font-black text-[#8B735B] tracking-widest uppercase">
+            <h3 className="text-sm font-bold text-[#8B735B] tracking-wider uppercase">
               Suscríbete
             </h3>
             <NewsletterForm />
@@ -137,7 +137,7 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-[#4A3728] hover:border-[#4A3728] transition-all duration-300"
+                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-[#8B735B] hover:border-[#8B735B] transition-all duration-300"
                   aria-label={`Ir a ${social.label}`}
                 >
                   <span className="w-5 h-5">{social.icon}</span>

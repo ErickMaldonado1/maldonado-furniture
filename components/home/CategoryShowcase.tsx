@@ -42,7 +42,7 @@ const CategoryShowcase = () => {
     <section className="py-6 md:py-12 bg-white dark:bg-[#050505] transition-colors duration-500">
       <div className="max-w-360 mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-8 md:mb-12 border-b border-zinc-100 dark:border-zinc-800/50 pb-6">
-          <h2 className="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
             Espacios{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
               que inspiran
@@ -51,7 +51,7 @@ const CategoryShowcase = () => {
 
           <Link
             href="/productos"
-            className="group flex items-center gap-2 text-zinc-500 dark:text-zinc-400 font-bold uppercase text-[10px] md:text-xs tracking-[0.15em] transition-all"
+            className="group flex items-center gap-2 text-zinc-500 hover:text-[#4A3728] dark:text-zinc-400 dark:hover:text-zinc-300 font-bold uppercase text-[10px] md:text-xs tracking-[0.15em] transition-all"
           >
             <span className="hidden sm:inline">VER CATÁLOGO COMPLETO</span>
             <span className="sm:hidden">CATÁLOGO</span>
@@ -80,16 +80,16 @@ const CategoryShowcase = () => {
 
                 <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-end">
                   <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="inline-block px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[9px] md:text-[11px] font-black text-white uppercase tracking-[0.2em] mb-2">
+                    <span className="inline-block px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-black text-white uppercase tracking-[0.2em] mb-2">
                       {cat.tag}
                     </span>
 
-                    <h3 className="text-lg md:text-4xl font-black text-white mb-2 uppercase tracking-tighter leading-none">
+                    <h3 className="text-2xl md:text-3xl font-black text-white mb-2 uppercase tracking-tighter leading-none">
                       {cat.name}
                     </h3>
 
                     <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                      <span className="text-white uppercase tracking-widest text-[9px] font-bold">
+                      <span className="text-white uppercase tracking-widest text-[10px] md:text-xs font-bold">
                         Descubrir
                       </span>
                       <div className="w-4 h-px bg-[#4A3728]" />
