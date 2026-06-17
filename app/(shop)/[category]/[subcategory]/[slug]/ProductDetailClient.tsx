@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { useCartStore } from "@/store/cart-store";
 import { useFavoritesStore } from "@/store/favorites-store";
@@ -41,16 +41,52 @@ export function ProductDetailClient({
     product.variants?.[0] || null,
   );
 
+  const [selectedColor, setSelectedColor] = useState<string | null>(
+    selectedVariant?.color || product.colors?.[0] || null,
+  );
+
+  const galleryImages = useMemo(() => {
+    const list = [...(product.images || [])];
+    siblingProducts.forEach((sibling) => {
+      sibling.images?.forEach((img) => {
+        const exists = list.some((item) => item.url === img.url);
+        if (!exists) {
+          const siblingColorFromField = sibling.colors?.[0];
+          const dashIdx = sibling.name.lastIndexOf(" - ");
+          const siblingColorFromName =
+            dashIdx !== -1
+              ? sibling.name.substring(dashIdx + 3).trim()
+              : sibling.name.trim();
+          const siblingColor = siblingColorFromField || siblingColorFromName;
+
+          list.push({
+            id: sibling.id,
+            url: img.url,
+            publicId: sibling.id,
+            color: siblingColor,
+            productId: sibling.id,
+            variantId: null,
+            createdAt: new Date(),
+          } as any);
+        }
+      });
+    });
+    return list;
+  }, [product.images, siblingProducts]);
+
   const handleImageSelect = (index: number) => {
     setSelectedImageIndex(index);
-    const imageColor = product.images?.[index]?.color;
-    if (imageColor && product.variants?.length) {
-      const normalizedImageColor = imageColor.toLowerCase().trim();
-      const matchingVariant = product.variants.find(
-        (v: any) => v.color?.toLowerCase().trim() === normalizedImageColor
-      );
-      if (matchingVariant && matchingVariant.id !== selectedVariant?.id) {
-        setSelectedVariant(matchingVariant);
+    const imageColor = galleryImages[index]?.color;
+    if (imageColor) {
+      setSelectedColor(imageColor);
+      if (product.variants?.length) {
+        const normalizedImageColor = imageColor.toLowerCase().trim();
+        const matchingVariant = product.variants.find(
+          (v: any) => v.color?.toLowerCase().trim() === normalizedImageColor
+        );
+        if (matchingVariant && matchingVariant.id !== selectedVariant?.id) {
+          setSelectedVariant(matchingVariant);
+        }
       }
     }
   };
@@ -72,9 +108,27 @@ export function ProductDetailClient({
 
   const handleVariantChange = (variant: any) => {
     setSelectedVariant(variant);
-    if (variant.color && product.images?.length) {
-      const normalizedColor = variant.color.toLowerCase().trim();
-      const matchingImageIndex = product.images.findIndex(
+    if (variant.color) {
+      setSelectedColor(variant.color);
+      if (galleryImages.length) {
+        const normalizedColor = variant.color.toLowerCase().trim();
+        const matchingImageIndex = galleryImages.findIndex(
+          (img: any) =>
+            img.color?.toLowerCase() === normalizedColor ||
+            img.url.toLowerCase().includes(normalizedColor.replace(/\s+/g, "-")),
+        );
+        if (matchingImageIndex !== -1) {
+          setSelectedImageIndex(matchingImageIndex);
+        }
+      }
+    }
+  };
+
+  const handleSiblingColorSelect = (color: string) => {
+    setSelectedColor(color);
+    if (galleryImages.length) {
+      const normalizedColor = color.toLowerCase().trim();
+      const matchingImageIndex = galleryImages.findIndex(
         (img: any) =>
           img.color?.toLowerCase() === normalizedColor ||
           img.url.toLowerCase().includes(normalizedColor.replace(/\s+/g, "-")),
@@ -86,8 +140,9 @@ export function ProductDetailClient({
   };
 
   const handleAddToCart = () => {
-    const normalizedSelectedColor = selectedVariant?.color?.toLowerCase().trim() || "";
-    const variantImage = product.images?.find(
+    const activeColorName = selectedColor || selectedVariant?.color || "";
+    const normalizedSelectedColor = activeColorName.toLowerCase().trim();
+    const variantImage = galleryImages.find(
       (img: any) =>
         img.color?.toLowerCase() === normalizedSelectedColor ||
         img.url.toLowerCase().includes(normalizedSelectedColor.replace(/\s+/g, "-")),
@@ -95,7 +150,7 @@ export function ProductDetailClient({
 
     const cartImage =
       variantImage ||
-      product.images?.[selectedImageIndex]?.url ||
+      galleryImages[selectedImageIndex]?.url ||
       product.images?.[0]?.url ||
       "";
 
@@ -107,7 +162,7 @@ export function ProductDetailClient({
       image: cartImage,
       variantId: selectedVariant?.id || product.variants?.[0]?.id,
       sku: selectedVariant?.sku || product.variants?.[0]?.sku || "N/A",
-      variantName: selectedVariant?.color || "No especificado",
+      variantName: activeColorName || "No especificado",
       dimensions: selectedVariant?.dimensions
         ? `${selectedVariant.dimensions.height}x${selectedVariant.dimensions.width}x${selectedVariant.dimensions.depth}cm`
         : "Estándar",
@@ -134,7 +189,7 @@ export function ProductDetailClient({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 pt-6 items-start">
         <div className="lg:col-span-7 lg:sticky lg:top-20 h-fit">
           <ProductGallery
-            product={product}
+            product={{ ...product, images: galleryImages }}
             selectedImage={selectedImageIndex}
             onImageSelect={handleImageSelect}
             isFav={isFav}
@@ -148,6 +203,8 @@ export function ProductDetailClient({
             selectedVariant={selectedVariant}
             onVariantChange={handleVariantChange}
             siblingProducts={siblingProducts}
+            selectedColor={selectedColor}
+            onColorChange={handleSiblingColorSelect}
           />
 
           <ProductActions
@@ -160,7 +217,7 @@ export function ProductDetailClient({
             finalPrice={finalPrice}
             discount={product.discount}
             sku={selectedVariant?.sku || product.sku || ""}
-            color={selectedVariant?.color || ""}
+            color={selectedColor || selectedVariant?.color || ""}
             dimensions={selectedVariant?.dimensions}
             materials={product.materials as string[]}
             careInstructions={(product as any).careInstructions}

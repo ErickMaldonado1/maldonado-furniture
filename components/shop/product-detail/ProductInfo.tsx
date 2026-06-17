@@ -14,6 +14,8 @@ interface ProductInfoProps {
   selectedVariant: any;
   onVariantChange: (variant: any) => void;
   siblingProducts?: SiblingProduct[];
+  selectedColor?: string | null;
+  onColorChange?: (color: string) => void;
 }
 
 export function ProductInfo({
@@ -21,6 +23,8 @@ export function ProductInfo({
   selectedVariant,
   onVariantChange,
   siblingProducts = [],
+  selectedColor = null,
+  onColorChange,
 }: ProductInfoProps) {
   const variantColors = useMemo(() => {
     if (!product.variants?.length) return [];
@@ -35,7 +39,7 @@ export function ProductInfo({
     return result;
   }, [product.variants]);
 
-  const activeColor = selectedVariant?.color ?? null;
+  const activeColor = selectedColor ?? selectedVariant?.color ?? null;
   const showColorSection = variantColors.length > 0 || siblingProducts.length > 0;
 
   const getColorData = (colorName: string) => {
@@ -208,17 +212,19 @@ export function ProductInfo({
                   siblingColorFromField || siblingColorFromName;
 
                 const { hex, texture } = getColorData(siblingColor);
-                const siblingSlug = slugify(sibling.name);
-                const cat = sibling.category ?? "";
-                const subcat = sibling.subcategory ?? "";
-                const siblingHref = `/${cat}/${subcat}/${siblingSlug}`;
+                const isSelected = activeColor === siblingColor;
 
                 return (
                   <div key={sibling.id} className="relative group">
-                    <Link
-                      href={siblingHref}
-                      className="block relative w-11 h-11 rounded-full transition-all duration-300 hover:scale-110 ring-1 ring-zinc-300 dark:ring-zinc-700 hover:ring-[#4A3728] dark:hover:ring-amber-400"
+                    <button
+                      onClick={() => onColorChange?.(siblingColor)}
+                      className={`relative w-11 h-11 rounded-full transition-all duration-300 ${
+                        isSelected
+                          ? "ring-2 ring-[#4A3728] ring-offset-4 dark:ring-offset-zinc-950 scale-105"
+                          : "hover:scale-110 ring-1 ring-zinc-300 dark:ring-zinc-700 hover:ring-[#4A3728] dark:hover:ring-amber-400"
+                      }`}
                       title={`Ver en ${siblingColor}`}
+                      aria-label={`Seleccionar color ${siblingColor}`}
                     >
                       <div
                         className="absolute inset-0 rounded-full overflow-hidden"
@@ -228,7 +234,12 @@ export function ProductInfo({
                           backgroundSize: "cover",
                         }}
                       />
-                    </Link>
+                      {isSelected && (
+                        <div className="absolute inset-0 bg-black/5 rounded-full flex items-center justify-center">
+                          <div className="w-2 h-2 bg-white rounded-full shadow" />
+                        </div>
+                      )}
+                    </button>
                     <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-300 z-50 flex flex-col items-center">
                       <div className="bg-white dark:bg-zinc-900 rounded-xl shadow-xl p-2 w-32 md:w-40 border border-zinc-200 dark:border-zinc-800">
                         <div className="aspect-square rounded-lg overflow-hidden mb-2 relative">
@@ -246,9 +257,6 @@ export function ProductInfo({
                         </div>
                         <p className="text-[10px] md:text-[11px] font-bold text-center uppercase tracking-wider text-zinc-900 dark:text-white truncate">
                           {siblingColor}
-                        </p>
-                        <p className="text-[9px] text-center text-zinc-400 mt-0.5">
-                          Ver este modelo →
                         </p>
                       </div>
                       <div className="w-3 h-3 bg-white dark:bg-zinc-900 border-b border-r border-zinc-200 dark:border-zinc-800 rotate-45 -mt-2" />
