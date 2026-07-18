@@ -23,7 +23,7 @@ const seoContent: Record<
     description:
       "Diseño y fabricación de camas, closets y veladores a medida. Confort y estilo lineal para tu descanso en Muebles Maldonado.",
     content: (
-      <p className="text-justify text-lg leading-relaxed text-zinc-800 dark:text-zinc-400">
+      <p className="text-justify text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
         En <strong>Muebles Maldonado</strong> ofrecemos{" "}
         <strong>camas modernas, cómodas, closets y veladores</strong> de diseño
         lineal. Confort con materiales de alta calidad.
@@ -36,7 +36,7 @@ const seoContent: Record<
     description:
       "Creamos ambientes elegantes con muebles de sala modernos, paneles de TV y mesas de centro personalizadas.",
     content: (
-      <p className="text-justify text-lg leading-relaxed text-zinc-800 dark:text-zinc-400">
+      <p className="text-justify text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
         Diseñamos{" "}
         <strong>
           muebles de sala vanguardistas, aparadores, mesas de centro, muebles de
@@ -53,7 +53,7 @@ const seoContent: Record<
     description:
       "Especialistas en muebles de cocina funcionales. Proyectamos tu cocina ideal con materiales de alta resistencia.",
     content: (
-      <p className="text-justify text-lg leading-relaxed text-zinc-800 dark:text-zinc-400">
+      <p className="text-justify text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
         Nuestro equipo especializado en diseño te ayuda a proyectar tu{" "}
         <strong>cocina de melamina y madera a tu gusto</strong>, logrando un
         diseño funcional.
@@ -66,7 +66,7 @@ const seoContent: Record<
     description:
       "Optimiza tu productividad con mobiliario de oficina a medida. Escritorios resistentes y estanterías profesionales.",
     content: (
-      <p className="text-justify text-lg leading-relaxed text-zinc-800 dark:text-zinc-400">
+      <p className="text-justify text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
         Optimiza tu productividad con{" "}
         <strong>escritorios ergonómicos, estanterías, libreros a medida</strong>{" "}
         de alta resistencia con acabados profesionales.
@@ -125,11 +125,11 @@ export default async function CategoryPage({ params }: Props) {
           <div className="w-full lg:w-1/2 p-4 lg:p-16 flex flex-col justify-center">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <span className="text-[#4A3728] text-2xl font-black uppercase ">
+                <span className="text-[#4A3728] text-lg sm:text-xl lg:text-2xl font-black uppercase tracking-wider">
                   {seoContent[categorySlug]?.prefix}
                 </span>
               </div>
-              <h1 className="text-3xl md:text-5xl font-black tracking-tighter text-zinc-900 dark:text-white leading-none">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-zinc-900 dark:text-white leading-none">
                 {categoryConfig.label}
               </h1>
               <div className="max-w-md">
@@ -154,8 +154,8 @@ export default async function CategoryPage({ params }: Props) {
         <div className="max-w-360 mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-4 mb-8 pl-4">
             <Squares2X2 className="w-6 h-6 text-[#4A3728] text-2xl" />
-            <h2 className="text-2xl md:text-3xl font-black tracking-tighter text-zinc-900 dark:text-white leading-tight">
-              Lineas Especializadas
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-tight">
+              Líneas Especializadas
             </h2>
           </div>
 
@@ -164,18 +164,18 @@ export default async function CategoryPage({ params }: Props) {
               <Link
                 key={sub.sub}
                 href={sub.href}
-                className="group flex flex-col items-center gap-3"
+                className="group flex flex-col items-center gap-2.5"
               >
-                <div className="w-20 h-20 md:w-32 md:h-32 rounded-full overflow-hidden ring-2 ring-zinc-100 dark:ring-zinc-800 group-hover:ring-[#4A3728] transition-all duration-500 p-1 bg-white dark:bg-zinc-900 shadow-md relative">
+                <div className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full overflow-hidden ring-2 ring-zinc-100 dark:ring-zinc-800 group-hover:ring-[#4A3728] transition-all duration-500 p-1 bg-white dark:bg-zinc-900 shadow-sm relative">
                   <Image
                     src={sub.imageSrc}
                     fill
-                    className="p-2 object-contain rounded-full transition-transform duration-700 ease-in-out group-hover:scale-110"
+                    className="p-1.5 sm:p-2 object-contain rounded-full transition-transform duration-700 ease-in-out group-hover:scale-110"
                     alt={sub.label}
-                    sizes="(max-width: 768px) 80px, 128px"
+                    sizes="(max-width: 640px) 64px, (max-width: 768px) 96px, 128px"
                   />
                 </div>
-                <span className="text-[14px] font-bold uppercase tracking-tight text-zinc-500 group-hover:text-black dark:group-hover:text-white text-center transition-colors">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-white text-center transition-colors">
                   {sub.label}
                 </span>
               </Link>
@@ -186,8 +186,8 @@ export default async function CategoryPage({ params }: Props) {
 
       <section className="py-12 bg-[#FDFCFB] dark:bg-black">
         <div className="max-w-360 mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white mb-14">
-            Productos <span className="text-[#4A3728]">Destacados</span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-zinc-900 dark:text-white mb-8 sm:mb-12">
+            Productos <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">Destacados</span>
           </h2>
 
           {productsFromDB.length > 0 ? (

@@ -95,7 +95,7 @@ export default function CategoryCarousel({
     <section className="py-6 md:py-12 bg-white dark:bg-[#050505] transition-colors duration-500 overflow-hidden">
       <div className="max-w-360 mx-auto px-4 sm:px-4 text-center sm:text-left">
         <div className="flex items-center justify-between mb-4 md:mb-8 border-b border-zinc-100 dark:border-zinc-800/50 pb-5">
-          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
             {firstPart}{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
               {lastWord}
@@ -104,12 +104,12 @@ export default function CategoryCarousel({
 
           <Link
             href={`/${categorySlug}`}
-            className="group flex items-center gap-2 text-zinc-500 hover:text-[#4A3728] dark:text-zinc-400 dark:hover:text-zinc-300 font-bold uppercase text-[10px] md:text-xs tracking-[0.15em] transition-all"
+            className="group flex items-center gap-1.5 text-zinc-500 hover:text-[#4A3728] dark:text-zinc-400 dark:hover:text-zinc-300 font-bold uppercase text-[9px] sm:text-xs tracking-[0.15em] transition-all"
             aria-label={`Ver colección de ${categorySlug.replace("-", " ")}`}
           >
             <span className="hidden sm:inline">VER COLECCIÓN</span>
-            <span className="sm:hidden mt-1">COLECCIÓN</span>
-            <ArrowRight className="w-6 h-6 text-[#4A3728] group-hover:translate-x-1 transition-transform mt-1" />
+            <span className="sm:hidden mt-0.5">COLECCIÓN</span>
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#4A3728] group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 

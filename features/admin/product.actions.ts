@@ -145,6 +145,8 @@ export async function updateFullProduct(id: string, data: any) {
 
       for (const varId of toDelete) {
         await tx.variantDimensions.deleteMany({ where: { variantId: varId } });
+        await tx.favorite.deleteMany({ where: { variantId: varId } });
+        await tx.orderItem.deleteMany({ where: { variantId: varId } });
         await tx.productVariant.delete({ where: { id: varId } });
       }
 
@@ -216,16 +218,50 @@ export async function deleteFullProduct(productId: string) {
   try {
     const product = await prisma.product.findUnique({
       where: { id: productId },
-      include: { images: true },
+      include: {
+        images: true,
+        variants: true,
+      },
     });
 
     if (!product) return { success: false, error: "Producto no encontrado" };
 
-    const deletePromises = product.images.map((img) =>
+    // 1. Borrar imágenes de Cloudinary
+    const cloudinaryDeletes = product.images.map((img) =>
       deleteImage(img.publicId),
     );
-    await Promise.all(deletePromises);
+    await Promise.all(cloudinaryDeletes);
 
+    const variantIds = product.variants.map((v) => v.id);
+
+    if (variantIds.length > 0) {
+      // 2. Borrar dimensiones de variantes
+      await prisma.variantDimensions.deleteMany({
+        where: { variantId: { in: variantIds } },
+      });
+
+      // 3. Borrar favoritos que referencien estas variantes
+      await prisma.favorite.deleteMany({
+        where: { variantId: { in: variantIds } },
+      });
+
+      // 4. Borrar orderItems que referencien estas variantes
+      await prisma.orderItem.deleteMany({
+        where: { variantId: { in: variantIds } },
+      });
+
+      // 5. Borrar variantes
+      await prisma.productVariant.deleteMany({
+        where: { productId },
+      });
+    }
+
+    // 6. Borrar imágenes del producto en DB
+    await prisma.productImage.deleteMany({
+      where: { productId },
+    });
+
+    // 7. Finalmente borrar el producto
     await prisma.product.delete({
       where: { id: productId },
     });
@@ -233,6 +269,7 @@ export async function deleteFullProduct(productId: string) {
     revalidatePath("/admin/products");
     return { success: true };
   } catch (error: any) {
+    console.error("Error al eliminar producto:", error);
     return { success: false, error: error.message };
   }
 }

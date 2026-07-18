@@ -42,11 +42,11 @@ export const ProductService = {
         },
         OR: filters.search
           ? [
-              { name: { contains: filters.search, mode: "insensitive" } },
-              {
-                description: { contains: filters.search, mode: "insensitive" },
-              },
-            ]
+            { name: { contains: filters.search, mode: "insensitive" } },
+            {
+              description: { contains: filters.search, mode: "insensitive" },
+            },
+          ]
           : undefined,
       },
       take: filters.limit || undefined,
@@ -125,26 +125,26 @@ export const ProductService = {
 
         variants: data.variants
           ? {
-              create: data.variants.map((v: VariantInput) => ({
-                name: v.name,
-                sku: v.sku,
-                thickness: v.thickness,
-                color: v.color || null,
-                material: v.material || null,
-                dimensions: v.dimensions ? { create: v.dimensions } : undefined,
-              })),
-            }
+            create: data.variants.map((v: VariantInput) => ({
+              name: v.name,
+              sku: v.sku,
+              thickness: v.thickness,
+              color: v.color || null,
+              material: v.material || null,
+              dimensions: v.dimensions ? { create: v.dimensions } : undefined,
+            })),
+          }
           : undefined,
 
         images: data.images
           ? {
-              create: data.images.map((img: ImageInput) => ({
-                url: img.url,
-                publicId: img.publicId,
-                color: img.color || null,
-                variantId: img.variantId || null,
-              })),
-            }
+            create: data.images.map((img: ImageInput) => ({
+              url: img.url,
+              publicId: img.publicId,
+              color: img.color || null,
+              variantId: img.variantId || null,
+            })),
+          }
           : undefined,
       },
       include: {
@@ -198,20 +198,20 @@ export const ProductService = {
         thickness: data.thickness,
         dimensions: data.dimensions
           ? {
-              upsert: {
-                update: {
-                  width: data.dimensions.width,
-                  height: data.dimensions.height,
-                  depth: data.dimensions.depth,
-                },
-
-                create: {
-                  width: data.dimensions.width,
-                  height: data.dimensions.height,
-                  depth: data.dimensions.depth,
-                },
+            upsert: {
+              update: {
+                width: data.dimensions.width,
+                height: data.dimensions.height,
+                depth: data.dimensions.depth,
               },
-            }
+
+              create: {
+                width: data.dimensions.width,
+                height: data.dimensions.height,
+                depth: data.dimensions.depth,
+              },
+            },
+          }
           : undefined,
       },
       include: { dimensions: true },
@@ -308,7 +308,7 @@ export const ProductService = {
     const modelCode = modelCodeMatch ? modelCodeMatch[0] : null;
 
     if (modelCode) {
-     
+
       const siblings = await prisma.product.findMany({
         where: {
           isActive: true,

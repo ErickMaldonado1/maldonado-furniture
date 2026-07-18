@@ -172,16 +172,16 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           <button
             onClick={handleToggleFavorite}
             aria-label={isFav ? "Eliminar de favoritos" : "Añadir a favoritos"}
-            className={`p-2 rounded-full backdrop-blur-md transition-all duration-300 shadow-sm z-50 ${
+            className={`p-1.5 sm:p-2 rounded-full backdrop-blur-md transition-all duration-300 shadow-sm z-50 ${
               isFav
                 ? "bg-white text-red-500"
                 : "bg-black/20 text-white hover:bg-white hover:text-red-500 scale-90 hover:scale-100"
             }`}
           >
             {isFav ? (
-              <HeartFilled className="w-5 h-5" />
+              <HeartFilled className="w-4 h-4 sm:w-5 sm:h-5" />
             ) : (
-              <Heart className="w-5 h-5" />
+              <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
             )}
           </button>
         </div>
@@ -213,7 +213,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       <div className="p-2 sm:p-3 flex flex-col flex-1 cursor-default">
         <div className="flex-1">
           <Link href={productPath}>
-            <h3 className="text-lg font-bold text-[#4A4A4A] dark:text-zinc-100 truncate tracking-tight leading-snug hover:text-[#897156] transition-colors mb-1">
+            <h3 className="text-sm sm:text-base font-bold text-[#4A4A4A] dark:text-zinc-100 truncate tracking-tight leading-snug hover:text-[#897156] transition-colors mb-1">
               {product.name}
             </h3>
           </Link>
@@ -242,11 +242,11 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#EDE8E0] dark:border-white/5">
           <div className="flex flex-col items-start cursor-default">
             {hasDiscount && (
-              <span className="text-xs text-[#4A4A4A]/80 line-through font-medium leading-none mb-0.5">
+              <span className="text-[10px] sm:text-xs text-[#4A4A4A]/70 line-through font-medium leading-none mb-0.5">
                 ${product.price.toLocaleString()}
               </span>
             )}
-            <span className="text-2xl font-black text-zinc-900 dark:text-white tracking-tight leading-none">
+            <span className="text-base sm:text-lg md:text-xl font-extrabold text-zinc-900 dark:text-white tracking-tight leading-none">
               $
               {finalPrice.toLocaleString(undefined, {
                 minimumFractionDigits: 2,

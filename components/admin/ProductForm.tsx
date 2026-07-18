@@ -14,18 +14,48 @@ import {
 } from "@/features/admin/product.actions";
 import { useRouter } from "next/navigation";
 import { categories } from "@/utils/categories";
-import { Trash2, Plus, Upload, X, Save, ChevronDown } from "lucide-react";
+import { Trash2, Plus, Upload, X, Save, ChevronDown, CheckCircle2, XCircle } from "lucide-react";
 import Image from "next/image";
 import { slugify } from "@/utils/slug_url";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ProductFormProps {
   initialData?: any;
 }
 
+type ModalState = {
+  open: boolean;
+  type: "success" | "error";
+  title: string;
+  message: string;
+  onConfirm?: () => void;
+};
+
 export default function ProductForm({ initialData }: ProductFormProps) {
   const router = useRouter();
   const [uploading, setUploading] = useState(false);
   const [selectedCategorySlug, setSelectedCategorySlug] = useState<string>("");
+  const [modal, setModal] = useState<ModalState>({
+    open: false,
+    type: "success",
+    title: "",
+    message: "",
+  });
+
+  const showModal = (
+    type: "success" | "error",
+    title: string,
+    message: string,
+    onConfirm?: () => void
+  ) => {
+    setModal({ open: true, type, title, message, onConfirm });
+  };
+
+  const closeModal = () => {
+    const onConfirm = modal.onConfirm;
+    setModal((prev) => ({ ...prev, open: false, onConfirm: undefined }));
+    if (onConfirm) onConfirm();
+  };
 
   const {
     register,
@@ -60,8 +90,8 @@ export default function ProductForm({ initialData }: ProductFormProps) {
           height: 0,
           depth: 0,
           thickness: null,
-          color: null,
-          material: null,
+          color: "",
+          material: "",
           price: null,
           sizeLabel: "",
         },
@@ -86,8 +116,8 @@ export default function ProductForm({ initialData }: ProductFormProps) {
           name: v.name,
           sku: v.sku,
           thickness: v.thickness,
-          color: v.color || null,
-          material: v.material || null,
+          color: v.color || "",
+          material: v.material || "",
           width: v.dimensions?.width || 0,
           height: v.dimensions?.height || 0,
           depth: v.dimensions?.depth || 0,
@@ -101,7 +131,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
         images: initialData.images.map((img: any) => ({
           url: img.url,
           publicId: img.publicId,
-          color: img.color || null,
+          color: img.color || "",
           variantId: img.variantId || null,
         })),
       };
@@ -148,7 +178,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                 { url: res.url, publicId: res.publicId, color: null },
               ]);
             } else {
-              alert("Error subiendo imagen: " + res.error);
+              showModal("error", "Error al subir imagen", res.error || "Ocurrió un error inesperado al subir la imagen.");
             }
             resolve();
           };
@@ -176,15 +206,19 @@ export default function ProductForm({ initialData }: ProductFormProps) {
     }
 
     if (res.success) {
-      alert(
+      showModal(
+        "success",
+        initialData ? "Producto Actualizado" : "Producto Creado",
         initialData
-          ? "Producto actualizado correctamente"
-          : "Producto creado correctamente",
+          ? "Los cambios del producto han sido guardados correctamente."
+          : "El producto ha sido publicado y ya está disponible en la tienda.",
+        () => {
+          router.push("/admin/products");
+          router.refresh();
+        }
       );
-      router.push("/admin/products");
-      router.refresh();
     } else {
-      alert("Error: " + res.error);
+      showModal("error", "Error al guardar", res.error || "Ocurrió un error inesperado. Por favor intenta de nuevo.");
     }
   };
 
@@ -240,6 +274,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
   ];
 
   return (
+    <>
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-4 animate-in fade-in duration-500"
@@ -786,5 +821,78 @@ export default function ProductForm({ initialData }: ProductFormProps) {
         </div>
       </div>
     </form>
+
+    {/* ── Custom Feedback Modal ── */}
+    <AnimatePresence>
+      {modal.open && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+          onClick={closeModal}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ type: "spring", damping: 20, stiffness: 300 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white dark:bg-[#111111] rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 w-full max-w-md overflow-hidden"
+          >
+            {/* Top accent bar */}
+            <div
+              className={`h-1.5 w-full ${
+                modal.type === "success"
+                  ? "bg-gradient-to-r from-[#A6866A] to-[#D4A373]"
+                  : "bg-gradient-to-r from-red-500 to-red-400"
+              }`}
+            />
+
+            <div className="p-6">
+              {/* Icon + Title */}
+              <div className="flex items-start gap-4 mb-4">
+                <div
+                  className={`flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center ${
+                    modal.type === "success"
+                      ? "bg-[#A6866A]/10 text-[#A6866A]"
+                      : "bg-red-50 dark:bg-red-900/20 text-red-500"
+                  }`}
+                >
+                  {modal.type === "success" ? (
+                    <CheckCircle2 size={24} />
+                  ) : (
+                    <XCircle size={24} />
+                  )}
+                </div>
+                <div className="flex-1 pt-0.5">
+                  <h3 className="text-base font-black text-zinc-900 dark:text-zinc-100 tracking-tight">
+                    {modal.title}
+                  </h3>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
+                    {modal.message}
+                  </p>
+                </div>
+              </div>
+
+              {/* Action button */}
+              <div className="flex justify-end">
+                <button
+                  onClick={closeModal}
+                  className={`px-6 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-all shadow-sm ${
+                    modal.type === "success"
+                      ? "bg-zinc-900 dark:bg-[#A6866A] text-white hover:opacity-90"
+                      : "bg-red-500 text-white hover:bg-red-600"
+                  }`}
+                >
+                  {modal.type === "success" ? "Continuar" : "Entendido"}
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   );
 }

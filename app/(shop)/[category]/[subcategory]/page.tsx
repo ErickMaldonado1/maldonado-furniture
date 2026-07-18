@@ -71,7 +71,7 @@ export default async function SubcategoryPage({
               { label: subcategoryConfig.label },
             ]}
           />
-          <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase tracking-tight text-zinc-900 dark:text-white">
             {subcategoryConfig.label}
           </h1>
         </header>

@@ -19,6 +19,15 @@ export const slides: SlideData[] = [
   },
   {
     id: 2,
+    title: "PELIKANO",
+    description: "Nueva Colección 2026 - Tiempo de Sentir.",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1784327140/Fondo_Colores_Nueva_Coleccio%CC%81n_2025_-_Peli%CC%81kano_jqrtui.webp",
+    link: "/catalogo-colores",
+    tag: "Nuevos colores y texturas",
+  },
+  {
+    id: 3,
     title: "CLOSETS",
     description: "Modernos y elegantes que unen diseño, confort y calidad.",
     image:
@@ -27,7 +36,7 @@ export const slides: SlideData[] = [
     tag: "Nuevos diseños",
   },
   {
-    id: 3,
+    id: 4,
     title: "DORMITORIO",
     description: "Camas a medida modernas y lineales.",
     image:
@@ -36,7 +45,7 @@ export const slides: SlideData[] = [
     tag: "Nuevos diseños",
   },
   {
-    id: 4,
+    id: 5,
     title: "SALA",
     description: "Muebles de sala para cada espacio de tu hogar.",
     image:
@@ -45,7 +54,7 @@ export const slides: SlideData[] = [
     tag: "Decoración de sala",
   },
   {
-    id: 5,
+    id: 6,
     title: "OFICINA",
     description:
       "Muebles de oficina para home office y espacios profesionales.",
@@ -53,5 +62,14 @@ export const slides: SlideData[] = [
       "https://res.cloudinary.com/dwvruzkll/image/upload/v1781542507/oficina_szp6uc.webp",
     link: "/oficina",
     tag: "Home Office",
+  },
+  {
+    id: 7,
+    title: "EDIMCA",
+    description: "Nueva Colección 2026 - Momento.",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1784329076/momento-2026_exgddo.webp",
+    link: "/catalogo-colores",
+    tag: "Sincronía Natural",
   },
 ];

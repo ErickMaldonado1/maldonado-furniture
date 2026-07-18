@@ -168,7 +168,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-[#0b0b0b] pt-24 pb-20">
+    <div className="min-h-screen bg-zinc-50 dark:bg-[#0b0b0b] pt-28 md:pt-32 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:grid lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-7 space-y-8">
           <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 md:p-8 shadow-sm border border-zinc-100 dark:border-zinc-800">

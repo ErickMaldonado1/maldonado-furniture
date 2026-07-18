@@ -33,123 +33,118 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
           transition={{ duration: 0.25, ease: "easeOut" }}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
-          className="absolute top-full left-1/2 -translate-x-1/2 z-50 hidden lg:block w-full"
+          className="absolute top-full left-0 right-0 z-50 hidden lg:block w-full"
         >
-          <div className="w-full bg-white/95 dark:bg-[#0b0b0b]/95 backdrop-blur-sm">
-            <div className="mx-auto max-w-360">
-              <div className="grid grid-cols-[1fr_2fr_2fr] gap-10 px-10 py-4">
+          <div className="w-full bg-white/95 dark:bg-[#0D0D0D]/95 backdrop-blur-md border-b border-zinc-200/50 dark:border-white/5 shadow-2xl transition-all duration-300">
+            <div className="mx-auto max-w-7xl">
+              <div className="grid grid-cols-[1.2fr_3fr_1.8fr] gap-10 px-8 py-8">
+                {/* Categorías (Columna 1) */}
                 <div className="min-w-0">
-                  <p className="text-[14px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-zinc-500 mb-5">
                     {data.label}
                   </p>
 
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5">
                     {data.subcategories.map((cat: any) => {
                       const isHovered = hoveredSub === cat.sub;
                       return (
-                      <li key={cat.sub} onMouseEnter={() => setHoveredSub(cat.sub)}>
-                        <Link
-                          href={cat.href}
-                          className={`group flex items-center justify-between px-3 py-1.5 rounded-lg transition-all duration-300
-                            ${isHovered ? "bg-zinc-100 dark:bg-white/10 pl-4" : "hover:bg-zinc-50 dark:hover:bg-white/5"}
-                          `}
-                        >
-                          <span className={`text-base font-semibold truncate transition-colors ${isHovered ? "text-[#4A3728] dark:text-white" : "text-zinc-800 dark:text-zinc-200"}`}>
-                            {cat.label}
-                          </span>
+                        <li key={cat.sub} onMouseEnter={() => setHoveredSub(cat.sub)}>
+                          <Link
+                            href={cat.href}
+                            className={`group flex items-center justify-between px-3 py-2 rounded-lg transition-all duration-350
+                              ${isHovered ? "bg-zinc-100/80 dark:bg-white/5 pl-4" : "hover:bg-zinc-50 dark:hover:bg-white/2"}
+                            `}
+                          >
+                            <span className={`text-sm font-semibold truncate transition-colors duration-300 ${isHovered ? "text-[#4A3728] dark:text-white" : "text-zinc-700 dark:text-zinc-300"}`}>
+                              {cat.label}
+                            </span>
 
-                          <ChevronRight
-                            width={18}
-                            height={18}
-                            className={`transition-all duration-300 ${isHovered ? "opacity-100 translate-x-0 text-[#4A3728] dark:text-white" : "opacity-0 -translate-x-2 text-zinc-400 group-hover:opacity-50"}`}
-                          />
-                        </Link>
-                      </li>
-                    )})}
+                            <ChevronRight
+                              width={14}
+                              height={14}
+                              className={`transition-all duration-350 ${isHovered ? "opacity-100 translate-x-0 text-[#4A3728] dark:text-white" : "opacity-0 -translate-x-2 text-zinc-400 group-hover:opacity-50"}`}
+                            />
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
 
+                {/* Explorar (Columna 2) */}
                 <div className="min-w-0">
-                  <p className="text-[14px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-zinc-500 mb-5">
                     Explorar
                   </p>
 
-                  <div className="grid grid-cols-4 gap-x-6 gap-y-7">
-                    {data.subcategories.slice(0, 8).map((sub: any) => {
+                  <div className="grid grid-cols-3 gap-4">
+                    {data.subcategories.slice(0, 6).map((sub: any) => {
                       const isHovered = hoveredSub === sub.sub;
                       const isDimmed = hoveredSub !== null && !isHovered;
                       return (
-                      <Link
-                        key={sub.sub}
-                        href={sub.href}
-                        onMouseEnter={() => setHoveredSub(sub.sub)}
-                        className={`group flex flex-col gap-2 min-w-0 transition-all duration-500 ${isDimmed ? "opacity-80" : "opacity-100 scale-100"}`}
-                      >
-                        <div className={`relative w-24 h-16 rounded-lg overflow-hidden bg-zinc-100 dark:bg-zinc-900 transition-all duration-300 ${isHovered ? "ring-2 ring-[#4A3728] dark:ring-white/50 shadow-md" : ""}`}>
-                          <Image
-                            src={sub.imageSrc}
-                            alt={sub.imageAlt}
-                            fill
-                            className={`p-1.5 object-cover transition-transform duration-500 ${isHovered ? "scale-110" : "group-hover:scale-105"}`}
-                          />
-                        </div>
+                        <Link
+                          key={sub.sub}
+                          href={sub.href}
+                          onMouseEnter={() => setHoveredSub(sub.sub)}
+                          className={`group flex flex-col items-center text-center gap-2 min-w-0 transition-all duration-350 ${isDimmed ? "opacity-50" : "opacity-100"}`}
+                        >
+                          <div className={`relative w-28 h-20 rounded-xl overflow-hidden bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800/80 transition-all duration-300 ${isHovered ? "ring-2 ring-[#4A3728] dark:ring-white/50 shadow-md scale-[1.02]" : ""}`}>
+                            <Image
+                              src={sub.imageSrc}
+                              alt={sub.imageAlt}
+                              fill
+                              className={`p-1.5 object-cover transition-transform duration-500 ${isHovered ? "scale-110" : "group-hover:scale-105"}`}
+                            />
+                          </div>
 
-                        <span className={`text-[15px] truncate transition-colors duration-300 ${isHovered ? "text-[#4A3728] dark:text-white font-bold" : "font-medium text-zinc-700 dark:text-zinc-300"}`}>
-                          {sub.label}
-                        </span>
-                      </Link>
-                    )})}
+                          <span className={`text-[11px] font-bold uppercase tracking-wider transition-colors duration-300 ${isHovered ? "text-[#4A3728] dark:text-white" : "text-zinc-600 dark:text-zinc-400"}`}>
+                            {sub.label}
+                          </span>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
+
+                {/* Tendencias (Columna 3) */}
                 <div className="min-w-0">
-                  <p className="text-[14px] font-black uppercase tracking-[0.35em] text-zinc-400 mb-4">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-zinc-500 mb-5">
                     Tendencias
                   </p>
 
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className={`grid ${data.featuredContent.length > 1 ? "grid-cols-2 gap-4" : "grid-cols-1"}`}>
                     {data.featuredContent.slice(0, 2).map((item: any) => (
                       <Link
                         key={item.title}
                         href={item.href}
-                        className="group relative w-full rounded-sm border border-zinc-200/40 dark:border-white/10
-  bg-white dark:bg-zinc-900 overflow-hidden transition-all
-  hover:shadow hover:-translate-y-1"
+                        className="group relative flex flex-col h-full rounded-xl overflow-hidden border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-lg transition-all duration-300"
                       >
-                        <div className="relative aspect-4/3 overflow-hidden">
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-50 dark:bg-zinc-950">
                           <Image
                             src={item.imageSrc}
                             alt={item.title}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                            sizes="(max-width: 1024px) 25vw, 20vw"
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
                           />
-                          <div
-                            className="absolute inset-0 bg-linear-to-t
-      from-black/50 via-black/10 to-transparent opacity-80"
-                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-85" />
                           {item.badge && (
-                            <span
-                              className={`absolute top-4 left-4 px-3 py-1 text-sm
-        font-black uppercase tracking-widest rounded-full backdrop-blur-md
-        ${badgeStyles[item.badgeColor]}`}
-                            >
+                            <span className="absolute top-3 left-3 px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-widest rounded-full bg-[#4A3728] text-white shadow-sm z-20">
                               {item.badge}
                             </span>
                           )}
                         </div>
 
-                        <div className="relative p-5">
-                          <h4 className="text-sm font-semibold text-zinc-900 dark:text-white leading-tight mb-1">
-                            {item.title}
-                          </h4>
-
-                          <p className="text-base text-zinc-500 dark:text-zinc-400 line-clamp-2">
-                            {item.description}
-                          </p>
-
-                          <span
-                            className="mt-3 block text-sm uppercase tracking-widest text-zinc-400
-  group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition"
-                          >
+                        <div className="p-4 flex flex-col justify-between flex-1">
+                          <div>
+                            <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-900 dark:text-white leading-tight mb-1 group-hover:text-[#4A3728] dark:group-hover:text-white transition-colors">
+                              {item.title}
+                            </h4>
+                            <p className="text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed">
+                              {item.description || "Inspiración y diseño contemporáneo a medida para transformar tu hogar."}
+                            </p>
+                          </div>
+                          <span className="mt-3 block text-[10px] font-black uppercase tracking-widest text-[#4A3728] dark:text-zinc-300 transition-colors group-hover:translate-x-1 duration-300">
                             Explorar →
                           </span>
                         </div>
