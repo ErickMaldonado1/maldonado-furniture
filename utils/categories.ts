@@ -39,14 +39,6 @@ export const categories: Category[] = [
         imageAlt: "cama lineal",
       },
       {
-        sub: "camas-clasicas",
-        label: "Camas Clásicas",
-        href: "/dormitorio/camas-clasicas",
-        imageSrc:
-          "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190704/cama-clasica_pujgl9.webp",
-        imageAlt: "cama clasica",
-      },
-      {
         sub: "camas-juveniles",
         label: "Camas Juveniles",
         href: "/dormitorio/camas-juveniles",

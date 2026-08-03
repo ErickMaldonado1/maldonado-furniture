@@ -153,7 +153,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           alt={product.name}
           fill
           priority={index < 4}
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
           className="object-cover object-center transition-transform duration-700 group-hover/img:scale-105"
         />
         {secondImageUrl && (
@@ -161,7 +161,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             src={secondImageUrl}
             alt={`${product.name} - Vista alternativa`}
             fill
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
             className={`object-cover object-center transition-all duration-700 group-hover/img:scale-105 absolute inset-0 z-10 ${
               isHovered ? "opacity-100" : "opacity-0"
             }`}
@@ -242,7 +242,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#EDE8E0] dark:border-white/5">
           <div className="flex flex-col items-start cursor-default">
             {hasDiscount && (
-              <span className="text-[10px] sm:text-xs text-[#4A4A4A]/70 line-through font-medium leading-none mb-0.5">
+              <span className="text-sm sm:text-sm text-gray-600 line-through font-medium leading-none mb-0.5">
                 ${product.price.toLocaleString()}
               </span>
             )}

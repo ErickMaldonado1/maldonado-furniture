@@ -125,11 +125,10 @@ export default async function AdminPage() {
                     </td>
                     <td className="py-4 px-6">
                       <span
-                        className={`px-2 py-1 rounded-md text-[9px] font-black uppercase tracking-widest border ${
-                          order.status === "PAID"
+                        className={`px-2 py-1 rounded-md text-[9px] font-black uppercase tracking-widest border ${order.status === "PAID"
                             ? "bg-emerald-50 dark:bg-emerald-500/5 text-emerald-600 dark:text-emerald-500 border-emerald-100 dark:border-emerald-500/10"
                             : "bg-amber-50 dark:bg-amber-500/5 text-amber-600 dark:text-amber-500 border-amber-100 dark:border-amber-500/10"
-                        }`}
+                          }`}
                       >
                         {order.status}
                       </span>

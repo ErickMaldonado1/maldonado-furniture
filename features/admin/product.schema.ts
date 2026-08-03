@@ -33,8 +33,8 @@ export const productSchema = z.object({
         width: z.coerce.number().min(0),
         height: z.coerce.number().min(0),
         depth: z.coerce.number().min(0),
-        thickness: z.coerce.number().optional().nullable(),
-        price: z.coerce.number().optional().nullable(),
+        thickness: z.preprocess((val) => (val === "" || val === null ? null : Number(val)), z.number().nullable().optional()),
+        price: z.preprocess((val) => (val === "" || val === null ? null : Number(val)), z.number().nullable().optional()),
         sizeLabel: z.string().optional().nullable(),
       }),
     )

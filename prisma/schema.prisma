@@ -175,3 +175,11 @@ model Newsletter {
   email     String   @unique
   createdAt DateTime @default(now())
 }
+
+model Color {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String   @unique
+  hexCode   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
