@@ -38,7 +38,7 @@ export function ProductSearchBtn() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="bg-white dark:bg-[#111111] text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 px-4 py-2.5 rounded-xl flex items-center gap-2 font-bold text-xs uppercase tracking-widest hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all shadow-sm"
+        className="bg-white dark:bg-[#111111] text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 px-4 py-2.5 rounded-xl flex items-center gap-2 font-bold text-xs uppercase  hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all shadow-sm"
       >
         <Search size={16} /> Buscar / Editar
       </button>

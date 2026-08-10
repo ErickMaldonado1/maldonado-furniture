@@ -8,13 +8,13 @@ export async function POST(req: NextRequest) {
     if (!file) {
       return NextResponse.json(
         { error: "No se proporcionó ningún archivo" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
     const cloudinaryData = await ProductService.uploadOnly(
       file,
-      folder || "productos",
+      folder || "productos"
     );
     return NextResponse.json({
       url: cloudinaryData.url,
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     console.error("Error en API de imágenes:", error);
     return NextResponse.json(
       { error: "Error al procesar la imagen: " + error.message },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

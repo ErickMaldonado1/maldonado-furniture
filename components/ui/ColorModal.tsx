@@ -64,7 +64,7 @@ export default function ColorModal({
               <div className="flex items-center gap-4">
                 <div className="h-4 w-px bg-white/20" />
                 <div className="flex flex-col">
-                  <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest">
+                  <span className="text-[10px] text-zinc-400 font-bold uppercase ">
                     Proveedor
                   </span>
                   <span className="text-[12px] font-bold uppercase text-white leading-none">
@@ -73,7 +73,7 @@ export default function ColorModal({
                 </div>
                 <div className="h-4 w-px bg-white/20" />
                 <div className="flex flex-col text-right">
-                  <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest">
+                  <span className="text-[10px] text-zinc-400 font-bold uppercase ">
                     Formato
                   </span>
                   <span className="text-[12px] font-bold uppercase text-white leading-none">

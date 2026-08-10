@@ -68,7 +68,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                       <Link
                         href={`/${slugify(item.category || "")}/${slugify(item.subcategory || "")}/${slugify(item.name)}`.replace(
                           /\/+/g,
-                          "/",
+                          "/"
                         )}
                         onClick={onClose}
                       >
@@ -95,7 +95,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                         onClick={() =>
                           updateQuantity(
                             item.id,
-                            Math.max(1, item.quantity - 1),
+                            Math.max(1, item.quantity - 1)
                           )
                         }
                         className="w-8 h-full flex items-center justify-center text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-l-lg transition"

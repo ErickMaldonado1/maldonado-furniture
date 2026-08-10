@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { Search } from "@/utils/icons/ui";
 import { useRouter } from "next/navigation";
 
@@ -8,12 +9,58 @@ interface SearchBarProps {
   onSearchResolved?: () => void;
 }
 
+const placeholders = [
+  "Encuentra tu mueble ideal...",
+  "Busca camas, muebles de tv, escritorios...",
+  "Renueva tu estudio...",
+];
+
 const SearchBar: React.FC<SearchBarProps> = ({
   showSolidNavbar,
   onSearchResolved,
 }) => {
   const [query, setQuery] = useState("");
+  const [currentPlaceholder, setCurrentPlaceholder] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (isFocused || query) return;
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let timeoutId: NodeJS.Timeout;
+
+    const type = () => {
+      const fullText = placeholders[phraseIndex];
+
+      if (isDeleting) {
+        setCurrentPlaceholder(fullText.substring(0, charIndex - 1));
+        charIndex--;
+      } else {
+        setCurrentPlaceholder(fullText.substring(0, charIndex + 1));
+        charIndex++;
+      }
+
+      let typeSpeed = isDeleting ? 40 : 80;
+
+      if (!isDeleting && charIndex === fullText.length) {
+        typeSpeed = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % placeholders.length;
+        typeSpeed = 500;
+      }
+
+      timeoutId = setTimeout(type, typeSpeed);
+    };
+
+    timeoutId = setTimeout(type, 100);
+
+    return () => clearTimeout(timeoutId);
+  }, [isFocused, query]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,12 +83,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Encuentra tu mueble ideal..."
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        placeholder={isFocused || query ? "" : currentPlaceholder}
         aria-label="Buscar productos"
-        className={`w-full border-b py-2.5 pl-12 pr-4 focus:outline-none transition-all text-md font-medium ${
+        className={`w-full border-b py-2.5 pl-12 pr-4 focus:outline-none transition-all tracking-wide text-lg font-light ${
           !showSolidNavbar
-            ? "bg-transparent border-white/20 text-white placeholder:text-white/40 focus:border-white/60"
-            : "bg-transparent border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 focus:border-[#4A3728] placeholder:text-zinc-400"
+            ? "bg-transparent border-white/20 text-white placeholder:text-white/90 focus:border-white/80"
+            : "bg-transparent border-zinc-400 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 focus:border-[#4A3728] placeholder:text-zinc-400"
         }`}
       />
     </form>

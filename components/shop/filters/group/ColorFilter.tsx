@@ -43,7 +43,7 @@ export const ColorFilter = ({
           const texture = textureMap[lowerColor] || null;
 
           const hexKey = Object.keys(COLOR_MAP).find(
-            (k) => k.toLowerCase() === lowerColor,
+            (k) => k.toLowerCase() === lowerColor
           );
           const hexColor = hexKey ? COLOR_MAP[hexKey] : "#E4E4E7";
 
@@ -75,7 +75,7 @@ export const ColorFilter = ({
                     <div
                       className={`w-1.5 h-1.5 rounded-full ${
                         ["blanco", "crema", "beige", "white"].includes(
-                          lowerColor,
+                          lowerColor
                         )
                           ? "bg-black"
                           : "bg-white"

@@ -32,10 +32,10 @@ export default async function InventoryPage(props: {
     select: { category: true, subcategory: true },
   });
   const categories = Array.from(
-    new Set(allProducts.map((p) => p.category)),
+    new Set(allProducts.map((p) => p.category))
   ).filter((c): c is string => !!c);
   const subcategories = Array.from(
-    new Set(allProducts.map((p) => p.subcategory)),
+    new Set(allProducts.map((p) => p.subcategory))
   ).filter((s): s is string => !!s);
 
   const products = await prisma.product.findMany({
@@ -71,7 +71,7 @@ export default async function InventoryPage(props: {
           </div>
           <Link
             href="/admin/products/new"
-            className="bg-zinc-900 dark:bg-[#A6866A] text-white dark:text-black px-5 py-2.5 rounded-sm flex items-center gap-2 font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all shadow-lg shadow-zinc-900/10 dark:shadow-none"
+            className="bg-zinc-900 dark:bg-[#A6866A] text-white dark:text-black px-5 py-2.5 rounded-sm flex items-center gap-2 font-bold text-xs uppercase  hover:opacity-90 transition-all shadow-lg shadow-zinc-900/10 dark:shadow-none"
           >
             <Plus size={18} /> Nuevo Producto
           </Link>
@@ -140,7 +140,7 @@ export default async function InventoryPage(props: {
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="text-[11px] font-bold text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded-sm">
+                      <span className="text-[12px] font-bold text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded-sm">
                         {product.category}
                       </span>
                     </td>

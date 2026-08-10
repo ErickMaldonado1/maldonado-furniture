@@ -8,6 +8,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "@/utils/icons/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 
 const getOptimizedHeroImage = (url: string) => {
   if (!url || !url.includes("cloudinary.com")) return url;
@@ -25,89 +26,95 @@ const HeroSlider = () => {
   };
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 6000);
+    const timer = setInterval(nextSlide, 7000);
     return () => clearInterval(timer);
   }, [nextSlide]);
 
   return (
     <section className="relative h-[80vh] md:h-[85vh] min-h-125 w-full overflow-hidden bg-black dark:bg-[#0a0a0a] transition-colors duration-700">
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-            index === current
-              ? "opacity-100 scale-100"
-              : "opacity-0 scale-105 pointer-events-none"
-          }`}
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={current}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1 }}
+          transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+          className="absolute inset-0"
         >
           <div className="absolute inset-0">
             <Image
-              src={getOptimizedHeroImage(slide.image)}
-              alt={slide.title}
+              src={getOptimizedHeroImage(slides[current].image)}
+              alt={slides[current].title}
               fill
               className="object-cover"
-              priority={index === 0}
-              loading={index === 0 ? "eager" : "lazy"}
-              {...(index === 0
-                ? { fetchPriority: "high" }
-                : { fetchPriority: "low" })}
+              priority
               sizes="(max-width: 768px) 100vw, 1200px"
             />
-            <div className="absolute inset-0 bg-black/20 dark:bg-black/30 transition-colors duration-700" />
-            <div className="absolute inset-0 bg-linear-to-r from-black/30 via-black/10 to-transparent dark:from-black/50 dark:via-black/20 transition-colors duration-700" />
+
+            <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-transparent" />
+
+            <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
           </div>
 
           <div className="relative h-full w-full max-w-360 mx-auto px-6 lg:px-12 flex flex-col justify-center items-start text-white pt-20 md:pt-24">
-            <div
-              className={`max-w-3xl transition-all duration-1000 delay-300 ${
-                index === current
-                  ? "translate-y-0 opacity-100 blur-0"
-                  : "translate-y-8 opacity-0 blur-sm"
-              }`}
+            <div className="max-w-3xl overflow-hidden">
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+                className="inline-flex mb-6 label-premium text-white! bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-sm border border-white/20"
+              >
+                {slides[current].tag}
+              </motion.span>
+            </div>
+
+            <div className="overflow-hidden">
+              <motion.h1
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold mb-4 md:mb-6 tracking-tight leading-tight uppercase text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]"
+              >
+                {slides[current].title}
+              </motion.h1>
+            </div>
+
+            <div className="overflow-hidden">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                className="text-sm md:text-base lg:text-[17px] opacity-100 max-w-xl font-normal leading-relaxed mb-10 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
+              >
+                {slides[current].description}
+              </motion.p>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             >
-              <span className="inline-flex mb-4 px-3 py-1 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-white dark:text-white bg-[#4A3728]/90 dark:bg-white/10 backdrop-blur-sm rounded-md">
-                {slide.tag}
-              </span>
-
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 md:mb-6 tracking-tighter leading-none sm:leading-[0.9] uppercase">
-                {slide.title.split(" ").map((word, idx) => (
-                  <span
-                    key={idx}
-                    className={
-                      idx % 2 !== 0
-                        ? "text-transparent stroke-white stroke-[1px] md:stroke-[2px]"
-                        : ""
-                    }
-                  >
-                    {word}{" "}
-                  </span>
-                ))}
-              </h1>
-
-              <p className="text-base md:text-lg lg:text-xl opacity-90 max-w-xl font-medium leading-relaxed mb-8 md:mb-8 text-zinc-200">
-                {slide.description}
-              </p>
-
               <Link
-                href={slide.link}
-                aria-label={`Ver colección de ${slide.title}`}
-                className="inline-flex items-center gap-2 px-6 py-3 text-base md:text-lg font-semibold rounded-md bg-[#4A3728]/90 text-white dark:bg-white/10 dark:text-white backdrop-blur-sm border border-transparent hover:bg-black dark:hover:bg-white/20 transition-all duration-300 group"
+                href={slides[current].link}
+                aria-label={`Ver colección de ${slides[current].title}`}
+                className="inline-flex items-center gap-4 px-8 py-4 text-[13px] font-medium tracking-[0.15em] uppercase text-white bg-transparent border border-white/30 hover:bg-white hover:text-black transition-all duration-500 group"
               >
                 Ver colección
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
               </Link>
-            </div>
+            </motion.div>
           </div>
-        </div>
-      ))}
+        </motion.div>
+      </AnimatePresence>
 
       <div className="absolute inset-x-0 bottom-8 md:bottom-12 z-20 pointer-events-none">
         <div className="max-w-360 mx-auto px-6 lg:px-12 flex items-end justify-between pointer-events-auto">
-          <div className="flex items-center gap-5">
-            <span className="text-white/60 text-md font-black tracking-widest hidden sm:inline">
+          <div className="flex items-center gap-6">
+            <span className="text-white/60 text-sm font-medium tracking-[0.2em] hidden sm:inline">
               {String(current + 1).padStart(2, "0")}
             </span>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {slides.map((_, idx) => (
                 <button
                   key={idx}
@@ -116,30 +123,30 @@ const HeroSlider = () => {
                   aria-label={`Ir a diapositiva ${idx + 1}`}
                 >
                   <div
-                    className={`h-2 rounded-full transition-all duration-700 ${
+                    className={`h-px transition-all duration-700 ${
                       idx === current
-                        ? "w-10 bg-[#4A3728]"
-                        : "w-2 bg-white/40 group-hover:bg-white/60"
+                        ? "w-12 bg-white"
+                        : "w-6 bg-white/30 group-hover:bg-white/60"
                     }`}
                   />
-                  <span className="absolute inset-0 -inset-y-2" />
+                  <span className="absolute inset-0 -inset-y-4" />
                 </button>
               ))}
             </div>
-            <span className="text-white/60 text-md font-black tracking-widest hidden sm:inline">
+            <span className="text-white/60 text-sm font-medium tracking-[0.2em] hidden sm:inline">
               {String(slides.length).padStart(2, "0")}
             </span>
           </div>
 
-          <div className="flex gap-2 md:gap-3">
+          <div className="flex gap-4">
             {[
               {
-                icon: <ChevronLeft className="w-6 h-6" />,
+                icon: <ChevronLeft className="w-5 h-5" />,
                 onClick: prevSlide,
                 label: "Anterior",
               },
               {
-                icon: <ChevronRight className="w-6 h-6" />,
+                icon: <ChevronRight className="w-5 h-5" />,
                 onClick: nextSlide,
                 label: "Siguiente",
               },
@@ -148,15 +155,14 @@ const HeroSlider = () => {
                 key={i}
                 onClick={btn.onClick}
                 aria-label={btn.label}
-                className="w-10 h-10 md:w-14 md:h-14 rounded-full border border-transparent 
-                  backdrop-blur-xl bg-white/20 dark:bg-black/20 
+                className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/20 
+                  bg-transparent
                   flex items-center justify-center 
-                  text-white dark:text-white 
-                  hover:bg-white/70 dark:hover:bg-black/70 
-                  hover:text-black dark:hover:text-white 
-                  transition-all duration-300 shadow-lg group"
+                  text-white 
+                  hover:bg-white hover:text-black
+                  transition-all duration-500 group"
               >
-                <div className="transition-transform duration-300 group-hover:scale-110">
+                <div className="transition-transform duration-500 group-hover:scale-110">
                   {btn.icon}
                 </div>
               </button>

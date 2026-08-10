@@ -80,7 +80,7 @@ export default async function OrdersPage() {
               </p>
               <Link
                 href="/shop"
-                className="inline-block mt-8 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-[#4A3728] transition-all"
+                className="inline-block mt-8 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-2xl font-black uppercase  text-xs hover:bg-[#4A3728] transition-all"
               >
                 Explorar Productos
               </Link>
@@ -112,7 +112,7 @@ export default async function OrdersPage() {
 
                   <div className="flex items-center gap-6">
                     <div className="text-right">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-0.5">
+                      <p className="text-[10px] font-black uppercase  text-zinc-400 mb-0.5">
                         Total
                       </p>
                       <p className="text-xl font-black text-zinc-900 dark:text-white tracking-tighter">
@@ -120,7 +120,7 @@ export default async function OrdersPage() {
                       </p>
                     </div>
                     <span
-                      className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all ${statusColors[order.status as keyof typeof statusColors] || statusColors.PENDING}`}
+                      className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase  border transition-all ${statusColors[order.status as keyof typeof statusColors] || statusColors.PENDING}`}
                     >
                       {statusLabels[
                         order.status as keyof typeof statusLabels
@@ -144,7 +144,7 @@ export default async function OrdersPage() {
                             {item.variant?.product?.name ||
                               "Producto desconocido"}
                           </h4>
-                          <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-1">
+                          <p className="text-[10px] font-bold text-zinc-400 uppercase  mt-1">
                             {item.quantity} x ${item.price.toLocaleString()} |{" "}
                             {item.variant?.color || "Color estándar"}
                           </p>
@@ -178,7 +178,7 @@ export default async function OrdersPage() {
                         <p className="text-[10px] font-black uppercase tracking-[0.15em] text-zinc-400 mb-1">
                           Notas del pedido
                         </p>
-                        <p className="text-[11px] font-medium text-zinc-500 italic">
+                        <p className="text-[12px] font-medium text-zinc-500 italic">
                           &quot;{(order as OrderWithDetails).notes}&quot;
                         </p>
                       </div>

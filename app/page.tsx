@@ -12,7 +12,7 @@ const CategoryShowcase = dynamic(
         </div>
       </div>
     ),
-  },
+  }
 );
 const ValueProps = dynamic(() => import("@/components/home/ValueProps"), {
   loading: () => (
@@ -39,10 +39,10 @@ const FeaturedCarousel = dynamic(
   () => import("@/components/home/FeaturedCarousel"),
   {
     loading: () => <div className="h-100 w-full bg-zinc-100 animate-pulse" />,
-  },
+  }
 );
 const CategoryCarousel = dynamic(
-  () => import("@/components/home/CategoryCarousel"),
+  () => import("@/components/home/CategoryCarousel")
 );
 
 const HomePage = async () => {
@@ -57,19 +57,18 @@ const HomePage = async () => {
     <div className="flex flex-col w-full dark:bg-[#050505] overflow-x-hidden mb-20">
       <HeroSlider />
       <FeaturedCarousel products={featured} />
-      <ValueProps />
+      <CategoryShowcase />
       <CategoryCarousel
         products={bedroom}
         title="Ideas para Dormitorio"
         categorySlug="dormitorio"
       />
+      <ValueProps />
       <CategoryCarousel
         products={living}
         title="Tu sala con estilo"
         categorySlug="sala"
       />
-      <CategoryShowcase />
-
       <CategoryCarousel
         products={office}
         title="Muebles de oficina"

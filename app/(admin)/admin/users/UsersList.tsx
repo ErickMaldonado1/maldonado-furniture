@@ -2,7 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail, Shield, Edit2, Trash2, Search, X } from "lucide-react";
+import {
+  ArrowLeft,
+  Mail,
+  Shield,
+  Edit2,
+  Trash2,
+  Search,
+  X,
+} from "lucide-react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -21,11 +29,11 @@ interface UsersListProps {
 export default function UsersList({ initialUsers }: UsersListProps) {
   const [users, setUsers] = useState<User[]>(initialUsers);
   const [search, setSearch] = useState("");
-  
+
   // Modals state
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [deletingUser, setDeletingUser] = useState<User | null>(null);
-  
+
   // Form/Action States
   const [editName, setEditName] = useState("");
   const [editRole, setEditRole] = useState<"USER" | "ADMIN">("USER");
@@ -86,10 +94,12 @@ export default function UsersList({ initialUsers }: UsersListProps) {
       }
 
       const updated = await res.json();
-      
+
       setUsers((prev) =>
         prev.map((u) =>
-          u.id === editingUser.id ? { ...u, name: updated.name, role: updated.role } : u
+          u.id === editingUser.id
+            ? { ...u, name: updated.name, role: updated.role }
+            : u
         )
       );
 
@@ -152,11 +162,12 @@ export default function UsersList({ initialUsers }: UsersListProps) {
                 Control de Usuarios
               </h1>
               <p className="text-sm text-zinc-500 mt-1">
-                Administra los perfiles, permisos y accesos de los usuarios registrados.
+                Administra los perfiles, permisos y accesos de los usuarios
+                registrados.
               </p>
             </div>
             <div className="flex items-center gap-4 w-full md:w-auto">
-              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-600 shrink-0">
+              <span className="text-[10px] font-black uppercase  text-zinc-400 dark:text-zinc-600 shrink-0">
                 Total: {filteredUsers.length} / {users.length}
               </span>
             </div>
@@ -165,7 +176,10 @@ export default function UsersList({ initialUsers }: UsersListProps) {
 
         {/* Search Bar */}
         <div className="relative max-w-md w-full">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
+          <Search
+            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400"
+            size={18}
+          />
           <input
             type="text"
             placeholder="Buscar por nombre o correo..."
@@ -227,9 +241,7 @@ export default function UsersList({ initialUsers }: UsersListProps) {
                           : "text-zinc-400 dark:text-zinc-700"
                       }
                     />
-                    <span className="uppercase tracking-widest font-black">
-                      {user.role}
-                    </span>
+                    <span className="uppercase  font-black">{user.role}</span>
                   </div>
                 </div>
               </div>
@@ -261,7 +273,7 @@ export default function UsersList({ initialUsers }: UsersListProps) {
               onClick={closeEditModal}
               className="absolute inset-0"
             />
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -280,7 +292,7 @@ export default function UsersList({ initialUsers }: UsersListProps) {
                   <X size={18} />
                 </button>
               </div>
-              
+
               <form onSubmit={handleEditSubmit} className="p-6 space-y-4">
                 <div className="space-y-1">
                   <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-black tracking-wider">
@@ -314,14 +326,14 @@ export default function UsersList({ initialUsers }: UsersListProps) {
                     type="button"
                     onClick={closeEditModal}
                     disabled={actionLoading}
-                    className="flex-1 px-4 py-2.5 rounded-sm border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 font-bold text-xs uppercase tracking-widest hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+                    className="flex-1 px-4 py-2.5 rounded-sm border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 font-bold text-xs uppercase  hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
                   >
                     Cancelar
                   </button>
                   <button
                     type="submit"
                     disabled={actionLoading}
-                    className="flex-1 px-4 py-2.5 rounded-sm bg-zinc-900 dark:bg-[#A6866A] text-white dark:text-black font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                    className="flex-1 px-4 py-2.5 rounded-sm bg-zinc-900 dark:bg-[#A6866A] text-white dark:text-black font-bold text-xs uppercase  hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
                   >
                     {actionLoading ? "Guardando..." : "Guardar Cambios"}
                   </button>
@@ -341,7 +353,7 @@ export default function UsersList({ initialUsers }: UsersListProps) {
               onClick={closeDeleteModal}
               className="absolute inset-0"
             />
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -360,14 +372,18 @@ export default function UsersList({ initialUsers }: UsersListProps) {
                   <X size={18} />
                 </button>
               </div>
-              
+
               <div className="p-6 space-y-4">
                 <p className="text-sm text-zinc-600 dark:text-zinc-400">
                   ¿Estás seguro de que deseas eliminar permanentemente a{" "}
-                  <strong className="text-zinc-950 dark:text-white font-bold">{deletingUser.name || deletingUser.email}</strong>?
+                  <strong className="text-zinc-950 dark:text-white font-bold">
+                    {deletingUser.name || deletingUser.email}
+                  </strong>
+                  ?
                 </p>
                 <p className="text-[10px] text-zinc-400 dark:text-zinc-500 bg-zinc-50 dark:bg-zinc-900/50 p-3 rounded-sm border border-zinc-200/50 dark:border-zinc-800/50 uppercase tracking-wider font-bold">
-                  Esta acción eliminará su cuenta, sesiones activas y favoritos. No se puede deshacer.
+                  Esta acción eliminará su cuenta, sesiones activas y favoritos.
+                  No se puede deshacer.
                 </p>
 
                 <div className="flex gap-3 pt-2">
@@ -375,14 +391,14 @@ export default function UsersList({ initialUsers }: UsersListProps) {
                     type="button"
                     onClick={closeDeleteModal}
                     disabled={actionLoading}
-                    className="flex-1 px-4 py-2.5 rounded-sm border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 font-bold text-xs uppercase tracking-widest hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+                    className="flex-1 px-4 py-2.5 rounded-sm border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 font-bold text-xs uppercase  hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
                   >
                     Cancelar
                   </button>
                   <button
                     onClick={handleDeleteConfirm}
                     disabled={actionLoading}
-                    className="flex-1 px-4 py-2.5 rounded-sm bg-red-600 text-white font-bold text-xs uppercase tracking-widest hover:bg-red-700 transition-colors"
+                    className="flex-1 px-4 py-2.5 rounded-sm bg-red-600 text-white font-bold text-xs uppercase  hover:bg-red-700 transition-colors"
                   >
                     {actionLoading ? "Eliminando..." : "Eliminar Usuario"}
                   </button>

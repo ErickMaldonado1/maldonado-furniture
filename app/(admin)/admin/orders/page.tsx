@@ -54,13 +54,19 @@ export default async function OrdersPage() {
             href="/admin"
             className="flex items-center gap-2 text-xs font-semibold text-zinc-500 hover:text-[#4A3728] dark:hover:text-[#A6866A] transition-colors w-fit group"
           >
-            <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
+            <ArrowLeft
+              size={14}
+              className="group-hover:-translate-x-0.5 transition-transform"
+            />
             Volver al Panel
           </Link>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
               <h1 className="text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
-                Gestión de <span className="text-[#4A3728] dark:text-[#A6866A]">Órdenes</span>
+                Gestión de{" "}
+                <span className="text-[#4A3728] dark:text-[#A6866A]">
+                  Órdenes
+                </span>
               </h1>
               <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 font-normal">
                 Revisa y administra todos los pedidos realizados en la tienda.
@@ -101,11 +107,15 @@ export default async function OrdersPage() {
 
                 <div className="flex items-center gap-5">
                   <div className="text-right">
-                    <p className="text-[11px] font-medium text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">
+                    <p className="text-[12px] font-medium text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">
                       Total del Pedido
                     </p>
                     <p className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">
-                      ${order.total.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      $
+                      {order.total.toLocaleString("es-ES", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
@@ -125,15 +135,22 @@ export default async function OrdersPage() {
                   {/* Customer Name & Email */}
                   <div className="space-y-2">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
-                      <User size={14} className="text-[#4A3728] dark:text-[#A6866A]" />
+                      <User
+                        size={14}
+                        className="text-[#4A3728] dark:text-[#A6866A]"
+                      />
                       Cliente
                     </h3>
                     <div>
                       <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                        {(order as OrderWithDetails).fullName || order.user?.name || "Cliente no registrado"}
+                        {(order as OrderWithDetails).fullName ||
+                          order.user?.name ||
+                          "Cliente no registrado"}
                       </p>
                       <p className="text-xs text-zinc-500 dark:text-zinc-400 font-normal">
-                        {(order as OrderWithDetails).email || order.user?.email || "Sin email"}
+                        {(order as OrderWithDetails).email ||
+                          order.user?.email ||
+                          "Sin email"}
                       </p>
                     </div>
                   </div>
@@ -141,7 +158,10 @@ export default async function OrdersPage() {
                   {/* Phone */}
                   <div className="space-y-1.5">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
-                      <Phone size={14} className="text-[#4A3728] dark:text-[#A6866A]" />
+                      <Phone
+                        size={14}
+                        className="text-[#4A3728] dark:text-[#A6866A]"
+                      />
                       Teléfono
                     </h3>
                     <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
@@ -152,15 +172,24 @@ export default async function OrdersPage() {
                   {/* Shipping Address */}
                   <div className="space-y-1.5">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
-                      <MapPin size={14} className="text-[#4A3728] dark:text-[#A6866A]" />
+                      <MapPin
+                        size={14}
+                        className="text-[#4A3728] dark:text-[#A6866A]"
+                      />
                       Dirección de Envío
                     </h3>
                     <div>
                       <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300 leading-normal">
-                        {(order as OrderWithDetails).address || "Dirección no especificada"}
+                        {(order as OrderWithDetails).address ||
+                          "Dirección no especificada"}
                       </p>
                       <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5 font-medium">
-                        {[(order as OrderWithDetails).city, (order as OrderWithDetails).postalCode].filter(Boolean).join(" • ") || "N/A"}
+                        {[
+                          (order as OrderWithDetails).city,
+                          (order as OrderWithDetails).postalCode,
+                        ]
+                          .filter(Boolean)
+                          .join(" • ") || "N/A"}
                       </p>
                     </div>
                   </div>
@@ -169,7 +198,10 @@ export default async function OrdersPage() {
                   {order.notes && (
                     <div className="space-y-1.5 pt-2 border-t border-zinc-100 dark:border-zinc-800">
                       <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
-                        <ClipboardList size={14} className="text-[#4A3728] dark:text-[#A6866A]" />
+                        <ClipboardList
+                          size={14}
+                          className="text-[#4A3728] dark:text-[#A6866A]"
+                        />
                         Notas del Cliente
                       </h3>
                       <p className="text-xs font-medium text-zinc-600 dark:text-zinc-400 bg-zinc-100/70 dark:bg-zinc-800/40 p-2.5 rounded-xl border border-zinc-200/50 dark:border-zinc-700/50 leading-relaxed">
@@ -182,7 +214,10 @@ export default async function OrdersPage() {
                 {/* Products List Column */}
                 <div className="lg:col-span-8 p-6 space-y-4">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
-                    <Package size={14} className="text-[#4A3728] dark:text-[#A6866A]" />
+                    <Package
+                      size={14}
+                      className="text-[#4A3728] dark:text-[#A6866A]"
+                    />
                     Productos Pedidos ({order.items.length})
                   </h3>
 
@@ -197,20 +232,38 @@ export default async function OrdersPage() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-xs font-bold text-zinc-900 dark:text-zinc-100 truncate">
-                            {item.variant?.product?.name || "Producto no encontrado"}
+                            {item.variant?.product?.name ||
+                              "Producto no encontrado"}
                           </p>
-                          <p className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400 mt-0.5 flex flex-wrap gap-x-2">
-                            <span>SKU: <code className="font-mono text-[10px] text-zinc-700 dark:text-zinc-300">{item.variant?.sku || "N/A"}</code></span>
+                          <p className="text-[12px] font-medium text-zinc-500 dark:text-zinc-400 mt-0.5 flex flex-wrap gap-x-2">
+                            <span>
+                              SKU:{" "}
+                              <code className="font-mono text-[10px] text-zinc-700 dark:text-zinc-300">
+                                {item.variant?.sku || "N/A"}
+                              </code>
+                            </span>
                             <span>•</span>
-                            <span>Color: <strong className="font-semibold text-zinc-700 dark:text-zinc-300">{item.variant?.color || "Estándar"}</strong></span>
+                            <span>
+                              Color:{" "}
+                              <strong className="font-semibold text-zinc-700 dark:text-zinc-300">
+                                {item.variant?.color || "Estándar"}
+                              </strong>
+                            </span>
                           </p>
                         </div>
                         <div className="text-right shrink-0">
                           <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-                            {item.quantity} × ${item.price.toLocaleString("es-ES", { minimumFractionDigits: 2 })}
+                            {item.quantity} × $
+                            {item.price.toLocaleString("es-ES", {
+                              minimumFractionDigits: 2,
+                            })}
                           </p>
                           <p className="text-xs font-bold text-zinc-900 dark:text-white mt-0.5">
-                            ${(item.quantity * item.price).toLocaleString("es-ES", { minimumFractionDigits: 2 })}
+                            $
+                            {(item.quantity * item.price).toLocaleString(
+                              "es-ES",
+                              { minimumFractionDigits: 2 }
+                            )}
                           </p>
                         </div>
                       </div>

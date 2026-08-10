@@ -22,7 +22,7 @@ function AccordionItem({
         onClick={onToggle}
         className="w-full py-4 flex items-center justify-between text-left group"
       >
-        <span className="text-base font-bold  text-zinc-900 dark:text-white">
+        <span className="text-[15px] font-medium text-zinc-900 dark:text-white">
           {title}
         </span>
         <ChevronDown
@@ -48,12 +48,17 @@ function AccordionItem({
   );
 }
 
+interface DimensionRow {
+  label: string;
+  value: number | null | undefined;
+}
+
 interface ProductAccordionProps {
   dimensions?: {
     height: number;
     width: number;
     depth: number;
-  };
+  } | null;
   materials?: string[];
   careInstructions?: string;
 }
@@ -66,9 +71,21 @@ export function ProductAccordion({
 
   const toggle = (index: number) => {
     setOpenIndices((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
+
+  const dimensionRows: DimensionRow[] = dimensions
+    ? [
+        { label: "Largo / Ancho", value: dimensions.width },
+        { label: "Alto", value: dimensions.height },
+        { label: "Profundidad", value: dimensions.depth },
+      ].filter(
+        (row) => row.value !== null && row.value !== undefined && row.value > 0
+      )
+    : [];
+
+  const hasDimensions = dimensionRows.length > 0;
 
   return (
     <div className="mt-4 border-t border-zinc-100 dark:border-zinc-800 ">
@@ -77,31 +94,44 @@ export function ProductAccordion({
         isOpen={openIndices.includes(1)}
         onToggle={() => toggle(1)}
       >
-        {dimensions ? (
+        {hasDimensions ? (
           <div className="space-y-2">
-            <div className="flex justify-between">
-              <span className="text-[14px]">Altura</span>
-              <span className="text-[14px] font-bold text-zinc-900 dark:text-white">
-                {dimensions.height} cm
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-[14px]">Ancho</span>
-              <span className="text-[14px] font-bold text-zinc-900 dark:text-white">
-                {dimensions.width} cm
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-[14px]">Fondo</span>
-              <span className="text-[14px] font-bold text-zinc-900 dark:text-white">
-                {dimensions.depth} cm
-              </span>
-            </div>
+            {dimensionRows.map((row) => (
+              <div
+                key={row.label}
+                className="flex justify-between items-center py-0.5"
+              >
+                <span className="text-[13px] text-zinc-500 font-medium">
+                  {row.label}
+                </span>
+                <span className="text-[13px] font-medium text-zinc-900 dark:text-white">
+                  {row.value} cm
+                </span>
+              </div>
+            ))}
           </div>
         ) : (
-          <p>Dimensiones no disponibles para esta variante.</p>
+          <p className="text-zinc-400 italic">
+            Dimensiones no disponibles para esta variante.
+          </p>
         )}
       </AccordionItem>
+
+      {materials && materials.length > 0 && (
+        <AccordionItem
+          title="Materiales"
+          isOpen={openIndices.includes(2)}
+          onToggle={() => toggle(2)}
+        >
+          <ul className="space-y-1">
+            {materials.map((m, i) => (
+              <li key={i} className="text-[14px]">
+                • {m}
+              </li>
+            ))}
+          </ul>
+        </AccordionItem>
+      )}
     </div>
   );
 }

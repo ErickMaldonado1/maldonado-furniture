@@ -52,7 +52,7 @@ export default function CatalogoMaldonadoPremium() {
 
   const handleNav = (direction: number) => {
     const currentIndex = coloresAMostrar.findIndex(
-      ([nombre]) => nombre === selectedColor?.nombre,
+      ([nombre]) => nombre === selectedColor?.nombre
     );
     const nextIndex =
       (currentIndex + direction + coloresAMostrar.length) %
@@ -68,7 +68,7 @@ export default function CatalogoMaldonadoPremium() {
       <section className="pt-24 md:pt-32 p-4 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-zinc-100 dark:border-zinc-800 pb-4">
           <div>
-            <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-zinc-900 dark:text-white leading-none">
               Catálogo de{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
                 Texturas
@@ -104,7 +104,7 @@ export default function CatalogoMaldonadoPremium() {
               className="relative shrink-0"
             >
               <span
-                className={`text-xl font-black uppercase tracking-tighter ${activeEmpresa === emp.id && searchQuery === "" ? "text-zinc-900 dark:text-white" : "text-zinc-300 dark:text-zinc-700"}`}
+                className={`text-md font-black uppercase tracking-tighter ${activeEmpresa === emp.id && searchQuery === "" ? "text-zinc-900 dark:text-white" : "text-zinc-300 dark:text-zinc-700"}`}
               >
                 {emp.nombre}
               </span>
@@ -143,7 +143,7 @@ export default function CatalogoMaldonadoPremium() {
                 />
                 <div className="absolute inset-x-0 bottom-0 p-3">
                   <div className="bg-black/20 backdrop-blur-md border border-white/10 py-2 px-1 text-center">
-                    <h3 className="text-[11px] font-black uppercase tracking-widest text-white">
+                    <h3 className="text-[12px] font-black uppercase  text-white">
                       {nombre.replace(/-/g, " ")}
                     </h3>
                   </div>

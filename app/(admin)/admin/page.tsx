@@ -37,13 +37,13 @@ export default async function AdminPage() {
             <Link
               href="/"
               target="_blank"
-              className="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:bg-white dark:hover:bg-zinc-800 transition-all"
+              className="px-4 py-2 rounded-lg text-xs font-bold uppercase  border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:bg-white dark:hover:bg-zinc-800 transition-all"
             >
               Tienda
             </Link>
             <Link
               href="/admin/products/new"
-              className="bg-[#4A3728] dark:bg-[#A6866A] text-white dark:text-black px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:opacity-90 transition shadow-lg shadow-[#4A3728]/20 dark:shadow-none"
+              className="bg-[#4A3728] dark:bg-[#A6866A] text-white dark:text-black px-4 py-2 rounded-lg text-xs font-bold uppercase  hover:opacity-90 transition shadow-lg shadow-[#4A3728]/20 dark:shadow-none"
             >
               + Nuevo Producto
             </Link>
@@ -91,7 +91,7 @@ export default async function AdminPage() {
 
         <div className="bg-white dark:bg-[#111111] rounded-xl border border-zinc-200 dark:border-zinc-800/60 overflow-hidden shadow-sm">
           <div className="p-5 flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800/50">
-            <h2 className="text-sm font-black text-zinc-800 dark:text-zinc-200 uppercase tracking-widest">
+            <h2 className="text-sm font-black text-zinc-800 dark:text-zinc-200 uppercase ">
               Actividad Reciente
             </h2>
             <Link
@@ -125,10 +125,11 @@ export default async function AdminPage() {
                     </td>
                     <td className="py-4 px-6">
                       <span
-                        className={`px-2 py-1 rounded-md text-[9px] font-black uppercase tracking-widest border ${order.status === "PAID"
+                        className={`px-2 py-1 rounded-md text-[9px] font-black uppercase  border ${
+                          order.status === "PAID"
                             ? "bg-emerald-50 dark:bg-emerald-500/5 text-emerald-600 dark:text-emerald-500 border-emerald-100 dark:border-emerald-500/10"
                             : "bg-amber-50 dark:bg-amber-500/5 text-amber-600 dark:text-amber-500 border-amber-100 dark:border-amber-500/10"
-                          }`}
+                        }`}
                       >
                         {order.status}
                       </span>
@@ -160,7 +161,7 @@ function StatCard({ title, value, icon, accent, description }: any) {
     <div className="bg-white dark:bg-[#111111] p-5 rounded-xl border border-zinc-200 dark:border-zinc-800/60 flex items-center gap-5">
       <div className={`p-3 rounded-lg border ${colors[accent]}`}>{icon}</div>
       <div>
-        <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-1">
+        <p className="text-[10px] font-bold text-zinc-400 uppercase  mb-1">
           {title}
         </p>
         <div className="flex items-baseline gap-2">

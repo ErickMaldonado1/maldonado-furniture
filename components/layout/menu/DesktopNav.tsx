@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 
 interface DesktopNavProps {
@@ -35,12 +36,17 @@ const DesktopNav = ({
           : "h-12 opacity-100"
       }`}
     >
-      <div className="max-w-screen-2xl mx-auto px-8 h-full flex items-center justify-center">
+      {/* Añadimos un onMouseLeave general en el contenedor padre para que el menú 
+          solo se cierre cuando el mouse salga completamente de la barra de navegación hacia afuera */}
+      <div
+        onMouseLeave={handleLinkMouseLeave}
+        className="max-w-screen-2xl mx-auto px-4 h-full flex items-center justify-center"
+      >
         <div
-          className={`flex gap-8 text-sm font-semibold tracking-[0.20em] uppercase transition-colors duration-500 ${
+          className={`uppercase text-lg flex gap-8 transition-colors duration-500  ${
             !showSolidNavbar
-              ? "text-white/70"
-              : "text-zinc-500 dark:text-zinc-400"
+              ? "text-white/80"
+              : "text-zinc-600 dark:text-zinc-400"
           }`}
         >
           {menuItems.map((item) => {
@@ -64,9 +70,11 @@ const DesktopNav = ({
                       : `/${item.toLowerCase()}`
                 }
                 onMouseEnter={() =>
-                  isCategory ? handleLinkMouseEnter(item) : null
+                  isCategory
+                    ? handleLinkMouseEnter(item)
+                    : handleLinkMouseLeave()
                 }
-                onMouseLeave={handleLinkMouseLeave}
+                // Quitamos el onMouseLeave de aquí para que no se dispare por error al bajar al mega menú
                 className={`group relative isolate px-4 py-2 rounded-md transition-all duration-300 ${
                   !showSolidNavbar
                     ? isActive

@@ -42,9 +42,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           {label}
         </h3>
         <div className="flex items-center gap-3 text-[#4A3728] text-sm font-black opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <span className="text-white uppercase tracking-widest text-md">
-            Ver Colección
-          </span>{" "}
+          <span className="text-white uppercase  text-md">Ver Colección</span>{" "}
           <ArrowNarrowRight width={20} height={20} />
         </div>
       </div>

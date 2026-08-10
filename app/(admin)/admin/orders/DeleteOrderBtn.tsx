@@ -13,7 +13,7 @@ export function DeleteOrderBtn({ orderId }: { orderId: string }) {
   const handleDelete = async () => {
     if (
       !confirm(
-        "¿Estás seguro de que deseas eliminar esta orden permanentemente? Esta acción no se puede deshacer.",
+        "¿Estás seguro de que deseas eliminar esta orden permanentemente? Esta acción no se puede deshacer."
       )
     )
       return;

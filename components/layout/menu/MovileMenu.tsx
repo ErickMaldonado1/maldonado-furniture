@@ -67,25 +67,36 @@ const MobileMenu = ({ isOpen, onClose, isDarkMode }: MobileMenuProps) => {
             </div>
 
             <div>
-              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3">
+              <p className="text-[12px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3">
                 Categorías
               </p>
               <div className="flex flex-col gap-2">
                 {categories.map((cat) => {
                   const isExpanded = expandedCat === cat.slug;
                   return (
-                    <div key={cat.slug} className="flex flex-col border border-zinc-100 dark:border-zinc-800/50 rounded-md overflow-hidden transition-all bg-zinc-50 dark:bg-zinc-900/40">
-                      <div 
+                    <div
+                      key={cat.slug}
+                      className="flex flex-col border border-zinc-100 dark:border-zinc-800/50 rounded-md overflow-hidden transition-all bg-zinc-50 dark:bg-zinc-900/40"
+                    >
+                      <div
                         className="flex items-center justify-between p-3 active:bg-zinc-100 dark:active:bg-zinc-800 cursor-pointer"
-                        onClick={() => setExpandedCat(isExpanded ? null : cat.slug)}
+                        onClick={() =>
+                          setExpandedCat(isExpanded ? null : cat.slug)
+                        }
                       >
                         <span className="text-[13px] font-bold text-zinc-800 dark:text-zinc-200">
                           {cat.label}
                         </span>
-                        <ChevronRight width={20} height={20} className={`transition-transform duration-300 text-zinc-400 ${isExpanded ? "rotate-90" : ""}`} />
+                        <ChevronRight
+                          width={20}
+                          height={20}
+                          className={`transition-transform duration-300 text-zinc-400 ${isExpanded ? "rotate-90" : ""}`}
+                        />
                       </div>
-                      
-                      <div className={`transition-all duration-300 ease-in-out flex flex-col bg-white dark:bg-[#0b0b0b] overflow-hidden ${isExpanded ? "max-h-96 py-2 border-t border-zinc-100 dark:border-zinc-800/50" : "max-h-0 py-0"}`}>
+
+                      <div
+                        className={`transition-all duration-300 ease-in-out flex flex-col bg-white dark:bg-[#0b0b0b] overflow-hidden ${isExpanded ? "max-h-96 py-2 border-t border-zinc-100 dark:border-zinc-800/50" : "max-h-0 py-0"}`}
+                      >
                         {cat.subcategories.map((sub) => (
                           <Link
                             key={sub.sub}
@@ -104,7 +115,7 @@ const MobileMenu = ({ isOpen, onClose, isDarkMode }: MobileMenuProps) => {
             </div>
 
             <div>
-              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-4">
+              <p className="text-[12px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-4">
                 Menú
               </p>
               <nav className="flex flex-col">

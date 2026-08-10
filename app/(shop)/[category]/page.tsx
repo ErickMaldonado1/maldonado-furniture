@@ -3,6 +3,7 @@ import Image from "next/image";
 import { categories } from "@/utils/categories";
 import ProductCard from "@/components/shop/product/ProductCard";
 import { ContactForm } from "@/components/shop/contact/ContactForm";
+import RecentProjects from "@/app/(shop)/[category]/RecentProjects"; // <--- Importas el componente creado
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Squares2X2 } from "@/utils/icons/social";
@@ -27,6 +28,20 @@ const seoContent: Record<
         En <strong>Muebles Maldonado</strong> ofrecemos{" "}
         <strong>camas modernas, cómodas, closets y veladores</strong> de diseño
         lineal. Confort con materiales de alta calidad.
+      </p>
+    ),
+  },
+  closets: {
+    prefix: "Diseñamos tu",
+    title:
+      "Clósets Modernos a Medida | Walking Closets y Roperos | Muebles Maldonado",
+    description:
+      "Especialistas en clósets modernos, walking closets y roperos de melamina a medida. Optimiza tu espacio con diseño y funcionalidad.",
+    content: (
+      <p className="text-justify text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+        Creamos <strong>clósets y walking closets personalizados</strong> con
+        una distribución inteligente, maximizando cada espacio de almacenamiento
+        con acabados de alta gama.
       </p>
     ),
   },
@@ -75,16 +90,46 @@ const seoContent: Record<
   },
 };
 
+function resolveCategoryConfig(slug: string) {
+  const mainCategory = categories.find((c) => c.slug === slug);
+  if (mainCategory) {
+    return { config: mainCategory, queryKey: slug, isSub: false };
+  }
+
+  for (const cat of categories) {
+    const subCat = cat.subcategories.find((sub) => {
+      const segments = sub.href.split("/").filter(Boolean);
+      return segments[segments.length - 1] === slug;
+    });
+
+    if (subCat) {
+      return {
+        config: {
+          label: subCat.label,
+          slug: slug,
+          featuredContent: [{ imageSrc: subCat.imageSrc }],
+          subcategories: cat.subcategories,
+        },
+        queryKey: slug,
+        isSub: true,
+      };
+    }
+  }
+
+  return null;
+}
+
 type Props = {
   params: Promise<{ category: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category: categorySlug } = await params;
-  const categoryConfig = categories.find((c) => c.slug === categorySlug);
+  const resolved = resolveCategoryConfig(categorySlug);
 
-  if (!categoryConfig) return { title: "Categoría no encontrada" };
+  if (!resolved) return { title: "Categoría no encontrada" };
 
+  const { config: categoryConfig } = resolved;
   const data = seoContent[categorySlug];
 
   return {
@@ -104,12 +149,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CategoryPage({ params }: Props) {
   const { category: categorySlug } = await params;
-  const categoryConfig = categories.find((c) => c.slug === categorySlug);
+  const resolved = resolveCategoryConfig(categorySlug);
 
-  if (!categoryConfig) return notFound();
+  if (!resolved) return notFound();
+
+  const { config: categoryConfig, queryKey } = resolved;
 
   const allCategoryProducts = await ProductService.getAll({
-    category: categorySlug,
+    category: queryKey,
   });
 
   const productsFromDB = allCategoryProducts
@@ -119,48 +166,55 @@ export default async function CategoryPage({ params }: Props) {
   const heroImage = categoryConfig.featuredContent[0]?.imageSrc;
 
   return (
-    <main className="mt-20 min-h-screen bg-white dark:bg-[#050505] transition-colors">
-      <section className="bg-[#FDFCFB] dark:bg-black">
+    <main className="mt-20 min-h-screen">
+      <section className="bg-white dark:bg-[#050505]">
         <div className="max-w-340 mx-auto flex flex-col lg:flex-row h-auto lg:h-90">
           <div className="w-full lg:w-1/2 p-4 lg:p-16 flex flex-col justify-center">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <span className="text-[#4A3728] text-lg sm:text-xl lg:text-2xl font-black uppercase tracking-wider">
-                  {seoContent[categorySlug]?.prefix}
+                <span className="text-[#4A3728] text-lg sm:text-xl lg:text-2xl font-black uppercase ">
+                  {seoContent[categorySlug]?.prefix || "Descubre nuestros"}
                 </span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-zinc-900 dark:text-white leading-none">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium  text-zinc-900 dark:text-white leading-none">
                 {categoryConfig.label}
               </h1>
               <div className="max-w-md">
-                {seoContent[categorySlug]?.content}
+                {seoContent[categorySlug]?.content || (
+                  <p className="text-justify text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+                    Explora nuestra selección exclusiva de{" "}
+                    <strong>{categoryConfig.label}</strong> fabricados a medida.
+                  </p>
+                )}
               </div>
             </div>
           </div>
           <div className="w-full lg:w-1/2 h-70 lg:h-full relative">
-            <Image
-              src={heroImage}
-              fill
-              priority
-              className="object-cover"
-              alt={categoryConfig.label}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
+            {heroImage && (
+              <Image
+                src={heroImage}
+                fill
+                priority
+                className="object-cover"
+                alt={categoryConfig.label}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            )}
           </div>
         </div>
       </section>
 
-      <section className="py-12 bg-[#FDFCFB] dark:bg-black">
+      <section className="py-12 bg-white dark:bg-[#050505]">
         <div className="max-w-360 mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-4 mb-8 pl-4">
             <Squares2X2 className="w-6 h-6 text-[#4A3728] text-2xl" />
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-tight">
+            <h2 className="text-2xl md:text-2xl lg:text-3xl font-medium  text-zinc-900 dark:text-white leading-none">
               Líneas Especializadas
             </h2>
           </div>
 
           <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-2">
-            {categoryConfig.subcategories.slice(0, 8).map((sub) => (
+            {categoryConfig.subcategories?.slice(0, 8).map((sub) => (
               <Link
                 key={sub.sub}
                 href={sub.href}
@@ -175,7 +229,7 @@ export default async function CategoryPage({ params }: Props) {
                     sizes="(max-width: 640px) 64px, (max-width: 768px) 96px, 128px"
                   />
                 </div>
-                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-white text-center transition-colors">
+                <span className="text-[12px] sm:text-sm font-medium tracking-tight text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-white text-center transition-colors">
                   {sub.label}
                 </span>
               </Link>
@@ -184,11 +238,41 @@ export default async function CategoryPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="py-12 bg-[#FDFCFB] dark:bg-black">
+      {(categorySlug === "cocina" || categorySlug === "closets") && (
+        <RecentProjects categorySlug={categorySlug} />
+      )}
+
+      <section className="py-12 bg-white dark:bg-[#050505]">
         <div className="max-w-360 mx-auto px-4 sm:px-6">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-zinc-900 dark:text-white mb-8 sm:mb-12">
-            Productos <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">Destacados</span>
-          </h2>
+          <div className="flex flex-col md:flex-row justify-between items-center mb-8 sm:mb-12 gap-4">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-zinc-900 dark:text-white leading-none">
+              Productos{" "}
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
+                Destacados
+              </span>
+            </h2>
+            <Link
+              href={`/${categorySlug}/productos`}
+              className="group flex items-center gap-2 text-sm md:text-base lg:text-lg hover:text-[#4A3728] dark:hover:text-zinc-300 transition-all"
+              aria-label="Ver colección de productos"
+            >
+              <span className="hidden sm:inline">VER CATÁLOGO COMPLETO</span>
+              <span className="sm:hidden">CATÁLOGO</span>
+              <svg
+                className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform text-[#4A3728]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                ></path>
+              </svg>
+            </Link>
+          </div>
 
           {productsFromDB.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">

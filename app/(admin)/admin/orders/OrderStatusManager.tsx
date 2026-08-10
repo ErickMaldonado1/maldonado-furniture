@@ -55,7 +55,7 @@ export function OrderStatusManager({
       <button
         onClick={() => setIsOpen(!isOpen)}
         disabled={isLoading}
-        className={`flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all ${statusColors[status]}`}
+        className={`flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black uppercase  border transition-all ${statusColors[status]}`}
       >
         {isLoading ? (
           <Loader2 className="w-3 h-3 animate-spin" />
@@ -73,7 +73,7 @@ export function OrderStatusManager({
             <button
               key={s}
               onClick={() => handleUpdate(s)}
-              className="w-full text-left px-4 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-zinc-100 dark:hover:bg-white/5 transition-colors"
+              className="w-full text-left px-4 py-2 text-[10px] font-bold uppercase  hover:bg-zinc-100 dark:hover:bg-white/5 transition-colors"
             >
               {s}
             </button>

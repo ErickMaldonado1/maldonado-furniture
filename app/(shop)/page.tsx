@@ -12,7 +12,7 @@ const CategoryShowcase = dynamic(
         </div>
       </div>
     ),
-  },
+  }
 );
 const ValueProps = dynamic(() => import("@/components/home/ValueProps"), {
   loading: () => (
@@ -39,10 +39,10 @@ const FeaturedCarousel = dynamic(
   () => import("@/components/home/FeaturedCarousel"),
   {
     loading: () => <div className="h-100 w-full bg-zinc-100 animate-pulse" />,
-  },
+  }
 );
 const CategoryCarousel = dynamic(
-  () => import("@/components/home/CategoryCarousel"),
+  () => import("@/components/home/CategoryCarousel")
 );
 
 const HomePage = async () => {

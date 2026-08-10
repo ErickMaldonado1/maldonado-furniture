@@ -105,7 +105,7 @@ export const WhatsAppModal = ({
             </div>
             <div className="pt-4 flex items-center justify-center gap-2 opacity-40">
               <div className="h-1 w-1 bg-zinc-400 rounded-full" />
-              <p className="text-[12px] font-medium uppercase tracking-widest text-zinc-500">
+              <p className="text-[12px] font-medium uppercase  text-zinc-500">
                 Compra Segura & Privada
               </p>
               <div className="h-1 w-1 bg-zinc-400 rounded-full" />

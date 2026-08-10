@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     if (!body.name || !body.sku || !body.price) {
       return NextResponse.json(
         { error: "Faltan campos obligatorios: name, sku, price" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     if (error.code === "P2002") {
       return NextResponse.json(
         { error: "El SKU ya existe en la base de datos" },
-        { status: 400 },
+        { status: 400 }
       );
     }
     return NextResponse.json({ error: error.message }, { status: 500 });

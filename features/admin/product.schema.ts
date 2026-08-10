@@ -20,7 +20,7 @@ export const productSchema = z.object({
       publicId: z.string(),
       color: z.string().optional().nullable(),
       variantId: z.string().optional().nullable(),
-    }),
+    })
   ),
   variants: z
     .array(
@@ -33,10 +33,16 @@ export const productSchema = z.object({
         width: z.coerce.number().min(0),
         height: z.coerce.number().min(0),
         depth: z.coerce.number().min(0),
-        thickness: z.preprocess((val) => (val === "" || val === null ? null : Number(val)), z.number().nullable().optional()),
-        price: z.preprocess((val) => (val === "" || val === null ? null : Number(val)), z.number().nullable().optional()),
+        thickness: z.preprocess(
+          (val) => (val === "" || val === null ? null : Number(val)),
+          z.number().nullable().optional()
+        ),
+        price: z.preprocess(
+          (val) => (val === "" || val === null ? null : Number(val)),
+          z.number().nullable().optional()
+        ),
         sizeLabel: z.string().optional().nullable(),
-      }),
+      })
     )
     .min(1, "Debe haber al menos una variante"),
 });

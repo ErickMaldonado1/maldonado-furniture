@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
@@ -16,9 +17,10 @@ import UserDropdown from "./UserDropdown";
 import { categories } from "@/utils/categories";
 import { useCartStore } from "@/store/cart-store";
 import { useFavoritesStore } from "@/store/favorites-store";
+
 const DesktopNav = dynamic(
   () => import("@/components/layout/menu/DesktopNav"),
-  { ssr: false },
+  { ssr: false }
 );
 
 const SearchBar = dynamic(() => import("@/components/shop/filters/SearchBar"), {
@@ -29,7 +31,7 @@ const MegaMenu = dynamic(() => import("@/components/layout/menu/MegaMenu"), {
 });
 const MobileMenu = dynamic(
   () => import("@/components/layout/menu/MovileMenu"),
-  { ssr: false },
+  { ssr: false }
 );
 const AuthDrawer = dynamic(() => import("@/components/layout/AuthDrawer"), {
   ssr: false,
@@ -49,7 +51,7 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isHoveringMenu, setIsHoveringMenu] = useState(false);
-  const [closeTimeout, setCloseTimeout] = useState<NodeJS.Timeout | null>(null);
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const isHomePage = pathname === "/";
   const showSolidNavbar = isScrolled || !isHomePage;
@@ -57,19 +59,19 @@ const Navbar = () => {
   const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
 
   const totalItems = useCartStore((state) =>
-    state.cart.reduce((acc, item) => acc + item.quantity, 0),
+    state.cart.reduce((acc, item) => acc + item.quantity, 0)
   );
   const cartItems = useCartStore((state) => state.cart);
   const favorites = useFavoritesStore((state) => state.favorites);
 
   const handleLinkMouseEnter = (item: string) => {
-    if (closeTimeout) clearTimeout(closeTimeout);
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     setActiveMenu(item);
   };
 
   const handleLinkMouseLeave = () => {
-    const timeout = setTimeout(() => setActiveMenu(null), 100);
-    setCloseTimeout(timeout);
+    const timeout = setTimeout(() => setActiveMenu(null), 250);
+    closeTimeoutRef.current = timeout;
   };
 
   useEffect(() => {
@@ -109,13 +111,13 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 font-sans ${
         showSolidNavbar
-          ? "bg-white dark:bg-[#0D0D0D] py-2 shadow-sm border-b border-zinc-200/50 dark:border-white/5"
-          : "bg-transparent py-3"
+          ? "bg-white dark:bg-[#0D0D0D] py-1.5 shadow-sm border-b border-zinc-200/50 dark:border-white/5"
+          : "bg-transparent py-2.5"
       } ${!mounted ? "opacity-0" : "opacity-100"}`}
     >
-      <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 flex justify-between items-center gap-8">
+      <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 flex justify-between items-center gap-6">
         <Link href="/" className="shrink-0 group" aria-label="Ir al inicio">
-          <div className="relative w-36 aspect-400/113 transition-transform group-hover:scale-105">
+          <div className="relative w-32 sm:w-36 aspect-400/113 transition-transform group-hover:scale-105">
             <Image
               src={
                 !showSolidNavbar || theme === "dark"
@@ -135,27 +137,27 @@ const Navbar = () => {
           <SearchBar showSolidNavbar={showSolidNavbar} />
         </div>
 
-        <div className="flex items-center gap-1 md:gap-4">
+        <div className="flex items-center gap-1 sm:gap-2">
           <button
             onClick={toggleTheme}
-            className={`p-2.5 rounded-full transition-all ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"}`}
+            className={`p-2 rounded-full transition-all ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"}`}
             aria-label="Cambiar tema"
           >
             {theme === "dark" ? (
-              <HiOutlineSun className="text-2xl" />
+              <HiOutlineSun className="text-xl" />
             ) : (
-              <HiOutlineMoon className="text-2xl" />
+              <HiOutlineMoon className="text-xl" />
             )}
           </button>
 
           <button
             onClick={() => setFavoritesOpen(true)}
-            className={`hidden sm:flex p-2.5 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"}`}
+            className={`hidden sm:flex p-2 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"}`}
             aria-label="Abrir favoritos"
           >
-            <HiOutlineHeart className="text-2xl group-hover:scale-110 transition-transform" />
+            <HiOutlineHeart className="text-xl group-hover:scale-110 transition-transform" />
             {mounted && favorites.length > 0 && (
-              <span className="absolute top-1 right-1 bg-[#4A3728] text-white text-[10px] font-black h-5 w-5 rounded-full flex items-center justify-center shadow-lg animate-in zoom-in">
+              <span className="absolute top-0.5 right-0.5 bg-[#4A3728] text-white text-[9px] font-black h-4 w-4 rounded-full flex items-center justify-center shadow-md animate-in zoom-in">
                 {favorites.length}
               </span>
             )}
@@ -173,11 +175,11 @@ const Navbar = () => {
               setCartOpen(true);
             }}
             aria-label="Abrir carrito"
-            className={`p-2.5 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"}`}
+            className={`p-2 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"}`}
           >
-            <HiOutlineShoppingBag className="text-2xl group-hover:scale-110 transition-transform" />
+            <HiOutlineShoppingBag className="text-xl group-hover:scale-110 transition-transform" />
             {mounted && totalItems > 0 && (
-              <span className="absolute top-1 right-1 bg-[#4A3728] text-white text-[10px] font-black h-5 w-5 rounded-full flex items-center justify-center shadow-lg animate-in zoom-in">
+              <span className="absolute top-0.5 right-0.5 bg-[#4A3728] text-white text-[9px] font-black h-4 w-4 rounded-full flex items-center justify-center shadow-md animate-in zoom-in">
                 {totalItems}
               </span>
             )}
@@ -185,10 +187,10 @@ const Navbar = () => {
 
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className={`lg:hidden p-2.5 text-3xl transition-all ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white"}`}
+            className={`lg:hidden p-2 transition-all ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white"}`}
             aria-label="Abrir menú móvil"
           >
-            <HiOutlineMenuAlt3 size={32} />
+            <HiOutlineMenuAlt3 size={28} />
           </button>
         </div>
       </div>
@@ -207,15 +209,15 @@ const Navbar = () => {
           isOpen={isAnyMenuOpen}
           data={categories.find((c) => c.label === activeMenu) || null}
           onMouseEnter={() => {
-            if (closeTimeout) clearTimeout(closeTimeout);
+            if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
             setIsHoveringMenu(true);
           }}
           onMouseLeave={() => {
             const timeout = setTimeout(() => {
               setIsHoveringMenu(false);
               setActiveMenu(null);
-            }, 100);
-            setCloseTimeout(timeout);
+            }, 250);
+            closeTimeoutRef.current = timeout;
           }}
         />
       )}

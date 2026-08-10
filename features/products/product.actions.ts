@@ -1,9 +1,6 @@
 import { ProductService } from "./product.service";
 import { revalidatePath } from "next/cache";
-import {
-  ProductFilters,
-  ProductCreateInput,
-} from "@/types/product-service";
+import { ProductFilters, ProductCreateInput } from "@/types/product-service";
 
 export const getProductsAction = async (filters: ProductFilters) => {
   return await ProductService.getAll(filters);

@@ -1,4 +1,3 @@
-
 import { ProductService } from "@/features/products/product.service";
 import ProductListingClient from "@/components/ProductListingClient";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -87,7 +86,7 @@ export default async function SearchPage({
               </p>
               <Link
                 href="/productos"
-                className="mt-8 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black text-xs font-black uppercase tracking-widest hover:opacity-90 transition-all rounded-full"
+                className="mt-8 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black text-xs font-black uppercase  hover:opacity-90 transition-all rounded-full"
               >
                 Ver todos los productos
               </Link>

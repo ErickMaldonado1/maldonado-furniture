@@ -57,7 +57,7 @@ export const categories: Category[] = [
       {
         sub: "closets",
         label: "Closets",
-        href: "/dormitorio/closets",
+        href: "/closets",
         imageSrc:
           "https://res.cloudinary.com/dwvruzkll/image/upload/v1769190704/armario_tji5kq.webp",
         imageAlt: "closet",

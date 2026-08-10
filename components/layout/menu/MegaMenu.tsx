@@ -33,14 +33,14 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
           transition={{ duration: 0.25, ease: "easeOut" }}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
-          className="absolute top-full left-0 right-0 z-50 hidden lg:block w-full"
+          className="absolute top-[calc(100%-20px)] pt-[20px] left-0 right-0 z-50 hidden lg:block w-full"
         >
           <div className="w-full bg-white/95 dark:bg-[#0D0D0D]/95 backdrop-blur-md border-b border-zinc-200/50 dark:border-white/5 shadow-2xl transition-all duration-300">
             <div className="mx-auto max-w-7xl">
               <div className="grid grid-cols-[1.2fr_3fr_1.8fr] gap-10 px-8 py-8">
                 {/* Categorías (Columna 1) */}
                 <div className="min-w-0">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-zinc-500 mb-5">
+                  <p className="text-[12px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-zinc-500 mb-5">
                     {data.label}
                   </p>
 
@@ -48,14 +48,19 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                     {data.subcategories.map((cat: any) => {
                       const isHovered = hoveredSub === cat.sub;
                       return (
-                        <li key={cat.sub} onMouseEnter={() => setHoveredSub(cat.sub)}>
+                        <li
+                          key={cat.sub}
+                          onMouseEnter={() => setHoveredSub(cat.sub)}
+                        >
                           <Link
                             href={cat.href}
                             className={`group flex items-center justify-between px-3 py-2 rounded-lg transition-all duration-350
                               ${isHovered ? "bg-zinc-100/80 dark:bg-white/5 pl-4" : "hover:bg-zinc-50 dark:hover:bg-white/2"}
                             `}
                           >
-                            <span className={`text-sm font-semibold truncate transition-colors duration-300 ${isHovered ? "text-[#4A3728] dark:text-white" : "text-zinc-700 dark:text-zinc-300"}`}>
+                            <span
+                              className={`text-sm font-semibold truncate transition-colors duration-300 ${isHovered ? "text-[#4A3728] dark:text-white" : "text-zinc-700 dark:text-zinc-300"}`}
+                            >
                               {cat.label}
                             </span>
 
@@ -73,7 +78,7 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
 
                 {/* Explorar (Columna 2) */}
                 <div className="min-w-0">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-zinc-500 mb-5">
+                  <p className="text-[12px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-zinc-500 mb-5">
                     Explorar
                   </p>
 
@@ -88,7 +93,9 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                           onMouseEnter={() => setHoveredSub(sub.sub)}
                           className={`group flex flex-col items-center text-center gap-2 min-w-0 transition-all duration-350 ${isDimmed ? "opacity-50" : "opacity-100"}`}
                         >
-                          <div className={`relative w-28 h-20 rounded-xl overflow-hidden bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800/80 transition-all duration-300 ${isHovered ? "ring-2 ring-[#4A3728] dark:ring-white/50 shadow-md scale-[1.02]" : ""}`}>
+                          <div
+                            className={`relative w-28 h-20 rounded-xl overflow-hidden bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800/80 transition-all duration-300 ${isHovered ? "ring-2 ring-[#4A3728] dark:ring-white/50 shadow-md scale-[1.02]" : ""}`}
+                          >
                             <Image
                               src={sub.imageSrc}
                               alt={sub.imageAlt}
@@ -97,7 +104,9 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                             />
                           </div>
 
-                          <span className={`text-[11px] font-bold uppercase tracking-wider transition-colors duration-300 ${isHovered ? "text-[#4A3728] dark:text-white" : "text-zinc-600 dark:text-zinc-400"}`}>
+                          <span
+                            className={`text-[12px] font-bold uppercase tracking-wider transition-colors duration-300 ${isHovered ? "text-[#4A3728] dark:text-white" : "text-zinc-600 dark:text-zinc-400"}`}
+                          >
                             {sub.label}
                           </span>
                         </Link>
@@ -108,11 +117,13 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
 
                 {/* Tendencias (Columna 3) */}
                 <div className="min-w-0">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-zinc-500 mb-5">
+                  <p className="text-[12px] font-bold uppercase tracking-[0.25em] text-zinc-400 dark:text-zinc-500 mb-5">
                     Tendencias
                   </p>
 
-                  <div className={`grid ${data.featuredContent.length > 1 ? "grid-cols-2 gap-4" : "grid-cols-1"}`}>
+                  <div
+                    className={`grid ${data.featuredContent.length > 1 ? "grid-cols-2 gap-4" : "grid-cols-1"}`}
+                  >
                     {data.featuredContent.slice(0, 2).map((item: any) => (
                       <Link
                         key={item.title}
@@ -129,7 +140,7 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-85" />
                           {item.badge && (
-                            <span className="absolute top-3 left-3 px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-widest rounded-full bg-[#4A3728] text-white shadow-sm z-20">
+                            <span className="absolute top-3 left-3 px-2.5 py-1 text-[9px] font-extrabold uppercase  rounded-full bg-[#4A3728] text-white shadow-sm z-20">
                               {item.badge}
                             </span>
                           )}
@@ -141,10 +152,11 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                               {item.title}
                             </h4>
                             <p className="text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed">
-                              {item.description || "Inspiración y diseño contemporáneo a medida para transformar tu hogar."}
+                              {item.description ||
+                                "Inspiración y diseño contemporáneo a medida para transformar tu hogar."}
                             </p>
                           </div>
-                          <span className="mt-3 block text-[10px] font-black uppercase tracking-widest text-[#4A3728] dark:text-zinc-300 transition-colors group-hover:translate-x-1 duration-300">
+                          <span className="mt-3 block text-[10px] font-black uppercase  text-[#4A3728] dark:text-zinc-300 transition-colors group-hover:translate-x-1 duration-300">
                             Explorar →
                           </span>
                         </div>

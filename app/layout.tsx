@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Jost } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/layout/navBar/NavBar";
 import { MainProvider } from "@/providers/MainProvider";
@@ -8,11 +8,11 @@ const Footer = dynamic(() => import("@/components/layout/footer/Footer"), {
   loading: () => <p>...Cargando</p>,
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const jost = Jost({
+  variable: "--font-jost",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -107,11 +107,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  ReactDOM.preconnect("https://res.cloudinary.com", { crossOrigin: "anonymous" });
+  ReactDOM.preconnect("https://res.cloudinary.com", {
+    crossOrigin: "anonymous",
+  });
   return (
     <html lang="es" suppressHydrationWarning>
       <body
-        className={`${inter.variable} font-sans antialiased bg-white dark:bg-[#0a0a0a] transition-colors duration-500`}
+        className={`${jost.variable} font-sans antialiased bg-white dark:bg-[#0a0a0a] transition-colors duration-500`}
         suppressHydrationWarning={true}
       >
         <ThemeProvider

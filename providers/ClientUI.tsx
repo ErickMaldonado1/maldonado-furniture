@@ -10,7 +10,7 @@ const WhatsAppButton = dynamic(
   () => import("@/components/ui/WhatsApp/WhatsAppButton"),
   {
     ssr: false,
-  },
+  }
 );
 
 export default function ClientUI() {

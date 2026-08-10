@@ -1,0 +1,23 @@
+# Build output
+.next/
+out/
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Generated files
+*.tsbuildinfo
+next-env.d.ts
+
+# Prisma generated
+node_modules/.prisma/
+
+# Lock files
+package-lock.json
+
+# Misc
+.env
+.env.*
+*.log

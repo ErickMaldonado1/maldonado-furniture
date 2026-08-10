@@ -40,7 +40,7 @@ export const useCartStore = create<CartState>()(
           const newQuantity = Math.min(exists.quantity + item.quantity, 3);
           set({
             cart: cart.map((i) =>
-              i.id === item.id ? { ...i, quantity: newQuantity } : i,
+              i.id === item.id ? { ...i, quantity: newQuantity } : i
             ),
           });
         } else {
@@ -56,7 +56,7 @@ export const useCartStore = create<CartState>()(
         const safeQuantity = Math.min(quantity, 3);
         set({
           cart: get().cart.map((i) =>
-            i.id === itemId ? { ...i, quantity: safeQuantity } : i,
+            i.id === itemId ? { ...i, quantity: safeQuantity } : i
           ),
         });
       },
@@ -69,6 +69,6 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: "shopping-cart",
-    },
-  ),
+    }
+  )
 );

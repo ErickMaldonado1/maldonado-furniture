@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: Promise<{ variantId: string }> },
+  { params }: { params: Promise<{ variantId: string }> }
 ) {
   const session = await getServerSession(authOptions);
 

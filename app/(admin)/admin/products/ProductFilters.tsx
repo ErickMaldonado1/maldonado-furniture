@@ -23,7 +23,7 @@ export function ProductFilters({
       }
       return params.toString();
     },
-    [searchParams],
+    [searchParams]
   );
 
   return (

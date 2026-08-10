@@ -39,7 +39,7 @@ export async function POST(req: Request) {
     });
     return new NextResponse(
       JSON.stringify({ error: error.message || "Internal error" }),
-      { status: 500, headers: { "Content-Type": "application/json" } },
+      { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
 }

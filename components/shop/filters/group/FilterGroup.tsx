@@ -22,7 +22,7 @@ export const FilterGroup = ({
       onClick={onClick}
       className={`
         flex items-center transition-all duration-200 w-full
-        px-2 py-2 rounded-lg border text-xs font-bold uppercase tracking-widest justify-center
+        px-2 py-2 rounded-lg border text-xs font-bold uppercase  justify-center
         lg:border-none lg:bg-transparent lg:px-0 lg:py-0 lg:justify-start lg:w-full
         ${
           isActive
@@ -99,7 +99,7 @@ export const FilterGroup = ({
                   isActive={filters.styles.includes(style)}
                   onClick={() => toggleFilter("styles", style)}
                 />
-              ),
+              )
             )}
           </div>
         </FilterSection>
@@ -145,7 +145,7 @@ export const FilterGroup = ({
 
       <button
         onClick={clearFilters}
-        className="flex items-center gap-2 text-[12px] justify-center font-black uppercase tracking-widest text-zinc-400 hover:text-red-500 transition-colors pt-6 border-t border-zinc-100 dark:border-zinc-900 w-full"
+        className="flex items-center gap-2 text-[12px] justify-center font-black uppercase text-zinc-400 hover:text-red-500 transition-colors pt-6 border-t border-zinc-100 dark:border-zinc-900 w-full"
       >
         <Trash className="w-4 h-4" /> Restablecer
       </button>

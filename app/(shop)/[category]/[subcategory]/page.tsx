@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Categoría no encontrada | Muebles Maldonado" };
   }
   const subcategoryConfig = categoryConfig.subcategories.find(
-    (s) => s.sub === subcategorySlug,
+    (s) => s.sub === subcategorySlug
   );
   if (!subcategoryConfig) {
     return { title: "Subcategoría no encontrada | Muebles Maldonado" };
@@ -35,7 +35,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: titleText,
       description: descriptionText,
       url: `https://mueblesmaldonadoec.com/${categorySlug}/${subcategorySlug}`,
-      images: subcategoryConfig.imageSrc ? [{ url: subcategoryConfig.imageSrc }] : [],
+      images: subcategoryConfig.imageSrc
+        ? [{ url: subcategoryConfig.imageSrc }]
+        : [],
       type: "website",
     },
   };
@@ -52,7 +54,7 @@ export default async function SubcategoryPage({
   if (!categoryConfig) return notFound();
 
   const subcategoryConfig = categoryConfig.subcategories.find(
-    (s) => s.sub === subcategorySlug,
+    (s) => s.sub === subcategorySlug
   );
   if (!subcategoryConfig) return notFound();
 

@@ -2,104 +2,157 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowNarrowRight } from "@/utils/icons/actions";
+
 const categories = [
+  // --- FILA 1 (6 elementos) ---
   {
-    name: "Dormitorio",
+    name: "Camas Lineales",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1781540116/dormitorio1_yrt2sp.webp?auto=compress&cs=tinysrgb&w=2070",
-    href: "/dormitorio",
-    span: "md:col-span-2 md:row-span-2 col-span-1",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769995574/maldonado-furniture/products/revj9kwq1m6cu0dt8was.webp?auto=compress&cs=tinysrgb&w=2070",
+    href: "/dormitorio/camas-lineales",
     tag: "Minimalista",
   },
   {
-    name: "Sala",
+    name: "Clósets",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1781542056/muebletv1_zgzn5p.webp?auto=compress&cs=tinysrgb&w=2070",
-    href: "/sala",
-    span: "col-span-1",
-    tag: "Escultural",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1786233117/dormitorio-page_vyz24g.webp?auto=compress&cs=tinysrgb&w=2070",
+    href: "/closets",
+    tag: "Funcional",
   },
   {
     name: "Cocina",
     image:
       "https://res.cloudinary.com/dwvruzkll/image/upload/v1769127395/cocina_stp9o1.webp?auto=compress&cs=tinysrgb&w=2070",
-    href: "/cocina",
-    span: "md:col-span-1 md:row-span-2 col-span-1",
-    tag: "Artesanal",
+    href: "/cocina/",
+    tag: "Integral",
   },
   {
-    name: "Oficina",
+    name: "Cómodas",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1781542733/oficina1_nninpw.webp?auto=compress&cs=tinysrgb&w=2070",
-    href: "/oficina",
-    span: "col-span-1",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770155721/maldonado-furniture/products/y3mlypzrsgz8lt3svunf.webp?auto=compress&cs=tinysrgb&w=2070",
+    href: "/dormitorio/comodas",
+    tag: "Elegante",
+  },
+  {
+    name: "Veladores",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770157982/maldonado-furniture/products/vpuwxabyhiphw8usqq8f.webp?auto=compress&cs=tinysrgb&w=2070",
+    href: "/dormitorio/veladores",
+    tag: "Moderno",
+  },
+  {
+    name: "Muebles de TV",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769918623/maldonado-furniture/products/cridxxmounhabfnoxnyo.webp?auto=compress&cs=tinysrgb&w=2070",
+    href: "/sala/muebles-tv",
+    tag: "Escultural",
+  },
+  // --- FILA 2 (6 elementos) ---
+  {
+    name: "Aparadores",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770158971/maldonado-furniture/products/s1zbhksggqc4meitoraj.webp?auto=compress&cs=tinysrgb&w=2070",
+    href: "/sala/aparadores",
+    tag: "Sofisticado",
+  },
+  {
+    name: "Mesas de Centro",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770161665/maldonado-furniture/products/piete4kbki8cylmu7psn.webp?auto=compress&cs=tinysrgb&w=2070",
+    href: "/sala/mesas-de-centro",
+    tag: "Central",
+  },
+  {
+    name: "Escritorios",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769954367/maldonado-furniture/products/qw3bewwgy7ednw8ytdcr.webp?auto=compress&cs=tinysrgb&w=2070",
+    href: "/oficina/escritorios",
     tag: "Productivo",
+  },
+  {
+    name: "Libreros",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770164331/maldonado-furniture/products/clgysfgzb3ilvfrha6vr.webp?auto=compress&cs=tinysrgb&w=2070",
+    href: "/oficina/libreros",
+    tag: "Estudio",
+  },
+  {
+    name: "Archivadores",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769958515/maldonado-furniture/products/ejh4fky3i6llm7zm7ugn.webp?auto=compress&cs=tinysrgb&w=2070",
+    href: "/oficina/archivadores",
+    tag: "Organización",
+  },
+  {
+    name: "Complementos",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770162241/maldonado-furniture/products/jcienn2bef6xkqmx0sls.webp?auto=compress&cs=tinysrgb&w=2070",
+    href: "/productos",
+    tag: "Exclusivo",
   },
 ];
 
 const CategoryShowcase = () => {
   return (
-    <section className="py-6 md:py-12 bg-white dark:bg-[#050505] transition-colors duration-500">
+    <section className="py-10 md:py-16 bg-white dark:bg-[#050505] transition-colors duration-500">
       <div className="max-w-360 mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between mb-8 md:mb-12 border-b border-zinc-100 dark:border-zinc-800/50 pb-6">
-          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
-            Espacios{" "}
+        {/* Cabecera */}
+        <div className="flex items-center justify-between mb-8 md:mb-10 border-b border-zinc-100 dark:border-zinc-800/50 pb-6">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-zinc-900 dark:text-white leading-none">
+            Nuestras{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
-              que inspiran
+              colecciones
             </span>
           </h2>
 
           <Link
             href="/productos"
-            className="group flex items-center gap-2 text-zinc-500 hover:text-[#4A3728] dark:text-zinc-400 dark:hover:text-zinc-300 font-bold uppercase text-[10px] md:text-xs tracking-[0.15em] transition-all"
+            className="group flex items-center gap-2 text-sm md:text-base lg:text-lg text-zinc-800 dark:text-zinc-200 hover:text-[#4A3728] dark:hover:text-zinc-300 transition-all font-medium"
           >
             <span className="hidden sm:inline">VER CATÁLOGO COMPLETO</span>
             <span className="sm:hidden">CATÁLOGO</span>
-            <ArrowNarrowRight className=" w-6 h-6 group-hover:translate-x-1 transition-transform text-[#4A3728]" />
+            <ArrowNarrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform text-[#4A3728]" />
           </Link>
         </div>
 
-        <div className="relative group/container">
-          <div className="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-3 md:gap-6 h-125 md:h-150 lg:h-175">
-            {categories.map((cat, idx) => (
-              <Link
-                key={idx}
-                href={cat.href}
-                className={`group relative overflow-hidden rounded-sm bg-zinc-100 dark:bg-zinc-900 ${cat.span} transition-all duration-700 shadow-sm`}
-              >
-                <Image
-                  src={cat.image}
-                  alt={cat.name}
-                  fill
-                  priority={idx < 2}
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                />
+        {/* Grid principal: 2 columnas en móvil (mostrando los primeros 8 elementos), 3 en tablet y 6 en desktop completo */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+          {categories.map((cat, idx) => (
+            <Link
+              key={idx}
+              href={cat.href}
+              className={`group relative overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-900 transition-all duration-700 shadow-sm hover:shadow-xl flex flex-col justify-end aspect-[4/5] ${
+                idx >= 8 ? "hidden sm:flex" : "flex"
+              }`}
+            >
+              <Image
+                src={cat.image}
+                alt={cat.name}
+                fill
+                priority={idx < 6}
+                className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+              />
 
-                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500" />
+              <div className="absolute inset-x-0 bottom-0 h-28 bg-linear-to-t from-black/85 via-black/40 to-transparent pointer-events-none transition-opacity duration-500" />
 
-                <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-end">
-                  <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="inline-block px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] md:text-xs font-black text-white uppercase tracking-[0.2em] mb-2">
-                      {cat.tag}
+              <div className="absolute inset-0 p-3 sm:p-4 flex flex-col justify-end z-10">
+                <div className="translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
+                  <h3 className="text-xs sm:text-sm font-medium text-white mb-1 tracking-tight leading-snug drop-shadow-sm">
+                    {cat.name}
+                  </h3>
+
+                  <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <span className="text-[10px] font-semibold tracking-wider uppercase text-white">
+                      Explorar
                     </span>
-
-                    <h3 className="text-2xl md:text-3xl font-black text-white mb-2 uppercase tracking-tighter leading-none">
-                      {cat.name}
-                    </h3>
-
-                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                      <span className="text-white uppercase tracking-widest text-[10px] md:text-xs font-bold">
-                        Descubrir
-                      </span>
-                      <div className="w-4 h-px bg-[#4A3728]" />
-                      <ArrowNarrowRight className=" w-6 h-6 size-6 text-zinc-500 group-hover/btn:text-[#4A3728] transition-colors stroke-[2.5]" />
-                    </div>
+                    <div className="w-2.5 h-px bg-[#A98B6C]" />
+                    <ArrowNarrowRight className="w-3 h-3 text-[#A98B6C] transition-transform" />
                   </div>
                 </div>
-              </Link>
-            ))}
-          </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </section>

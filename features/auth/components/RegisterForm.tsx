@@ -89,7 +89,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
           )}
 
           <div className="space-y-2">
-            <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-widest ml-1">
+            <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase  ml-1">
               Nombre
             </label>
             <input
@@ -110,7 +110,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-widest ml-1">
+            <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase  ml-1">
               Correo Electrónico
             </label>
             <input
@@ -131,7 +131,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-widest ml-1">
+            <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase  ml-1">
               Contraseña
             </label>
             <div className="relative">
@@ -169,7 +169,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full h-12 flex items-center justify-center rounded-md bg-[#4A3728] text-white text-sm font-bold uppercase tracking-widest transition-all hover:bg-[#3d2d21] active:scale-[0.98] disabled:opacity-70 disabled:active:scale-100 shadow-sm shadow-[#4A3728]/20 overflow-hidden"
+              className="group relative w-full h-12 flex items-center justify-center rounded-md bg-[#4A3728] text-white text-sm font-bold uppercase  transition-all hover:bg-[#3d2d21] active:scale-[0.98] disabled:opacity-70 disabled:active:scale-100 shadow-sm shadow-[#4A3728]/20 overflow-hidden"
               aria-label="register"
             >
               {loading ? (
@@ -186,7 +186,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
           {onSwitchToLogin ? (
             <button
               onClick={onSwitchToLogin}
-              className="text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-[#6B4B36] transition-colors"
+              className="text-xs font-bold uppercase  text-zinc-500 hover:text-[#6B4B36] transition-colors"
               aria-label="sucess-cuenta"
             >
               ¿Ya tienes cuenta?{" "}
@@ -197,7 +197,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
           ) : (
             <Link
               href="/login"
-              className="text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-[#6B4B36] transition-colors"
+              className="text-xs font-bold uppercase  text-zinc-500 hover:text-[#6B4B36] transition-colors"
             >
               ¿Ya tienes cuenta?{" "}
               <span className="text-[#6B4B36] underline underline-offset-4 decoration-2">

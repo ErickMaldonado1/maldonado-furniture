@@ -39,7 +39,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
   });
 
   const [globalError, setGlobalError] = useState<string | null>(
-    urlError ? "Hubo un problema al iniciar sesión con Google." : null,
+    urlError ? "Hubo un problema al iniciar sesión con Google." : null
   );
 
   const [isCredentialsLoading, setIsCredentialsLoading] = useState(false);
@@ -116,7 +116,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
           )}
 
           <div className="space-y-2">
-            <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-widest ml-1">
+            <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase  ml-1">
               Correo Electrónico
             </label>
             <input
@@ -138,7 +138,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-widest ml-1">
+            <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase  ml-1">
               Contraseña
             </label>
             <div className="relative">
@@ -176,7 +176,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
           <button
             type="submit"
             disabled={isAnyLoading}
-            className="group relative w-full h-12 flex items-center justify-center rounded-md bg-[#4A3728] text-white text-sm font-bold uppercase tracking-widest transition-all hover:bg-[#3d2d21] active:scale-[0.98] disabled:opacity-70 shadow-sm shadow-[#4A3728]/20 overflow-hidden"
+            className="group relative w-full h-12 flex items-center justify-center rounded-md bg-[#4A3728] text-white text-sm font-bold uppercase  transition-all hover:bg-[#3d2d21] active:scale-[0.98] disabled:opacity-70 shadow-sm shadow-[#4A3728]/20 overflow-hidden"
           >
             {isCredentialsLoading ? (
               <Loading className="w-5 h-5 animate-spin text-xl" />
@@ -189,9 +189,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
 
         <div className="my-8 flex items-center gap-4">
           <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
-          <span className="text-sm font-black text-zinc-400 tracking-widest">
-            O
-          </span>
+          <span className="text-sm font-black text-zinc-400 ">O</span>
           <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
         </div>
 
@@ -217,7 +215,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
             <button
               type="button"
               onClick={onSwitchToRegister}
-              className="text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-[#6B4B36] transition-colors"
+              className="text-xs font-bold uppercase  text-zinc-500 hover:text-[#6B4B36] transition-colors"
             >
               ¿No tienes cuenta?{" "}
               <span className="text-[#6B4B36] underline underline-offset-4 decoration-2">
@@ -227,7 +225,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
           ) : (
             <Link
               href="/register"
-              className="text-xs font-bold uppercase tracking-widest text-zinc-500 hover:text-[#6B4B36] transition-colors"
+              className="text-xs font-bold uppercase  text-zinc-500 hover:text-[#6B4B36] transition-colors"
             >
               ¿No tienes cuenta?{" "}
               <span className="text-[#6B4B36] underline underline-offset-4 decoration-2">

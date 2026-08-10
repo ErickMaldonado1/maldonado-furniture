@@ -13,7 +13,7 @@ export const FilterOption = ({
     onClick={onClick}
     className={`
       flex items-center transition-all duration-200 w-full
-      px-2 py-1 rounded-lg border text-xs font-bold uppercase tracking-widest justify-center
+      px-2 py-1 rounded-lg border text-xs font-bold uppercase  justify-center
       lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:justify-start lg:w-full lg:rounded-none
       ${
         isActive

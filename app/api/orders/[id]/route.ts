@@ -5,7 +5,7 @@ import { OrderService } from "@/features/orders/order.service";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: Promise<{ id: string }> },
+  { params }: { params: Promise<{ id: string }> }
 ) {
   let orderId: string | undefined;
   try {
@@ -37,7 +37,7 @@ export async function PATCH(
     });
     return new NextResponse(
       JSON.stringify({ error: error.message || "Internal error" }),
-      { status: 500, headers: { "Content-Type": "application/json" } },
+      { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
 }

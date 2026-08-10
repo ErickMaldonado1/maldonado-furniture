@@ -11,7 +11,7 @@ export function DeleteProductBtn({ productId }: { productId: string }) {
   const handleDelete = async () => {
     if (
       !confirm(
-        "¿Estás seguro? Esto eliminará el producto y sus fotos en Cloudinary.",
+        "¿Estás seguro? Esto eliminará el producto y sus fotos en Cloudinary."
       )
     )
       return;
@@ -39,4 +39,3 @@ export function DeleteProductBtn({ productId }: { productId: string }) {
     </button>
   );
 }
-

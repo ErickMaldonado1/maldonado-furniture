@@ -163,7 +163,7 @@ export function VariantBuilder({
             type="button"
             onClick={addVariant}
             disabled={!newVariant.color || !newVariant.material}
-            className="ml-auto bg-[#4A3728] text-white px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest hover:shadow-lg disabled:opacity-50 disabled:shadow-none transition-all flex items-center gap-2"
+            className="ml-auto bg-[#4A3728] text-white px-4 py-2 rounded-lg text-xs font-black uppercase  hover:shadow-lg disabled:opacity-50 disabled:shadow-none transition-all flex items-center gap-2"
           >
             <Plus />
             Agregar Variante

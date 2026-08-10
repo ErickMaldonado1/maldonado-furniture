@@ -34,7 +34,6 @@ export function useRecentlyViewed(currentProduct?: Product) {
       console.error("Error updating recently viewed", error);
     }
 
-    
     const timeout = setTimeout(() => {
       setRecentProducts(updated);
     }, 0);

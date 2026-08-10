@@ -3,7 +3,7 @@ import { ProductService } from "@/features/products/product.service";
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: Promise<{ variantId: string }> },
+  { params }: { params: Promise<{ variantId: string }> }
 ) {
   try {
     const { variantId } = await params;
@@ -12,7 +12,7 @@ export async function PUT(
     if (!variantId) {
       return NextResponse.json(
         { error: "ID de variante requerido" },
-        { status: 400 },
+        { status: 400 }
       );
     }
     const updated = await ProductService.updateVariant(variantId, body);
@@ -22,14 +22,14 @@ export async function PUT(
     console.error("Error actualizando variante:", e);
     return NextResponse.json(
       { error: "No se pudo actualizar la variante: " + e.message },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: Promise<{ variantId: string }> },
+  { params }: { params: Promise<{ variantId: string }> }
 ) {
   try {
     const { variantId } = await params;
@@ -38,7 +38,7 @@ export async function DELETE(
   } catch (e: unknown) {
     return NextResponse.json(
       { error: e instanceof Error ? e.message : "Error desconocido" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

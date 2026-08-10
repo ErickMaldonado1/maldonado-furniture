@@ -3,18 +3,9 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Cube,
-} from "@/utils/icons/actions";
-import {
-  Users,
-  ChartBar,
-  PlusCircle,
-  Logout,
-} from "@/utils/icons/ui";
-import {
-  ShoppingBag,
-} from "@/utils/icons/shop";
+import { Cube } from "@/utils/icons/actions";
+import { Users, ChartBar, PlusCircle, Logout } from "@/utils/icons/ui";
+import { ShoppingBag } from "@/utils/icons/shop";
 
 const menuItems = [
   { name: "Dashboard", href: "/admin", icon: ChartBar },
@@ -41,10 +32,11 @@ export default function AdminSidebar() {
             <Link
               key={item.name}
               href={item.href}
-              className={`flex items-center gap-3 px-4 py-2.5 rounded-lg font-bold uppercase text-[10px] tracking-[0.12em] transition-all ${isActive
+              className={`flex items-center gap-3 px-4 py-2.5 rounded-lg font-bold uppercase text-[10px] tracking-[0.12em] transition-all ${
+                isActive
                   ? "bg-[#4A3728] dark:bg-white text-white dark:text-black shadow-lg shadow-[#4A3728]/20 dark:shadow-white/5"
                   : "text-zinc-500 dark:text-zinc-500 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-zinc-200"
-                }`}
+              }`}
             >
               <Icon className="w-5 h-5 text-md" />
               {item.name}

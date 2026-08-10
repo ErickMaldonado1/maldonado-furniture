@@ -15,7 +15,7 @@ export function RelatedProductsSection({
   return (
     <section className="pt-12 border-t border-zinc-100 dark:border-zinc-900">
       <div className="flex items-center justify-between mb-12">
-        <h2 className="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-zinc-900 dark:text-white leading-none">
           Los Clientes también{" "}
           <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
             vieron

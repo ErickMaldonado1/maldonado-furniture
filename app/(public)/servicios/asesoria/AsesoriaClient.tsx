@@ -19,22 +19,23 @@ const ProcessStep = ({
   stepNumber,
 }: ProcessStepProps) => (
   <motion.div
-    initial={{ opacity: 0, y: 50 }}
+    initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.3 }}
     transition={{ duration: 0.6, delay: stepNumber * 0.1 }}
-    className="relative flex flex-col items-center text-center p-6 bg-white dark:bg-zinc-900 rounded-sm border border-zinc-100 dark:border-zinc-800 shadow-lg group hover:shadow-xl transition-all duration-300"
+    className="relative flex flex-col items-center text-center p-8 bg-white dark:bg-[#0A0A0A] rounded-sm border border-zinc-200 dark:border-zinc-800 shadow-sm hover:border-[#4A3728] dark:hover:border-[#4A3728] transition-all duration-500 group"
   >
-    <div className="absolute top-4 left-4 text-zinc-200 dark:text-zinc-700 font-black text-5xl opacity-50 z-0">
+    <div className="absolute top-4 right-6 text-zinc-600 dark:text-zinc-800 font-bold text-4xl opacity-40 z-0 select-none">
       {stepNumber < 10 ? `0${stepNumber}` : stepNumber}
     </div>
-    <div className="w-20 h-20 bg-[#4A3728]/10 dark:bg-[#4A3728]/20 text-[#4A3728] rounded-full flex items-center justify-center mb-6 relative z-10">
-      <Icon className="w-10 h-10 text-3xl" />
+    <div className="w-16 h-16 bg-[#4A3728]/10 text-[#4A3728] rounded-full flex items-center justify-center mb-6 relative z-10 group-hover:scale-105 transition-transform duration-500">
+      <Icon className="w-7 h-7" />
     </div>
-    <h3 className="text-[15px] font-black uppercase tracking-widest mb-2 dark:text-white/90 relative z-10">
+    <h3 className="text-lg md:text-xl font-medium tracking-tight text-zinc-900 dark:text-white mb-2 relative z-10">
       {title}
     </h3>
-    <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed relative z-10">
+
+    <p className="text-sm md:text-base font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed relative z-10 max-w-xs">
       {description}
     </p>
   </motion.div>
@@ -42,7 +43,7 @@ const ProcessStep = ({
 
 export default function AsesoriaDisenoPage() {
   return (
-    <main className="min-h-screen bg-[#FDFCFB] dark:bg-[#0A0A0A] pt-12 md:pt-32 pb-24 selection:bg-[#4A3728]/20">
+    <main className="min-h-screen bg-white dark:bg-[#050505] pt-12 md:pt-32 pb-24 selection:bg-[#4A3728]/20 transition-colors">
       <section className="bg-zinc-50/50 dark:bg-zinc-900/20 py-16 px-6 md:px-8">
         <div className="max-w-7xl mx-auto text-center mb-16">
           <motion.h2
@@ -50,7 +51,7 @@ export default function AsesoriaDisenoPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white mb-4"
+            className="text-2xl md:text-3xl lg:text-4xl font-medium  text-zinc-900 dark:text-white leading-none mb-4"
           >
             Nuestro Proceso de <span className="text-[#4A3728]">Asesoría</span>
           </motion.h2>
@@ -93,23 +94,25 @@ export default function AsesoriaDisenoPage() {
           />
         </div>
       </section>
+
       <section className="py-24 px-6 md:px-8 max-w-5xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white mb-4"
+          className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-zinc-900 dark:text-white leading-none mb-4"
         >
           ¿Por Qué Elegir Nuestra{" "}
           <span className="text-[#4A3728]">Asesoría?</span>
         </motion.h2>
+
         <motion.p
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-12"
+          className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 font-medium max-w-2xl mx-auto mb-16"
         >
           Combinamos la artesanía tradicional con la innovación en diseño para
           ofrecerte resultados que superan lo convencional.
@@ -135,22 +138,23 @@ export default function AsesoriaDisenoPage() {
           ].map((feature, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="p-8 bg-white dark:bg-zinc-900 rounded-sm border border-zinc-100 dark:border-zinc-800 shadow-md hover:shadow-xl transition-all duration-300"
+              className="p-8 bg-white dark:bg-[#0A0A0A] rounded-sm border border-zinc-200 dark:border-zinc-800 hover:border-[#4A3728] dark:hover:border-[#4A3728] shadow-sm transition-all duration-500 text-left group"
             >
-              <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white mb-3">
+              <h3 className="text-lg md:text-xl font-medium tracking-tight text-zinc-900 dark:text-white mb-3">
                 {feature.title}
               </h3>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <p className="text-sm md:text-base font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>
           ))}
         </div>
       </section>
+
       <section className="max-w-6xl mx-auto">
         <ContactForm />
       </section>

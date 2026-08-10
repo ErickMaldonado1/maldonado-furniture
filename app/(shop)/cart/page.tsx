@@ -29,7 +29,7 @@ export default function CartPage() {
           </p>
           <Link
             href="/productos"
-            className="inline-flex items-center gap-3 bg-[#4A3728] text-white px-8 py-4 rounded-full font-black uppercase tracking-widest hover:shadow-xl hover:-translate-y-1 transition-all"
+            className="inline-flex items-center gap-3 bg-[#4A3728] text-white px-8 py-4 rounded-full font-black uppercase  hover:shadow-xl hover:-translate-y-1 transition-all"
           >
             Explorar Catálogo
             <ArrowRight className="w-5 h-5" />
@@ -88,7 +88,7 @@ export default function CartPage() {
                         onClick={() =>
                           updateQuantity(
                             item.id,
-                            Math.max(1, item.quantity - 1),
+                            Math.max(1, item.quantity - 1)
                           )
                         }
                         className="text-zinc-400 hover:text-[#4A3728] transition-colors p-1"
@@ -103,7 +103,7 @@ export default function CartPage() {
                         onClick={() =>
                           updateQuantity(
                             item.id,
-                            Math.min(3, item.quantity + 1),
+                            Math.min(3, item.quantity + 1)
                           )
                         }
                         className={`p-1 transition-colors ${
@@ -133,7 +133,7 @@ export default function CartPage() {
                 </div>
 
                 <div className="text-right hidden sm:block">
-                  <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">
+                  <p className="text-xs font-bold text-zinc-400 uppercase  mb-1">
                     Subtotal
                   </p>
                   <p className="text-2xl font-black tracking-tighter text-zinc-900 dark:text-white">
@@ -156,13 +156,13 @@ export default function CartPage() {
               </div>
 
               <div className="space-y-4 pt-4 border-t border-zinc-50 dark:border-zinc-800/50">
-                <div className="flex justify-between text-zinc-500 font-bold uppercase text-[13px] tracking-widest">
+                <div className="flex justify-between text-zinc-500 font-bold uppercase text-[13px] ">
                   <span>Productos ({getTotalItems()})</span>
                   <span className="text-zinc-900 dark:text-white">
                     ${getTotalPrice().toLocaleString()}
                   </span>
                 </div>
-                <div className="flex justify-between text-zinc-500 font-bold uppercase text-[13px] tracking-widest">
+                <div className="flex justify-between text-zinc-500 font-bold uppercase text-[13px] ">
                   <span>Envío Especializado</span>
                   <span className="text-green-600 font-black">Gratis</span>
                 </div>
@@ -187,7 +187,7 @@ export default function CartPage() {
                 </button>
               </Link>
 
-              <div className="flex items-center gap-3 justify-center text-[13px] font-bold text-zinc-400 uppercase tracking-widest">
+              <div className="flex items-center gap-3 justify-center text-[13px] font-bold text-zinc-400 uppercase ">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                 Compra 100% Protegida
               </div>

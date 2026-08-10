@@ -44,7 +44,7 @@ export default function ProyectosPage() {
     e.stopPropagation();
     if (allImages.length > 0) {
       setCurrentImgIdx(
-        (currentImgIdx - 1 + allImages.length) % allImages.length,
+        (currentImgIdx - 1 + allImages.length) % allImages.length
       );
     }
   };
@@ -54,7 +54,7 @@ export default function ProyectosPage() {
       <section className="pt-16 pb-12 max-w-340 mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-8 border-b border-zinc-100 dark:border-zinc-900 pb-12">
           <div className="text-center md:text-left">
-            <h2 className="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-zinc-900 dark:text-white leading-none">
               Proyectos{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
                 Entregados
@@ -68,7 +68,7 @@ export default function ProyectosPage() {
                 key={cat}
                 onClick={() => handleFilterChange(cat)}
                 aria-label="categorias"
-                className={`px-6 py-2.5 text-[12px] font-black uppercase tracking-widest transition-all duration-300 rounded-full border 
+                className={`px-6 py-2.5 text-[12px] font-black uppercase  transition-all duration-300 rounded-full border 
                 ${
                   filter === cat
                     ? "bg-[#4A3728] border-[#4A3728] text-white shadow-lg"
@@ -132,7 +132,7 @@ export default function ProyectosPage() {
             <button
               onClick={loadMore}
               aria-label="proyectos"
-              className="flex items-center gap-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-10 py-5 rounded-sm text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#4A3728] dark:hover:bg-[#4A3728] hover:text-white transition-all duration-300 group"
+              className="flex items-center gap-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-10 py-5 rounded-sm text-[12px] font-black uppercase tracking-[0.2em] hover:bg-[#4A3728] dark:hover:bg-[#4A3728] hover:text-white transition-all duration-300 group"
             >
               Cargar más proyectos
               <Plus className="w-5 h-6 text-xl group-hover:rotate-90 transition-transform" />

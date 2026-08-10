@@ -13,25 +13,30 @@ Plataforma e-commerce profesional para la venta de muebles a medida, desarrollad
 ## Stack Tecnológico
 
 ### Frontend
+
 - **Next.js 16.1.3 (App Router)**
 - **React 19.2.3**
 - **TypeScript**
 - **Tailwind CSS**
 
 ### Backend
+
 - **Next.js API Routes**
 - **Prisma ORM**
 - **MongoDB Atlas**
 
 ### Autenticación (planificada)
+
 - **NextAuth.js**
 - Google Auth
 - Credentials (email / password)
 
 ### Almacenamiento de imágenes (planificado)
+
 - **Cloudinary**
 
 ### Deploy
+
 - **Vercel**
 
 ---
@@ -45,3 +50,4 @@ src/
 ├── lib/              # Configuraciones y utilidades
 ├── styles/           # Estilos globales
 └── types/            # Tipos TypeScript
+```

@@ -103,7 +103,7 @@ export default function CheckoutPage() {
       console.error(error);
       if (
         confirm(
-          "Hubo un problema registrando tu pedido en nuestro sistema, pero aún puedes confirmar directamente por WhatsApp. ¿Deseas continuar?",
+          "Hubo un problema registrando tu pedido en nuestro sistema, pero aún puedes confirmar directamente por WhatsApp. ¿Deseas continuar?"
         )
       ) {
         completeOrder();
@@ -352,7 +352,7 @@ export default function CheckoutPage() {
             <button
               type="submit"
               form="checkout-form"
-              className="w-full mt-8 h-12 flex items-center justify-center gap-2 rounded-full bg-[#4A3728] text-white font-bold hover:bg-[#3A2B20] active:scale-[0.98] transition-all shadow-lg shadow-[#4A3728]/20 uppercase text-xs tracking-widest"
+              className="w-full mt-8 h-12 flex items-center justify-center gap-2 rounded-full bg-[#4A3728] text-white font-bold hover:bg-[#3A2B20] active:scale-[0.98] transition-all shadow-lg shadow-[#4A3728]/20 uppercase text-xs "
             >
               <span>Confirmar Pedido</span>
               <Truck width={18} height={18} />

@@ -3,7 +3,7 @@ import { ProductService } from "@/features/products/product.service";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: Promise<{ productId: string }> },
+  { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
     const { productId } = await params;
@@ -16,7 +16,7 @@ export async function GET(
     if (!product) {
       return NextResponse.json(
         { error: "Producto no encontrado" },
-        { status: 404 },
+        { status: 404 }
       );
     }
 
@@ -28,7 +28,7 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: Promise<{ productId: string }> },
+  { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
     const { productId } = await params;
@@ -44,7 +44,7 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: Promise<{ productId: string }> },
+  { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
     const { productId } = await params;

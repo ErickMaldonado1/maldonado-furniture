@@ -17,7 +17,7 @@ export default function ContactoPage() {
             transition={{ duration: 0.7 }}
             className="text-center md:text-left"
           >
-            <h2 className="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-zinc-900 dark:text-white leading-none">
               Atención al{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
                 Cliente
@@ -62,7 +62,7 @@ export default function ContactoPage() {
                   fábrica.
                 </p>
               </div>
-              <span className="flex items-center gap-2 text-[14px] font-black uppercase tracking-widest text-[#4A3728] mt-4">
+              <span className="flex items-center gap-2 text-[14px] font-black uppercase  text-[#4A3728] mt-4">
                 Enviar Mensaje <ArrowUpRight className="w-5 h-5" />
               </span>
             </a>
@@ -92,7 +92,7 @@ export default function ContactoPage() {
                   Atención telefónica personalizada de lunes a viernes.
                 </p>
               </div>
-              <span className="text-[14px] font-black text-zinc-800 dark:text-zinc-200 uppercase tracking-widest mt-4">
+              <span className="text-[14px] font-black text-zinc-800 dark:text-zinc-200 uppercase  mt-4">
                 095 950 4842
               </span>
             </div>
@@ -108,7 +108,7 @@ export default function ContactoPage() {
                   Síguenos para conocer nuestro proceso artesanal.
                 </p>
               </div>
-              <span className="text-[14px] font-black text-zinc-400 uppercase tracking-widest mt-8">
+              <span className="text-[14px] font-black text-zinc-400 uppercase  mt-8">
                 @muebles_maldonado
               </span>
             </div>
@@ -120,10 +120,10 @@ export default function ContactoPage() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-stretch">
           <div className="flex flex-col h-full order-2 lg:order-1">
             <div className="mb-4">
-              <h2 className="text-3xl font-black uppercase tracking-tighter dark:text-white mb-2">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-zinc-900 dark:text-white leading-none mb-2">
                 Solicita una Proforma
               </h2>
-              <p className="text-sm text-zinc-400 uppercase tracking-widest">
+              <p className="text-sm text-zinc-400 uppercase ">
                 Completa tus datos y te contactaremos.
               </p>
             </div>
@@ -133,10 +133,10 @@ export default function ContactoPage() {
           </div>
           <div className="flex flex-col h-full order-1 lg:order-2">
             <div className="mb-4">
-              <h2 className="text-3xl font-black uppercase tracking-tighter dark:text-white mb-2">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-zinc-900 dark:text-white leading-none mb-2">
                 Nuestra Fábrica
               </h2>
-              <p className="text-sm text-zinc-400 uppercase tracking-widest">
+              <p className="text-sm text-zinc-400 uppercase ">
                 Visítanos bajo previa cita.
               </p>
             </div>
@@ -171,7 +171,7 @@ export default function ContactoPage() {
                     href="https://goo.gl/maps/..."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-[#4A3728] hover:bg-[#5D4037] text-white px-6 py-3 text-[10px] font-black uppercase tracking-widest transition-colors shadow-2xl"
+                    className="bg-[#4A3728] hover:bg-[#5D4037] text-white px-6 py-3 text-[10px] font-black uppercase  transition-colors shadow-2xl"
                   >
                     Abrir en Google Maps
                   </a>

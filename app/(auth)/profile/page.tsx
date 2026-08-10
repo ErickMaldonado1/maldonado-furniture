@@ -75,11 +75,11 @@ export default async function ProfilePage() {
 
   const initials = user.name
     ? user.name
-      .split(" ")
-      .map((n: string) => n[0])
-      .join("")
-      .slice(0, 2)
-      .toUpperCase()
+        .split(" ")
+        .map((n: string) => n[0])
+        .join("")
+        .slice(0, 2)
+        .toUpperCase()
     : user.email[0].toUpperCase();
 
   const memberSince = new Date(user.createdAt).toLocaleDateString("es-EC", {
@@ -91,7 +91,6 @@ export default async function ProfilePage() {
   return (
     <main className="min-h-screen pt-28 pb-20 bg-zinc-50 dark:bg-[#050505] transition-colors">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
-
         {/* Back nav */}
         <Link
           href="/"
@@ -128,12 +127,12 @@ export default async function ProfilePage() {
                   {user.name || "Sin nombre"}
                 </h1>
                 {user.role === "ADMIN" ? (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-[10px] font-black uppercase tracking-widest rounded-full border border-purple-200 dark:border-purple-800">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-[10px] font-black uppercase  rounded-full border border-purple-200 dark:border-purple-800">
                     <ShieldCheck size={11} />
                     Administrador
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#A6866A]/10 text-[#A6866A] dark:text-[#D4A373] text-[10px] font-black uppercase tracking-widest rounded-full border border-[#A6866A]/20">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#A6866A]/10 text-[#A6866A] dark:text-[#D4A373] text-[10px] font-black uppercase  rounded-full border border-[#A6866A]/20">
                     <BadgeCheck size={11} />
                     Cliente Verificado
                   </span>
@@ -149,7 +148,7 @@ export default async function ProfilePage() {
                 <div className="flex items-center gap-2.5 px-4 py-2.5 bg-zinc-50 dark:bg-zinc-800/60 rounded-2xl border border-zinc-100 dark:border-zinc-800">
                   <ShoppingBag size={16} className="text-[#A6866A]" />
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
+                    <p className="text-[10px] font-black uppercase  text-zinc-400">
                       Pedidos
                     </p>
                     <p className="text-xl font-black text-zinc-900 dark:text-white leading-none">
@@ -160,7 +159,7 @@ export default async function ProfilePage() {
                 <div className="flex items-center gap-2.5 px-4 py-2.5 bg-zinc-50 dark:bg-zinc-800/60 rounded-2xl border border-zinc-100 dark:border-zinc-800">
                   <Heart size={16} className="text-rose-400" />
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
+                    <p className="text-[10px] font-black uppercase  text-zinc-400">
                       Favoritos
                     </p>
                     <p className="text-xl font-black text-zinc-900 dark:text-white leading-none">
@@ -171,7 +170,7 @@ export default async function ProfilePage() {
                 <div className="flex items-center gap-2.5 px-4 py-2.5 bg-zinc-50 dark:bg-zinc-800/60 rounded-2xl border border-zinc-100 dark:border-zinc-800">
                   <CalendarDays size={16} className="text-blue-400" />
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
+                    <p className="text-[10px] font-black uppercase  text-zinc-400">
                       Miembro desde
                     </p>
                     <p className="text-xs font-black text-zinc-700 dark:text-zinc-300 leading-none mt-0.5">
@@ -186,11 +185,10 @@ export default async function ProfilePage() {
 
         {/* ── Two column layout ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
           {/* ── Account Data Card ── */}
           <div className="bg-white dark:bg-zinc-900 rounded-[2rem] border border-zinc-100 dark:border-zinc-800 shadow-sm overflow-hidden">
             <div className="px-8 pt-7 pb-4 border-b border-zinc-50 dark:border-zinc-800">
-              <h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-[#A6866A] dark:text-[#D4A373] flex items-center gap-2">
+              <h2 className="text-[12px] font-black uppercase tracking-[0.2em] text-[#A6866A] dark:text-[#D4A373] flex items-center gap-2">
                 <User size={14} />
                 Datos de la Cuenta
               </h2>
@@ -222,7 +220,7 @@ export default async function ProfilePage() {
           {/* ── Quick actions ── */}
           <div className="bg-white dark:bg-zinc-900 rounded-[2rem] border border-zinc-100 dark:border-zinc-800 shadow-sm overflow-hidden">
             <div className="px-8 pt-7 pb-4 border-b border-zinc-50 dark:border-zinc-800">
-              <h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-[#A6866A] dark:text-[#D4A373] flex items-center gap-2">
+              <h2 className="text-[12px] font-black uppercase tracking-[0.2em] text-[#A6866A] dark:text-[#D4A373] flex items-center gap-2">
                 <ShoppingBag size={14} />
                 Accesos Rápidos
               </h2>
@@ -254,13 +252,13 @@ export default async function ProfilePage() {
         {user.orders.length > 0 && (
           <div className="mt-6 bg-white dark:bg-zinc-900 rounded-[2rem] border border-zinc-100 dark:border-zinc-800 shadow-sm overflow-hidden">
             <div className="px-8 pt-7 pb-4 border-b border-zinc-50 dark:border-zinc-800 flex items-center justify-between">
-              <h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-[#A6866A] dark:text-[#D4A373] flex items-center gap-2">
+              <h2 className="text-[12px] font-black uppercase tracking-[0.2em] text-[#A6866A] dark:text-[#D4A373] flex items-center gap-2">
                 <Clock size={14} />
                 Pedidos Recientes
               </h2>
               <Link
                 href="/ordenes"
-                className="text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-[#4A3728] dark:hover:text-[#D4A373] transition-colors"
+                className="text-[10px] font-black uppercase  text-zinc-400 hover:text-[#4A3728] dark:hover:text-[#D4A373] transition-colors"
               >
                 Ver todos →
               </Link>
@@ -279,7 +277,7 @@ export default async function ProfilePage() {
                       <p className="text-xs font-black text-zinc-900 dark:text-white uppercase tracking-wider">
                         Orden #{(order.id as string).slice(-6).toUpperCase()}
                       </p>
-                      <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
+                      <p className="text-[10px] font-bold text-zinc-400 uppercase ">
                         {new Date(order.createdAt).toLocaleDateString("es-EC", {
                           day: "2-digit",
                           month: "short",
@@ -293,8 +291,9 @@ export default async function ProfilePage() {
                       ${(order.total || 0).toLocaleString()}
                     </p>
                     <span
-                      className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border ${statusColors[order.status] || statusColors.PENDING
-                        }`}
+                      className={`px-3 py-1 rounded-full text-[9px] font-black uppercase  border ${
+                        statusColors[order.status] || statusColors.PENDING
+                      }`}
                     >
                       {statusLabels[order.status] || "Pendiente"}
                     </span>
@@ -307,13 +306,19 @@ export default async function ProfilePage() {
 
         {/* ── Security note ── */}
         <div className="mt-6 px-6 py-5 bg-zinc-100/60 dark:bg-zinc-900/40 rounded-2xl border border-zinc-200 dark:border-zinc-800 flex items-start gap-3">
-          <ShieldCheck size={18} className="text-zinc-400 flex-shrink-0 mt-0.5" />
+          <ShieldCheck
+            size={18}
+            className="text-zinc-400 flex-shrink-0 mt-0.5"
+          />
           <p className="text-xs text-zinc-500 dark:text-zinc-500 leading-relaxed">
-            <span className="font-bold text-zinc-600 dark:text-zinc-400">Seguridad:</span>{" "}
-            Para modificar tu contraseña o datos de acceso, comunícate con nuestro equipo de soporte. Los cambios sensibles de cuenta requieren verificación adicional.
+            <span className="font-bold text-zinc-600 dark:text-zinc-400">
+              Seguridad:
+            </span>{" "}
+            Para modificar tu contraseña o datos de acceso, comunícate con
+            nuestro equipo de soporte. Los cambios sensibles de cuenta requieren
+            verificación adicional.
           </p>
         </div>
-
       </div>
     </main>
   );
@@ -336,7 +341,7 @@ function InfoRow({
         {icon}
       </div>
       <div className="min-w-0">
-        <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
+        <p className="text-[10px] font-black uppercase  text-zinc-400">
           {label}
         </p>
         <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200 truncate">
@@ -370,7 +375,7 @@ function QuickLink({
         <p className="text-sm font-black text-zinc-800 dark:text-zinc-200 group-hover:text-[#4A3728] dark:group-hover:text-[#D4A373] transition-colors">
           {label}
         </p>
-        <p className="text-[11px] text-zinc-400 truncate">{description}</p>
+        <p className="text-[12px] text-zinc-400 truncate">{description}</p>
       </div>
       <ArrowLeft
         size={14}

@@ -2,28 +2,42 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { XMark } from "@/utils/icons/actions";
 import { Whatsapp } from "@/utils/icons/social";
 
 export default function WhatsAppButton() {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [hasClosed, setHasClosed] = useState(false);
 
   useEffect(() => {
+    if (!isHomePage) {
+      setIsOpen(false);
+      return;
+    }
+
     const timer = setTimeout(() => {
-      setIsVisible(true)
+      setIsVisible(true);
       setTimeout(() => {
         if (!hasClosed) setIsOpen(true);
       }, 1000);
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [hasClosed]);
+  }, [hasClosed, isHomePage]);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   if (!isVisible) return null;
   const phoneNumber = "593959504842";
-  const message = "👋 ¡Hola Muebles Maldonado! Me gustaría recibir asesoría personalizada para realizar un pedido. ¿Me pueden ayudar?";
+  const message =
+    "👋 ¡Hola Muebles Maldonado! Me gustaría recibir asesoría personalizada para realizar un pedido. ¿Me pueden ayudar?";
 
   return (
     <div
@@ -43,8 +57,8 @@ export default function WhatsAppButton() {
           >
             <XMark className="w-4 h-4" />
           </button>
-          
-          <div className="flex items-start gap-3 pt-1"> 
+
+          <div className="flex items-start gap-3 pt-1">
             <div className="flex-1 pr-4">
               <h4 className="text-[14px] font-black  text-zinc-900 dark:text-white mb-0.5">
                 Asesoría en línea

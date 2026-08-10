@@ -1,27 +1,31 @@
 "use client";
-import { useMemo } from "react";
+
 import dynamic from "next/dynamic";
+import { Heart } from "@/utils/icons/navigation";
+import { HeartFilled } from "@/utils/icons/actions";
 import { Whatsapp } from "@/utils/icons/social";
-import { Minus, Truck } from "@/utils/icons/shop";
-import { CartPlusIcon, Plus } from "@/utils/icons/actions";
-import { ShieldCheck } from "@/utils/icons/ui";
+
 const ProductAccordion = dynamic(
   () => import("./ProductAccordion").then((mod) => mod.ProductAccordion),
-  { ssr: false },
+  { ssr: false }
 );
 
 interface ProductActionsProps {
   productName: string;
   sku: string;
   color: string;
+  size?: string;
   quantity: number;
   setQuantity: (q: number) => void;
   onAddToCart: () => void;
   price: number;
   finalPrice: number;
   discount?: number | null;
+  deliveryDays?: number | null;
   stock?: number;
   isInCart?: boolean;
+  isFav?: boolean;
+  onToggleFav?: () => void;
   dimensions?: {
     height: number;
     width: number;
@@ -29,250 +33,155 @@ interface ProductActionsProps {
   };
   materials?: string[];
   careInstructions?: string;
-  variants?: any[];
-  selectedVariant?: any;
-  onVariantChange?: (variant: any) => void;
 }
 
 export function ProductActions({
   productName,
   sku,
   color,
+  size,
   quantity,
   setQuantity,
   onAddToCart,
   price,
   finalPrice,
   discount,
+  deliveryDays,
   stock = 100,
   isInCart = false,
+  isFav = false,
+  onToggleFav,
   dimensions,
   materials,
   careInstructions,
-  variants = [],
-  selectedVariant,
-  onVariantChange,
 }: ProductActionsProps) {
-  const sizes = useMemo(() => {
-    return Array.from(
-      new Set(variants.map((v) => v.sizeLabel).filter(Boolean)),
-    );
-  }, [variants]);
-
-  const dims = useMemo(() => {
-    return Array.from(
-      new Set(variants.map((v) => v.dimensionLabel).filter(Boolean)),
-    );
-  }, [variants]);
-
-  const handleSmartVariantChange = (
-    type: "sizeLabel" | "dimensionLabel",
-    value: string,
-  ) => {
-    if (!variants || variants.length === 0) return;
-
-    const candidates = variants.filter((v) => v[type] === value);
-    if (candidates.length === 0) return;
-
-    let bestMatch = candidates.find(
-      (v) =>
-        v.color === selectedVariant?.color &&
-        v.material === selectedVariant?.material,
-    );
-
-    if (!bestMatch) {
-      bestMatch = candidates.find((v) => v.color === selectedVariant?.color);
-    }
-
-    if (!bestMatch) {
-      bestMatch = candidates.find(
-        (v) => v.material === selectedVariant?.material,
-      );
-    }
-
-    if (!bestMatch) {
-      bestMatch = candidates[0];
-    }
-
-    onVariantChange?.(bestMatch);
-  };
   const handleWhatsApp = () => {
     const message = `👋 ¡Hola! Me interesa este producto:
-🪑 *Producto:* ${productName}
-🆔 *SKU:* ${sku}
-🎨 *Color:* ${color}
-🔢 *Cantidad:* ${quantity}
-💰 *Precio:* $${finalPrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-📍 ¿Tienen disponibilidad inmediata?`;
+    🪑 *Producto:* ${productName}
+    🆔 *SKU:* ${sku}
+    🎨 *Color/Acabado:* ${color || "Estándar"}
+    📐 *Medida/Tamaño:* ${size || "Estándar"}
+    🔢 *Cantidad:* ${quantity}
+    💰 *Precio Total:* $${(finalPrice * quantity).toLocaleString("es-EC", {
+      minimumFractionDigits: 2,
+    })}`;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/593959504842?text=${encodedMessage}`, "_blank");
   };
 
-  return (
-    <div className="flex flex-col gap-2">
-      {sizes.length > 0 && (
-        <div className="space-y-2">
-          <p className="text-base font-bold  text-zinc-900 dark:text-white">
-            Tamaño
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {sizes.map((size: any) => {
-              const isSelected = selectedVariant?.sizeLabel === size;
-              return (
-                <button
-                  key={size}
-                  onClick={() => handleSmartVariantChange("sizeLabel", size)}
-                  className={`px-4 py-2 text-sm font-semibold rounded-xl border transition-all ${
-                    isSelected
-                      ? "border-zinc-900 bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-                      : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-500"
-                  }`}
-                >
-                  {size}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
-      {dims.length > 0 && (
-        <div className="space-y-3">
-          <p className="text-[12px] font-bold  text-zinc-900 dark:text-zinc-400">
-            Dimensión
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {dims.map((dim: any) => {
-              const isSelected = selectedVariant?.dimensionLabel === dim;
-              return (
-                <button
-                  key={dim}
-                  onClick={() =>
-                    handleSmartVariantChange("dimensionLabel", dim)
-                  }
-                  className={`px-4 py-2 text-sm font-semibold rounded-xl border transition-all ${
-                    isSelected
-                      ? "border-zinc-900 bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-                      : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-500"
-                  }`}
-                >
-                  {dim}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
+  const deliveryText = deliveryDays
+    ? `${deliveryDays} días hábiles`
+    : "15 días hábiles";
 
-      <div className="flex items-end justify-between gap-4">
-        <div className="flex flex-col gap-1.5">
-          <span className="text-[11px] font-black uppercase tracking-[0.15em] text-zinc-500 dark:text-zinc-400">
-            Precio final
-          </span>
-          <div className="flex items-center gap-3">
-            <span className="text-3xl md:text-4xl font-black tracking-tight text-zinc-900 dark:text-white">
+  const monthlyPayment = (finalPrice / 3).toLocaleString("es-EC", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
+  return (
+    <div className="flex flex-col gap-4 pt-1">
+      <div className="flex items-baseline gap-3 pb-1">
+        <span className="text-4xl font-bold text-[#111827] dark:text-white tracking-tight">
+          $
+          {finalPrice.toLocaleString("es-EC", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
+        </span>
+        {discount && discount > 0 ? (
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-zinc-400 line-through font-bold">
               $
-              {finalPrice.toLocaleString(undefined, {
+              {price.toLocaleString("es-EC", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })}
             </span>
-            {discount && discount > 0 && (
-              <div className="flex flex-col items-start leading-tight">
-                <span className="text-sm text-zinc-400 line-through decoration-red-500/50 font-bold">
-                  $
-                  {price.toLocaleString(undefined, {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  })}
-                </span>
-                <span className="text-[10px] font-black bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 px-1.5 py-0.5 rounded-md uppercase tracking-widest mt-0.5 border border-red-100 dark:border-red-900/30">
-                  -{discount}% OFF
-                </span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="flex items-center h-14 w-36 justify-between px-2 border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-900 transition-all duration-300 hover:border-[#4A3728]/40 focus-within:border-[#4A3728]">
-          <button
-            onClick={() => setQuantity(Math.max(1, quantity - 1))}
-            disabled={quantity <= 1}
-            aria-label="Disminuir cantidad"
-            className="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-[#4A3728] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            <Minus className="w-5 h-5" />
-          </button>
-
-          <span className="font-extrabold text-base tabular-nums text-zinc-900 dark:text-white">
-            {quantity}
-          </span>
-
-          <button
-            onClick={() =>
-              setQuantity(Math.min(quantity + 1, Math.min(stock, 3)))
-            }
-            disabled={quantity >= Math.min(stock, 3)}
-            aria-label="Aumentar cantidad"
-            className="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-[#4A3728] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            <Plus className="w-5 h-5" />
-          </button>
-        </div>
-      </div>
-
-      <div className="flex gap-4 pt-4">
-        <button
-          onClick={isInCart ? undefined : onAddToCart}
-          disabled={isInCart}
-          className={`flex-1 h-12 rounded-xl flex items-center justify-center gap-3 text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 active:scale-[0.97] ${
-            isInCart
-              ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800"
-              : "bg-[#141414] text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 active:scale-95"
-          }`}
-        >
-          <span>{isInCart ? "En el carrito" : "Añadir al carrito"}</span>
-          <CartPlusIcon className="w-5 h-5" />
-        </button>
-
-        <button
-          onClick={handleWhatsApp}
-          aria-label="Contactar por WhatsApp"
-          className="w-12 h-12 rounded-xl flex items-center justify-center border-2 border-green-500/30 text-green-600 hover:bg-green-600 hover:text-white transition-all duration-300 active:scale-95 group shadow-lg shadow-green-100/50 dark:shadow-none"
-        >
-          <Whatsapp className="w-6 h-6" />
-        </button>
-      </div>
-      <div className="mt-2 grid grid-cols-1 gap-2">
-        {[
-          {
-            label: "Envío gratis a domicilio en Quito",
-            icon: <Truck className="w-4 h-4" />,
-          },
-          {
-            label: "Entrega protegida y garantizada",
-            icon: <ShieldCheck className="w-4 h-4" />,
-          },
-        ].map((item, i) => (
-          <div
-            key={i}
-            className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 cursor-default"
-          >
-            <div className="w-9 h-9 rounded-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 flex items-center justify-center text-[#4A3728]">
-              {item.icon}
-            </div>
-            <span className="text-[12px] font-bold uppercase tracking-wider">
-              {item.label}
+            <span className="text-[10px] font-black bg-red-100 text-red-600 dark:bg-red-950 dark:text-red-400 px-2 py-0.5 rounded-full uppercase tracking-wider">
+              -{discount}% OFF
             </span>
           </div>
-        ))}
+        ) : null}
       </div>
 
-      <ProductAccordion
-        dimensions={dimensions}
-        materials={materials}
-        careInstructions={careInstructions}
-      />
+      <div className="flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400 pt-1">
+        <span className="font-semibold text-zinc-700 dark:text-zinc-300">
+          Cantidad limitada
+        </span>
+        <div className="flex items-center gap-1">
+          <span>Plazo de entrega {deliveryText}</span>
+          <span className="w-4 h-4 rounded-full border border-zinc-400 text-[10px] flex items-center justify-center font-bold">
+            i
+          </span>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-2.5 flex-wrap md:flex-nowrap">
+        <div className="relative shrink-0">
+          <select
+            value={quantity}
+            onChange={(e) => setQuantity(Number(e.target.value))}
+            className="appearance-none h-12 pl-4 pr-8 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-sm font-bold text-zinc-900 dark:text-white cursor-pointer hover:border-zinc-900 dark:hover:border-white transition-colors"
+            aria-label="Seleccionar cantidad"
+          >
+            {[1, 2, 3, 4, 5].map((num) => (
+              <option key={num} value={num}>
+                {num}
+              </option>
+            ))}
+          </select>
+          <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500">
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={isInCart ? undefined : onAddToCart}
+          disabled={isInCart}
+          className={`flex-1 h-12 rounded-full flex items-center justify-center gap-2 text-sm font-semibold transition-all duration-300 ${
+            isInCart
+              ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800 dark:text-zinc-400"
+              : "bg-[#141414] text-white hover:bg-[#252525] hover:shadow-lg hover:-translate-y-0.5 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 active:scale-[0.98]"
+          }`}
+        >
+          <span>{isInCart ? "En la cesta" : "Añadir a la cesta"}</span>
+        </button>
+        <button
+          type="button"
+          onClick={handleWhatsApp}
+          title="Comprar por WhatsApp"
+          className="h-12 px-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center gap-2 text-xs font-extrabold transition-all shadow-xs shrink-0 active:scale-95"
+        >
+          <Whatsapp className="w-4.5 h-4.5 text-white" />
+          <span className="hidden sm:inline">WhatsApp</span>
+        </button>
+        <button
+          type="button"
+          onClick={onToggleFav}
+          className="w-12 h-12 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 flex items-center justify-center text-zinc-900 dark:text-white hover:border-zinc-900 dark:hover:border-white transition-colors shrink-0"
+          aria-label="Agregar a favoritos"
+        >
+          {isFav ? (
+            <HeartFilled className="w-5 h-5 text-red-500" />
+          ) : (
+            <Heart className="w-5 h-5" />
+          )}
+        </button>
+      </div>
     </div>
   );
 }

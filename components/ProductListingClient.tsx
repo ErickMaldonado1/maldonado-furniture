@@ -92,7 +92,7 @@ export default function ProductListingClient({
                   <ViewColumns width={20} height={20} />
                 </button>
               </div>
-              <span className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.2em] text-zinc-400">
+              <span className="text-[10px] md:text-[12px] font-black uppercase  text-zinc-400">
                 {filteredProducts.length} Artículos
               </span>
             </div>
@@ -101,7 +101,7 @@ export default function ProductListingClient({
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-transparent border-none text-[11px] md:text-[12px] font-black uppercase tracking-widest cursor-pointer focus:ring-0"
+                className="bg-transparent border-none text-[12px] md:text-[12px] font-black uppercase  cursor-pointer focus:ring-0"
               >
                 <option value="recent">Novedades</option>
                 <option value="price_asc">Precio: más bajo</option>
@@ -110,7 +110,7 @@ export default function ProductListingClient({
 
               <button
                 onClick={() => setIsMobileFiltersOpen(true)}
-                className="lg:hidden flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-5 py-2.5 rounded-full text-[11px] font-black uppercase tracking-widest shadow-lg active:scale-95 transition-transform"
+                className="lg:hidden flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-5 py-2.5 rounded-full text-[12px] font-black uppercase  shadow-lg active:scale-95 transition-transform"
               >
                 <AdjustmentsHorizontal width={18} height={18} /> Filtros
               </button>
@@ -187,7 +187,7 @@ export default function ProductListingClient({
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 220 }}
-              className="fixed inset-y-0 right-0 w-full max-w-[340px] bg-white dark:bg-[#0A0A0A] z-101 flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.3)] border-l border-zinc-100 dark:border-zinc-900"
+              className="fixed inset-y-0 right-0 w-full max-w-85 bg-white dark:bg-[#0A0A0A] z-101 flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.3)] border-l border-zinc-100 dark:border-zinc-900"
             >
               <div className="px-4 py-4 flex justify-between items-center border-b border-zinc-100 dark:border-zinc-900">
                 <div className="flex flex-col gap-0.5">
@@ -216,7 +216,7 @@ export default function ProductListingClient({
               <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-[#0A0A0A]">
                 <button
                   onClick={() => setIsMobileFiltersOpen(false)}
-                  className="w-full py-5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-2xl font-black uppercase text-[11px] tracking-[0.2em] shadow-xl active:scale-[0.96] transition-all hover:bg-zinc-800 dark:hover:bg-white"
+                  className="w-full py-5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-2xl font-black uppercase text-[12px] tracking-[0.2em] shadow-xl active:scale-[0.96] transition-all hover:bg-zinc-800 dark:hover:bg-white"
                 >
                   Mostrar {filteredProducts.length} Artículos
                 </button>

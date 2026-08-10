@@ -17,7 +17,7 @@ export function useProductFilters(initialProducts: ProductWithRelations[]) {
     colors: [],
     styles: [],
     materials: [],
-    priceRange: [0, 5000],
+    priceRange: [0, 1500],
   });
   const [sortBy, setSortBy] = useState("recent");
 
@@ -42,7 +42,7 @@ export function useProductFilters(initialProducts: ProductWithRelations[]) {
           materials: Array.isArray(p.materials)
             ? p.materials.map((m: string) => String(m).trim())
             : [],
-        }) as any,
+        }) as any
     );
   }, [initialProducts]);
 
@@ -55,7 +55,7 @@ export function useProductFilters(initialProducts: ProductWithRelations[]) {
         .filter((v) => v !== "");
 
       return Array.from(new Set(cleanValues)).sort((a: string, b: string) =>
-        a.localeCompare(b, undefined, { sensitivity: "base" }),
+        a.localeCompare(b, undefined, { sensitivity: "base" })
       );
     };
 
@@ -66,7 +66,7 @@ export function useProductFilters(initialProducts: ProductWithRelations[]) {
       subcategories: getUniqueOptions("subcategory"),
       colors: getUniqueOptions("colors"),
       styles: getUniqueOptions("styles").filter((s) =>
-        ALLOWED_STYLES.includes(s),
+        ALLOWED_STYLES.includes(s)
       ),
       materials: getUniqueOptions("materials"),
     };
@@ -74,7 +74,7 @@ export function useProductFilters(initialProducts: ProductWithRelations[]) {
 
   const toggleFilter = (
     key: keyof Omit<FilterState, "priceRange">,
-    value: string,
+    value: string
   ) => {
     setFilters((prev) => {
       const current = prev[key] as string[];
@@ -95,7 +95,7 @@ export function useProductFilters(initialProducts: ProductWithRelations[]) {
       colors: [],
       styles: [],
       materials: [],
-      priceRange: [0, 5000],
+      priceRange: [0, 1500],
     });
 
   const filteredProducts = useMemo(() => {
@@ -103,19 +103,19 @@ export function useProductFilters(initialProducts: ProductWithRelations[]) {
 
     const applySingularFilter = (
       stateKey: keyof FilterState,
-      productKey: keyof (typeof result)[0],
+      productKey: keyof (typeof result)[0]
     ) => {
       const selected = filters[stateKey] as string[];
       if (selected.length > 0) {
         result = result.filter((p) =>
-          selected.includes(p[productKey] as string),
+          selected.includes(p[productKey] as string)
         );
       }
     };
 
     const applyArrayFilter = (
       stateKey: keyof FilterState,
-      productKey: keyof (typeof result)[0],
+      productKey: keyof (typeof result)[0]
     ) => {
       const selected = filters[stateKey] as string[];
       if (selected.length > 0) {
@@ -134,7 +134,7 @@ export function useProductFilters(initialProducts: ProductWithRelations[]) {
 
     result = result.filter(
       (p) =>
-        p.price >= filters.priceRange[0] && p.price <= filters.priceRange[1],
+        p.price >= filters.priceRange[0] && p.price <= filters.priceRange[1]
     );
 
     if (sortBy === "price_asc") result.sort((a, b) => a.price - b.price);

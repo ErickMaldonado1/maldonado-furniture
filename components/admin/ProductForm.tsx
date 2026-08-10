@@ -54,7 +54,9 @@ export default function ProductForm({ initialData }: ProductFormProps) {
   const [uploading, setUploading] = useState(false);
   const [selectedCategorySlug, setSelectedCategorySlug] = useState<string>("");
   const [availableColors, setAvailableColors] = useState<string[]>([]);
-  const [expandedVariants, setExpandedVariants] = useState<Record<number, boolean>>({});
+  const [expandedVariants, setExpandedVariants] = useState<
+    Record<number, boolean>
+  >({});
   const [modal, setModal] = useState<ModalState>({
     open: false,
     type: "success",
@@ -169,8 +171,8 @@ export default function ProductForm({ initialData }: ProductFormProps) {
       setSelectedCategorySlug(
         categories.find(
           (c) =>
-            c.slug === initialData.category || c.label === initialData.category,
-        )?.slug || "",
+            c.slug === initialData.category || c.label === initialData.category
+        )?.slug || ""
       );
     }
   }, [initialData, reset]);
@@ -208,7 +210,11 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                 { url: res.url, publicId: res.publicId, color: null },
               ]);
             } else {
-              showModal("error", "Error al subir imagen", res.error || "Ocurrió un error inesperado al subir la imagen.");
+              showModal(
+                "error",
+                "Error al subir imagen",
+                res.error || "Ocurrió un error inesperado al subir la imagen."
+              );
             }
             resolve();
           };
@@ -223,7 +229,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
     const current = watch("images");
     setValue(
       "images",
-      current.filter((_, i) => i !== index),
+      current.filter((_, i) => i !== index)
     );
   };
 
@@ -248,7 +254,11 @@ export default function ProductForm({ initialData }: ProductFormProps) {
         }
       );
     } else {
-      showModal("error", "Error al guardar", res.error || "Ocurrió un error inesperado. Por favor intenta de nuevo.");
+      showModal(
+        "error",
+        "Error al guardar",
+        res.error || "Ocurrió un error inesperado. Por favor intenta de nuevo."
+      );
     }
   };
 
@@ -314,13 +324,17 @@ export default function ProductForm({ initialData }: ProductFormProps) {
         </div>
 
         <div className="max-w-5xl mx-auto px-2 sm:px-0">
-          {/* Tabs Navigation */}
           <div className="flex gap-2 sm:gap-4 border-b border-zinc-200 dark:border-zinc-800 overflow-x-auto custom-scrollbar pb-px mb-8">
             {[
               { id: "general", label: "General", icon: Package },
               { id: "attributes", label: "Atributos", icon: Tags },
               { id: "images", label: "Imágenes", icon: ImageIcon },
-              { id: "variants", label: "Variantes", icon: Layers, error: errors.variants },
+              {
+                id: "variants",
+                label: "Variantes",
+                icon: Layers,
+                error: errors.variants,
+              },
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -329,21 +343,35 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id as Tab)}
-                  className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-all whitespace-nowrap font-bold text-sm ${isActive
-                    ? "border-[#A6866A] text-[#A6866A]"
-                    : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 hover:border-zinc-300 dark:hover:border-zinc-700"
-                    }`}
+                  className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-all whitespace-nowrap font-bold text-sm ${
+                    isActive
+                      ? "border-[#A6866A] text-[#A6866A]"
+                      : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 hover:border-zinc-300 dark:hover:border-zinc-700"
+                  }`}
                 >
-                  <Icon size={16} className={isActive ? "text-[#A6866A]" : ""} />
+                  <Icon
+                    size={16}
+                    className={isActive ? "text-[#A6866A]" : ""}
+                  />
                   {tab.label}
-                  {tab.error && <span className="text-red-500 bg-red-100 dark:bg-red-900/30 px-1.5 py-0.5 rounded text-[10px] ml-1">⚠️ Error</span>}
+                  {tab.error && (
+                    <span className="text-red-500 bg-red-100 dark:bg-red-900/30 px-1.5 py-0.5 rounded text-[10px] ml-1">
+                      ⚠️ Error
+                    </span>
+                  )}
                 </button>
               );
             })}
           </div>
 
           {/* Tab 1: General */}
-          <div className={activeTab === "general" ? "block animate-in fade-in slide-in-from-bottom-2 duration-300" : "hidden"}>
+          <div
+            className={
+              activeTab === "general"
+                ? "block animate-in fade-in slide-in-from-bottom-2 duration-300"
+                : "hidden"
+            }
+          >
             <div className="bg-white dark:bg-[#111111] p-6 sm:p-8 rounded-3xl shadow-sm border border-zinc-200 dark:border-zinc-800/60">
               <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
                 <span className="w-1.5 h-6 bg-[#A6866A] rounded-full"></span>
@@ -480,7 +508,13 @@ export default function ProductForm({ initialData }: ProductFormProps) {
           </div>
 
           {/* Tab 2: Attributes */}
-          <div className={activeTab === "attributes" ? "block animate-in fade-in slide-in-from-bottom-2 duration-300" : "hidden"}>
+          <div
+            className={
+              activeTab === "attributes"
+                ? "block animate-in fade-in slide-in-from-bottom-2 duration-300"
+                : "hidden"
+            }
+          >
             <div className="bg-white dark:bg-[#111111] p-6 sm:p-8 rounded-3xl shadow-sm border border-zinc-200 dark:border-zinc-800/60">
               <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
                 <span className="w-1.5 h-6 bg-[#A6866A] rounded-full"></span>
@@ -541,7 +575,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
 
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-[#A6866A] dark:text-[#D4A373] mb-3">
+                    <label className="block text-xs font-bold uppercase  text-[#A6866A] dark:text-[#D4A373] mb-3">
                       Paleta de Colores (Disponibles para este producto)
                     </label>
                     <div className="max-h-56 overflow-y-auto border border-zinc-200 dark:border-zinc-800 rounded-2xl p-4 bg-zinc-50/50 dark:bg-zinc-950/50 shadow-inner custom-scrollbar">
@@ -569,7 +603,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
 
                 <div className="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-zinc-100 dark:border-zinc-800/60">
                   <div className="space-y-3">
-                    <label className="block text-xs font-bold uppercase tracking-widest text-[#A6866A] dark:text-[#D4A373]">
+                    <label className="block text-xs font-bold uppercase  text-[#A6866A] dark:text-[#D4A373]">
                       Estilos de Diseño
                     </label>
                     <div className="max-h-48 overflow-y-auto border border-zinc-200 dark:border-zinc-800 rounded-2xl p-4 bg-zinc-50/50 dark:bg-zinc-950/50 shadow-inner custom-scrollbar">
@@ -595,7 +629,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                   </div>
 
                   <div className="space-y-3">
-                    <label className="block text-xs font-bold uppercase tracking-widest text-[#A6866A] dark:text-[#D4A373]">
+                    <label className="block text-xs font-bold uppercase  text-[#A6866A] dark:text-[#D4A373]">
                       Cuerpo y Estructura (Materiales)
                     </label>
                     <div className="max-h-48 overflow-y-auto border border-zinc-200 dark:border-zinc-800 rounded-2xl p-4 bg-zinc-50/50 dark:bg-zinc-950/50 shadow-inner custom-scrollbar">
@@ -625,7 +659,13 @@ export default function ProductForm({ initialData }: ProductFormProps) {
           </div>
 
           {/* Tab 3: Images */}
-          <div className={activeTab === "images" ? "block animate-in fade-in slide-in-from-bottom-2 duration-300" : "hidden"}>
+          <div
+            className={
+              activeTab === "images"
+                ? "block animate-in fade-in slide-in-from-bottom-2 duration-300"
+                : "hidden"
+            }
+          >
             <div className="bg-white dark:bg-[#111111] p-6 sm:p-8 rounded-3xl shadow-sm border border-zinc-200 dark:border-zinc-800/60">
               <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-6 flex items-center gap-2">
                 <span className="w-1.5 h-6 bg-[#A6866A] rounded-full"></span>
@@ -633,10 +673,11 @@ export default function ProductForm({ initialData }: ProductFormProps) {
               </h2>
 
               <div
-                className={`border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-2xl p-12 text-center transition-all ${uploading
-                  ? "bg-zinc-50 dark:bg-zinc-900/50 opacity-50"
-                  : "hover:bg-zinc-50 dark:hover:bg-zinc-900/30 hover:border-[#A6866A] cursor-pointer"
-                  }`}
+                className={`border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-2xl p-12 text-center transition-all ${
+                  uploading
+                    ? "bg-zinc-50 dark:bg-zinc-900/50 opacity-50"
+                    : "hover:bg-zinc-50 dark:hover:bg-zinc-900/30 hover:border-[#A6866A] cursor-pointer"
+                }`}
               >
                 <input
                   type="file"
@@ -659,7 +700,9 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                     )}
                   </div>
                   <span className="text-base font-bold text-zinc-900 dark:text-zinc-200">
-                    {uploading ? "Subiendo imágenes..." : "Arrastra o haz clic para subir imágenes"}
+                    {uploading
+                      ? "Subiendo imágenes..."
+                      : "Arrastra o haz clic para subir imágenes"}
                   </span>
                   <span className="text-sm text-zinc-400">
                     Soporta JPG, PNG, WEBP (Recomendado 1000x1000px)
@@ -715,9 +758,15 @@ export default function ProductForm({ initialData }: ProductFormProps) {
           </div>
 
           {/* Tab 4: Variants */}
-          <div className={activeTab === "variants" ? "block animate-in fade-in slide-in-from-bottom-2 duration-300" : "hidden"}>
+          <div
+            className={
+              activeTab === "variants"
+                ? "block animate-in fade-in slide-in-from-bottom-2 duration-300"
+                : "hidden"
+            }
+          >
             <div className="bg-white dark:bg-[#111111] p-6 sm:p-8 rounded-3xl shadow-sm border border-zinc-200 dark:border-zinc-800/60">
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-zinc-900 dark:text-white flex items-center gap-2">
                   <span className="w-1.5 h-6 bg-[#A6866A] rounded-full"></span>
                   Constructor de Variantes
@@ -737,7 +786,10 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                       price: null,
                       sizeLabel: "",
                     });
-                    setExpandedVariants(prev => ({ ...prev, [fields.length]: true }));
+                    setExpandedVariants((prev) => ({
+                      ...prev,
+                      [fields.length]: true,
+                    }));
                   }}
                   className="group text-[#A6866A] bg-[#A6866A]/10 hover:bg-[#A6866A] hover:text-white px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 shadow-sm"
                 >
@@ -749,13 +801,60 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                 </button>
               </div>
 
+              <div className="mb-6 p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40">
+                <p className="text-xs font-black text-amber-800 dark:text-amber-400 uppercase tracking-wider mb-2">
+                  📐 ¿Cómo llenar las variantes de tamaño?
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-amber-700 dark:text-amber-300/80">
+                  <div>
+                    <p className="font-bold mb-1">
+                      Etiqueta de Tamaño (sizeLabel)
+                    </p>
+                    <p className="opacity-80">
+                      Es la opción que el cliente verá en la tienda al elegir el
+                      tamaño. Ej:{" "}
+                      <span className="font-mono bg-amber-100 dark:bg-amber-900/40 px-1 rounded">
+                        180 cm
+                      </span>
+                      ,{" "}
+                      <span className="font-mono bg-amber-100 dark:bg-amber-900/40 px-1 rounded">
+                        160 cm
+                      </span>
+                      ,{" "}
+                      <span className="font-mono bg-amber-100 dark:bg-amber-900/40 px-1 rounded">
+                        Queen
+                      </span>
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-1">
+                      Dimensiones físicas del mueble
+                    </p>
+                    <p className="opacity-80">
+                      Las medidas reales del producto en cm. Ejemplo para Mueble
+                      TV 180 cm:{" "}
+                      <span className="font-mono">
+                        Largo: 180 × Alto: 50 × Prof: 35
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-2 text-[12px] text-amber-600 dark:text-amber-400/60 font-semibold">
+                  💡 Crea una variante por cada opción de tamaño. Cada una
+                  tendrá su propio precio y dimensiones.
+                </p>
+              </div>
+
               {errors.variants && (
                 <div className="mb-6 p-4 rounded-2xl bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-900/30 flex items-start gap-3">
                   <span className="text-red-500 mt-0.5">⚠️</span>
                   <div>
-                    <h4 className="text-red-800 dark:text-red-400 font-bold text-sm">Error en Variantes</h4>
+                    <h4 className="text-red-800 dark:text-red-400 font-bold text-sm">
+                      Error en Variantes
+                    </h4>
                     <p className="text-red-600 dark:text-red-500/80 text-xs mt-1">
-                      {errors.variants.root?.message || "Revisa los campos requeridos en las variantes (SKU, Nombre, etc)."}
+                      {errors.variants.root?.message ||
+                        "Revisa los campos requeridos en las variantes (SKU, Nombre, etc)."}
                     </p>
                   </div>
                 </div>
@@ -767,8 +866,9 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                   return (
                     <div
                       key={field.id}
-                      className={`border border-zinc-200 dark:border-zinc-800 rounded-3xl bg-zinc-50/50 dark:bg-zinc-950/40 relative group transition-all duration-300 ${isExpanded ? "p-6 sm:p-8 pt-10" : "p-4"
-                        } hover:border-[#A6866A]/40 shadow-sm hover:shadow-md`}
+                      className={`border border-zinc-200 dark:border-zinc-800 rounded-3xl bg-zinc-50/50 dark:bg-zinc-950/40 relative group transition-all duration-300 ${
+                        isExpanded ? "p-6 sm:p-8 pt-10" : "p-4"
+                      } hover:border-[#A6866A]/40 shadow-sm hover:shadow-md`}
                     >
                       {isExpanded && (
                         <div className="absolute -top-3 left-6 bg-[#A6866A] text-white text-[10px] font-bold px-3 py-1 rounded-full z-10 shadow-sm flex items-center gap-2">
@@ -776,14 +876,25 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                         </div>
                       )}
 
-                      <div className={`flex justify-end absolute gap-2 z-10 ${isExpanded ? "-top-3 right-6" : "top-1/2 -translate-y-1/2 right-4"}`}>
+                      <div
+                        className={`flex justify-end absolute gap-2 z-10 ${isExpanded ? "-top-3 right-6" : "top-1/2 -translate-y-1/2 right-4"}`}
+                      >
                         <button
                           type="button"
-                          onClick={() => setExpandedVariants(prev => ({ ...prev, [index]: !isExpanded }))}
+                          onClick={() =>
+                            setExpandedVariants((prev) => ({
+                              ...prev,
+                              [index]: !isExpanded,
+                            }))
+                          }
                           className="bg-white dark:bg-zinc-800 text-zinc-500 hover:text-[#A6866A] p-2 rounded-full border border-zinc-200 dark:border-zinc-700 shadow-sm transition-all"
                           title={isExpanded ? "Contraer" : "Expandir"}
                         >
-                          {isExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                          {isExpanded ? (
+                            <ChevronUp size={14} />
+                          ) : (
+                            <ChevronDown size={14} />
+                          )}
                         </button>
                         <button
                           type="button"
@@ -796,11 +907,20 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                       </div>
 
                       {!isExpanded ? (
-                        <div className="pr-20 cursor-pointer" onClick={() => setExpandedVariants(prev => ({ ...prev, [index]: true }))}>
+                        <div
+                          className="pr-20 cursor-pointer"
+                          onClick={() =>
+                            setExpandedVariants((prev) => ({
+                              ...prev,
+                              [index]: true,
+                            }))
+                          }
+                        >
                           <div className="flex items-center gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-[#A6866A]"></span>
                             <span className="font-bold text-zinc-900 dark:text-zinc-100">
-                              {watch(`variants.${index}.name`) || "Nueva Variante"}
+                              {watch(`variants.${index}.name`) ||
+                                "Nueva Variante"}
                             </span>
                             <span className="text-xs font-mono bg-zinc-200 dark:bg-zinc-800 px-2 py-0.5 rounded text-zinc-600 dark:text-zinc-400">
                               {watch(`variants.${index}.sku`) || "Sin SKU"}
@@ -865,7 +985,9 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                                   {...register(`variants.${index}.material`)}
                                   className="w-full text-sm border-zinc-200 dark:border-zinc-800 rounded-xl p-3 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-[#A6866A]/20 outline-none appearance-none cursor-pointer transition-all"
                                 >
-                                  <option value="">Seleccionar material...</option>
+                                  <option value="">
+                                    Seleccionar material...
+                                  </option>
                                   {AVAILABLE_MATERIALS.map((m) => (
                                     <option key={m} value={m}>
                                       {m}
@@ -879,68 +1001,133 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                             </div>
                           </div>
 
-                          <div className="p-5 bg-white dark:bg-[#111111] rounded-2xl border border-zinc-100 dark:border-zinc-800 shadow-sm">
-                            <h4 className="text-xs font-bold text-zinc-900 dark:text-white uppercase mb-4 tracking-widest opacity-70">
-                              Dimensiones y Precio
-                            </h4>
-                            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 items-end">
-                              <div className="space-y-1.5 lg:col-span-2">
-                                <label className="text-[10px] uppercase text-zinc-500 font-bold ml-1 block">
+                          <div className="p-5 bg-white dark:bg-[#111111] rounded-2xl border border-zinc-100 dark:border-zinc-800 shadow-sm space-y-5">
+                            <div className="flex items-center justify-between">
+                              <h4 className="text-xs font-bold text-zinc-900 dark:text-white uppercase  opacity-70">
+                                Tamaño y Dimensiones Físicas
+                              </h4>
+
+                              {(watch(`variants.${index}.width`) > 0 ||
+                                watch(`variants.${index}.height`) > 0) && (
+                                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-[#A6866A]/10 text-[#A6866A] dark:text-[#D4A373]">
+                                  {watch(`variants.${index}.width`) || 0} ×{" "}
+                                  {watch(`variants.${index}.height`) || 0} ×{" "}
+                                  {watch(`variants.${index}.depth`) || 0} cm
+                                </span>
+                              )}
+                            </div>
+
+                            <div className="space-y-1.5">
+                              <div className="flex items-center gap-1.5">
+                                <label className="text-[10px] uppercase text-zinc-500 font-bold ml-1">
                                   Etiqueta de Tamaño
                                 </label>
-                                <input
-                                  {...register(`variants.${index}.sizeLabel`)}
-                                  placeholder="Ej: 2 plazas"
-                                  className="w-full text-sm border-zinc-200 dark:border-zinc-800 rounded-xl p-3 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-[#A6866A]/20 outline-none transition-all"
-                                />
+                                <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
+                                  Visible al cliente
+                                </span>
                               </div>
+                              <input
+                                {...register(`variants.${index}.sizeLabel`)}
+                                placeholder="Ej: 180 cm  /  160 cm  /  Queen  /  Doble"
+                                className="w-full text-sm border border-zinc-200 dark:border-zinc-800 rounded-xl p-3 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-[#A6866A]/20 outline-none transition-all placeholder:text-zinc-300 dark:placeholder:text-zinc-600"
+                              />
+                              <p className="text-[10px] text-zinc-400 ml-1">
+                                Esta es la opción que el cliente seleccionará en
+                                el selector de tamaño de la tienda.
+                              </p>
+                            </div>
 
-                              {[
-                                { label: "Ancho", field: "width", unit: "cm" },
-                                { label: "Alto", field: "height", unit: "cm" },
-                                { label: "Fondo", field: "depth", unit: "cm" },
-                              ].map((dim) => (
-                                <div key={dim.field} className="space-y-1.5">
+                            <div className="space-y-2">
+                              <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-black ml-1 block">
+                                Dimensiones físicas del mueble
+                              </label>
+                              <div className="grid grid-cols-3 gap-3">
+                                {[
+                                  {
+                                    label: "Largo / Ancho",
+                                    field: "width",
+                                    unit: "cm",
+                                    hint: "Ej: 180",
+                                  },
+                                  {
+                                    label: "Alto",
+                                    field: "height",
+                                    unit: "cm",
+                                    hint: "Ej: 50",
+                                  },
+                                  {
+                                    label: "Profundidad",
+                                    field: "depth",
+                                    unit: "cm",
+                                    hint: "Ej: 35",
+                                  },
+                                ].map((dim) => (
+                                  <div key={dim.field} className="space-y-1">
+                                    <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-black ml-1 block">
+                                      {dim.label}{" "}
+                                      <span className="font-normal lowercase">
+                                        ({dim.unit})
+                                      </span>
+                                    </label>
+                                    <input
+                                      type="number"
+                                      step="0.01"
+                                      {...register(
+                                        `variants.${index}.${dim.field}` as any
+                                      )}
+                                      placeholder={dim.hint}
+                                      className="w-full text-sm font-bold border border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 bg-zinc-50 dark:bg-zinc-900 text-[#A6866A] dark:text-[#D4A373] outline-none focus:ring-2 focus:ring-[#A6866A]/20 transition-all text-center placeholder:text-zinc-300 dark:placeholder:text-zinc-700 placeholder:font-normal"
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="grid grid-cols-3 gap-3 pt-1">
+                                <div className="space-y-1">
                                   <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-black ml-1 block">
-                                    {dim.label} <span className="font-normal lowercase">({dim.unit})</span>
+                                    Espesor{" "}
+                                    <span className="font-normal lowercase">
+                                      (mm)
+                                    </span>
                                   </label>
                                   <input
                                     type="number"
                                     step="0.01"
-                                    {...register(`variants.${index}.${dim.field}` as any)}
-                                    className="w-full text-sm font-bold border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 bg-zinc-50 dark:bg-zinc-900 text-[#A6866A] dark:text-[#D4A373] outline-none focus:ring-2 focus:ring-[#A6866A]/20 transition-all text-center"
+                                    {...register(
+                                      `variants.${index}.thickness` as any
+                                    )}
+                                    placeholder="Opcional"
+                                    className="w-full text-sm font-bold border border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 bg-zinc-50 dark:bg-zinc-900 text-[#A6866A] dark:text-[#D4A373] outline-none focus:ring-2 focus:ring-[#A6866A]/20 transition-all text-center placeholder:text-zinc-300 dark:placeholder:text-zinc-700 placeholder:font-normal"
                                   />
                                 </div>
-                              ))}
-
-                              <div className="space-y-1.5">
-                                <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-black ml-1 block">
-                                  Espesor <span className="font-normal lowercase">(mm)</span>
-                                </label>
-                                <input
-                                  type="number"
-                                  step="0.01"
-                                  {...register(`variants.${index}.thickness` as any)}
-                                  className="w-full text-sm font-bold border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 bg-zinc-50 dark:bg-zinc-900 text-[#A6866A] dark:text-[#D4A373] outline-none focus:ring-2 focus:ring-[#A6866A]/20 transition-all text-center"
-                                />
                               </div>
                             </div>
 
-                            <div className="mt-5 pt-5 border-t border-zinc-100 dark:border-zinc-800 grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800">
                               <div className="space-y-1.5">
                                 <label className="text-[10px] uppercase text-zinc-500 font-bold ml-1 block">
-                                  Precio Especial ($) <span className="text-[#A6866A] font-normal lowercase tracking-normal ml-1">(Sobrescribe precio base)</span>
+                                  Precio Especial ($){" "}
+                                  <span className="text-[#A6866A] font-normal lowercase tracking-normal ml-1">
+                                    (Sobrescribe precio base del producto)
+                                  </span>
                                 </label>
-                                <div className="relative">
-                                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 font-bold">$</span>
+                                <div className="relative max-w-xs">
+                                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 font-bold">
+                                    $
+                                  </span>
                                   <input
                                     type="number"
                                     step="0.01"
-                                    {...register(`variants.${index}.price` as any)}
+                                    {...register(
+                                      `variants.${index}.price` as any
+                                    )}
                                     placeholder="0.00"
-                                    className="w-full pl-8 text-base font-black border-zinc-200 dark:border-zinc-800 rounded-xl p-3 bg-zinc-100 dark:bg-zinc-800/50 text-[#A6866A] dark:text-[#D4A373] outline-none focus:ring-2 focus:ring-[#A6866A]/40 focus:bg-white dark:focus:bg-zinc-900 transition-all"
+                                    className="w-full pl-8 text-base font-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-3 bg-zinc-100 dark:bg-zinc-800/50 text-[#A6866A] dark:text-[#D4A373] outline-none focus:ring-2 focus:ring-[#A6866A]/40 focus:bg-white dark:focus:bg-zinc-900 transition-all"
                                   />
                                 </div>
+                                <p className="text-[10px] text-zinc-400 ml-1">
+                                  Si se deja en 0, se usa el precio base del
+                                  producto.
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -972,22 +1159,22 @@ export default function ProductForm({ initialData }: ProductFormProps) {
               onClick={(e) => e.stopPropagation()}
               className="bg-white dark:bg-[#111111] rounded-3xl shadow-2xl border border-zinc-200 dark:border-zinc-800 w-full max-w-md overflow-hidden"
             >
-              {/* Top accent bar */}
               <div
-                className={`h-2 w-full ${modal.type === "success"
-                  ? "bg-linear-to-r from-[#A6866A] to-[#D4A373]"
-                  : "bg-linear-to-r from-red-500 to-red-400"
-                  }`}
+                className={`h-2 w-full ${
+                  modal.type === "success"
+                    ? "bg-linear-to-r from-[#A6866A] to-[#D4A373]"
+                    : "bg-linear-to-r from-red-500 to-red-400"
+                }`}
               />
 
               <div className="p-8">
-                {/* Icon + Title */}
                 <div className="flex items-start gap-5 mb-6">
                   <div
-                    className={`shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center ${modal.type === "success"
-                      ? "bg-[#A6866A]/10 text-[#A6866A]"
-                      : "bg-red-50 dark:bg-red-900/20 text-red-500"
-                      }`}
+                    className={`shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center ${
+                      modal.type === "success"
+                        ? "bg-[#A6866A]/10 text-[#A6866A]"
+                        : "bg-red-50 dark:bg-red-900/20 text-red-500"
+                    }`}
                   >
                     {modal.type === "success" ? (
                       <CheckCircle2 size={28} />
@@ -1007,10 +1194,11 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                 <div className="flex justify-end">
                   <button
                     onClick={closeModal}
-                    className={`px-6 py-3 rounded-xl text-sm font-bold tracking-wide transition-all shadow-sm w-full sm:w-auto ${modal.type === "success"
-                      ? "bg-zinc-900 dark:bg-[#A6866A] text-white hover:opacity-90"
-                      : "bg-red-500 text-white hover:bg-red-600"
-                      }`}
+                    className={`px-6 py-3 rounded-xl text-sm font-bold tracking-wide transition-all shadow-sm w-full sm:w-auto ${
+                      modal.type === "success"
+                        ? "bg-zinc-900 dark:bg-[#A6866A] text-white hover:opacity-90"
+                        : "bg-red-500 text-white hover:bg-red-600"
+                    }`}
                   >
                     {modal.type === "success" ? "Continuar" : "Entendido"}
                   </button>

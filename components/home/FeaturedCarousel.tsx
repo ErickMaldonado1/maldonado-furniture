@@ -64,7 +64,7 @@ export default function FeaturedCarousel({
 
   const handleDragEnd = (
     _event: MouseEvent | TouchEvent | PointerEvent,
-    info: PanInfo,
+    info: PanInfo
   ) => {
     const threshold = 50;
     const velocityThreshold = 500;
@@ -91,7 +91,7 @@ export default function FeaturedCarousel({
     <section className="py-6 md:py-12 bg-white dark:bg-[#050505] overflow-hidden">
       <div className="max-w-360 mx-auto px-4 sm:px-4">
         <div className="flex items-center justify-between mb-4 md:mb-8 border-b border-zinc-100 dark:border-zinc-800/50 pb-6">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-tighter text-zinc-900 dark:text-white leading-none">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-zinc-900 dark:text-white leading-none">
             Productos{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
               Destacados
@@ -100,7 +100,7 @@ export default function FeaturedCarousel({
 
           <Link
             href="/productos"
-            className="group flex items-center gap-1.5 text-zinc-500 hover:text-[#4A3728] dark:text-zinc-400 dark:hover:text-zinc-300 font-bold uppercase text-[9px] sm:text-xs tracking-[0.15em] transition-all"
+            className="group flex items-center gap-2 text-sm md:text-base lg:text-lg hover:text-[#4A3728] dark:hover:text-zinc-300 transition-all"
             aria-label="Ver colección de productos"
           >
             <span className="hidden sm:inline">VER CATÁLOGO COMPLETO</span>

@@ -5,7 +5,7 @@ import { UserService } from "@/features/users/user.service";
 
 export async function GET(
   req: Request,
-  { params }: { params: Promise<{ id: string }> },
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
   const session = await getServerSession(authOptions);
@@ -23,7 +23,7 @@ export async function GET(
 export async function PATCH(
   req: Request,
 
-  { params }: { params: Promise<{ id: string }> },
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
   const session = await getServerSession(authOptions);
@@ -38,7 +38,7 @@ export async function PATCH(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: Promise<{ id: string }> },
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
   const session = await getServerSession(authOptions);

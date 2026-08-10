@@ -107,7 +107,7 @@ export default function CategoryLayout({
         <section className="bg-white dark:bg-[#0A0A0A] py-24 px-6">
           <div className="max-w-screen-2xl mx-auto">
             <div className="mb-12 text-center">
-              <span className="text-[#4A3728] font-bold tracking-widest text-xs uppercase">
+              <span className="text-[#4A3728] font-bold  text-xs uppercase">
                 Destacados
               </span>
               <h3 className="text-3xl font-black text-zinc-900 dark:text-white mt-2">

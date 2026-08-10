@@ -16,7 +16,7 @@ interface UploadError {
 }
 
 export async function uploadProductImage(
-  base64Image: string,
+  base64Image: string
 ): Promise<UploadSuccess | UploadError> {
   try {
     const res = await uploadImage(base64Image, "maldonado-furniture/products");
@@ -228,7 +228,7 @@ export async function deleteFullProduct(productId: string) {
 
     // 1. Borrar imágenes de Cloudinary
     const cloudinaryDeletes = product.images.map((img) =>
-      deleteImage(img.publicId),
+      deleteImage(img.publicId)
     );
     await Promise.all(cloudinaryDeletes);
 

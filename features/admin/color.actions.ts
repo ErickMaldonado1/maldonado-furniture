@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 export async function getColors() {
   try {
     const colors = await prisma.color.findMany({
-      orderBy: { name: 'asc' }
+      orderBy: { name: "asc" },
     });
     return { success: true, colors };
   } catch (error: any) {
@@ -19,8 +19,8 @@ export async function createColor(data: { name: string; hexCode?: string }) {
     const color = await prisma.color.create({
       data: {
         name: data.name,
-        hexCode: data.hexCode
-      }
+        hexCode: data.hexCode,
+      },
     });
     revalidatePath("/admin/products");
     revalidatePath("/admin/products/new");

@@ -34,7 +34,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
     <div className="flex flex-wrap gap-4 mb-12">
       <button
         onClick={() => handleSubClick("all")}
-        className={`px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all ${
+        className={`px-6 py-2 rounded-full text-xs font-black uppercase  transition-all ${
           !currentSub
             ? "bg-[#4A3728] text-white shadow-lg"
             : "bg-zinc-100 dark:bg-zinc-900 text-zinc-500 hover:bg-[#4A3728]/10"
@@ -47,7 +47,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
         <button
           key={sub.sub}
           onClick={() => handleSubClick(sub.sub)}
-          className={`px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all ${
+          className={`px-6 py-2 rounded-full text-xs font-black uppercase  transition-all ${
             currentSub === sub.sub
               ? "bg-[#4A3728] text-white shadow-lg"
               : "bg-zinc-100 dark:bg-zinc-900 text-zinc-500 hover:bg-[#4A3728]/10"

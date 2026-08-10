@@ -17,8 +17,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const cleanCategory = product.category ? product.category.replace(/-/g, " ") : "";
-  const cleanSubcategory = product.subcategory ? product.subcategory.replace(/-/g, " ") : "";
+  const cleanCategory = product.category
+    ? product.category.replace(/-/g, " ")
+    : "";
+  const cleanSubcategory = product.subcategory
+    ? product.subcategory.replace(/-/g, " ")
+    : "";
   const titleText = `${product.name} | Muebles a Medida en Quito`;
   const descriptionText = `${product.description.slice(0, 150)}... Cotiza tu ${product.name} personalizado en Quito. Fabricación de muebles de ${cleanCategory} y ${cleanSubcategory} de alta calidad.`;
 
@@ -51,7 +55,7 @@ export default async function ProductDetailPage({ params }: Props) {
     ProductService.getSiblingProducts(
       product.name,
       product.subcategory,
-      product.id,
+      product.id
     ),
   ]);
 

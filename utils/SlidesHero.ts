@@ -31,7 +31,7 @@ export const slides: SlideData[] = [
     title: "CLOSETS",
     description: "Modernos y elegantes que unen diseño, confort y calidad.",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1781540116/dormitorio1_yrt2sp.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1786233952/bedroom_yoik6m.webp",
     link: "/dormitorio/closets",
     tag: "Nuevos diseños",
   },
@@ -59,7 +59,7 @@ export const slides: SlideData[] = [
     description:
       "Muebles de oficina para home office y espacios profesionales.",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1781542507/oficina_szp6uc.webp",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1781542733/oficina1_nninpw.webp",
     link: "/oficina",
     tag: "Home Office",
   },

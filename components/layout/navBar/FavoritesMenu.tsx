@@ -45,7 +45,7 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
           <div className="flex justify-end mb-4">
             <button
               onClick={clearFavorites}
-              className="text-xs font-bold uppercase tracking-widest text-red-500 hover:text-red-600 transition-colors flex items-center gap-1"
+              className="text-xs font-bold uppercase  text-red-500 hover:text-red-600 transition-colors flex items-center gap-1"
               aria-label="vaciar-lista"
             >
               <Trash width={14} height={14} />
@@ -82,7 +82,7 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
                     <Link
                       href={`/${slugify(item.category || "")}/${slugify(item.subcategory || "")}/${slugify(item.name)}`.replace(
                         /\/+/g,
-                        "/",
+                        "/"
                       )}
                       onClick={onClose}
                     >

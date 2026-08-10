@@ -48,7 +48,7 @@ export const COLOR_TEXTURES: Record<string, Record<string, string>> = {
     Tintoretto: getCloudinaryUrl("/v1769916380/tintoretto_hzcwpu.webp"),
     Ocaso: getCloudinaryUrl("/v1769916380/ocaso_mlk6n3.webp"),
     "Verde-silvestre": getCloudinaryUrl(
-      "/v1769916380/verde-silvestre_vdbngb.webp",
+      "/v1769916380/verde-silvestre_vdbngb.webp"
     ),
     "Wengué-Tabaco": getCloudinaryUrl("/v1769916380/Wengue_Tabaco_rw1fot.webp"),
   },
@@ -58,7 +58,7 @@ export const COLOR_TEXTURES: Record<string, Record<string, string>> = {
     Cava: getCloudinaryUrl("/v1769916380/cava_x8wqxq.webp"),
     Colina: getCloudinaryUrl("/v1769916380/colina_tl1n6n.webp"),
     "Coigue-chocolate": getCloudinaryUrl(
-      "/v1769916380/coigue-chocolate_thdzhi.webp",
+      "/v1769916380/coigue-chocolate_thdzhi.webp"
     ),
     Fibra: getCloudinaryUrl("/v1769916380/fibra_npks6n.webp"),
     Haya: getCloudinaryUrl("/v1769916380/haya_auzswv.webp"),

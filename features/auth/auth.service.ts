@@ -27,7 +27,7 @@ export const AuthService = {
     if (!user) throw new Error("Usuario no registrado");
     if (!user.password) {
       throw new Error(
-        "Este usuario no tiene una contraseña establecida. Intenta iniciar sesión con Google.",
+        "Este usuario no tiene una contraseña establecida. Intenta iniciar sesión con Google."
       );
     }
     const isValid = await bcrypt.compare(credentials.password, user.password);

@@ -32,7 +32,7 @@ export default function FavoritesPage() {
             </h2>
             <Link
               href="/productos"
-              className="inline-block px-8 py-3 bg-[#4A3728] text-white font-bold uppercase tracking-widest text-xs hover:bg-[#3D2C1F] transition-colors"
+              className="inline-block px-8 py-3 bg-[#4A3728] text-white font-bold uppercase  text-xs hover:bg-[#3D2C1F] transition-colors"
             >
               Explorar Catálogo
             </Link>
