@@ -38,7 +38,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 
   const imageUrl = getOptimizedImage(
     product.images?.[0]?.url ||
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp",
+    "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp",
     700,
   );
 
@@ -162,9 +162,8 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             alt={`${product.name} - Vista alternativa`}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
-            className={`object-cover object-center transition-all duration-700 group-hover/img:scale-105 absolute inset-0 z-10 ${
-              isHovered ? "opacity-100" : "opacity-0"
-            }`}
+            className={`object-cover object-center transition-all duration-700 group-hover/img:scale-105 absolute inset-0 z-10 ${isHovered ? "opacity-100" : "opacity-0"
+              }`}
           />
         )}
 
@@ -172,11 +171,10 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           <button
             onClick={handleToggleFavorite}
             aria-label={isFav ? "Eliminar de favoritos" : "Añadir a favoritos"}
-            className={`p-1.5 sm:p-2 rounded-full backdrop-blur-md transition-all duration-300 shadow-sm z-50 ${
-              isFav
-                ? "bg-white text-red-500"
-                : "bg-black/20 text-white hover:bg-white hover:text-red-500 scale-90 hover:scale-100"
-            }`}
+            className={`p-1.5 sm:p-2 rounded-full backdrop-blur-md transition-all duration-300 shadow-sm z-50 ${isFav
+              ? "bg-white text-red-500"
+              : "bg-black/20 text-white hover:bg-white hover:text-red-500 scale-90 hover:scale-100"
+              }`}
           >
             {isFav ? (
               <HeartFilled className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -201,13 +199,12 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 
         {hasDiscount && product.discount !== null && (
           <div
-            className={`absolute top-3 left-3 z-20 px-2.5 py-1 rounded-sm text-[11px] font-bold -wider shadow-sm text-white transition-all duration-300 ${
-              product.discount >= 10
-                ? "bg-rose-700 shadow-rose-900/20"
-                : product.discount > 5
-                  ? "bg-[#567249]"
-                  : "bg-stone-800"
-            }`}
+            className={`absolute top-3 left-3 z-20 px-2.5 py-1 rounded-sm text-[11px] font-bold -wider shadow-sm text-white transition-all duration-300 ${product.discount >= 10
+              ? "bg-rose-700 shadow-rose-900/20"
+              : product.discount > 5
+                ? "bg-[#567249]"
+                : "bg-stone-800"
+              }`}
           >
             - {product.discount} %
           </div>
@@ -222,20 +219,20 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             </h3>
           </Link>
           {product.variants?.[0]?.dimensions && (
-            <div className="flex items-center gap-3 text-[11px] text-zinc-500 dark:text-zinc-400 font-medium mb-2 uppercase -wide">
-              <div className="flex items-center gap-1 p-1 px-2 bg-zinc-100 dark:bg-zinc-800 rounded-md">
-                <span className="flex items-center gap-0.4">
-                  <span className="text-xs opacity-80">⇅</span>
+            <div className="flex items-center gap-3 text-[11px] text-zinc-700 dark:text-zinc-300 font-medium mb-2 uppercase tracking-wide">
+              <div className="flex items-center gap-1 p-1 px-2 bg-zinc-200/70 dark:bg-zinc-800 rounded-md">
+                <span className="flex items-center gap-1">
+                  <span className="text-xs opacity-90">⇅</span>
                   {product.variants[0].dimensions.height}cm
                 </span>
-                <span className="w-px h-2.5 bg-[#897156]/30 mx-0.3" />
-                <span className="flex items-center gap-0.4">
-                  <span className="text-xs opacity-80">⇄</span>
+                <span className="w-px h-2.5 bg-[#897156]/40 mx-0.5" />
+                <span className="flex items-center gap-1">
+                  <span className="text-xs opacity-90">⇄</span>
                   {product.variants[0].dimensions.width}cm
                 </span>
-                <span className="w-px h-2.5 bg-[#897156]/30 mx-0.3" />
-                <span className="flex items-center gap-0.4">
-                  <span className="text-xs opacity-80">⤢</span>
+                <span className="w-px h-2.5 bg-[#897156]/40 mx-0.5" />
+                <span className="flex items-center gap-1">
+                  <span className="text-xs opacity-90">⤢</span>
                   {product.variants[0].dimensions.depth}cm
                 </span>
               </div>
@@ -246,13 +243,12 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#EDE8E0] dark:border-white/5">
           <div className="flex flex-col items-start cursor-default">
             {hasDiscount && (
-              <span className="text-[11px] text-zinc-400 line-through font-light leading-none mb-0.5">
+              <span className="text-[11px] text-zinc-600 dark:text-zinc-300 line-through font-light leading-none mb-0.5">
                 ${product.price.toLocaleString()}
               </span>
             )}
-            <span className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-white  leading-none">
-              $
-              {finalPrice.toLocaleString(undefined, {
+            <span className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-white leading-none">
+              ${finalPrice.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
               })}
             </span>
@@ -264,11 +260,10 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             aria-label={
               cartStatus ? "Producto en el carrito" : "Añadir al carrito"
             }
-            className={`hidden md:flex items-center justify-center gap-2 h-10 px-2 sm:px-4 rounded-xl transition-all duration-300 overflow-hidden shadow-md ${
-              cartStatus
-                ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800"
-                : "bg-[#141414] text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 active:scale-95"
-            }`}
+            className={`hidden md:flex items-center justify-center gap-2 h-10 px-2 sm:px-4 rounded-xl transition-all duration-300 overflow-hidden shadow-md ${cartStatus
+              ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800"
+              : "bg-[#141414] text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 active:scale-95"
+              }`}
           >
             <AnimatePresence mode="wait">
               {cartStatus ? (
