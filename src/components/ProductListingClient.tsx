@@ -1,0 +1,268 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ViewColumns,
+  AdjustmentsHorizontal,
+  XMark,
+} from "@/utils/icons/actions";
+import { MagnifyingGlass, Squares2X2 } from "@/utils/icons/social";
+
+import { FilterGroup } from "@/components/shop/filters/group/FilterGroup";
+import { useProductFilters, InitialFilters } from "@/hooks/useProductFilters";
+import ProductCard from "@/components/shop/product/ProductCard";
+import { ProductWithRelations } from "@/types/product-service";
+
+export default function ProductListingClient({
+  initialProducts = [],
+  hideCategoryFilter = false,
+  hideSubcategoryFilter = false,
+  initialFilters,
+}: {
+  initialProducts: ProductWithRelations[];
+  hideCategoryFilter?: boolean;
+  hideSubcategoryFilter?: boolean;
+  initialFilters?: InitialFilters;
+}) {
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
+  const [gridCols, setGridCols] = useState(4);
+
+  const {
+    filters,
+    setFilters,
+    sortBy,
+    setSortBy,
+    toggleFilter,
+    filteredProducts,
+    clearFilters,
+    availableOptions,
+  } = useProductFilters(initialProducts, initialFilters);
+
+  const cleanedOptions = {
+    ...availableOptions,
+    categories: hideCategoryFilter ? [] : availableOptions.categories,
+    subcategories: hideSubcategoryFilter ? [] : availableOptions.subcategories,
+  };
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (filters.colors.length > 0) {
+      params.set("colors", filters.colors.join(","));
+    } else {
+      params.delete("colors");
+    }
+
+    if (filters.styles.length > 0) {
+      params.set("styles", filters.styles.join(","));
+    } else {
+      params.delete("styles");
+    }
+
+    if (filters.materials.length > 0) {
+      params.set("materials", filters.materials.join(","));
+    } else {
+      params.delete("materials");
+    }
+
+    const maxPrice = availableOptions.maxPrice || 1500;
+    if (filters.priceRange[1] < maxPrice) {
+      params.set("maxPrice", filters.priceRange[1].toString());
+    } else {
+      params.delete("maxPrice");
+    }
+    if (params.toString() !== searchParams.toString()) {
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    }
+  }, [filters, pathname, router, searchParams]);
+
+  useEffect(() => {
+    if (isMobileFiltersOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isMobileFiltersOpen]);
+
+  return (
+    <div className="relative min-h-screen">
+      <div className="flex flex-col lg:flex-row gap-6">
+        <aside className="hidden lg:block w-60 shrink-0">
+          <div className="sticky top-32 pt-1">
+            <FilterGroup
+              options={cleanedOptions}
+              filters={filters}
+              toggleFilter={toggleFilter}
+              clearFilters={clearFilters}
+              setFilters={setFilters}
+            />
+          </div>
+        </aside>
+
+        <div className="flex-1">
+          <div className="flex justify-between items-center mb-8 border-b border-zinc-100 dark:border-zinc-900 pb-4">
+            <div className="flex items-center gap-4">
+              <div className="hidden md:flex items-center gap-4 bg-zinc-50 dark:bg-zinc-900/50 p-1 rounded-full">
+                <button
+                  onClick={() => setGridCols(3)}
+                  className={`p-2 rounded-full transition-all ${
+                    gridCols === 3
+                      ? "bg-white dark:bg-zinc-800 shadow-sm text-zinc-900 dark:text-white"
+                      : "text-zinc-400 hover:text-zinc-600"
+                  }`}
+                >
+                  <Squares2X2 width={20} height={20} />
+                </button>
+                <button
+                  onClick={() => setGridCols(4)}
+                  className={`p-2 rounded-full transition-all ${
+                    gridCols === 4
+                      ? "bg-white dark:bg-zinc-800 shadow-sm text-zinc-900 dark:text-white"
+                      : "text-zinc-400 hover:text-zinc-600"
+                  }`}
+                >
+                  <ViewColumns width={20} height={20} />
+                </button>
+              </div>
+              <span className="text-[10px] md:text-[12px] font-black uppercase text-zinc-400">
+                {filteredProducts.length} Artículos
+              </span>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="bg-transparent border-none text-[12px] md:text-[12px] font-black uppercase cursor-pointer focus:ring-0"
+              >
+                <option value="recent">Novedades</option>
+                <option value="price_asc">Precio: más bajo</option>
+                <option value="price_desc">Precio: más alto</option>
+              </select>
+
+              <button
+                onClick={() => setIsMobileFiltersOpen(true)}
+                className="lg:hidden flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-5 py-2.5 rounded-full text-[12px] font-black uppercase shadow-lg active:scale-95 transition-transform"
+              >
+                <AdjustmentsHorizontal width={18} height={18} /> Filtros
+              </button>
+            </div>
+          </div>
+
+          <AnimatePresence mode="wait">
+            {filteredProducts.length > 0 ? (
+              <motion.div
+                key="grid"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                layout
+                className={`grid gap-x-2 sm:gap-x-4 gap-y-10 sm:gap-y-12 
+                  ${
+                    gridCols === 3
+                      ? "grid-cols-2 lg:grid-cols-3"
+                      : "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
+                  }`}
+              >
+                <AnimatePresence mode="popLayout">
+                  {filteredProducts.map((product, i) => (
+                    <ProductCard
+                      key={product.id || i}
+                      product={product}
+                      index={i}
+                    />
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="empty"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="flex flex-col items-center justify-center py-32 text-center"
+              >
+                <div className="w-20 h-20 bg-zinc-50 dark:bg-zinc-900 rounded-full flex items-center justify-center mb-6">
+                  <MagnifyingGlass className="w-10 h-10 text-zinc-300 dark:text-zinc-700" />
+                </div>
+                <h3 className="text-xl font-black uppercase text-zinc-900 dark:text-white">
+                  Sin coincidencias
+                </h3>
+                <p className="text-zinc-500 mt-2 max-w-xs mx-auto text-md font-medium italic">
+                  No hay productos que coincidan con los filtros seleccionados.
+                </p>
+                <button
+                  onClick={clearFilters}
+                  className="mt-8 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-[12px] font-black uppercase rounded-full hover:opacity-90 transition-all active:scale-95 shadow-xl"
+                >
+                  Limpiar Filtros
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* DRAWER MÓVIL (FILTROS) */}
+      <AnimatePresence>
+        {isMobileFiltersOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileFiltersOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-100 lg:hidden"
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 220 }}
+              className="fixed inset-y-0 right-0 w-full max-w-85 bg-white dark:bg-[#0A0A0A] z-101 flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.3)] border-l border-zinc-100 dark:border-zinc-900"
+            >
+              <div className="px-4 py-4 flex justify-between items-center border-b border-zinc-100 dark:border-zinc-900">
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-[14px] font-black uppercase text-zinc-900 dark:text-white">
+                    Filtros
+                  </span>
+                </div>
+                <button
+                  onClick={() => setIsMobileFiltersOpen(false)}
+                  className="p-1 hover:bg-zinc-50 dark:hover:bg-zinc-900 rounded-2xl transition-all active:scale-95 border border-zinc-100 dark:border-zinc-800"
+                >
+                  <XMark width={20} height={20} />
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto px-4 py-2 custom-scrollbar">
+                <FilterGroup
+                  options={cleanedOptions}
+                  filters={filters}
+                  toggleFilter={toggleFilter}
+                  clearFilters={clearFilters}
+                  setFilters={setFilters}
+                />
+              </div>
+
+              <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-[#0A0A0A]">
+                <button
+                  onClick={() => setIsMobileFiltersOpen(false)}
+                  className="w-full py-5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-2xl font-black uppercase text-[12px]  shadow-xl active:scale-[0.96] transition-all hover:bg-zinc-800 dark:hover:bg-white"
+                >
+                  Mostrar {filteredProducts.length} Artículos
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}

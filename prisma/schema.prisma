@@ -45,9 +45,10 @@ model VerificationToken {
 model User {
   id        String     @id @default(auto()) @map("_id") @db.ObjectId
   name      String?
-  email     String     @unique
+  email         String     @unique
   emailVerified DateTime? 
   password      String?
+  phone         String?
   role      Role       @default(USER)
   image     String?
   accounts  Account[]
@@ -66,6 +67,7 @@ enum Role {
 model Product {
   id           String           @id @default(auto()) @map("_id") @db.ObjectId
   name         String
+  slug         String?          @unique
   sku          String           @unique
   description  String
   price        Float            @default(0)
@@ -176,10 +178,22 @@ model Newsletter {
   createdAt DateTime @default(now())
 }
 
+enum ColorCompany {
+  PELIKANO
+  EDIMCA
+  MASISA
+}
+
 model Color {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String   @unique
+  id        String       @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  company   ColorCompany
+  slug      String?
   hexCode   String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  imageUrl  String?
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@unique([company, name])
+  @@unique([company, slug])
 }
