@@ -13,6 +13,7 @@ import { slugify } from "@/utils/slug_url";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ProductWithRelations } from "@/types/product-service";
+import cloudinaryLoader from "@/utils/cloudinaryLoader";
 
 interface ProductCardProps {
   product: ProductWithRelations;
@@ -31,19 +32,18 @@ export default function ProductCard({ product, index }: ProductCardProps) {
     setIsMounted(true);
   }, []);
 
+  const rawImageUrl = product.images?.[0]?.url || "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp";
+  const rawSecondImageUrl = product.images?.[1]?.url || null;
+
   const getOptimizedImage = (url: string, width: number = 800) => {
     if (!url || !url.includes("cloudinary.com")) return url;
     return url.replace("/upload/", `/upload/f_auto,q_auto,w_${width}/`);
   };
 
-  const imageUrl = getOptimizedImage(
-    product.images?.[0]?.url ||
-    "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp",
-    700,
-  );
+  const imageUrl = getOptimizedImage(rawImageUrl, 700);
 
-  const secondImageUrl = product.images?.[1]?.url
-    ? getOptimizedImage(product.images[1].url, 700)
+  const secondImageUrl = rawSecondImageUrl
+    ? getOptimizedImage(rawSecondImageUrl, 700)
     : null;
 
   const productPath =
@@ -149,16 +149,18 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         tabIndex={0}
       >
         <Image
-          src={imageUrl}
+          loader={cloudinaryLoader}
+          src={rawImageUrl}
           alt={product.name}
           fill
           priority={index < 4}
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
           className="object-cover object-center transition-transform duration-700 group-hover/img:scale-105"
         />
-        {secondImageUrl && (
+        {rawSecondImageUrl && (
           <Image
-            src={secondImageUrl}
+            loader={cloudinaryLoader}
+            src={rawSecondImageUrl}
             alt={`${product.name} - Vista alternativa`}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"

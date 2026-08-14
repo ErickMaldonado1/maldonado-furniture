@@ -48,6 +48,8 @@ const HeroSlider = () => {
               fill
               className="object-cover"
               priority
+              fetchPriority="high"
+              decoding="async"
               sizes="(max-width: 768px) 100vw, 1200px"
             />
 
