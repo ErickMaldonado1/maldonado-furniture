@@ -2,7 +2,7 @@
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { deleteFullProduct } from "@/features/admin/product.actions";
+import { deleteFullProduct } from "@/features/admin/products/product.actions";
 
 export function DeleteProductBtn({ productId }: { productId: string }) {
   const [loading, setLoading] = useState(false);
@@ -21,6 +21,7 @@ export function DeleteProductBtn({ productId }: { productId: string }) {
 
     if (res.success) {
       router.refresh(); 
+    } else {
       alert("Error al eliminar: " + res.error);
     }
     setLoading(false);

@@ -143,7 +143,7 @@ export default function CatalogoColoresClient({
           <div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium  text-zinc-900 dark:text-white leading-none">
               Catálogo de{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A3728] to-[#5D4037]">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
                 Texturas
               </span>
             </h2>
@@ -248,7 +248,7 @@ export default function CatalogoColoresClient({
                 className="group cursor-pointer"
               >
                 <div
-                  className="relative aspect-[4/5] overflow-hidden rounded-sm"
+                  className="relative aspect-4/5 overflow-hidden rounded-sm"
                   style={{
                     backgroundColor: color.hexCode || "#cccccc",
                   }}

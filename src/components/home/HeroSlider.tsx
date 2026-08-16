@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +18,7 @@ const getOptimizedHeroImage = (url: string) => {
 
 const HeroSlider = () => {
   const [current, setCurrent] = useState(0);
+
   const nextSlide = useCallback(() => {
     setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   }, []);
@@ -54,7 +56,6 @@ const HeroSlider = () => {
             />
 
             <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-transparent" />
-
             <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
           </div>
 
@@ -63,7 +64,11 @@ const HeroSlider = () => {
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.3,
+                  ease: "easeOut",
+                }}
                 className="inline-flex mb-4 label-premium text-white! bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-sm border border-white/20"
               >
                 {slides[current].tag}
@@ -74,8 +79,12 @@ const HeroSlider = () => {
               <motion.h1
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 md:mb-6  leading uppercase text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]"
+                transition={{
+                  duration: 0.8,
+                  delay: 0.4,
+                  ease: "easeOut",
+                }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 md:mb-6 leading uppercase text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]"
               >
                 {slides[current].title}
               </motion.h1>
@@ -85,8 +94,12 @@ const HeroSlider = () => {
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-                className="text-sm md:text-base lg:text-[17px] opacity-100 max-w-xl font-normal leading-relaxed mb-6 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
+                transition={{
+                  duration: 0.8,
+                  delay: 0.5,
+                  ease: "easeOut",
+                }}
+                className="text-sm md:text-base lg:text-[17px] max-w-xl font-normal leading-relaxed mb-6 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
               >
                 {slides[current].description}
               </motion.p>
@@ -95,12 +108,16 @@ const HeroSlider = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              transition={{
+                duration: 0.8,
+                delay: 0.6,
+                ease: "easeOut",
+              }}
             >
               <Link
                 href={slides[current].link}
                 aria-label={`Ver colección de ${slides[current].title}`}
-                className="inline-flex items-center gap-4 px-6 py-4 text-[13px] font-medium  uppercase text-white bg-transparent border border-white/30 hover:bg-white hover:text-black transition-all duration-500 group"
+                className="inline-flex items-center gap-4 px-6 py-4 text-[13px] font-medium uppercase text-white bg-transparent border border-white/30 hover:bg-white hover:text-black transition-all duration-500 group"
               >
                 Ver colección
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
@@ -112,30 +129,43 @@ const HeroSlider = () => {
 
       <div className="absolute inset-x-0 bottom-8 md:bottom-12 z-20 pointer-events-none">
         <div className="max-w-360 mx-auto px-6 lg:px-12 flex items-end justify-between pointer-events-auto">
-          <div className="flex items-center gap-2 sm:gap-6">
-            <span className="text-white/60 text-sm font-medium -[0.2em] hidden sm:inline">
+          <div className="flex items-center gap-3 sm:gap-5">
+            <span className="text-white text-sm font-medium tracking-[0.2em]">
               {String(current + 1).padStart(2, "0")}
             </span>
-            <div className="flex gap-1.5 sm:gap-4">
+
+            <div className="flex items-center gap-1.5 sm:gap-2">
               {slides.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrent(idx)}
-                  className="relative h-8 sm:h-11 w-auto flex items-center justify-center group"
                   aria-label={`Ir a diapositiva ${idx + 1}`}
+                  className="relative h-6 sm:h-8 w-5 sm:w-8 flex items-center justify-center group"
                 >
-                  <div
-                    className={`h-px transition-all duration-700 ${
+                  <span
+                    className={`relative h-px transition-all duration-500 ${
                       idx === current
-                        ? "w-5 sm:w-12 bg-white"
-                        : "w-2.5 sm:w-6 bg-white/30 group-hover:bg-white/60"
+                        ? "w-5 sm:w-8 bg-white"
+                        : "w-2.5 sm:w-4 bg-white/30 group-hover:w-5 group-hover:bg-white/70"
                     }`}
                   />
-                  <span className="absolute inset-0 -inset-y-4" />
+
+                  {idx === current && (
+                    <motion.span
+                      layoutId="hero-indicator"
+                      className="absolute -bottom-1 w-1 h-1 rounded-full bg-white"
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 30,
+                      }}
+                    />
+                  )}
                 </button>
               ))}
             </div>
-            <span className="text-white/60 text-sm font-medium -[0.2em] hidden sm:inline">
+
+            <span className="text-white/40 text-xs font-medium tracking-[0.2em]">
               {String(slides.length).padStart(2, "0")}
             </span>
           </div>
@@ -157,12 +187,7 @@ const HeroSlider = () => {
                 key={i}
                 onClick={btn.onClick}
                 aria-label={btn.label}
-                className="w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/20 
-                  bg-transparent
-                  flex items-center justify-center 
-                  text-white 
-                  hover:bg-white hover:text-black
-                  transition-all duration-500 group"
+                className="w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/20 bg-transparent flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-500 group"
               >
                 <div className="transition-transform duration-500 group-hover:scale-110">
                   {btn.icon}

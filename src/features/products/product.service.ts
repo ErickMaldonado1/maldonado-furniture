@@ -69,13 +69,24 @@ export const ProductService = {
   },
 
   async getBySlug(slug: string) {
-    const product = await prisma.product.findUnique({
+    let product = await prisma.product.findUnique({
       where: { slug },
       include: {
         images: true,
         variants: { include: { dimensions: true } },
       },
     });
+
+    if (!product) {
+      const allProducts = await prisma.product.findMany({
+        where: { isActive: true },
+        include: {
+          images: true,
+          variants: { include: { dimensions: true } },
+        },
+      });
+      product = allProducts.find((p) => slugify(p.name) === slug) || null;
+    }
 
     return product;
   },

@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import CatalogoColoresClient from "./CatalogoColoresClient";
-import { getColors } from "@/features/admin/color.actions";
-
+import { getColors } from "@/features/admin/colors/color.actions";
 export const metadata: Metadata = {
   title: "Catálogo de Colores y Texturas de Melamina | Muebles Maldonado",
   description:
@@ -15,8 +14,6 @@ export const dynamic = "force-dynamic";
 
 export default async function Page() {
   const res = await getColors();
-
-  const colors = res.success && res.colors ? res.colors : [];
-
+  const colors = res.colors || [];
   return <CatalogoColoresClient initialColors={colors} />;
 }

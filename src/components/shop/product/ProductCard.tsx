@@ -47,7 +47,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
     : null;
 
   const productPath =
-    `/${slugify(product.category || "")}/${slugify(product.subcategory || "")}/${product.slug || slugify(product.name)}`.replace(
+    `/${slugify(product.category || "")}/${slugify(product.subcategory || "")}/${slugify(product.name)}`.replace(
       /\/+/g,
       "/",
     );

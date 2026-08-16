@@ -1,5 +1,5 @@
-import { getColors } from "@/features/admin/color.actions";
-import ColorClient from "@/app/(admin)/admin/colors/ColorClient";
+import { getColors } from "@/features/admin/colors/color.actions";
+import ColorClient from "@/features/admin/colors/ColorClient";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

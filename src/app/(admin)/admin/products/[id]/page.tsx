@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import ProductForm from "@/components/admin/ProductForm";
+import ProductForm from "@/features/admin/products/ProductForm";
 import { notFound } from "next/navigation";
 
 interface EditProductPageProps {

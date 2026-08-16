@@ -4,6 +4,16 @@ import { uploadImage, deleteImage } from "@/lib/cloudinary";
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { slugify } from "@/utils/slug_url";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/features/auth/auth.options";
+
+async function verifyAdminSession() {
+  const session = await getServerSession(authOptions);
+  if (!session || session.user.role !== "ADMIN") {
+    throw new Error("No autorizado. Se requiere rol de administrador.");
+  }
+  return session;
+}
 
 interface UploadSuccess {
   success: true;
@@ -146,6 +156,7 @@ export async function uploadProductImage(
 
 export async function createFullProduct(data: any) {
   try {
+    await verifyAdminSession();
     const normalizedSubcategory = data.subcategory
       ? slugify(data.subcategory)
       : data.subcategory;
@@ -203,6 +214,7 @@ export async function createFullProduct(data: any) {
     const product = await prisma.product.create({
       data: {
         name: data.name,
+        slug: slugify(data.name),
         sku: data.sku,
         description: data.description,
         price: Number(data.price || 0),
@@ -281,6 +293,7 @@ export async function createFullProduct(data: any) {
 
 export async function updateFullProduct(id: string, data: any) {
   try {
+    await verifyAdminSession();
     const normalizedSubcategory = data.subcategory
       ? slugify(data.subcategory)
       : data.subcategory;
@@ -328,6 +341,7 @@ export async function updateFullProduct(id: string, data: any) {
 
         data: {
           name: data.name,
+          slug: slugify(data.name),
           sku: data.sku,
           description: data.description,
 
@@ -529,6 +543,7 @@ export async function updateFullProduct(id: string, data: any) {
 
 export async function deleteFullProduct(productId: string) {
   try {
+    await verifyAdminSession();
     const product = await prisma.product.findUnique({
       where: {
         id: productId,
@@ -612,5 +627,37 @@ export async function deleteFullProduct(productId: string) {
       success: false,
       error: error.message,
     };
+  }
+}
+
+export async function activateAllProducts() {
+  "use server";
+  try {
+    await verifyAdminSession();
+    const result = await prisma.product.updateMany({
+      where: { isActive: false },
+      data: { isActive: true },
+    });
+    revalidatePath("/admin/products");
+    revalidatePath("/");
+    return { success: true, count: result.count };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+}
+
+export async function toggleProductStatus(id: string, isActive: boolean) {
+  "use server";
+  try {
+    await verifyAdminSession();
+    await prisma.product.update({
+      where: { id },
+      data: { isActive },
+    });
+    revalidatePath("/admin/products");
+    revalidatePath("/");
+    return { success: true };
+  } catch (error: any) {
+    return { success: false, error: error.message };
   }
 }

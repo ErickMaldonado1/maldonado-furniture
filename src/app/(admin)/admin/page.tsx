@@ -1,6 +1,5 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/features/auth/auth.options";
-import { redirect } from "next/navigation";
 import { AdminService } from "@/features/admin/admin.service";
 import Link from "next/link";
 import {
@@ -13,7 +12,6 @@ import {
 
 export default async function AdminPage() {
   const session = await getServerSession(authOptions);
-  if (!session || session.user.role !== "ADMIN") redirect("/");
 
   const stats = await AdminService.getDashboardStats();
   const recentOrders = await AdminService.getRecentOrders();
@@ -30,7 +28,7 @@ export default async function AdminPage() {
               </span>
             </h1>
             <p className="text-zinc-500 text-sm font-medium">
-              Bienvenido, {session.user.name || "Admin"}
+              Bienvenido, {session?.user.name || "Admin"}
             </p>
           </div>
           <div className="flex gap-3">

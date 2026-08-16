@@ -183,16 +183,16 @@ enum ColorCompany {
   EDIMCA
   MASISA
 }
-
 model Color {
-  id        String       @id @default(auto()) @map("_id") @db.ObjectId
+  id        String        @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   company   ColorCompany
   slug      String?
   hexCode   String?
   imageUrl  String?
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
+  publicId  String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
 
   @@unique([company, name])
   @@unique([company, slug])

@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { ProductFormValues } from "@/features/admin/product.schema";
+import { ProductFormValues } from "@/features/admin/products/product.schema";
 
 export function GeneralTab() {
   const {
@@ -91,28 +91,21 @@ export function GeneralTab() {
           )}
         </div>
 
-        <div className="flex items-center gap-6 pt-3 md:col-span-2 lg:col-span-3">
-          <label className="flex items-center gap-3 cursor-pointer group">
-            <input
-              type="checkbox"
-              {...register("isFlashDeal")}
-              className="w-5 h-5 rounded border-zinc-300 text-[#A6866A] focus:ring-[#A6866A] transition-all"
-            />
-            <span className="text-sm font-bold text-zinc-700 dark:text-zinc-300">
-              Oferta Flash
-            </span>
+        <div className="flex flex-col justify-center">
+          <label className="block text-xs font-bold uppercase text-zinc-500 mb-2">
+            Estado del Producto
           </label>
-
-          <label className="flex items-center gap-3 cursor-pointer group">
+          <div className="flex items-center gap-3 mt-1">
             <input
-              type="checkbox"
               {...register("isActive")}
-              className="w-5 h-5 rounded border-zinc-300 text-[#A6866A] focus:ring-[#A6866A] transition-all"
+              type="checkbox"
+              id="isActive"
+              className="w-5 h-5 accent-[#A6866A] bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-700 rounded cursor-pointer"
             />
-            <span className="text-sm font-bold text-zinc-700 dark:text-zinc-300">
-              Producto Activo
-            </span>
-          </label>
+            <label htmlFor="isActive" className="text-sm font-medium text-zinc-700 dark:text-zinc-300 cursor-pointer select-none">
+              Activo (Visible en tienda)
+            </label>
+          </div>
         </div>
 
         <div className="md:col-span-2 lg:col-span-3">

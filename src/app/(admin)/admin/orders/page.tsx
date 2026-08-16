@@ -1,7 +1,4 @@
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/features/auth/auth.options";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -26,8 +23,6 @@ type OrderWithDetails = {
 };
 
 export default async function OrdersPage() {
-  const session = await getServerSession(authOptions);
-  if (!session || session.user.role !== "ADMIN") redirect("/");
 
   const orders = await prisma.order.findMany({
     orderBy: { createdAt: "desc" },

@@ -5,6 +5,7 @@ import { Edit, Plus } from "lucide-react";
 import { DeleteProductBtn } from "@/app/(admin)/admin/DeleteProductBtn";
 import { ProductSearchBtn } from "@/app/(admin)/admin/ProductSearchBtn";
 import { ProductFilters } from "./ProductFilters";
+import { ToggleProductStateBtn } from "@/app/(admin)/admin/ToggleProductStateBtn";
 
 export default async function InventoryPage(props: {
   searchParams: Promise<{
@@ -119,7 +120,9 @@ export default async function InventoryPage(props: {
                 products.map((product) => (
                   <tr
                     key={product.id}
-                    className="hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-colors"
+                    className={`hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-colors ${
+                      !product.isActive ? "opacity-60 bg-red-50/20 dark:bg-red-900/10 grayscale-[0.2]" : ""
+                    }`}
                   >
                     <td className="px-6 py-3">
                       <div className="h-14 w-14 relative rounded-sm overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 shadow-sm">
@@ -132,8 +135,15 @@ export default async function InventoryPage(props: {
                       </div>
                     </td>
                     <td className="px-6 py-3">
-                      <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-200">
-                        {product.name}
+                      <div className="flex items-center gap-2">
+                        <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-200">
+                          {product.name}
+                        </div>
+                        {!product.isActive && (
+                          <span className="bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 text-[9px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-wider whitespace-nowrap">
+                            Inactivo
+                          </span>
+                        )}
                       </div>
                       <div className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 uppercase mt-0.5">
                         SKU: {product.sku || "N/A"}
@@ -153,7 +163,11 @@ export default async function InventoryPage(props: {
                       </span>
                     </td>
                     <td className="px-6 py-3">
-                      <div className="flex justify-end gap-4">
+                      <div className="flex justify-end items-center gap-4">
+                        <ToggleProductStateBtn 
+                          productId={product.id} 
+                          isActive={product.isActive} 
+                        />
                         <Link
                           href={`/admin/products/${product.id}`}
                           className="text-zinc-400 hover:text-[#4A3728] dark:hover:text-[#A6866A] transition-colors"

@@ -5,8 +5,6 @@ import { redirect } from "next/navigation";
 import UsersList from "./UsersList";
 
 export default async function UsersPage() {
-  const session = await getServerSession(authOptions);
-  if (!session || session.user.role !== "ADMIN") redirect("/");
 
   const users = await prisma.user.findMany({
     orderBy: { createdAt: "desc" },
