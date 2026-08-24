@@ -116,7 +116,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
           )}
 
           <div className="space-y-2">
-            <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase  ml-1">
+            <label className="text-xs font-medium text-zinc-600 dark:text-zinc-400 uppercase  ml-1">
               Correo Electrónico
             </label>
             <input
@@ -138,7 +138,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs font-bold text-zinc-600 dark:text-zinc-400 uppercase  ml-1">
+            <label className="text-xs font-medium text-zinc-600 dark:text-zinc-400 uppercase  ml-1">
               Contraseña
             </label>
             <div className="relative">

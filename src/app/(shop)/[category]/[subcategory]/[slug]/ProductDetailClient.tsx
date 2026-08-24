@@ -290,7 +290,7 @@ export function ProductDetailClient({
   const basePrice = selectedVariant?.price ?? product.price;
   const finalPrice = basePrice - (basePrice * (product.discount || 0)) / 100;
   const isFav = mounted ? isFavorite(product.id) : false;
-  const inCart = mounted ? isInCart(product.id) : false;
+  const inCart = mounted ? isInCart(product.id, selectedVariant?.id || product.variants?.[0]?.id) : false;
 
   const handleAddToCart = () => {
     const activeColorName = selectedColor || selectedVariant?.color || "";

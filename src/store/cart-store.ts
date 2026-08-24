@@ -20,10 +20,10 @@ export interface CartItem {
 interface CartState {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
-  removeFromCart: (itemId: string) => void;
-  updateQuantity: (itemId: string, quantity: number) => void;
+  removeFromCart: (itemId: string, variantId?: string) => void;
+  updateQuantity: (itemId: string, variantId: string | undefined, quantity: number) => void;
   clearCart: () => void;
-  isInCart: (itemId: string) => boolean;
+  isInCart: (itemId: string, variantId?: string) => boolean;
   getTotalItems: () => number;
   getTotalPrice: () => number;
 }
@@ -34,13 +34,17 @@ export const useCartStore = create<CartState>()(
       cart: [],
       addToCart: (item) => {
         const cart = get().cart;
-        const exists = cart.find((i) => i.id === item.id);
+        const exists = cart.find(
+          (i) => i.id === item.id && i.variantId === item.variantId
+        );
 
         if (exists) {
           const newQuantity = Math.min(exists.quantity + item.quantity, 3);
           set({
             cart: cart.map((i) =>
-              i.id === item.id ? { ...i, quantity: newQuantity } : i,
+              i.id === item.id && i.variantId === item.variantId
+                ? { ...i, quantity: newQuantity }
+                : i
             ),
           });
         } else {
@@ -48,19 +52,26 @@ export const useCartStore = create<CartState>()(
           set({ cart: [...cart, { ...item, quantity }] });
         }
       },
-      removeFromCart: (itemId) => {
-        set({ cart: get().cart.filter((i) => i.id !== itemId) });
+      removeFromCart: (itemId, variantId) => {
+        set({
+          cart: get().cart.filter(
+            (i) => !(i.id === itemId && i.variantId === variantId)
+          ),
+        });
       },
-      updateQuantity: (itemId, quantity) => {
+      updateQuantity: (itemId, variantId, quantity) => {
         if (quantity < 1) return;
         const safeQuantity = Math.min(quantity, 3);
         set({
           cart: get().cart.map((i) =>
-            i.id === itemId ? { ...i, quantity: safeQuantity } : i,
+            i.id === itemId && i.variantId === variantId
+              ? { ...i, quantity: safeQuantity }
+              : i
           ),
         });
       },
-      isInCart: (itemId) => get().cart.some((i) => i.id === itemId),
+      isInCart: (itemId, variantId) =>
+        get().cart.some((i) => i.id === itemId && i.variantId === variantId),
       clearCart: () => set({ cart: [] }),
       getTotalItems: () =>
         get().cart.reduce((acc, item) => acc + item.quantity, 0),

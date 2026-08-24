@@ -1,3 +1,5 @@
+export const maxDuration = 60;
+
 import prisma from "@/lib/prisma";
 import ProductForm from "@/features/admin/products/ProductForm";
 import { notFound } from "next/navigation";

@@ -77,7 +77,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                         </h3>
                       </Link>
                       <button
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() => removeFromCart(item.id, item.variantId)}
                         className="text-zinc-400 hover:text-red-500 transition-colors p-1"
                         aria-label="remove-from-cart"
                       >
@@ -95,6 +95,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                         onClick={() =>
                           updateQuantity(
                             item.id,
+                            item.variantId,
                             Math.max(1, item.quantity - 1),
                           )
                         }
@@ -108,7 +109,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                       </span>
                       <button
                         onClick={() =>
-                          updateQuantity(item.id, item.quantity + 1)
+                          updateQuantity(item.id, item.variantId, item.quantity + 1)
                         }
                         className="w-8 h-full flex items-center justify-center text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-r-lg transition"
                         aria-label="update-quantity"

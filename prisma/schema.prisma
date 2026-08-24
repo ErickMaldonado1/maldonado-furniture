@@ -89,7 +89,7 @@ model Product {
 model ProductVariant {
   id              String             @id @default(auto()) @map("_id") @db.ObjectId
   name            String
-  sku             String             @unique
+  sku             String
   thickness       Float?
   color           String?            
   material        String?

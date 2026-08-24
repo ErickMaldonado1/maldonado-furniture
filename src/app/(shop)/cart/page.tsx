@@ -88,6 +88,7 @@ export default function CartPage() {
                         onClick={() =>
                           updateQuantity(
                             item.id,
+                            item.variantId,
                             Math.max(1, item.quantity - 1),
                           )
                         }
@@ -103,6 +104,7 @@ export default function CartPage() {
                         onClick={() =>
                           updateQuantity(
                             item.id,
+                            item.variantId,
                             Math.min(3, item.quantity + 1),
                           )
                         }
@@ -123,7 +125,7 @@ export default function CartPage() {
                     </p>
 
                     <button
-                      onClick={() => removeFromCart(item.id)}
+                      onClick={() => removeFromCart(item.id, item.variantId)}
                       className="w-10 h-10 rounded-full flex items-center justify-center text-zinc-300 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-all ml-auto sm:ml-0"
                       aria-label="remove"
                     >

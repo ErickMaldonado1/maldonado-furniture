@@ -28,13 +28,18 @@ export function useProductImages({ showModal }: UseProductImagesOptions) {
     const newImages: ProductImageForm[] = [...watchedImages];
 
     try {
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
+      const uploadPromises = Array.from(files).map(async (file) => {
         const formData = new FormData();
         formData.append("file", file);
+        return uploadImage(formData, "products");
+      });
 
-        const res = await uploadImage(formData, "products");
+      const results = await Promise.all(uploadPromises);
 
+      let hasError = false;
+      let errorMessage = "";
+
+      for (const res of results) {
         if (res.success && res.imageUrl) {
           newImages.push({
             url: res.imageUrl,
@@ -42,18 +47,23 @@ export function useProductImages({ showModal }: UseProductImagesOptions) {
             color: null,
           });
         } else {
-          showModal(
-            "error",
-            "Error al subir imagen",
-            res.error || "Ocurrió un error inesperado al subir la imagen."
-          );
+          hasError = true;
+          errorMessage = res.error || "Ocurrió un error inesperado al subir una o más imágenes.";
         }
+      }
+
+      if (hasError) {
+        showModal(
+          "error",
+          "Error al subir imagen(es)",
+          errorMessage
+        );
       }
 
       setValue("images", newImages, { shouldDirty: true });
     } catch (error) {
       console.error("Upload error:", error);
-      showModal("error", "Error al subir imagen", "No fue posible subir la imagen.");
+      showModal("error", "Error al subir imagen(es)", "No fue posible subir las imágenes.");
     } finally {
       setUploading(false);
       e.target.value = "";

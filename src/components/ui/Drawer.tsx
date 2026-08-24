@@ -69,7 +69,7 @@ export default function Drawer({
           >
             <div className="flex items-center justify-between pt-4 pb-2 px-4 border-b border-zinc-100 dark:border-zinc-800">
               {title && (
-                <h2 className="text-[16px] font-black uppercase  text-zinc-900 dark:text-white leading-none">
+                <h2 className="text-[14px] font-bold uppercase  text-zinc-900 dark:text-white leading-none">
                   {title}
                 </h2>
               )}

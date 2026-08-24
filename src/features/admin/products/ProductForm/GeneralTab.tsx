@@ -16,7 +16,7 @@ export function GeneralTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="md:col-span-2 lg:col-span-2">
-          <label className="block text-xs font-semibold uppercase text-zinc-500 mb-2">
+          <label className="block text-xs font-medium uppercase text-zinc-500 mb-2">
             Nombre del Producto
           </label>
           <input
@@ -30,7 +30,7 @@ export function GeneralTab() {
         </div>
 
         <div>
-          <label className="block text-xs font-bold uppercase text-zinc-500 mb-2">
+          <label className="block text-xs font-medium uppercase text-zinc-500 mb-2">
             SKU (Código Único)
           </label>
           <input
@@ -44,7 +44,7 @@ export function GeneralTab() {
         </div>
 
         <div>
-          <label className="block text-xs font-bold uppercase text-zinc-500 mb-2">
+          <label className="block text-xs font-medium uppercase text-zinc-500 mb-2">
             Precio Base ($)
           </label>
           <input
@@ -60,7 +60,7 @@ export function GeneralTab() {
         </div>
 
         <div>
-          <label className="block text-xs font-bold uppercase text-zinc-500 mb-2">
+          <label className="block text-xs font-medium uppercase text-zinc-500 mb-2">
             Descuento (%)
           </label>
           <input
@@ -73,7 +73,7 @@ export function GeneralTab() {
         </div>
 
         <div>
-          <label className="block text-xs font-bold uppercase text-zinc-500 mb-2">
+          <label className="block text-xs font-medium uppercase text-zinc-500 mb-2">
             Días de Envío Estimados
           </label>
           <input
@@ -92,7 +92,7 @@ export function GeneralTab() {
         </div>
 
         <div className="flex flex-col justify-center">
-          <label className="block text-xs font-bold uppercase text-zinc-500 mb-2">
+          <label className="block text-xs font-medium uppercase text-zinc-500 mb-2">
             Estado del Producto
           </label>
           <div className="flex items-center gap-3 mt-1">
@@ -109,7 +109,7 @@ export function GeneralTab() {
         </div>
 
         <div className="md:col-span-2 lg:col-span-3">
-          <label className="block text-xs font-semibold uppercase text-zinc-500 mb-2">
+          <label className="block text-xs font-medium uppercase text-zinc-500 mb-2">
             Descripción Detallada
           </label>
           <textarea

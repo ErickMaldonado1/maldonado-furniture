@@ -110,9 +110,7 @@ function generateVariants(
 
     for (const color of safeColors) {
       const colorValue = color || null;
-      const sizeSku = `${skuPart(width)}X${skuPart(height)}X${skuPart(depth)}`;
-      const colorSku = colorSkuPart(colorValue);
-      const generatedSku = `${skuPart(productSku)}-${sizeSku}-${colorSku}`;
+      const generatedSku = skuPart(productSku);
       const variantName = colorValue
         ? `${productName.trim()} - ${colorValue}`
         : productName.trim();
@@ -196,19 +194,6 @@ export async function createFullProduct(data: any) {
         success: false,
         error: "Debes agregar al menos una medida para generar las variantes.",
       };
-    }
-
-    const skuSet = new Set<string>();
-
-    for (const variant of generatedVariants) {
-      if (skuSet.has(variant.sku)) {
-        return {
-          success: false,
-          error: `SKU de variante duplicado: ${variant.sku}`,
-        };
-      }
-
-      skuSet.add(variant.sku);
     }
 
     const product = await prisma.product.create({
@@ -657,6 +642,45 @@ export async function toggleProductStatus(id: string, isActive: boolean) {
     revalidatePath("/admin/products");
     revalidatePath("/");
     return { success: true };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+}
+
+export async function getProductsPaginated(
+  query: string = "",
+  category?: string,
+  subcategory?: string,
+  skip: number = 0,
+  take: number = 20
+) {
+  "use server";
+  try {
+    const whereClause: any = {
+      OR: [
+        { name: { contains: query, mode: "insensitive" } },
+        { sku: { contains: query, mode: "insensitive" } },
+      ],
+    };
+
+    if (category) whereClause.category = category;
+    if (subcategory) whereClause.subcategory = subcategory;
+
+    const products = await prisma.product.findMany({
+      where: whereClause,
+      include: {
+        images: true,
+        _count: { select: { variants: true } },
+      },
+      orderBy: { createdAt: "desc" },
+      skip,
+      take: take + 1, 
+    });
+
+    const hasMore = products.length > take;
+    const paginatedProducts = hasMore ? products.slice(0, take) : products;
+
+    return { success: true, products: paginatedProducts, hasMore };
   } catch (error: any) {
     return { success: false, error: error.message };
   }

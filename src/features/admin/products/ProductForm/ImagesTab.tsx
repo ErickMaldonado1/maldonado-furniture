@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/SafeImage";
 import { ChevronDown, Upload, X } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 import { useProductImages, ProductImageForm } from "../hooks/useProductImages";
@@ -108,9 +108,8 @@ export function ImagesTab({ showModal }: ImagesTabProps) {
                   key={`${img.publicId || img.url}-${index}`}
                   className="relative group rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-sm bg-zinc-50 dark:bg-zinc-900/50 transition-all hover:shadow-md"
                 >
-                  {/* IMAGEN */}
                   <div className="aspect-square relative">
-                    <Image
+                    <SafeImage
                       src={img.url}
                       alt={`Imagen del producto ${index + 1}`}
                       fill

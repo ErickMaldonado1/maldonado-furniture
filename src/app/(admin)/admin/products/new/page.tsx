@@ -1,3 +1,5 @@
+export const maxDuration = 60;
+
 import ProductForm from "@/features/admin/products/ProductForm/index";
 
 export default function NewProductPage() {

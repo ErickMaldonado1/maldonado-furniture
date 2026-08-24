@@ -333,7 +333,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
 
                         <div className="flex items-center gap-1.5">
 
-                          <label className="text-[10px] uppercase text-zinc-500 font-bold ml-1">
+                          <label className="text-[10px] uppercase text-zinc-500 font-medium ml-1">
                             Etiqueta de Tamaño
                           </label>
 
@@ -359,7 +359,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
 
                       <div className="space-y-1.5">
 
-                        <label className="text-[10px] uppercase text-zinc-500 font-bold ml-1 block">
+                        <label className="text-[10px] uppercase text-zinc-500 font-medium ml-1 block">
                           Precio de esta medida
                         </label>
 
@@ -441,7 +441,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
                             className="space-y-1"
                           >
 
-                            <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-black ml-1 block">
+                            <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-medium ml-1 block">
 
                               {dim.label}{" "}
 
@@ -473,7 +473,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
 
                         <div className="space-y-1">
 
-                          <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-black ml-1 block">
+                          <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-medium ml-1 block">
 
                             Espesor{" "}
 

@@ -109,7 +109,7 @@ export default async function ProfilePage() {
                 </span>
               </div>
               {user.role === "ADMIN" && (
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-zinc-900">
+                <div className="absolute -bottom-2 -right-2 w-8 h-8  rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-zinc-900">
                   <ShieldCheck size={14} className="text-white" />
                 </div>
               )}
@@ -121,7 +121,7 @@ export default async function ProfilePage() {
                   {user.name || "Sin nombre"}
                 </h1>
                 {user.role === "ADMIN" ? (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-[10px] font-black uppercase  rounded-full border border-purple-200 dark:border-purple-800">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1  text-[10px] font-black uppercase  rounded-full border">
                     <ShieldCheck size={11} />
                     Administrador
                   </span>

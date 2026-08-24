@@ -171,7 +171,7 @@ export function AttributesTab({
     
           <div className="space-y-2">
 
-            <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wide">
+            <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wide">
               Categoría
             </label>
 
@@ -218,7 +218,7 @@ export function AttributesTab({
 
           <div className="space-y-2">
 
-            <label className="text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wide">
+            <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wide">
               Subcategoría
             </label>
 

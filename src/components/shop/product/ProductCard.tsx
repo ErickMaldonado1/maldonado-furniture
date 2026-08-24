@@ -25,7 +25,8 @@ export default function ProductCard({ product, index }: ProductCardProps) {
   const { addToCart, isInCart } = useCartStore();
   const { isFavorite, toggleFavorite } = useFavoritesStore();
   const isFav = isFavorite(product.id);
-  const inCart = isInCart(product.id);
+  const firstVariant = product.variants?.[0];
+  const inCart = isInCart(product.id, firstVariant?.id);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -65,8 +66,6 @@ export default function ProductCard({ product, index }: ProductCardProps) {
     e.stopPropagation();
 
     if (inCart) return;
-
-    const firstVariant = product.variants?.[0];
     addToCart({
       id: product.id,
       name: product.name,
@@ -131,6 +130,11 @@ export default function ProductCard({ product, index }: ProductCardProps) {
     }
   };
 
+  const [imgError, setImgError] = useState(false);
+  const [imgError2, setImgError2] = useState(false);
+
+  const fallbackImage = "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -150,7 +154,8 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       >
         <Image
           loader={cloudinaryLoader}
-          src={rawImageUrl}
+          src={imgError ? fallbackImage : rawImageUrl}
+          onError={() => setImgError(true)}
           alt={product.name}
           fill
           priority={index < 4}
@@ -160,11 +165,12 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         {rawSecondImageUrl && (
           <Image
             loader={cloudinaryLoader}
-            src={rawSecondImageUrl}
+            src={imgError2 ? fallbackImage : rawSecondImageUrl}
+            onError={() => setImgError2(true)}
             alt={`${product.name} - Vista alternativa`}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
-            className={`object-cover object-center transition-all duration-700 group-hover/img:scale-105 absolute inset-0 z-10 ${isHovered ? "opacity-100" : "opacity-0"
+            className={`object-cover object-center transition-all duration-700 group-hover/img:scale-105 absolute inset-0 z-10 ${isHovered && !imgError2 ? "opacity-100" : "opacity-0"
               }`}
           />
         )}

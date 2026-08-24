@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
+import { SafeImage as Image } from "@/components/ui/SafeImage";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
