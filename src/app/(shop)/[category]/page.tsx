@@ -132,17 +132,35 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { config: categoryConfig } = resolved;
   const data = seoContent[categorySlug];
 
+  const title = data?.title || `${categoryConfig.label} Modernos a Medida | Muebles Maldonado`;
+  const description = data?.description || `Explora nuestra línea exclusiva de ${categoryConfig.label} en Quito. Diseños modernos y personalizados para tu hogar.`;
+
   return {
-    title:
-      data?.title || `${categoryConfig.label} Modernos | Muebles Maldonado`,
-    description:
-      data?.description || `Explora nuestra línea de ${categoryConfig.label}.`,
+    title,
+    description,
+    keywords: [
+      categoryConfig.label,
+      `${categoryConfig.label} quito`,
+      `${categoryConfig.label} a medida`,
+      `${categoryConfig.label} modernos`,
+      "muebles maldonado",
+      "fabricantes de muebles quito"
+    ],
     alternates: { canonical: `https://mueblesmaldonadoec.com/${categorySlug}` },
     openGraph: {
-      title: data?.title,
-      description: data?.description,
+      title,
+      description,
       url: `https://mueblesmaldonadoec.com/${categorySlug}`,
+      siteName: "Muebles Maldonado",
       images: [{ url: categoryConfig.featuredContent[0]?.imageSrc || "" }],
+      locale: "es_EC",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [categoryConfig.featuredContent[0]?.imageSrc || ""],
     },
   };
 }
@@ -164,9 +182,51 @@ export default async function CategoryPage({ params }: Props) {
     .slice(0, 8);
 
   const heroImage = categoryConfig.featuredContent[0]?.imageSrc;
+  const data = seoContent[categorySlug];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": data?.title || categoryConfig.label,
+    "description": data?.description || `Colección de ${categoryConfig.label} a medida en Quito.`,
+    "url": `https://mueblesmaldonadoec.com/${categorySlug}`,
+    "image": heroImage || "https://res.cloudinary.com/dwvruzkll/image/upload/v1769127395/cocina_stp9o1.webp",
+    "provider": {
+      "@type": "FurnitureStore",
+      "name": "Muebles Maldonado",
+      "address": "Quito, Ecuador"
+    }
+  };
+
+  const breadcrumbsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://mueblesmaldonadoec.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": categoryConfig.label,
+        "item": `https://mueblesmaldonadoec.com/${categorySlug}`
+      }
+    ]
+  };
 
   return (
     <main className="mt-20 min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }}
+      />
       <section className="bg-white dark:bg-[#050505]">
         <div className="max-w-340 mx-auto flex flex-col lg:flex-row h-auto lg:h-90">
           <div className="w-full lg:w-1/2 p-4 lg:p-16 flex flex-col justify-center">

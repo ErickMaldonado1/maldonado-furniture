@@ -102,6 +102,27 @@ export const metadata: Metadata = {
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import ReactDOM from "react-dom";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FurnitureStore",
+  "name": "Muebles Maldonado",
+  "image": "https://res.cloudinary.com/dwvruzkll/image/upload/v1769127395/cocina_stp9o1.webp",
+  "@id": "https://mueblesmaldonadoec.com",
+  "url": "https://mueblesmaldonadoec.com",
+  "telephone": "+593959504842",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Quito",
+    "addressRegion": "Pichincha",
+    "addressCountry": "EC"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -0.1806532,
+    "longitude": -78.4678382
+  }
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -112,6 +133,12 @@ export default function RootLayout({
   });
   return (
     <html lang="es" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${jost.variable} font-sans antialiased bg-white dark:bg-[#0a0a0a] transition-colors duration-500`}
         suppressHydrationWarning={true}

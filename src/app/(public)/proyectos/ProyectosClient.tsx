@@ -68,12 +68,11 @@ export default function ProyectosPage() {
                 key={cat}
                 onClick={() => handleFilterChange(cat)}
                 aria-label="categorias"
-                className={`px-6 py-2.5 text-[12px] font-black uppercase  transition-all duration-300 rounded-full border 
-                ${
-                  filter === cat
+                className={`px-6 py-2.5 text-[12px] font-semibold tracking-widest uppercase transition-all duration-300 rounded-full border 
+                ${filter === cat
                     ? "bg-[#4A3728] border-[#4A3728] text-white shadow-lg"
                     : "border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:border-[#4A3728]"
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -88,7 +87,7 @@ export default function ProyectosPage() {
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
         >
           <AnimatePresence mode="popLayout">
-            {displayedProjects.map((proy) => (
+            {displayedProjects.map((proy, index) => (
               <motion.div
                 key={proy.id}
                 layout
@@ -102,23 +101,28 @@ export default function ProyectosPage() {
                 }}
                 className="group cursor-pointer"
               >
-                <div className="relative aspect-square overflow-hidden bg-zinc-50 dark:bg-zinc-900 rounded-sm shadow-sm border border-zinc-100 dark:border-zinc-900 group-hover:border-[#4A3728]/50 transition-all">
+                <div
+                  className="relative aspect-square overflow-hidden bg-zinc-50 dark:bg-zinc-900 rounded-sm shadow-sm border border-zinc-100 dark:border-zinc-900 group-hover:border-[#4A3728]/50 transition-all"
+                  onContextMenu={(e) => e.preventDefault()}
+                >
                   <Image
                     src={proy.mainImg}
                     alt={proy.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    priority={index < 8}
+                    className="object-cover transition-transform duration-700 group-hover:scale-110 select-none"
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    draggable={false}
                   />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10 pointer-events-none">
                     <Plus className="w-5 h-6 text-white text-3xl" />
                   </div>
                 </div>
                 <div className="mt-4 px-1">
-                  <h3 className="text-sm font-black uppercase  text-zinc-900 dark:text-white truncate">
+                  <h3 className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
                     {proy.title}
                   </h3>
-                  <p className="text-[12px] text-[#4A3728] font-bold uppercase -[0.2em] mt-1">
+                  <p className="text-[12px] text-[#4A3728] font-bold uppercase tracking-widest mt-1">
                     {proy.category}
                   </p>
                 </div>
@@ -132,7 +136,7 @@ export default function ProyectosPage() {
             <button
               onClick={loadMore}
               aria-label="proyectos"
-              className="flex items-center gap-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-10 py-5 rounded-sm text-[12px] font-black uppercase -[0.2em] hover:bg-[#4A3728] dark:hover:bg-[#4A3728] hover:text-white transition-all duration-300 group"
+              className="flex items-center gap-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-10 py-5 rounded-sm text-[12px] font-bold tracking-widest uppercase hover:bg-[#4A3728] dark:hover:bg-[#4A3728] hover:text-white transition-all duration-300 group"
             >
               Cargar más proyectos
               <Plus className="w-5 h-6 text-xl group-hover:rotate-90 transition-transform" />
@@ -177,19 +181,39 @@ export default function ProyectosPage() {
                     </button>
                   </>
                 )}
-                <motion.img
-                  key={currentImgIdx}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  src={allImages[currentImgIdx]}
-                  className="max-h-[75vh] object-contain rounded shadow-sm"
-                />
+                <div
+                  className="relative flex items-center justify-center max-h-[75vh]"
+                  onContextMenu={(e) => e.preventDefault()}
+                >
+                  <motion.img
+                    key={currentImgIdx}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    src={allImages[currentImgIdx]}
+                    className="max-h-[75vh] object-contain rounded shadow-sm select-none"
+                    draggable={false}
+                  />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none overflow-hidden rounded opacity-50">
+                    <div className="relative w-16 h-16 md:w-24 md:h-24 mb-1">
+                      <Image
+                        src="/assets/images/logoA.webp"
+                        alt="Watermark Muebles Maldonado"
+                        fill
+                        className="object-contain drop-shadow-md"
+                        draggable={false}
+                      />
+                    </div>
+                    <div className="text-white font-semibold text-xs md:text-sm tracking-wide drop-shadow-md">
+                      +593 95 950 4842
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="mt-8 text-center">
-                <h4 className="text-white font-black uppercase -[0.2em] text-md">
+                <h4 className="text-white font-bold uppercase tracking-widest text-lg md:text-lg">
                   {selectedProject.title}
                 </h4>
-                <p className="text-zinc-500 text-[12px] uppercase mt-2">
+                <p className="text-zinc-500 text-[12px] uppercase tracking-wider font-medium mt-2">
                   {currentImgIdx + 1} / {allImages.length}
                 </p>
               </div>

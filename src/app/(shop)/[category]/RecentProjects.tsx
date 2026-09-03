@@ -109,16 +109,20 @@ export default function RecentProjects({
               }}
               className="group cursor-pointer"
             >
-              <div className="relative aspect-4/3 overflow-hidden rounded-md bg-zinc-100 dark:bg-zinc-900">
+              <div
+                className="relative aspect-4/3 overflow-hidden rounded-md bg-zinc-100 dark:bg-zinc-900"
+                onContextMenu={(e) => e.preventDefault()}
+              >
                 <Image
                   src={project.mainImg}
                   alt={project.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03] select-none"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  draggable={false}
                 />
 
-                <div className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-[#4A3728] opacity-0 shadow-sm backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                <div className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-[#4A3728] opacity-0 shadow-sm backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
                   <Plus className="h-4 w-4" />
                 </div>
               </div>
@@ -177,14 +181,35 @@ export default function RecentProjects({
                     </button>
                   </>
                 )}
-                <motion.img
-                  key={currentImgIdx}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  src={allImages[currentImgIdx]}
-                  alt={selectedProject.title}
-                  className="max-h-[75vh] object-contain rounded-xl shadow-2xl"
-                />
+                <div
+                  className="relative flex items-center justify-center max-h-[75vh]"
+                  onContextMenu={(e) => e.preventDefault()}
+                >
+                  <motion.img
+                    key={currentImgIdx}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    src={allImages[currentImgIdx]}
+                    alt={selectedProject.title}
+                    className="max-h-[75vh] object-contain rounded-xl shadow-2xl select-none"
+                    draggable={false}
+                  />
+
+                  <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none overflow-hidden rounded-xl opacity-90">
+                    <div className="relative w-16 h-16 md:w-24 md:h-24 mb-1">
+                      <Image
+                        src="/assets/images/logoA1.webp"
+                        alt="Watermark Muebles Maldonado"
+                        fill
+                        className="object-contain drop-shadow-md"
+                        draggable={false}
+                      />
+                    </div>
+                    <div className="text-white font-semibold text-xs md:text-sm tracking-wide drop-shadow-md">
+                      +593 95 950 4842
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="mt-6 text-center">
                 <h4 className="text-white font-black uppercase -[0.2em] text-base">
