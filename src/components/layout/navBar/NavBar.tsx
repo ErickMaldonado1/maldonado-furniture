@@ -117,11 +117,11 @@ const Navbar = () => {
       } ${!mounted ? "opacity-0" : "opacity-100"}`}
     >
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 flex justify-between items-center gap-6">
-        <Link href="/" className="shrink-0 group" aria-label="Ir al inicio">
+        <Link href="/" className="shrink-0 group" aria-label="Ir al inicio" suppressHydrationWarning>
           <div className="relative w-32 sm:w-36 aspect-400/113 transition-transform group-hover:scale-105">
             <Image
               src={
-                !showSolidNavbar || theme === "dark"
+                !mounted || !showSolidNavbar || theme === "dark"
                   ? "/assets/images/logoA1.webp"
                   : "/assets/images/logoA.webp"
               }

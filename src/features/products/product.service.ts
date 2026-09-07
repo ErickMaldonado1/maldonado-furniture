@@ -58,6 +58,21 @@ export const ProductService = {
     });
   },
 
+  async getFlashSaleProducts(limit = 8) {
+    return await prisma.product.findMany({
+      where: {
+        isActive: true,
+        discount: { gte: 10 },
+      },
+      take: limit,
+      include: {
+        images: true,
+        variants: { include: { dimensions: true } },
+      },
+      orderBy: { discount: "desc" },
+    });
+  },
+
   async getById(id: string) {
     return await prisma.product.findUnique({
       where: { id },

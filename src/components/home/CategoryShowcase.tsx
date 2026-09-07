@@ -28,14 +28,14 @@ const categories = [
   {
     name: "Cómodas",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770155721/maldonado-furniture/products/y3mlypzrsgz8lt3svunf.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1787109140/maldonado-furniture/products/gbtexxwrbpluqyq06gan.webp?auto=compress&cs=tinysrgb&w=2070",
     href: "/dormitorio/comodas",
     tag: "Elegante",
   },
   {
     name: "Veladores",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770157982/maldonado-furniture/products/vpuwxabyhiphw8usqq8f.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1786982073/maldonado-furniture/products/pmm2otqtsuzbkyozyrv2.webp?auto=compress&cs=tinysrgb&w=2070",
     href: "/dormitorio/veladores",
     tag: "Moderno",
   },
@@ -95,7 +95,6 @@ const CategoryShowcase = () => {
   return (
     <section className="py-8 md:py-14 bg-white dark:bg-[#050505] transition-colors duration-500">
       <div className="max-w-360 mx-auto px-4 sm:px-6">
-        {/* Cabecera */}
         <div className="flex items-center justify-between mb-6 md:mb-10 border-b border-zinc-100 dark:border-zinc-800/50 pb-6">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-900 dark:text-white leading-none">
             Nuestras{" "}
