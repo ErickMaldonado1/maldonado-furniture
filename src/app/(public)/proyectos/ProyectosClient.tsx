@@ -199,6 +199,7 @@ export default function ProyectosPage() {
                         src="/assets/images/logoA.webp"
                         alt="Watermark Muebles Maldonado"
                         fill
+                        unoptimized
                         className="object-contain drop-shadow-md"
                         draggable={false}
                       />

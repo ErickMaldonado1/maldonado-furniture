@@ -30,6 +30,7 @@ const Footer = () => {
                   src="/assets/images/logoA1.webp"
                   alt="Maldonado Furniture"
                   fill
+                  unoptimized
                   className="object-contain"
                   priority
                 />

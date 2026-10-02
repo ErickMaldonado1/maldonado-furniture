@@ -1,7 +1,8 @@
-import FlashSale from "@/components/home/FlashSale";
+export const revalidate = 3600;
 import HeroSlider from "@/components/home/HeroSlider";
 import { ProductService } from "@/features/products/product.service";
 import dynamic from "next/dynamic";
+const FlashSale = dynamic(() => import("@/components/home/FlashSale"));
 const CategoryShowcase = dynamic(
   () => import("@/components/home/CategoryShowcase"),
   {

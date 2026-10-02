@@ -59,6 +59,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                     src={item.image || "/icons/placeholder.png"}
                     alt={item.name}
                     fill
+                    sizes="96px"
                     className="object-contain"
                   />
                 </div>

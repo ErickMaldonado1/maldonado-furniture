@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { motion, PanInfo } from "framer-motion";
+import { m, LazyMotion, domMax, PanInfo } from "framer-motion";
 import Link from "next/link";
 import { Zap } from "lucide-react";
 
@@ -155,46 +155,48 @@ export default function FlashSaleCarousel({
           )}
 
           <div className="overflow-hidden">
-            <motion.div
-              drag="x"
-              dragConstraints={{
-                left: 0,
-                right: 0,
-              }}
-              dragElastic={0.5}
-              onDragEnd={handleDragEnd}
-              animate={{
-                x: `-${currentIndex * (100 / visibleCount)}%`,
-              }}
-              transition={{
-                type: "spring",
-                damping: 30,
-                stiffness: 200,
-              }}
-              className="
-                flex
-                -mx-1
-                sm:-mx-2
-                cursor-grab
-                active:cursor-grabbing
-              "
-            >
-              {products.map((product: ProductWithRelations, idx) => (
-                <div
-                  key={product.id}
-                  className="
-                      flex-none
-                      px-1
-                      sm:px-2
-                    "
-                  style={{
-                    width: `${100 / visibleCount}%`,
-                  }}
-                >
-                  <ProductCard product={product} index={idx} />
-                </div>
-              ))}
-            </motion.div>
+            <LazyMotion features={domMax}>
+              <m.div
+                drag="x"
+                dragConstraints={{
+                  left: 0,
+                  right: 0,
+                }}
+                dragElastic={0.5}
+                onDragEnd={handleDragEnd}
+                animate={{
+                  x: `-${currentIndex * (100 / visibleCount)}%`,
+                }}
+                transition={{
+                  type: "spring",
+                  damping: 30,
+                  stiffness: 200,
+                }}
+                className="
+                  flex
+                  -mx-1
+                  sm:-mx-2
+                  cursor-grab
+                  active:cursor-grabbing
+                "
+              >
+                {products.map((product: ProductWithRelations, idx) => (
+                  <div
+                    key={product.id}
+                    className="
+                        flex-none
+                        px-1
+                        sm:px-2
+                      "
+                    style={{
+                      width: `${100 / visibleCount}%`,
+                    }}
+                  >
+                    <ProductCard product={product} index={idx} />
+                  </div>
+                ))}
+              </m.div>
+            </LazyMotion>
           </div>
         </div>
       </div>

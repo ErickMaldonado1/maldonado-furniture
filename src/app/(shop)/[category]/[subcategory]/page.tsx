@@ -1,3 +1,4 @@
+export const revalidate = 3600;
 import { Metadata } from "next";
 import { categories } from "@/utils/categories";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";

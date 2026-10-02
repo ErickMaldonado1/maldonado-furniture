@@ -80,6 +80,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
             alt="Muebles Maldonado"
             width={160}
             height={50}
+            unoptimized
             className="mb-4 dark:brightness-110"
             priority
           />

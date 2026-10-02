@@ -100,6 +100,7 @@ const MegaMenu = ({ isOpen, data, onMouseEnter, onMouseLeave }: any) => {
                               src={sub.imageSrc}
                               alt={sub.imageAlt}
                               fill
+                              sizes="120px"
                               className={`p-1.5 object-cover transition-transform duration-500 ${isHovered ? "scale-110" : "group-hover:scale-105"}`}
                             />
                           </div>

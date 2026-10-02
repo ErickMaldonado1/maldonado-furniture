@@ -308,6 +308,7 @@ export function ProductGallery({
                           alt="logo Maldonado Furniture"
                           width={100}
                           height={32}
+                          unoptimized
                           className="object-contain"
                         />
                       </div>

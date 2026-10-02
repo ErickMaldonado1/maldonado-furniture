@@ -39,6 +39,7 @@ const MobileMenu = ({ isOpen, onClose, isDarkMode }: MobileMenuProps) => {
               }
               alt="Maldonado Furniture"
               fill
+              unoptimized
               className="object-contain"
               priority
             />

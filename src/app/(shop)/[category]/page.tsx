@@ -1,9 +1,10 @@
+export const revalidate = 3600;
 import { Metadata } from "next";
 import Image from "next/image";
 import { categories } from "@/utils/categories";
 import ProductCard from "@/components/shop/product/ProductCard";
 import { ContactForm } from "@/components/shop/contact/ContactForm";
-import RecentProjects from "@/app/(shop)/[category]/RecentProjects"; // <--- Importas el componente creado
+import RecentProjects from "@/app/(shop)/[category]/RecentProjects"; 
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Squares2X2 } from "@/utils/icons/social";
@@ -165,14 +166,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function CategoryPage({ params }: Props) {
-  const { category: categorySlug } = await params;
-  const resolved = resolveCategoryConfig(categorySlug);
+import { Suspense } from "react";
 
-  if (!resolved) return notFound();
-
-  const { config: categoryConfig, queryKey } = resolved;
-
+async function SuspendedProductGrid({ queryKey }: { queryKey: string }) {
   const allCategoryProducts = await ProductService.getAll({
     category: queryKey,
   });
@@ -180,6 +176,37 @@ export default async function CategoryPage({ params }: Props) {
   const productsFromDB = allCategoryProducts
     .sort(() => 0.5 - Math.random())
     .slice(0, 8);
+
+  if (productsFromDB.length === 0) {
+    return (
+      <div className="text-center py-24 border-2 border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl">
+        <p className="text-zinc-400 uppercase -[0.2em] text-xs font-black">
+          Próximamente más modelos exclusivos
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-16">
+      {productsFromDB.map((product, i) => (
+        <ProductCard
+          key={product.id}
+          product={JSON.parse(JSON.stringify(product))}
+          index={i}
+        />
+      ))}
+    </div>
+  );
+}
+
+export default async function CategoryPage({ params }: Props) {
+  const { category: categorySlug } = await params;
+  const resolved = resolveCategoryConfig(categorySlug);
+
+  if (!resolved) return notFound();
+
+  const { config: categoryConfig, queryKey } = resolved;
 
   const heroImage = categoryConfig.featuredContent[0]?.imageSrc;
   const data = seoContent[categorySlug];
@@ -331,23 +358,9 @@ export default async function CategoryPage({ params }: Props) {
             </Link>
           </div>
 
-          {productsFromDB.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-16">
-              {productsFromDB.map((product, i) => (
-                <ProductCard
-                  key={product.id}
-                  product={JSON.parse(JSON.stringify(product))}
-                  index={i}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-24 border-2 border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl">
-              <p className="text-zinc-400 uppercase -[0.2em] text-xs font-black">
-                Próximamente más modelos exclusivos
-              </p>
-            </div>
-          )}
+          <Suspense fallback={<div className="h-96 w-full animate-pulse bg-zinc-100 dark:bg-zinc-900 rounded-xl" />}>
+            <SuspendedProductGrid queryKey={queryKey} />
+          </Suspense>
         </div>
       </section>
 

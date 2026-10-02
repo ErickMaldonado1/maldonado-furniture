@@ -33,6 +33,7 @@ export const WhatsAppModal = ({
                   src="/assets/images/logoA.webp"
                   alt="Logo"
                   fill
+                  unoptimized
                   className="object-contain"
                 />
               </div>

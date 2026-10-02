@@ -127,6 +127,7 @@ const Navbar = () => {
               }
               alt="Logo Maldonado"
               fill
+              unoptimized
               className="object-contain"
               priority
               sizes="144px"
