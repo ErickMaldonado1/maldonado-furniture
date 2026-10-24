@@ -355,6 +355,11 @@ export function ProductDetailClient({
           />
 
           <ProductActions
+            productId={product.id}
+            variantId={selectedVariant?.id || product.variants?.[0]?.id}
+            image={filteredImages[selectedImageIndex]?.url || product.images?.[0]?.url || ""}
+            category={product.category ?? undefined}
+            subcategory={product.subcategory ?? undefined}
             productName={selectedVariant?.name || product.name}
             sku={selectedVariant?.sku || product.sku}
             color={selectedColor || selectedVariant?.color || ""}

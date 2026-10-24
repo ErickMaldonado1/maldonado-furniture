@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import {
   HiOutlineHeart,
@@ -26,21 +26,24 @@ const DesktopNav = dynamic(
 const SearchBar = dynamic(() => import("@/components/shop/filters/SearchBar"), {
   ssr: false,
 });
+
 const MegaMenu = dynamic(() => import("@/components/layout/menu/MegaMenu"), {
   ssr: false,
 });
+
 const MobileMenu = dynamic(
   () => import("@/components/layout/menu/MovileMenu"),
   { ssr: false },
 );
+
 const AuthDrawer = dynamic(() => import("@/components/layout/AuthDrawer"), {
   ssr: false,
 });
+
 const FavoritesMenu = dynamic(() => import("./FavoritesMenu"), { ssr: false });
 const CartDrawer = dynamic(() => import("./CartDrawer"), { ssr: false });
 
 const Navbar = () => {
-  const router = useRouter();
   const pathname = usePathname();
   const [favoritesOpen, setFavoritesOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
@@ -48,15 +51,16 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isHoveringMenu, setIsHoveringMenu] = useState(false);
+  const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
+
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const openTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const isHomePage = pathname === "/";
   const showSolidNavbar = isScrolled || !isHomePage;
   const isAnyMenuOpen = activeMenu !== null || isHoveringMenu;
-  const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
 
   const isAdminPage = pathname?.startsWith("/admin");
   const totalItems = useCartStore((state) =>
@@ -65,14 +69,79 @@ const Navbar = () => {
   const cartItems = useCartStore((state) => state.cart);
   const favorites = useFavoritesStore((state) => state.favorites);
 
+  useEffect(() => {
+    setActiveMenu(null);
+    setIsHoveringMenu(false);
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+        if (openTimeoutRef.current) clearTimeout(openTimeoutRef.current);
+        setActiveMenu(null);
+        setIsHoveringMenu(false);
+        setIsMobileMenuOpen(false);
+        setFavoritesOpen(false);
+        setCartOpen(false);
+        setIsAuthDrawerOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const handleLinkMouseEnter = (item: string) => {
-    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
-    setActiveMenu(item);
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    if (openTimeoutRef.current) {
+      clearTimeout(openTimeoutRef.current);
+      openTimeoutRef.current = null;
+    }
+
+    if (activeMenu) {
+      setActiveMenu(item);
+    } else {
+      openTimeoutRef.current = setTimeout(() => {
+        setActiveMenu(item);
+      }, 70);
+    }
   };
 
   const handleLinkMouseLeave = () => {
-    const timeout = setTimeout(() => setActiveMenu(null), 250);
-    closeTimeoutRef.current = timeout;
+    if (openTimeoutRef.current) {
+      clearTimeout(openTimeoutRef.current);
+      openTimeoutRef.current = null;
+    }
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+
+    closeTimeoutRef.current = setTimeout(() => {
+      setActiveMenu(null);
+      setIsHoveringMenu(false);
+    }, 220);
+  };
+
+  const handleMenuMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setIsHoveringMenu(true);
+  };
+
+  const handleMenuMouseLeave = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsHoveringMenu(false);
+      setActiveMenu(null);
+    }, 220);
   };
 
   useEffect(() => {
@@ -85,11 +154,7 @@ const Navbar = () => {
 
     const handleScroll = () => {
       const offset = window.scrollY;
-      if (offset > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(offset > 15);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -100,135 +165,154 @@ const Navbar = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/productos?q=${encodeURIComponent(searchQuery)}`);
-      setIsMobileMenuOpen(false);
-    }
-  };
-
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 font-sans ${
-        showSolidNavbar
-          ? "bg-white dark:bg-[#0D0D0D] py-1.5 shadow-sm border-b border-zinc-200/50 dark:border-white/5"
-          : "bg-transparent py-2.5"
-      } ${!mounted ? "opacity-0" : "opacity-100"}`}
-    >
-      <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 flex justify-between items-center gap-6">
-        <Link href="/" className="shrink-0 group" aria-label="Ir al inicio" suppressHydrationWarning>
-          <div className="relative w-32 sm:w-36 aspect-400/113 transition-transform group-hover:scale-105">
-            <Image
-              src={
-                !mounted || !showSolidNavbar || theme === "dark"
-                  ? "/assets/images/logoA1.webp"
-                  : "/assets/images/logoA.webp"
-              }
-              alt="Logo Maldonado"
-              fill
-              unoptimized
-              className="object-contain"
-              priority
-              sizes="144px"
-            />
-          </div>
-        </Link>
-
-        <div className="hidden md:flex flex-1 max-w-xl">
-          <SearchBar showSolidNavbar={showSolidNavbar} />
-        </div>
-
-        <div className="flex items-center gap-1 sm:gap-2">
-          <button
-            onClick={toggleTheme}
-            className={`p-2 rounded-full transition-all ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"}`}
-            aria-label="Cambiar tema"
-          >
-            {mounted ? (
-              theme === "dark" ? (
-                <HiOutlineSun className="text-xl" />
-              ) : (
-                <HiOutlineMoon className="text-xl" />
-              )
-            ) : (
-              <HiOutlineSun className="text-xl" />
-            )}
-          </button>
-
-          <button
-            onClick={() => setFavoritesOpen(true)}
-            className={`hidden sm:flex p-2 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"}`}
-            aria-label="Abrir favoritos"
-          >
-            <HiOutlineHeart className="text-xl group-hover:scale-110 transition-transform" />
-            {mounted && favorites.length > 0 && (
-              <span className="absolute top-0.5 right-0.5 bg-[#4A3728] text-white text-[9px] font-black h-4 w-4 rounded-full flex items-center justify-center shadow-md animate-in zoom-in">
-                {favorites.length}
-              </span>
-            )}
-          </button>
-
-          <UserDropdown
-            onOpenAuth={() => setIsAuthDrawerOpen(true)}
-            showSolidNavbar={showSolidNavbar}
-          />
-
+    <>
+      <nav
+        aria-label="Cabecera principal de la tienda"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-sans ${
+          showSolidNavbar
+            ? "bg-white/95 dark:bg-[#0c0c0c]/95 backdrop-blur-xl shadow-xs border-b border-zinc-200/70 dark:border-white/10"
+            : "bg-gradient-to-b from-black/60 via-black/20 to-transparent"
+        } ${!mounted ? "opacity-0" : "opacity-100"}`}
+      >
+        <div
+          className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center gap-4 sm:gap-6 transition-all duration-300 ${
+            isScrolled ? "py-1.5 sm:py-2" : "py-2.5 sm:py-3"
+          }`}
+        >
           <Link
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              setCartOpen(true);
-            }}
-            aria-label="Abrir carrito"
-            className={`p-2 rounded-full relative group ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/10"}`}
+            href="/"
+            className="shrink-0 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] dark:focus-visible:ring-white rounded-lg"
+            aria-label="Muebles Maldonado - Ir al inicio"
+            suppressHydrationWarning
           >
-            <HiOutlineShoppingBag className="text-xl group-hover:scale-110 transition-transform" />
-            {mounted && totalItems > 0 && (
-              <span className="absolute top-0.5 right-0.5 bg-[#4A3728] text-white text-[9px] font-black h-4 w-4 rounded-full flex items-center justify-center shadow-md animate-in zoom-in">
-                {totalItems}
-              </span>
-            )}
+            <div className="relative w-32 sm:w-36 md:w-40 aspect-400/113 transition-transform duration-300 group-hover:scale-102">
+              <Image
+                src={
+                  !mounted || !showSolidNavbar || theme === "dark"
+                    ? "/assets/images/logoA1.webp"
+                    : "/assets/images/logoA.webp"
+                }
+                alt="Muebles Maldonado Ecuador"
+                fill
+                unoptimized
+                className="object-contain"
+                priority
+                sizes="160px"
+              />
+            </div>
           </Link>
 
-          <button
-            onClick={() => setIsMobileMenuOpen(true)}
-            className={`lg:hidden p-2 transition-all ${!showSolidNavbar ? "text-white hover:bg-white/10" : "text-zinc-600 dark:text-white"}`}
-            aria-label="Abrir menú móvil"
-          >
-            <HiOutlineMenuAlt3 size={28} />
-          </button>
+          <div className="hidden md:flex flex-1 max-w-md xl:max-w-lg mx-auto">
+            <SearchBar showSolidNavbar={showSolidNavbar} />
+          </div>
+
+          <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] dark:focus-visible:ring-white ${
+                !showSolidNavbar
+                  ? "text-white hover:bg-white/15"
+                  : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10 hover:text-zinc-950 dark:hover:text-white"
+              }`}
+              title="Cambiar tema claro u oscuro"
+              aria-label="Cambiar tema"
+            >
+              {mounted ? (
+                theme === "dark" ? (
+                  <HiOutlineSun className="text-xl transition-transform hover:rotate-45" />
+                ) : (
+                  <HiOutlineMoon className="text-xl transition-transform hover:-rotate-12" />
+                )
+              ) : (
+                <HiOutlineSun className="text-xl" />
+              )}
+            </button>
+
+            <button
+              onClick={() => setFavoritesOpen(true)}
+              className={`hidden sm:flex p-2 rounded-full relative group transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] dark:focus-visible:ring-white ${
+                !showSolidNavbar
+                  ? "text-white hover:bg-white/15"
+                  : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10 hover:text-zinc-950 dark:hover:text-white"
+              }`}
+              title="Ver mis favoritos"
+              aria-label="Abrir favoritos"
+            >
+              <HiOutlineHeart className="text-xl group-hover:scale-110 transition-transform duration-200" />
+              {mounted && favorites.length > 0 && (
+                <span className="absolute top-0.5 right-0.5 bg-[#4A3728] text-white text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center shadow-md animate-in zoom-in">
+                  {favorites.length}
+                </span>
+              )}
+            </button>
+
+            <UserDropdown
+              onOpenAuth={() => setIsAuthDrawerOpen(true)}
+              showSolidNavbar={showSolidNavbar}
+            />
+
+            <Link
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setCartOpen(true);
+              }}
+              title="Ver bolsa de compras"
+              aria-label="Abrir carrito"
+              className={`p-2 rounded-full relative group transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] dark:focus-visible:ring-white ${
+                !showSolidNavbar
+                  ? "text-white hover:bg-white/15"
+                  : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10 hover:text-zinc-950 dark:hover:text-white"
+              }`}
+            >
+              <HiOutlineShoppingBag className="text-xl group-hover:scale-110 transition-transform duration-200" />
+              {mounted && totalItems > 0 && (
+                <span className="absolute top-0.5 right-0.5 bg-[#4A3728] text-white text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center shadow-md animate-in zoom-in">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className={`lg:hidden p-2 rounded-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] dark:focus-visible:ring-white ${
+                !showSolidNavbar
+                  ? "text-white hover:bg-white/15"
+                  : "text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-white/10"
+              }`}
+              title="Abrir menú de navegación"
+              aria-label="Abrir menú móvil"
+            >
+              <HiOutlineMenuAlt3 size={24} />
+            </button>
+          </div>
         </div>
-      </div>
 
-      {!isAdminPage && (
-        <DesktopNav
-          showSolidNavbar={showSolidNavbar}
-          activeMenu={activeMenu}
-          handleLinkMouseEnter={handleLinkMouseEnter}
-          handleLinkMouseLeave={handleLinkMouseLeave}
-          isScrolled={isScrolled}
-          isHomePage={isHomePage}
-        />
-      )}
+        {!isAdminPage && (
+          <DesktopNav
+            showSolidNavbar={showSolidNavbar}
+            activeMenu={activeMenu}
+            handleLinkMouseEnter={handleLinkMouseEnter}
+            handleLinkMouseLeave={handleLinkMouseLeave}
+            isScrolled={isScrolled}
+            isHomePage={isHomePage}
+          />
+        )}
 
-      {!isAdminPage && isAnyMenuOpen && (
-        <MegaMenu
-          isOpen={isAnyMenuOpen}
-          data={categories.find((c) => c.label === activeMenu) || null}
-          onMouseEnter={() => {
-            if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
-            setIsHoveringMenu(true);
-          }}
-          onMouseLeave={() => {
-            const timeout = setTimeout(() => {
-              setIsHoveringMenu(false);
+        {!isAdminPage && isAnyMenuOpen && (
+          <MegaMenu
+            isOpen={isAnyMenuOpen}
+            data={categories.find((c) => c.label === activeMenu) || null}
+            onMouseEnter={handleMenuMouseEnter}
+            onMouseLeave={handleMenuMouseLeave}
+            onClose={() => {
               setActiveMenu(null);
-            }, 250);
-            closeTimeoutRef.current = timeout;
-          }}
-        />
-      )}
+              setIsHoveringMenu(false);
+            }}
+          />
+        )}
+      </nav>
 
       {!isAdminPage && isMobileMenuOpen && (
         <MobileMenu
@@ -259,7 +343,7 @@ const Navbar = () => {
           items={cartItems}
         />
       )}
-    </nav>
+    </>
   );
 };
 

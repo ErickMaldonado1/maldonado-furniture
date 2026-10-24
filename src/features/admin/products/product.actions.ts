@@ -656,15 +656,21 @@ export async function getProductsPaginated(
 ) {
   "use server";
   try {
-    const whereClause: any = {
-      OR: [
-        { name: { contains: query, mode: "insensitive" } },
-        { sku: { contains: query, mode: "insensitive" } },
-      ],
-    };
+    const whereClause: any = {};
 
-    if (category) whereClause.category = category;
-    if (subcategory) whereClause.subcategory = subcategory;
+    if (query && query.trim() !== "") {
+      whereClause.OR = [
+        { name: { contains: query.trim(), mode: "insensitive" } },
+        { sku: { contains: query.trim(), mode: "insensitive" } },
+      ];
+    }
+
+    if (category && category.trim() !== "") {
+      whereClause.category = category.trim();
+    }
+    if (subcategory && subcategory.trim() !== "") {
+      whereClause.subcategory = subcategory.trim();
+    }
 
     const products = await prisma.product.findMany({
       where: whereClause,
@@ -674,7 +680,7 @@ export async function getProductsPaginated(
       },
       orderBy: { createdAt: "desc" },
       skip,
-      take: take + 1, 
+      take: take + 1,
     });
 
     const hasMore = products.length > take;

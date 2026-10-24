@@ -65,28 +65,30 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-2 p-1.5 pr-3 rounded-full transition-all border ${
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
+        aria-label={`Opciones de cuenta para ${user?.name || "usuario"}`}
+        className={`flex items-center gap-2 p-1.5 pr-3 rounded-full transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] dark:focus-visible:ring-white ${
           !showSolidNavbar
             ? "border-white/20 text-white max-md:text-white hover:bg-white/10"
             : "border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800"
         }`}
-        aria-label="efecto-navbar"
       >
-        <div className="w-8 h-8 rounded-full bg-[#4A3728] text-white flex items-center justify-center font-bold text-sm uppercase">
+        <div className="w-8 h-8 rounded-full bg-[#4A3728] text-white flex items-center justify-center font-bold text-xs uppercase shadow-xs">
           {user?.name?.[0] || user?.email?.[0] || "U"}
         </div>
-        <span className="text-sm font-medium hidden md:block max-w-25 truncate">
+        <span className="text-sm font-medium hidden md:block max-w-28 truncate">
           {user?.name?.split(" ")[0] || "Usuario"}
         </span>
       </button>
       <div
-        className={`absolute right-0 top-full mt-2 w-64 bg-white dark:bg-zinc-900 rounded-sm shadow-xl border border-zinc-100 dark:border-zinc-800 transform transition-all duration-200 origin-top-right z-50 overflow-hidden ${
+        className={`absolute right-0 top-full mt-2 w-64 bg-white/98 dark:bg-[#0c0c0c]/98 backdrop-blur-xl rounded-xl shadow-2xl border border-zinc-200/80 dark:border-zinc-800 transform transition-all duration-200 origin-top-right z-50 overflow-hidden ${
           isOpen
             ? "opacity-100 scale-100 visible"
             : "opacity-0 scale-95 invisible"
         }`}
       >
-        <div className="p-4 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-800/50">
+        <div className="p-4 border-b border-zinc-100 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/50">
           <p className="text-sm font-bold text-zinc-900 dark:text-white truncate">
             {user?.name || "Usuario"}
           </p>
@@ -94,7 +96,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
             {user?.email}
           </p>
           {user?.role === "ADMIN" && (
-            <span className="mt-2 inline-block px-2 py-0.5 text-md font-bold rounded-full uppercase -wider">
+            <span className="mt-2 inline-block px-2.5 py-0.5 text-[10px] font-bold rounded-full uppercase tracking-wider bg-[#4A3728]/15 text-[#4A3728] dark:bg-[#D4B896]/15 dark:text-[#D4B896]">
               Administrador
             </span>
           )}

@@ -93,10 +93,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
         onBlur={() => setIsFocused(false)}
         placeholder={isFocused || query ? "" : currentPlaceholder}
         aria-label="Buscar productos"
-        className={`w-full border-b py-2.5 pl-12 pr-4 focus:outline-none transition-all -wide text-lg font-light ${
+        className={`w-full py-2 pl-11 pr-4 text-xs sm:text-sm font-normal rounded-full border transition-all duration-200 focus:outline-none ${
           !showSolidNavbar
-            ? "bg-transparent border-white/20 text-white placeholder:text-white/90 focus:border-white/80"
-            : "bg-transparent border-zinc-400 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:border-[#4A3728] placeholder:text-zinc-500"
+            ? "bg-white/10 border-white/25 text-white placeholder:text-white/75 focus:border-white focus:bg-white/15 focus:ring-2 focus:ring-white/20"
+            : "bg-zinc-100/90 dark:bg-zinc-900/90 border-zinc-200/80 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:bg-white dark:focus:bg-[#141414] focus:ring-2 focus:ring-[#4A3728]/15 dark:focus:ring-[#D4B896]/20"
         }`}
       />
     </form>

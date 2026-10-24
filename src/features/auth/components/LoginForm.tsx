@@ -1,17 +1,15 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Loading } from "@/utils/icons/actions";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, Loader2, AlertCircle } from "lucide-react";
 
 interface LoginFormProps {
   onSuccess?: () => void;
@@ -30,6 +28,8 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const searchParams = useSearchParams();
   const urlError = searchParams.get("error");
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+
   const {
     register,
     handleSubmit,
@@ -39,7 +39,9 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
   });
 
   const [globalError, setGlobalError] = useState<string | null>(
-    urlError ? "Hubo un problema al iniciar sesión con Google." : null,
+    urlError
+      ? "Hubo un problema al autenticar con Google. Inténtalo de nuevo."
+      : null,
   );
 
   const [isCredentialsLoading, setIsCredentialsLoading] = useState(false);
@@ -49,7 +51,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
     if (onSuccess) {
       onSuccess();
     } else {
-      router.push("/");
+      router.push(callbackUrl);
     }
     router.refresh();
   };
@@ -60,21 +62,25 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
 
     try {
       const res = await signIn("credentials", {
-        email: data.email,
+        email: data.email.trim().toLowerCase(),
         password: data.password,
         redirect: false,
-        callbackUrl: "/",
+        callbackUrl,
       });
 
       if (res?.error) {
-        setGlobalError("Credenciales incorrectas. Inténtalo de nuevo.");
+        setGlobalError(
+          "Credenciales incorrectas. Verifica tu correo y contraseña.",
+        );
         setIsCredentialsLoading(false);
         return;
       }
 
       handleAuthSuccess();
     } catch {
-      setGlobalError("Ocurrió un error inesperado.");
+      setGlobalError(
+        "Ocurrió un error inesperado al conectar con el servidor.",
+      );
       setIsCredentialsLoading(false);
     }
   };
@@ -85,61 +91,80 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
 
     try {
       await signIn("google", {
-        callbackUrl: "/",
+        callbackUrl,
       });
     } catch {
-      setGlobalError("No se pudo conectar con Google.");
+      setGlobalError("No se pudo conectar con el servicio de Google.");
       setIsGoogleLoading(false);
     }
   };
+
   const isAnyLoading = isCredentialsLoading || isGoogleLoading;
 
   return (
-    <div className="w-full max-w-md mx-auto rounded-xl bg-white dark:bg-zinc-950 shadow border border-zinc-100 dark:border-zinc-800 overflow-hidden transition-all duration-300">
-      <div className="p-6 sm:p-8">
-        <header className="mb-4 flex flex-col items-center text-center">
-          <Image
-            src="/assets/images/logoA.webp"
-            alt="Muebles Maldonado"
-            width={160}
-            height={50}
-            unoptimized
-            className="mb-4 dark:brightness-110"
-            priority
-          />
+    <div className="w-full max-w-md mx-auto rounded-3xl bg-white dark:bg-[#111111] shadow-xl border border-zinc-200/90 dark:border-zinc-800 overflow-hidden transition-all duration-300">
+      <div className="p-7 sm:p-9">
+        <header className="mb-6 flex flex-col items-center text-center space-y-2">
+          <Link
+            href="/"
+            className="inline-block transition-transform hover:scale-102"
+          >
+            <Image
+              src="/assets/images/logoA.webp"
+              alt="Muebles Maldonado"
+              width={160}
+              height={48}
+              unoptimized
+              className="dark:brightness-110"
+              priority
+            />
+          </Link>
+          <div>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+              Accede a tus pedidos, personalizaciones y catálogo
+            </p>
+          </div>
         </header>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+          className="space-y-4"
+        >
           {globalError && (
-            <div className="rounded-sm bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4 text-sm font-medium text-red-600 dark:text-red-400 text-center animate-pulse">
-              {globalError}
+            <div className="rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 p-3.5 text-xs font-medium text-red-600 dark:text-red-400 flex items-start gap-2 text-left">
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+              <span>{globalError}</span>
             </div>
           )}
 
-          <div className="space-y-2">
-            <label className="text-xs font-medium text-zinc-600 dark:text-zinc-400 uppercase  ml-1">
+          <div className="space-y-1.5 text-left">
+            <label className="text-xs font-bold uppercase tracking-wide text-zinc-700 dark:text-zinc-300 ml-0.5">
               Correo Electrónico
             </label>
-            <input
-              {...register("email")}
-              type="email"
-              placeholder="usuario@ejemplo.com"
-              disabled={isAnyLoading}
-              className={`w-full rounded-md border bg-zinc-50 dark:bg-zinc-900/50 py-3.5 px-4 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 transition-all ${
-                errors.email
-                  ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                  : "border-zinc-200 dark:border-zinc-800 focus:border-[#6B4B36] focus:ring-[#6B4B36]/20"
-              }`}
-            />
+            <div className="relative">
+              <input
+                {...register("email")}
+                type="email"
+                placeholder="usuario@ejemplo.com"
+                disabled={isAnyLoading}
+                className={`w-full rounded-xl border bg-zinc-50/50 dark:bg-zinc-900/50 py-3 pl-10 pr-4 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none transition-all ${
+                  errors.email
+                    ? "border-red-400 focus:border-red-500 ring-1 ring-red-500/20"
+                    : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
+                }`}
+              />
+              <Mail className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            </div>
             {errors.email && (
-              <p className="text-xs text-red-500 font-medium ml-1">
+              <p className="text-[11px] text-red-500 font-medium ml-1">
                 {errors.email.message}
               </p>
             )}
           </div>
 
-          <div className="space-y-2">
-            <label className="text-xs font-medium text-zinc-600 dark:text-zinc-400 uppercase  ml-1">
+          <div className="space-y-1.5 text-left">
+            <label className="text-xs font-bold uppercase tracking-wide text-zinc-700 dark:text-zinc-300 ml-0.5">
               Contraseña
             </label>
             <div className="relative">
@@ -148,27 +173,31 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 disabled={isAnyLoading}
-                className={`w-full rounded-md border bg-zinc-50 dark:bg-zinc-900/50 py-3.5 px-4 pr-12 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 transition-all ${
+                className={`w-full rounded-xl border bg-zinc-50/50 dark:bg-zinc-900/50 py-3 pl-10 pr-12 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none transition-all ${
                   errors.password
-                    ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                    : "border-zinc-200 dark:border-zinc-800 focus:border-[#6B4B36] focus:ring-[#6B4B36]/20"
+                    ? "border-red-400 focus:border-red-500 ring-1 ring-red-500/20"
+                    : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
                 }`}
               />
+              <Lock className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors"
                 tabIndex={-1}
+                aria-label={
+                  showPassword ? "Ocultar contraseña" : "Ver contraseña"
+                }
               >
                 {showPassword ? (
-                  <EyeOff className="w-5 h-5" />
+                  <EyeOff className="w-4 h-4" />
                 ) : (
-                  <Eye className="w-5 h-5" />
+                  <Eye className="w-4 h-4" />
                 )}
               </button>
             </div>
             {errors.password && (
-              <p className="text-xs text-red-500 font-medium ml-1">
+              <p className="text-[11px] text-red-500 font-medium ml-1">
                 {errors.password.message}
               </p>
             )}
@@ -177,20 +206,24 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
           <button
             type="submit"
             disabled={isAnyLoading}
-            className="group relative w-full h-12 flex items-center justify-center rounded-md bg-[#4A3728] text-white text-sm font-bold uppercase  transition-all hover:bg-[#3d2d21] active:scale-[0.98] disabled:opacity-70 shadow-sm shadow-[#4A3728]/20 overflow-hidden"
+            className="w-full h-12 flex items-center justify-center rounded-xl bg-[#4A3728] hover:bg-[#3D2C1F] text-white text-xs font-bold uppercase tracking-wider transition-all active:scale-[0.98] disabled:opacity-60 shadow-md cursor-pointer"
           >
             {isCredentialsLoading ? (
-              <Loading className="w-5 h-5 animate-spin text-xl" />
+              <div className="flex items-center gap-2">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Iniciando sesión...</span>
+              </div>
             ) : (
-              <span className="relative z-10 filter">ACCEDER</span>
+              <span>Ingresar</span>
             )}
-            <div className="absolute inset-0 h-full w-full scale-0 rounded-md transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10" />
           </button>
         </form>
 
-        <div className="my-8 flex items-center gap-4">
+        <div className="my-6 flex items-center gap-3">
           <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
-          <span className="text-sm font-black text-zinc-400 ">O</span>
+          <span className="text-xs font-bold text-zinc-400 uppercase">
+            O continúa con
+          </span>
           <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
         </div>
 
@@ -198,39 +231,41 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
           type="button"
           disabled={isAnyLoading}
           onClick={handleGoogleSignIn}
-          className="group relative flex h-12 w-full items-center justify-center gap-3 rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-sm font-bold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all shadow-sm hover:shadow active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden"
+          className="w-full h-12 flex items-center justify-center gap-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-xs font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all shadow-xs active:scale-[0.98] disabled:opacity-60 cursor-pointer"
         >
           {isGoogleLoading ? (
-            <Loading className="w-5 h-6 animate-spin text-xl text-[#4A3728]" />
+            <div className="flex items-center gap-2">
+              <Loader2 className="w-4 h-4 animate-spin text-[#4A3728]" />
+              <span>Conectando...</span>
+            </div>
           ) : (
             <>
-              <FcGoogle className="text-xl" />
-              <span>CONTINUAR CON GOOGLE</span>
+              <FcGoogle className="text-lg" />
+              <span>Google</span>
             </>
           )}
-          <div className="absolute inset-0 h-full w-full scale-0 rounded-md transition-all duration-300 group-hover:scale-100 group-hover:bg-zinc-500/5" />
         </button>
 
-        <div className="mt-8 text-center bg-transparent">
+        <div className="mt-7 text-center">
           {onSwitchToRegister ? (
             <button
               type="button"
               onClick={onSwitchToRegister}
-              className="text-xs font-bold uppercase  text-zinc-500 hover:text-[#6B4B36] transition-colors"
+              className="text-xs font-medium text-zinc-500 hover:text-[#4A3728] dark:hover:text-[#D4B896] transition-colors"
             >
-              ¿No tienes cuenta?{" "}
-              <span className="text-[#6B4B36] underline underline-offset-4 decoration-2">
-                Regístrate ahora
+              ¿No tienes una cuenta?{" "}
+              <span className="font-bold text-[#4A3728] dark:text-[#D4B896] underline underline-offset-4">
+                Crear cuenta
               </span>
             </button>
           ) : (
             <Link
               href="/register"
-              className="text-xs font-bold uppercase  text-zinc-500 hover:text-[#6B4B36] transition-colors"
+              className="text-xs font-medium text-zinc-500 hover:text-[#4A3728] dark:hover:text-[#D4B896] transition-colors"
             >
-              ¿No tienes cuenta?{" "}
-              <span className="text-[#6B4B36] underline underline-offset-4 decoration-2">
-                Regístrate ahora
+              ¿No tienes una cuenta?{" "}
+              <span className="font-bold text-[#4A3728] dark:text-[#D4B896] underline underline-offset-4">
+                Crear cuenta
               </span>
             </Link>
           )}

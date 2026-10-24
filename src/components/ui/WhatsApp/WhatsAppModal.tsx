@@ -77,7 +77,7 @@ export const WhatsAppModal = ({
               <button
                 onClick={onConfirm}
                 disabled={isLoading}
-                className={`group relative w-full h-14 bg-emerald-700 hover:bg-emerald-800 text-white rounded-2xl font-bold transition-all shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 ${
+                className={`group relative w-full h-14 bg-[#166534] hover:bg-[#14532d] text-white rounded-2xl font-bold transition-all shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#166534] ${
                   isLoading ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >

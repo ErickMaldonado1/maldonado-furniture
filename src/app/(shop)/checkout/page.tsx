@@ -77,11 +77,21 @@ export default function CheckoutPage() {
     setIsSubmitting(true);
 
     try {
+      const customNotesSummary = items
+        .filter((i) => i.customization?.isCustom)
+        .map(
+          (i) =>
+            `[Mueble a Medida: ${i.name} (${i.dimensions}) | Acabado: ${i.customization?.finish || "Estándar"}${i.customization?.notes ? ` | Obs: ${i.customization.notes}` : ""}]`
+        )
+        .join("\n");
+      const combinedNotes = [tempData.notes, customNotesSummary].filter(Boolean).join("\n");
+
       const response = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...tempData,
+          notes: combinedNotes,
           total: getTotalPrice(),
           items: items.map((i) => ({
             variantId: i.variantId,
@@ -124,10 +134,14 @@ export default function CheckoutPage() {
     const productList = items
       .map((item) => {
         const itemTotal = (item.price * item.quantity).toLocaleString();
+        const detailsText = item.customization?.isCustom
+          ? `📐 A Medida: ${item.dimensions} | Acabado: ${item.customization.finish || item.variantName}${item.customization.notes ? `\nObs: ${item.customization.notes}` : ""}`
+          : `Detalles: ${item.variantName || "Estándar"} | ${item.materials || "Melamina"}`;
+
         return [
           `📦 *${item.name.toUpperCase()}*`,
           `SKU: ${item.sku || "N/A"}`,
-          `Detalles: ${item.variantName || "Estándar"} | ${item.materials || "Melamina"}`,
+          detailsText,
           `Cant: ${item.quantity} x $${item.price.toLocaleString()}`,
           `Subtotal: *$${itemTotal}*`,
           `--------------------------`,

@@ -13,6 +13,11 @@ const ProductAccordion = dynamic(
 );
 
 interface ProductActionsProps {
+  productId?: string;
+  variantId?: string;
+  image?: string;
+  category?: string;
+  subcategory?: string;
   productName: string;
   sku: string;
   color: string;
@@ -38,6 +43,11 @@ interface ProductActionsProps {
 }
 
 export function ProductActions({
+  productId = "",
+  variantId = "",
+  image = "",
+  category,
+  subcategory,
   productName,
   sku,
   color,
@@ -63,23 +73,23 @@ export function ProductActions({
     const origin = typeof window !== "undefined" ? window.location.href : "";
     const dimsText = dimensions
       ? `${dimensions.width}cm ancho x ${dimensions.height}cm alto x ${dimensions.depth}cm profundidad`
-      : (size || "Medidas de catálogo");
+      : size || "Medidas de catálogo";
 
     const formattedPrice = finalPrice.toLocaleString("es-EC", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
 
-    const message = `👋 ¡Hola Muebles Maldonado! Me interesa cotizar este producto:
-🪑 *Producto:* ${productName}
-🆔 *Código / SKU:* ${sku || "N/A"}
-💰 *Precio publicado:* $${formattedPrice} c/u
-📐 *Medidas de variante:* ${dimsText}
-🎨 *Acabado / Color:* ${color || "Estándar"}
-🔢 *Cantidad:* ${quantity}
-🔗 *Enlace:* ${origin}
+    const message = `Hola Muebles Maldonado, me interesa cotizar este producto:
 
-¿Tienen disponibilidad y realizan instalación en Quito? Me gustaría coordinar detalles.`;
+*Producto:* ${productName}
+*Codigo / SKU:* ${sku || "N/A"}
+*Precio publicado:* $${formattedPrice} c/u
+*Medidas de variante:* ${dimsText}
+*Acabado / Color:* ${color || "Estándar"}
+*Cantidad:* ${quantity}
+
+Tienen disponibilidad y realizan instalacion en Quito? Me gustaria coordinar detalles.`;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/593959504842?text=${encodedMessage}`, "_blank");
@@ -126,7 +136,10 @@ export function ProductActions({
         </span>
         <div className="flex items-center gap-1">
           <span>Plazo de entrega {deliveryText}</span>
-          <span className="w-4 h-4 rounded-full border border-zinc-400 text-[10px] flex items-center justify-center font-bold" aria-hidden="true">
+          <span
+            className="w-4 h-4 rounded-full border border-zinc-400 text-[10px] flex items-center justify-center font-bold"
+            aria-hidden="true"
+          >
             i
           </span>
         </div>
@@ -152,7 +165,10 @@ export function ProductActions({
                 </option>
               ))}
             </select>
-            <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500" aria-hidden="true">
+            <div
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500"
+              aria-hidden="true"
+            >
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -190,7 +206,10 @@ export function ProductActions({
             aria-label={isFav ? "Eliminar de favoritos" : "Agregar a favoritos"}
           >
             {isFav ? (
-              <HeartFilled className="w-5 h-5 text-red-500" aria-hidden="true" />
+              <HeartFilled
+                className="w-5 h-5 text-red-500"
+                aria-hidden="true"
+              />
             ) : (
               <Heart className="w-5 h-5" aria-hidden="true" />
             )}
@@ -203,7 +222,7 @@ export function ProductActions({
             onClick={handleWhatsApp}
             title="Cotizar por WhatsApp"
             aria-label="Cotizar este producto por WhatsApp"
-            className="h-12 px-4 rounded-full bg-emerald-700 hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 text-white flex items-center justify-center gap-2 label-premium text-white! font-medium tracking-wider transition-all shadow-sm active:scale-95 cursor-pointer"
+            className="h-12 px-4 rounded-full bg-[#166534] hover:bg-[#14532d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#166534] focus-visible:ring-offset-2 text-white flex items-center justify-center gap-2 label-premium text-white! font-medium tracking-wider transition-all shadow-sm active:scale-95 cursor-pointer"
           >
             <Whatsapp className="w-5 h-5 text-white" aria-hidden="true" />
             <span>Cotizar por WhatsApp</span>
@@ -237,12 +256,19 @@ export function ProductActions({
       <CustomProductModal
         isOpen={isCustomModalOpen}
         onClose={() => setIsCustomModalOpen(false)}
-        initialProduct={{
+        product={{
+          id: productId,
           name: productName,
           sku: sku,
           color: color,
           dimensions: dimensions,
-          price: finalPrice,
+          price: price,
+          finalPrice: finalPrice,
+          image: image,
+          variantId: variantId,
+          materials: materials,
+          category: category,
+          subcategory: subcategory,
         }}
       />
     </div>

@@ -98,12 +98,6 @@ export default function FlashSaleCarousel({
       <div className="max-w-360 mx-auto px-4 sm:px-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 md:mb-10 border-b border-zinc-100 dark:border-zinc-800/50 pb-6 gap-2">
           <div>
-            <div className="flex items-center gap-1.5 mb-1">
-              <Zap className="text-[#634E3A] dark:text-[#D4B896] w-3.5 h-3.5" aria-hidden="true" />
-              <span className="label-premium text-[#634E3A] dark:text-[#D4B896]">
-                Precios Directos de Taller
-              </span>
-            </div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-900 dark:text-white leading-none">
               Oportunidades{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037] dark:from-[#A6866A] dark:to-[#D1B894]">
@@ -119,7 +113,10 @@ export default function FlashSaleCarousel({
           >
             <span className="hidden sm:inline">VER TODAS LAS PROMOCIONES</span>
             <span className="sm:hidden">VER MÁS</span>
-            <ArrowNarrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform text-[#4A3728] dark:text-[#A6866A]" aria-hidden="true" />
+            <ArrowNarrowRight
+              className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform text-[#4A3728] dark:text-[#A6866A]"
+              aria-hidden="true"
+            />
           </Link>
         </div>
         <div

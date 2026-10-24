@@ -27,25 +27,39 @@ export function RealProjectsGallery({
     const normCat = (category || "").toLowerCase();
     const normSub = (subcategory || "").toLowerCase();
 
-    return proyectos.filter((p) => {
-      const pCat = p.category.toLowerCase();
-      const pTitle = p.title.toLowerCase();
+    return proyectos
+      .filter((p) => {
+        const pCat = p.category.toLowerCase();
+        const pTitle = p.title.toLowerCase();
 
-      if (normCat.includes("dormitorio") || normSub.includes("cama") || normSub.includes("closet")) {
-        return pCat === "dormitorio";
-      }
-      if (normCat.includes("sala") || normSub.includes("tv") || normSub.includes("aparador")) {
-        return pCat === "sala";
-      }
-      if (normCat.includes("oficina") || normSub.includes("escritorio") || normSub.includes("librero")) {
-        return pCat === "oficina";
-      }
-      if (normCat.includes("cocina") || normSub.includes("modular")) {
-        return pCat === "cocina";
-      }
+        if (
+          normCat.includes("dormitorio") ||
+          normSub.includes("cama") ||
+          normSub.includes("closet")
+        ) {
+          return pCat === "dormitorio";
+        }
+        if (
+          normCat.includes("sala") ||
+          normSub.includes("tv") ||
+          normSub.includes("aparador")
+        ) {
+          return pCat === "sala";
+        }
+        if (
+          normCat.includes("oficina") ||
+          normSub.includes("escritorio") ||
+          normSub.includes("librero")
+        ) {
+          return pCat === "oficina";
+        }
+        if (normCat.includes("cocina") || normSub.includes("modular")) {
+          return pCat === "cocina";
+        }
 
-      return pCat === normCat;
-    }).slice(0, 4);
+        return pCat === normCat;
+      })
+      .slice(0, 4);
   }, [category, subcategory]);
 
   if (matchedProjects.length === 0) return null;
@@ -57,7 +71,10 @@ export function RealProjectsGallery({
   const handleConsultProject = (projectTitle: string) => {
     const origin = typeof window !== "undefined" ? window.location.href : "";
     const message = `👋 ¡Hola Muebles Maldonado! Estaba viendo "${productName}" y me encantó el proyecto real terminado: "${projectTitle}". ¿Podrían darme más información sobre costo de fabricación e instalación similar para mi hogar? Enlace: ${origin}`;
-    window.open(`https://wa.me/593959504842?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(
+      `https://wa.me/593959504842?text=${encodeURIComponent(message)}`,
+      "_blank",
+    );
   };
 
   return (
@@ -149,7 +166,8 @@ export function RealProjectsGallery({
                     <button
                       onClick={() =>
                         setCurrentImgIdx(
-                          (currentImgIdx - 1 + allImages.length) % allImages.length,
+                          (currentImgIdx - 1 + allImages.length) %
+                            allImages.length,
                         )
                       }
                       className="absolute left-2 text-white p-3 rounded-full bg-black/50 hover:bg-black/80 transition-all z-10"
@@ -186,14 +204,15 @@ export function RealProjectsGallery({
                   {selectedProject.title}
                 </h4>
                 <p className="text-zinc-400 text-xs">
-                  Foto {currentImgIdx + 1} de {allImages.length} • Proyecto entregado por Muebles Maldonado
+                  Foto {currentImgIdx + 1} de {allImages.length} • Proyecto
+                  entregado por Muebles Maldonado
                 </p>
 
                 <div className="pt-2">
                   <button
                     type="button"
                     onClick={() => handleConsultProject(selectedProject.title)}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white label-premium text-white! font-medium tracking-wider transition-all shadow-md active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#166534] hover:bg-[#14532d] text-white label-premium text-white! font-medium tracking-wider transition-all shadow-md active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#166534]"
                   >
                     <Whatsapp className="w-4 h-4 text-white" />
                     <span>Cotizar este diseño por WhatsApp</span>

@@ -13,7 +13,9 @@ interface SmallSpacesSectionProps {
   products: ProductWithRelations[];
 }
 
-export default function SmallSpacesSection({ products }: SmallSpacesSectionProps) {
+export default function SmallSpacesSection({
+  products,
+}: SmallSpacesSectionProps) {
   const [visibleCount, setVisibleCount] = useState(4);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -58,12 +60,6 @@ export default function SmallSpacesSection({ products }: SmallSpacesSectionProps
       <div className="max-w-360 mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-10 border-b border-zinc-200/70 dark:border-zinc-800/50 pb-6 gap-4">
           <div>
-            <div className="flex items-center gap-1.5 mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-[#634E3A] dark:text-[#D4B896]" aria-hidden="true" />
-              <span className="label-premium text-[#634E3A] dark:text-[#D4B896]">
-                Optimización y Funcionalidad
-              </span>
-            </div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-900 dark:text-white leading-none">
               Soluciones para{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037] dark:from-[#C4A482] dark:to-[#E0CCA7]">
@@ -71,7 +67,8 @@ export default function SmallSpacesSection({ products }: SmallSpacesSectionProps
               </span>
             </h2>
             <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-300 mt-2 max-w-xl">
-              Muebles compactos, modulares y de doble función diseñados para aprovechar cada centímetro en departamentos y suites.
+              Muebles compactos, modulares y de doble función diseñados para
+              aprovechar cada centímetro en departamentos y suites.
             </p>
           </div>
 
@@ -82,7 +79,10 @@ export default function SmallSpacesSection({ products }: SmallSpacesSectionProps
           >
             <span className="hidden sm:inline">EXPLORAR CATÁLOGO</span>
             <span className="sm:hidden">CATÁLOGO</span>
-            <ArrowNarrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#4A3728] dark:text-[#D4B896] group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+            <ArrowNarrowRight
+              className="w-4 h-4 sm:w-5 sm:h-5 text-[#4A3728] dark:text-[#D4B896] group-hover:translate-x-1 transition-transform"
+              aria-hidden="true"
+            />
           </Link>
         </div>
 

@@ -34,7 +34,9 @@ export default function ProductCard({ product, index }: ProductCardProps) {
     setIsMounted(true);
   }, []);
 
-  const rawImageUrl = product.images?.[0]?.url || "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp";
+  const rawImageUrl =
+    product.images?.[0]?.url ||
+    "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp";
   const rawSecondImageUrl = product.images?.[1]?.url || null;
 
   const getOptimizedImage = (url: string, width: number = 800) => {
@@ -137,16 +139,11 @@ export default function ProductCard({ product, index }: ProductCardProps) {
     const dims = firstVariant?.dimensions
       ? `${firstVariant.dimensions.width}x${firstVariant.dimensions.height}x${firstVariant.dimensions.depth} cm`
       : "Medidas estándar";
-    const origin =
-      typeof window !== "undefined"
-        ? window.location.origin
-        : "https://www.mueblesmaldonadoec.com";
-    const productUrl = `${origin}${productPath}`;
     const formattedPrice = finalPrice.toLocaleString("es-EC", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
-    const message = `👋 ¡Hola Muebles Maldonado! Me interesa cotizar este mueble:\n🪑 *Producto:* ${product.name}\n🆔 *Código:* ${firstVariant?.sku || product.sku || "N/A"}\n💰 *Precio:* $${formattedPrice}\n📐 *Medidas:* ${dims}\n🎨 *Acabado/Color:* ${firstVariant?.color || product.colors?.[0] || "A elección"}\n🔗 *Enlace:* ${productUrl}\n¿Tienen disponibilidad y entrega en Quito?`;
+    const message = `Hola Muebles Maldonado, me interesa cotizar este mueble:\n\n*Producto:* ${product.name}\n*Codigo:* ${firstVariant?.sku || product.sku || "N/A"}\n*Precio:* $${formattedPrice}\n*Medidas:* ${dims}\n*Acabado/Color:* ${firstVariant?.color || product.colors?.[0] || "A eleccion"}\n\nTienen disponibilidad y entrega en Quito?`;
     window.open(
       `https://wa.me/593959504842?text=${encodeURIComponent(message)}`,
       "_blank",
@@ -210,7 +207,11 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           <button
             type="button"
             onClick={handleToggleFavorite}
-            aria-label={isFav ? `Eliminar ${product.name} de favoritos` : `Añadir ${product.name} a favoritos`}
+            aria-label={
+              isFav
+                ? `Eliminar ${product.name} de favoritos`
+                : `Añadir ${product.name} a favoritos`
+            }
             className={`p-1.5 sm:p-2 rounded-full backdrop-blur-md transition-all duration-300 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 cursor-pointer ${
               isFav
                 ? "bg-white text-red-500"
@@ -218,7 +219,10 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             }`}
           >
             {isFav ? (
-              <HeartFilled className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
+              <HeartFilled
+                className="w-4 h-4 sm:w-5 sm:h-5"
+                aria-hidden="true"
+              />
             ) : (
               <Heart className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
             )}
@@ -226,7 +230,10 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         </div>
 
         <div className="hidden sm:flex absolute bottom-3 left-3 items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 dark:bg-black/70 backdrop-blur-md shadow-sm z-20 border border-black/5 dark:border-white/10 transition-all duration-300 pointer-events-none">
-          <Truck className="w-3.5 h-3.5 text-[#567249] dark:text-[#A68B67]" aria-hidden="true" />
+          <Truck
+            className="w-3.5 h-3.5 text-[#567249] dark:text-[#A68B67]"
+            aria-hidden="true"
+          />
           <span className="text-xs font-semibold text-neutral-800 dark:text-zinc-200">
             {product.deliveryDays || 8} días
           </span>
@@ -249,7 +256,11 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 
       <div className="p-2 sm:p-3 flex flex-col flex-1 cursor-default">
         <div className="flex-1">
-          <Link href={productPath} title={product.name} className="focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#634E3A] rounded">
+          <Link
+            href={productPath}
+            title={product.name}
+            className="focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#634E3A] rounded"
+          >
             <h3 className="text-base sm:text-lg font-normal text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug hover:text-[#7A5C3E] dark:hover:text-[#A98B6C] transition-colors duration-200 mb-2">
               {product.name}
             </h3>
@@ -259,17 +270,29 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             <div className="flex items-center gap-2 label-premium text-zinc-600 dark:text-zinc-300 mb-2">
               <div className="flex items-center gap-1 p-1 px-1.5 bg-zinc-100 dark:bg-zinc-800/80 rounded border border-zinc-200/60 dark:border-zinc-700/40">
                 <span className="flex items-center gap-0.5" title="Alto">
-                  <span className="opacity-70" aria-hidden="true">⇅</span>
+                  <span className="opacity-70" aria-hidden="true">
+                    ⇅
+                  </span>
                   {product.variants[0].dimensions.height}
                 </span>
-                <span className="w-px h-2.5 bg-zinc-300 dark:bg-zinc-600 mx-0.5" aria-hidden="true" />
+                <span
+                  className="w-px h-2.5 bg-zinc-300 dark:bg-zinc-600 mx-0.5"
+                  aria-hidden="true"
+                />
                 <span className="flex items-center gap-0.5" title="Ancho">
-                  <span className="opacity-70" aria-hidden="true">⇄</span>
+                  <span className="opacity-70" aria-hidden="true">
+                    ⇄
+                  </span>
                   {product.variants[0].dimensions.width}
                 </span>
-                <span className="w-px h-2.5 bg-zinc-300 dark:bg-zinc-600 mx-0.5" aria-hidden="true" />
+                <span
+                  className="w-px h-2.5 bg-zinc-300 dark:bg-zinc-600 mx-0.5"
+                  aria-hidden="true"
+                />
                 <span className="flex items-center gap-0.5" title="Profundidad">
-                  <span className="opacity-70" aria-hidden="true">⤢</span>
+                  <span className="opacity-70" aria-hidden="true">
+                    ⤢
+                  </span>
                   {product.variants[0].dimensions.depth}cm
                 </span>
               </div>
@@ -298,18 +321,31 @@ export default function ProductCard({ product, index }: ProductCardProps) {
               onClick={handleWhatsAppQuote}
               title={`Cotizar ${product.name} por WhatsApp`}
               aria-label={`Cotizar ${product.name} por WhatsApp`}
-              className="h-9 px-2 sm:px-2.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 text-white flex items-center justify-center gap-1 label-premium text-white! font-medium transition-all shadow-xs active:scale-95 cursor-pointer"
+              className="h-9 px-2.5 sm:px-3 rounded-lg bg-[#166534] hover:bg-[#14532d] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#166534] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#141414] flex items-center justify-center gap-1.5 text-xs uppercase font-bold tracking-wider transition-all shadow-xs active:scale-95 cursor-pointer"
             >
-              <Whatsapp className="w-3.5 h-3.5 text-white" aria-hidden="true" />
-              <span className="hidden sm:inline">Cotizar</span>
+              <Whatsapp
+                className="w-3.5 h-3.5 text-white shrink-0"
+                aria-hidden="true"
+              />
+              <span className="hidden sm:inline text-white font-bold">
+                Cotizar
+              </span>
             </button>
 
             <button
               type="button"
               onClick={handleAddToCart}
               disabled={cartStatus}
-              aria-label={cartStatus ? `${product.name} en la cesta` : `Añadir ${product.name} al carrito`}
-              title={cartStatus ? `${product.name} en la cesta` : `Añadir ${product.name} al carrito`}
+              aria-label={
+                cartStatus
+                  ? `${product.name} en la cesta`
+                  : `Añadir ${product.name} al carrito`
+              }
+              title={
+                cartStatus
+                  ? `${product.name} en la cesta`
+                  : `Añadir ${product.name} al carrito`
+              }
               className={`h-9 px-2 sm:px-2.5 rounded-lg flex items-center justify-center gap-1 label-premium font-medium transition-all shadow-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-white ${
                 cartStatus
                   ? "bg-zinc-200 text-zinc-600 cursor-not-allowed dark:bg-zinc-800 dark:text-zinc-400"
@@ -324,7 +360,10 @@ export default function ProductCard({ product, index }: ProductCardProps) {
                     animate={{ opacity: 1, scale: 1 }}
                     className="flex items-center gap-1"
                   >
-                    <CheckBadge className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
+                    <CheckBadge
+                      className="w-3.5 h-3.5 text-emerald-500"
+                      aria-hidden="true"
+                    />
                   </motion.div>
                 ) : (
                   <motion.div

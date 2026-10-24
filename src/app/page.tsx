@@ -68,7 +68,6 @@ async function SuspendedBestSellersCarousel() {
       products={products}
       title="Los Más"
       highlightWord="Vendidos"
-      subtitle="Favoritos de nuestros clientes en Quito"
     />
   );
 }
@@ -114,17 +113,13 @@ const HomePage = () => {
       <HeroSlider />
       <FlashSale />
       <CategoryShowcase />
-
       <Suspense fallback={<CarouselSkeleton />}>
         <SuspendedBestSellersCarousel />
       </Suspense>
-
       <Suspense fallback={<CarouselSkeleton />}>
         <SuspendedSmallSpacesCarousel />
       </Suspense>
-
       <CustomFurnitureSection />
-
       <Suspense fallback={<CarouselSkeleton />}>
         <SuspendedCategoryCarousel
           title="Ideas para Dormitorio"

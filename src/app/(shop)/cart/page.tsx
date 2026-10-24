@@ -55,7 +55,7 @@ export default function CartPage() {
           <div className="lg:col-span-7 space-y-6">
             {cart.map((item) => (
               <div
-                key={item.id}
+                key={`${item.id}-${item.variantId || "base"}-${item.customKey || "std"}`}
                 className="group bg-white dark:bg-zinc-900 p-4 sm:p-6 rounded-2xl border border-zinc-100 dark:border-zinc-800 flex flex-col sm:flex-row gap-6 items-center shadow-sm hover:shadow-md transition-all"
               >
                 <div className="relative w-32 h-32 rounded-xl overflow-hidden shrink-0 bg-zinc-50 dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-700">
@@ -69,17 +69,33 @@ export default function CartPage() {
 
                 <div className="flex-1 min-w-0 text-center sm:text-left space-y-3">
                   <div>
-                    <h3 className="text-lg font-black uppercase  text-zinc-900 dark:text-white line-clamp-1">
+                    <h3 className="text-lg font-black uppercase text-zinc-900 dark:text-white line-clamp-1">
                       {item.name}
                     </h3>
                     <div className="flex flex-wrap justify-center sm:justify-start gap-x-4 gap-y-1 mt-1">
-                      <p className="text-[12px] font-bold text-zinc-400 uppercase -wider">
+                      <p className="text-[12px] font-bold text-zinc-400 uppercase">
                         SKU: {item.sku || "N/A"}
                       </p>
-                      <p className="text-[12px] font-bold text-[#4A3728] uppercase -wider">
-                        Color: {item.variantName || "Estándar"}
+                      <p className="text-[12px] font-bold text-[#4A3728] dark:text-[#D4B896] uppercase">
+                        Color / Acabado: {item.variantName || "Estándar"}
                       </p>
                     </div>
+
+                    {item.customization?.isCustom && (
+                      <div className="mt-2 p-2.5 rounded-xl bg-[#4A3728]/10 dark:bg-[#A6866A]/10 text-xs text-[#4A3728] dark:text-[#D4B896] text-left space-y-1">
+                        <span className="font-bold block">📐 Fabricación a Medida: {item.dimensions}</span>
+                        {item.customization.finish && (
+                          <span className="text-zinc-600 dark:text-zinc-300 block">
+                            Melamina / Textura: {item.customization.finish}
+                          </span>
+                        )}
+                        {item.customization.notes && (
+                          <span className="text-zinc-500 dark:text-zinc-400 text-[11px] block italic">
+                            Detalles: &ldquo;{item.customization.notes}&rdquo;
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex items-center justify-center sm:justify-start gap-4">
@@ -90,6 +106,7 @@ export default function CartPage() {
                             item.id,
                             item.variantId,
                             Math.max(1, item.quantity - 1),
+                            item.customKey,
                           )
                         }
                         className="text-zinc-400 hover:text-[#4A3728] transition-colors p-1"
@@ -105,15 +122,16 @@ export default function CartPage() {
                           updateQuantity(
                             item.id,
                             item.variantId,
-                            Math.min(3, item.quantity + 1),
+                            Math.min(10, item.quantity + 1),
+                            item.customKey,
                           )
                         }
                         className={`p-1 transition-colors ${
-                          item.quantity >= 3
+                          item.quantity >= 10
                             ? "text-zinc-200 dark:text-zinc-800 cursor-not-allowed"
                             : "text-zinc-400 hover:text-[#4A3728]"
                         }`}
-                        disabled={item.quantity >= 3}
+                        disabled={item.quantity >= 10}
                         aria-label="increase"
                       >
                         <Plus className="w-4 h-4" />
@@ -125,7 +143,7 @@ export default function CartPage() {
                     </p>
 
                     <button
-                      onClick={() => removeFromCart(item.id, item.variantId)}
+                      onClick={() => removeFromCart(item.id, item.variantId, item.customKey)}
                       className="w-10 h-10 rounded-full flex items-center justify-center text-zinc-300 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-all ml-auto sm:ml-0"
                       aria-label="remove"
                     >

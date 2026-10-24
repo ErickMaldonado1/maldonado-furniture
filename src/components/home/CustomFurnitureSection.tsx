@@ -5,18 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { Whatsapp } from "@/utils/icons/social";
 import { CheckBadge } from "@/utils/icons/layout";
-import { Sparkles, ArrowNarrowRight } from "@/utils/icons/actions";
+import { ArrowNarrowRight } from "@/utils/icons/actions";
+import { MapPin, Calendar, Ruler, AlertCircle } from "lucide-react";
 
 const steps = [
   {
     num: "01",
     title: "1. Cuéntanos tu Espacio",
-    desc: "Envíanos tus medidas tentativas, un plano o una foto del lugar que deseas amoblar.",
+    desc: "Envíanos las medidas referenciales, un plano o una foto del lugar que se desea amoblar.",
   },
   {
     num: "02",
     title: "2. Diseño & Melaminas",
-    desc: "Elegimos juntos la distribución y el catálogo de colores (Pelikano, Edimca, Masisa).",
+    desc: "Elige la distribución y el catálogo de colores disponible (Pelikano, Edimca, Masisa).",
   },
   {
     num: "03",
@@ -26,27 +27,39 @@ const steps = [
   {
     num: "04",
     title: "4. Envío & Instalación",
-    desc: "Entrega e instalación profesional y limpia en Quito y valles sin intermediarios.",
+    desc: "Entrega e instalación profesional en Quito y valles sin intermediarios.",
   },
 ];
 
 const previewProjects = [
   {
     title: "Walking Clóset a Medida",
-    image: "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899947/closet-4_i77msn.webp",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899947/closet-4_i77msn.webp",
     tag: "Dormitorio",
   },
   {
     title: "Cocina High Gloss y Melamina",
-    image: "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899061/cocina-13_o7lfle.webp",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769899061/cocina-13_o7lfle.webp",
     tag: "Cocina",
   },
   {
     title: "Estación de Trabajo y Librero",
-    image: "https://res.cloudinary.com/dwvruzkll/image/upload/v1788456283/desk1_ka40la.webp",
+    image:
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1788456283/desk1_ka40la.webp",
     tag: "Oficina",
   },
 ];
+
+const LIMITS = {
+  width: { min: 30, max: 400, label: "Ancho" },
+  height: { min: 30, max: 300, label: "Alto" },
+  depth: { min: 15, max: 120, label: "Profundidad" },
+};
+
+const NAME_REGEX = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s'.-]{3,60}$/;
+const SECTOR_REGEX = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s,.-]{3,60}$/;
 
 export default function CustomFurnitureSection() {
   const [furnitureType, setFurnitureType] = useState("Clóset a Medida");
@@ -56,37 +69,111 @@ export default function CustomFurnitureSection() {
   const [finish, setFinish] = useState("Melamina Maderada");
   const [budget, setBudget] = useState("");
   const [name, setName] = useState("");
-  const [sector, setSector] = useState("Quito");
+  const [sector, setSector] = useState("El Condado, Quito");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const sanitizeNumber = (val: string) => {
+    const cleaned = val.replace(/[^0-9.]/g, "");
+    const parts = cleaned.split(".");
+    if (parts.length > 2) {
+      return `${parts[0]}.${parts.slice(1).join("")}`;
+    }
+    return cleaned;
+  };
+
+  const validateField = (field: string, value: string): string | null => {
+    if (field === "width") {
+      if (!value.trim()) return "El ancho es obligatorio.";
+      const num = parseFloat(value);
+      if (isNaN(num) || num <= 0) return "Ingresa un número positivo.";
+      if (num < LIMITS.width.min || num > LIMITS.width.max) {
+        return `El ancho debe estar entre ${LIMITS.width.min} y ${LIMITS.width.max} cm.`;
+      }
+    }
+    if (field === "height") {
+      if (!value.trim()) return "El alto es obligatorio.";
+      const num = parseFloat(value);
+      if (isNaN(num) || num <= 0) return "Ingresa un número positivo.";
+      if (num < LIMITS.height.min || num > LIMITS.height.max) {
+        return `El alto debe estar entre ${LIMITS.height.min} y ${LIMITS.height.max} cm.`;
+      }
+    }
+    if (field === "depth") {
+      if (!value.trim()) return "La profundidad es obligatoria.";
+      const num = parseFloat(value);
+      if (isNaN(num) || num <= 0) return "Ingresa un número positivo.";
+      if (num < LIMITS.depth.min || num > LIMITS.depth.max) {
+        return `La profundidad debe estar entre ${LIMITS.depth.min} y ${LIMITS.depth.max} cm.`;
+      }
+    }
+    if (field === "name") {
+      const trimmed = value.trim();
+      if (!trimmed) return "Por favor escribe tu nombre.";
+      if (trimmed.length < 3) return "El nombre debe tener al menos 3 letras.";
+      if (!NAME_REGEX.test(trimmed)) return "Ingresa un nombre real válido.";
+    }
+    if (field === "sector") {
+      const trimmed = value.trim();
+      if (!trimmed) return "Indica el sector o ciudad.";
+      if (trimmed.length < 3)
+        return "El sector debe tener al menos 3 caracteres.";
+      if (!SECTOR_REGEX.test(trimmed))
+        return "Ingresa un sector o ciudad válido.";
+    }
+    return null;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const newErrors: Record<string, string> = {};
+
+    const wErr = validateField("width", width);
+    if (wErr) newErrors.width = wErr;
+
+    const hErr = validateField("height", height);
+    if (hErr) newErrors.height = hErr;
+
+    const dErr = validateField("depth", depth);
+    if (dErr) newErrors.depth = dErr;
+
+    const nErr = validateField("name", name);
+    if (nErr) newErrors.name = nErr;
+
+    const sErr = validateField("sector", sector);
+    if (sErr) newErrors.sector = sErr;
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    setErrors({});
+
     const phone = "593959504842";
     const message = `Hola Muebles Maldonado, quiero cotizar un mueble a medida:
 *Tipo de Mueble:* ${furnitureType}
-*Medidas Deseadas:*
-  - Ancho / Largo: ${width || "Por definir"}
-  - Alto: ${height || "Por definir"}
-  - Profundidad: ${depth || "Por definir"}
+*Medidas Deseadas (cm):*
+  - Ancho: ${width} cm
+  - Alto: ${height} cm
+  - Profundidad: ${depth} cm
 *Acabado / Textura:* ${finish}
-*Presupuesto Estimado:* ${budget ? `$${budget}` : "A convenir"}
-*Sector / Ciudad:* ${sector}
-*Nombre:* ${name || "Cliente interesado"}
+*Presupuesto Estimado:* ${budget.trim() ? `$${budget.trim()}` : "A convenir"}
+*Sector / Ubicación:* ${sector.trim()}
+*Nombre del Cliente:* ${name.trim()}
 
 ¿Tienen asesoría disponible para coordinar y cotizar?`;
 
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(
+      `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+      "_blank",
+    );
   };
 
   return (
     <section className="py-12 md:py-20 bg-white dark:bg-[#050505] overflow-hidden">
       <div className="max-w-360 mx-auto px-4 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="inline-flex items-center gap-1.5 label-premium text-[#634E3A] dark:text-[#D4B896] mb-3">
-            <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
-            Servicio Exclusivo en Quito y Valles
-          </span>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-900 dark:text-white leading-none">
-            Fabricamos tu {" "}
+            Fabricamos tu{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037] dark:from-[#C4A482] dark:to-[#E0CCA7]">
               proyecto a Medida
             </span>
@@ -112,9 +199,7 @@ export default function CustomFurnitureSection() {
           ))}
         </div>
 
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
           <div className="lg:col-span-7 bg-[#FAF9F7] dark:bg-zinc-900/50 rounded-2xl p-6 sm:p-8 border border-zinc-200 dark:border-zinc-800 shadow-sm">
             <div className="mb-6">
               <span className="label-premium text-[#634E3A] dark:text-[#D4B896] block">
@@ -124,14 +209,18 @@ export default function CustomFurnitureSection() {
                 Solicita tu Proforma Personalizada
               </h3>
               <p className="text-xs font-medium text-zinc-600 dark:text-zinc-300 mt-0.5">
-                Te enviamos un presupuesto preliminar directamente por WhatsApp sin compromiso.
+                Te enviamos un presupuesto preliminar directamente por WhatsApp
+                con asesoría técnica sin compromiso.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} noValidate className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label htmlFor="tipo-mueble" className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label
+                    htmlFor="tipo-mueble"
+                    className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1"
+                  >
                     Tipo de Mueble
                   </label>
                   <select
@@ -141,18 +230,33 @@ export default function CustomFurnitureSection() {
                     onChange={(e) => setFurnitureType(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
                   >
-                    <option value="Clóset o Walking Clóset">Clóset / Walking Clóset</option>
-                    <option value="Cocina Integral o Modular">Cocina Integral a Medida</option>
-                    <option value="Escritorio o Mueble de Oficina">Escritorio / Home Office</option>
-                    <option value="Centro de TV o Panel Flotante">Centro de TV y Sala</option>
-                    <option value="Cama o Dormitorio Completo">Cama / Litera a Medida</option>
+                    <option value="Clóset o Walking Clóset">
+                      Clóset / Walking Clóset
+                    </option>
+                    <option value="Cocina Integral o Modular">
+                      Cocina Integral a Medida
+                    </option>
+                    <option value="Escritorio o Mueble de Oficina">
+                      Escritorio / Home Office
+                    </option>
+                    <option value="Centro de TV o Panel Flotante">
+                      Centro de TV y Sala
+                    </option>
+                    <option value="Cama o Dormitorio Completo">
+                      Cama / Litera a Medida
+                    </option>
                     <option value="Mueble de Baño">Mueble de Baño RH</option>
-                    <option value="Mobiliario Comercial o Tienda">Mobiliario Comercial</option>
+                    <option value="Mobiliario Comercial o Tienda">
+                      Mobiliario Comercial
+                    </option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="acabado-color" className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label
+                    htmlFor="acabado-color"
+                    className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1"
+                  >
                     Color o Acabado Preferido
                   </label>
                   <select
@@ -162,85 +266,211 @@ export default function CustomFurnitureSection() {
                     onChange={(e) => setFinish(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
                   >
-                    <option value="Melamina Maderada (Roble, Carvalo, Cava)">Maderado Cálido</option>
-                    <option value="Blanco Mate o Brillante">Blanco Minimalista</option>
-                    <option value="Grafito / Negro Mate">Grafito / Antracita</option>
-                    <option value="Combinación Madera + Unicolor">Combinación Mixta</option>
-                    <option value="Melamina RH Resistente a Humedad">Melamina RH</option>
+                    <option value="Melamina Maderada (Roble, Carvalo, Cava)">
+                      Maderado Cálido
+                    </option>
+                    <option value="Blanco Mate o Brillante">
+                      Blanco Minimalista
+                    </option>
+                    <option value="Combinación Madera + Unicolor">
+                      Combinación Mixta
+                    </option>
+                    <option value="Melamina RH Resistente a Humedad">
+                      Melamina RH (Cocina/Baño)
+                    </option>
                   </select>
                 </div>
               </div>
 
               <div>
-                <span className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
-                  Medidas Aproximadas de tu espacio
-                </span>
-                <div className="grid grid-cols-3 gap-2">
-                  <input
-                    id="medida-ancho"
-                    name="ancho"
-                    type="text"
-                    placeholder="Ancho (ej. 180cm)"
-                    aria-label="Ancho aproximado en centímetros"
-                    value={width}
-                    onChange={(e) => setWidth(e.target.value)}
-                    className="px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
-                  />
-                  <input
-                    id="medida-alto"
-                    name="alto"
-                    type="text"
-                    placeholder="Alto (ej. 220cm)"
-                    aria-label="Alto aproximado en centímetros"
-                    value={height}
-                    onChange={(e) => setHeight(e.target.value)}
-                    className="px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
-                  />
-                  <input
-                    id="medida-fondo"
-                    name="fondo"
-                    type="text"
-                    placeholder="Fondo (ej. 55cm)"
-                    aria-label="Fondo aproximado en centímetros"
-                    value={depth}
-                    onChange={(e) => setDepth(e.target.value)}
-                    className="px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
-                  />
+                <div className="flex items-center justify-between mb-1">
+                  <span className="label-premium text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
+                    <Ruler className="w-3.5 h-3.5 text-[#634E3A] dark:text-[#D4B896]" />
+                    Medidas Aproximadas de tu Espacio (en Centímetros)
+                  </span>
+                  <span className="text-[11px] font-semibold text-zinc-400">
+                    Unidad: cm
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <div>
+                    <div className="relative">
+                      <input
+                        id="medida-ancho"
+                        name="ancho"
+                        type="text"
+                        inputMode="decimal"
+                        placeholder="Ancho (ej. 180)"
+                        aria-label="Ancho aproximado en centímetros"
+                        value={width}
+                        onChange={(e) => {
+                          const clean = sanitizeNumber(e.target.value);
+                          setWidth(clean);
+                          if (errors.width) {
+                            setErrors((prev) => ({ ...prev, width: "" }));
+                          }
+                        }}
+                        className={`w-full px-3 py-2 pr-10 rounded-xl border ${
+                          errors.width
+                            ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+                            : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728] focus:ring-[#4A3728]"
+                        } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1`}
+                      />
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] font-bold text-zinc-400 pointer-events-none">
+                        cm
+                      </span>
+                    </div>
+                    {errors.width && (
+                      <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                        <AlertCircle className="w-3 h-3 shrink-0" />
+                        {errors.width}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <div className="relative">
+                      <input
+                        id="medida-alto"
+                        name="alto"
+                        type="text"
+                        inputMode="decimal"
+                        placeholder="Alto (ej. 220)"
+                        aria-label="Alto aproximado en centímetros"
+                        value={height}
+                        onChange={(e) => {
+                          const clean = sanitizeNumber(e.target.value);
+                          setHeight(clean);
+                          if (errors.height) {
+                            setErrors((prev) => ({ ...prev, height: "" }));
+                          }
+                        }}
+                        className={`w-full px-3 py-2 pr-10 rounded-xl border ${
+                          errors.height
+                            ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+                            : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728] focus:ring-[#4A3728]"
+                        } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1`}
+                      />
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] font-bold text-zinc-400 pointer-events-none">
+                        cm
+                      </span>
+                    </div>
+                    {errors.height && (
+                      <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                        <AlertCircle className="w-3 h-3 shrink-0" />
+                        {errors.height}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <div className="relative">
+                      <input
+                        id="medida-fondo"
+                        name="fondo"
+                        type="text"
+                        inputMode="decimal"
+                        placeholder="Fondo (ej. 55)"
+                        aria-label="Fondo aproximado en centímetros"
+                        value={depth}
+                        onChange={(e) => {
+                          const clean = sanitizeNumber(e.target.value);
+                          setDepth(clean);
+                          if (errors.depth) {
+                            setErrors((prev) => ({ ...prev, depth: "" }));
+                          }
+                        }}
+                        className={`w-full px-3 py-2 pr-10 rounded-xl border ${
+                          errors.depth
+                            ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+                            : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728] focus:ring-[#4A3728]"
+                        } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1`}
+                      />
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] font-bold text-zinc-400 pointer-events-none">
+                        cm
+                      </span>
+                    </div>
+                    {errors.depth && (
+                      <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                        <AlertCircle className="w-3 h-3 shrink-0" />
+                        {errors.depth}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label htmlFor="cliente-nombre" className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label
+                    htmlFor="cliente-nombre"
+                    className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1"
+                  >
                     Tu Nombre
                   </label>
                   <input
                     id="cliente-nombre"
                     name="nombreCliente"
                     type="text"
-                    placeholder="Tu nombre"
+                    placeholder="Tu nombre completo"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    className="w-full px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      if (errors.name)
+                        setErrors((prev) => ({ ...prev, name: "" }));
+                    }}
+                    className={`w-full px-3 py-2 rounded-xl border ${
+                      errors.name
+                        ? "border-red-500 focus:border-red-500"
+                        : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728]"
+                    } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
                   />
+                  {errors.name && (
+                    <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                      <AlertCircle className="w-3 h-3 shrink-0" />
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
+
                 <div>
-                  <label htmlFor="cliente-sector" className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
-                    Sector en Quito
+                  <label
+                    htmlFor="cliente-sector"
+                    className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1"
+                  >
+                    Sector o Ciudad
                   </label>
                   <input
                     id="cliente-sector"
                     name="sectorCliente"
                     type="text"
-                    placeholder="Ej. El Condado, Cumbayá..."
+                    placeholder="Ej. El Condado, Cumbayá, Quito..."
                     value={sector}
-                    onChange={(e) => setSector(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
+                    onChange={(e) => {
+                      setSector(e.target.value);
+                      if (errors.sector)
+                        setErrors((prev) => ({ ...prev, sector: "" }));
+                    }}
+                    className={`w-full px-3 py-2 rounded-xl border ${
+                      errors.sector
+                        ? "border-red-500 focus:border-red-500"
+                        : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728]"
+                    } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
                   />
+                  {errors.sector && (
+                    <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                      <AlertCircle className="w-3 h-3 shrink-0" />
+                      {errors.sector}
+                    </p>
+                  )}
                 </div>
+
                 <div>
-                  <label htmlFor="cliente-presupuesto" className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label
+                    htmlFor="cliente-presupuesto"
+                    className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1"
+                  >
                     Presupuesto (Opcional)
                   </label>
                   <input
@@ -257,16 +487,21 @@ export default function CustomFurnitureSection() {
 
               <div className="p-3 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/80 dark:border-zinc-700/60 flex items-center justify-between label-premium text-zinc-600 dark:text-zinc-300">
                 <span className="flex items-center gap-1.5 font-medium">
-                  <CheckBadge className="w-4 h-4 text-emerald-500" aria-hidden="true" />
+                  <CheckBadge
+                    className="w-4 h-4 text-emerald-500"
+                    aria-hidden="true"
+                  />
                   Asesoría técnica y cotización sin costo
                 </span>
-                <span className="font-mono text-zinc-600 dark:text-zinc-400">095 950 4842</span>
+                <span className="font-mono text-zinc-600 dark:text-zinc-400">
+                  095 950 4842
+                </span>
               </div>
 
               <button
                 type="submit"
                 aria-label="Enviar solicitud de cotización por WhatsApp"
-                className="w-full h-12 rounded-full bg-emerald-700 hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 text-white label-premium text-white! font-medium tracking-wider flex items-center justify-center gap-2 transition-all shadow-md active:scale-98 cursor-pointer"
+                className="w-full h-12 rounded-full bg-[#166534] hover:bg-[#14532d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#166534] focus-visible:ring-offset-2 text-white label-premium text-white! font-medium tracking-wider flex items-center justify-center gap-2 transition-all shadow-md active:scale-98 cursor-pointer"
               >
                 <Whatsapp className="w-5 h-5 text-white" aria-hidden="true" />
                 <span>Enviar Solicitud a WhatsApp</span>
@@ -289,7 +524,7 @@ export default function CustomFurnitureSection() {
               </Link>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               {previewProjects.map((p, i) => (
                 <div
                   key={i}
@@ -311,19 +546,28 @@ export default function CustomFurnitureSection() {
                     <h4 className="text-sm font-medium text-zinc-900 dark:text-white truncate">
                       {p.title}
                     </h4>
-                    <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400 mt-0.5">
-                      Fabricado a medida con tableros de melamina de alta calidad.
-                    </p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="p-4 rounded-xl border border-amber-200/60 dark:border-amber-900/30 bg-amber-50/60 dark:bg-amber-950/20 text-amber-900 dark:text-amber-200 space-y-1">
-              <span className="label-premium text-amber-900 dark:text-amber-200 block">🏢 Visítanos en Fábrica:</span>
-              <p className="text-xs font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                El Condado Alto, Quito. Conoce nuestro muestrario físico de melaminas y acabados agendando una cita previa por WhatsApp.
-              </p>
+            <div className="p-5 rounded-2xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-xs space-y-3">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-[#4A3728]/10 dark:bg-[#A6866A]/10 text-[#4A3728] dark:text-[#A6866A] flex items-center justify-center shrink-0">
+                  <Calendar className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-xs pt-2 font-bold uppercase tracking-wider text-zinc-900 dark:text-white">
+                    Visita Nuestra Fábrica con Cita Previa
+                  </h4>
+                  <div className="flex items-center gap-1 text-[11px] text-zinc-500 dark:text-zinc-400">
+                    <MapPin className="w-5 h-5 pt-2 text-[#4A3728] dark:text-[#A6866A]" />
+                    <span className="pt-2">
+                      Sector Condado Alto, norte de Quito
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

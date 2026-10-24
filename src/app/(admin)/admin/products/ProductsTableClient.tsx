@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Edit } from "lucide-react";
+import { Edit, PackageX, RotateCcw } from "lucide-react";
 import { DeleteProductBtn } from "@/app/(admin)/admin/DeleteProductBtn";
 import { ToggleProductStateBtn } from "@/app/(admin)/admin/ToggleProductStateBtn";
 import { getProductsPaginated } from "@/features/admin/products/product.actions";
@@ -28,6 +28,13 @@ export function ProductsTableClient({
   const [loadingMore, setLoadingMore] = useState(false);
   const [skip, setSkip] = useState(initialProducts.length);
 
+  // Sync state whenever props update due to query/category/subcategory changes
+  useEffect(() => {
+    setProducts(initialProducts);
+    setHasMore(initialHasMore);
+    setSkip(initialProducts.length);
+  }, [initialProducts, initialHasMore, query, category, subcategory]);
+
   const loadMore = async () => {
     if (loadingMore || !hasMore) return;
     setLoadingMore(true);
@@ -45,6 +52,8 @@ export function ProductsTableClient({
       setLoadingMore(false);
     }
   };
+
+  const hasFilterActive = Boolean(query || category || subcategory);
 
   return (
     <div className="bg-white dark:bg-[#111111] rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800/60 overflow-hidden transition-colors">
@@ -74,9 +83,32 @@ export function ProductsTableClient({
               <tr>
                 <td
                   colSpan={5}
-                  className="text-center py-20 text-zinc-500 text-sm italic"
+                  className="text-center py-16 px-4"
                 >
-                  No se encontraron productos en el catálogo.
+                  <div className="max-w-sm mx-auto space-y-3">
+                    <div className="w-12 h-12 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center mx-auto text-zinc-400">
+                      <PackageX className="w-6 h-6" />
+                    </div>
+                    <p className="text-zinc-800 dark:text-zinc-200 text-sm font-semibold">
+                      {hasFilterActive
+                        ? "No se encontraron productos coincidentes"
+                        : "No hay productos registrados en el inventario"}
+                    </p>
+                    <p className="text-zinc-500 text-xs">
+                      {hasFilterActive
+                        ? "Prueba cambiando de categoría, subcategoría o término de búsqueda."
+                        : "Agrega tu primer mueble para comenzar a gestionar el catálogo."}
+                    </p>
+                    {hasFilterActive && (
+                      <Link
+                        href="/admin/products"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs font-bold uppercase tracking-wider hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        <span>Restablecer Filtros</span>
+                      </Link>
+                    )}
+                  </div>
                 </td>
               </tr>
             ) : (

@@ -51,7 +51,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
           ) : (
             items.map((item) => (
               <div
-                key={`${item.id}-${item.variantId || "base"}`}
+                key={`${item.id}-${item.variantId || "base"}-${item.customKey || "std"}`}
                 className="flex gap-4 group"
               >
                 <div className="w-24 h-24 relative shrink-0 rounded overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
@@ -78,13 +78,33 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                         </h3>
                       </Link>
                       <button
-                        onClick={() => removeFromCart(item.id, item.variantId)}
+                        onClick={() =>
+                          removeFromCart(
+                            item.id,
+                            item.variantId,
+                            item.customKey,
+                          )
+                        }
                         className="text-zinc-400 hover:text-red-500 transition-colors p-1"
                         aria-label="remove-from-cart"
                       >
                         <Trash className="w-5 h-5" />
                       </button>
                     </div>
+
+                    {item.customization?.isCustom && (
+                      <div className="mt-1.5 p-1.5 rounded-lg bg-[#4A3728]/10 dark:bg-[#A6866A]/10 text-[11px] text-[#4A3728] dark:text-[#D4B896] space-y-0.5">
+                        <span className="font-bold block">
+                          📐 Medida: {item.dimensions}
+                        </span>
+                        {item.customization.finish && (
+                          <span className="text-zinc-600 dark:text-zinc-300 block">
+                            Acabado: {item.customization.finish}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
                     <p className="text-sm font-bold text-[#4A3728] dark:text-[#D4BAA5] mt-1">
                       ${(item.price * item.quantity).toLocaleString()}
                     </p>
@@ -98,6 +118,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                             item.id,
                             item.variantId,
                             Math.max(1, item.quantity - 1),
+                            item.customKey,
                           )
                         }
                         className="w-8 h-full flex items-center justify-center text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-l-lg transition"
@@ -110,7 +131,12 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                       </span>
                       <button
                         onClick={() =>
-                          updateQuantity(item.id, item.variantId, item.quantity + 1)
+                          updateQuantity(
+                            item.id,
+                            item.variantId,
+                            item.quantity + 1,
+                            item.customKey,
+                          )
                         }
                         className="w-8 h-full flex items-center justify-center text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-r-lg transition"
                         aria-label="update-quantity"

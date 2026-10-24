@@ -21,12 +21,18 @@ export default async function InventoryPage(props: {
   const allProducts = await prisma.product.findMany({
     select: { category: true, subcategory: true },
   });
-  const categories = Array.from(
-    new Set(allProducts.map((p) => p.category)),
-  ).filter((c): c is string => !!c);
-  const subcategories = Array.from(
-    new Set(allProducts.map((p) => p.subcategory)),
-  ).filter((s): s is string => !!s);
+
+  const categoryMap: Record<string, string[]> = {};
+  allProducts.forEach((p) => {
+    if (p.category) {
+      if (!categoryMap[p.category]) categoryMap[p.category] = [];
+      if (p.subcategory && !categoryMap[p.category].includes(p.subcategory)) {
+        categoryMap[p.category].push(p.subcategory);
+      }
+    }
+  });
+
+  const categories = Object.keys(categoryMap);
 
   const res = await getProductsPaginated(query, category, subcategory, 0, 20);
   const products = res.success && res.products ? res.products : [];
@@ -51,7 +57,7 @@ export default async function InventoryPage(props: {
           <div className="hidden md:block">
             <ProductFilters
               categories={categories}
-              subcategories={subcategories}
+              categoryMap={categoryMap}
             />
           </div>
           <Link
@@ -63,7 +69,7 @@ export default async function InventoryPage(props: {
         </div>
       </div>
       <div className="md:hidden">
-        <ProductFilters categories={categories} subcategories={subcategories} />
+        <ProductFilters categories={categories} categoryMap={categoryMap} />
       </div>
 
       <ProductsTableClient 
