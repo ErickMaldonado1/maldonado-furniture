@@ -43,15 +43,39 @@ const FeaturedCarousel = dynamic(
     loading: () => <div className="h-100 w-full bg-zinc-100 animate-pulse" />,
   },
 );
+const SmallSpacesSection = dynamic(
+  () => import("@/components/home/SmallSpacesSection"),
+  {
+    loading: () => <div className="h-100 w-full bg-zinc-100 dark:bg-zinc-900/50 animate-pulse" />,
+  },
+);
+const CustomFurnitureSection = dynamic(
+  () => import("@/components/home/CustomFurnitureSection"),
+  {
+    loading: () => <div className="h-120 w-full bg-zinc-50 dark:bg-zinc-900/40 animate-pulse" />,
+  },
+);
 const CategoryCarousel = dynamic(
   () => import("@/components/home/CategoryCarousel"),
 );
 
 import { Suspense } from "react";
 
-async function SuspendedFeaturedCarousel() {
-  const products = await ProductService.getRandomProducts(8);
-  return <FeaturedCarousel products={products} />;
+async function SuspendedBestSellersCarousel() {
+  const products = await ProductService.getBestSellers(8);
+  return (
+    <FeaturedCarousel
+      products={products}
+      title="Los Más"
+      highlightWord="Vendidos"
+      subtitle="Favoritos de nuestros clientes en Quito"
+    />
+  );
+}
+
+async function SuspendedSmallSpacesCarousel() {
+  const products = await ProductService.getSmallSpaceSolutions(8);
+  return <SmallSpacesSection products={products} />;
 }
 
 async function SuspendedCategoryCarousel({
@@ -90,9 +114,17 @@ const HomePage = () => {
       <HeroSlider />
       <FlashSale />
       <CategoryShowcase />
+
       <Suspense fallback={<CarouselSkeleton />}>
-        <SuspendedFeaturedCarousel />
+        <SuspendedBestSellersCarousel />
       </Suspense>
+
+      <Suspense fallback={<CarouselSkeleton />}>
+        <SuspendedSmallSpacesCarousel />
+      </Suspense>
+
+      <CustomFurnitureSection />
+
       <Suspense fallback={<CarouselSkeleton />}>
         <SuspendedCategoryCarousel
           title="Ideas para Dormitorio"

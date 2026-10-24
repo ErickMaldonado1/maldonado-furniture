@@ -341,4 +341,64 @@ export const ProductService = {
       orderBy: { name: "asc" },
     });
   },
+
+  async getBestSellers(limit = 8) {
+    const products = await prisma.product.findMany({
+      where: {
+        isActive: true,
+      },
+      take: limit * 2,
+      include: {
+        images: true,
+        variants: { include: { dimensions: true } },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    const prioritized = products.filter((p) => {
+      const sub = (p.subcategory || "").toLowerCase();
+      return (
+        sub.includes("escritorio") ||
+        sub.includes("cama") ||
+        sub.includes("tv") ||
+        sub.includes("closet") ||
+        sub.includes("comoda")
+      );
+    });
+
+    return (prioritized.length >= limit ? prioritized : products).slice(0, limit);
+  },
+
+  async getSmallSpaceSolutions(limit = 8) {
+    const products = await prisma.product.findMany({
+      where: {
+        isActive: true,
+      },
+      take: limit * 3,
+      include: {
+        images: true,
+        variants: { include: { dimensions: true } },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    const compactItems = products.filter((p) => {
+      const sub = (p.subcategory || "").toLowerCase();
+      const name = (p.name || "").toLowerCase();
+      const dims = p.variants?.[0]?.dimensions;
+      const isNarrow = dims && dims.width <= 120;
+      return (
+        isNarrow ||
+        sub.includes("velador") ||
+        sub.includes("recibidor") ||
+        sub.includes("librero") ||
+        sub.includes("archivador") ||
+        name.includes("repisa") ||
+        name.includes("modular")
+      );
+    });
+
+    return (compactItems.length >= limit ? compactItems : products).slice(0, limit);
+  },
 };
+

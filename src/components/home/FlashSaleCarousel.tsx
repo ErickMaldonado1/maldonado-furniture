@@ -96,20 +96,18 @@ export default function FlashSaleCarousel({
   return (
     <section className="py-8 md:py-14 bg-white dark:bg-[#050505] overflow-hidden">
       <div className="max-w-360 mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between mb-6 md:mb-10 border-b border-zinc-100 dark:border-zinc-800/50 pb-6">
-          <div className="flex items-center gap-1">
-            <Zap
-              className="
-                text-[#4A3728]
-                dark:text-[#A6866A]
-                w-5 h-5
-                sm:w-8 sm:h-8
-              "
-            />
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium  text-zinc-900 dark:text-white leading-none">
-              Ofertas{" "}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 md:mb-10 border-b border-zinc-100 dark:border-zinc-800/50 pb-6 gap-2">
+          <div>
+            <div className="flex items-center gap-1.5 mb-1">
+              <Zap className="text-[#8B735B] dark:text-[#C4A482] w-3.5 h-3.5" />
+              <span className="label-premium text-[#8B735B] dark:text-[#C4A482]">
+                Precios Directos de Taller
+              </span>
+            </div>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-900 dark:text-white leading-none">
+              Oportunidades{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037] dark:from-[#A6866A] dark:to-[#D1B894]">
-                Especiales
+                del Mes
               </span>
             </h2>
           </div>
@@ -117,20 +115,11 @@ export default function FlashSaleCarousel({
           <Link
             href="/productos?discount=true"
             className="group flex items-center gap-2 text-sm md:text-base hover:text-[#4A3728] dark:hover:text-zinc-300 transition-all"
-            aria-label="Ver todas las ofertas"
+            aria-label="Ver todas las promociones"
           >
-            <span className="hidden sm:inline">VER TODAS LAS OFERTAS</span>
+            <span className="hidden sm:inline">VER TODAS LAS PROMOCIONES</span>
             <span className="sm:hidden">VER MÁS</span>
-            <ArrowNarrowRight
-              className="
-                w-4 h-4
-                sm:w-5 sm:h-5
-                group-hover:translate-x-1
-                transition-transform
-                text-[#4A3728]
-                dark:text-[#A6866A]
-              "
-            />
+            <ArrowNarrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform text-[#4A3728] dark:text-[#A6866A]" />
           </Link>
         </div>
         <div

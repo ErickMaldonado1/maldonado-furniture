@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ProductWithRelations } from "@/types/product-service";
 import cloudinaryLoader from "@/utils/cloudinaryLoader";
+import { Whatsapp } from "@/utils/icons/social";
 
 interface ProductCardProps {
   product: ProductWithRelations;
@@ -130,10 +131,33 @@ export default function ProductCard({ product, index }: ProductCardProps) {
     }
   };
 
+  const handleWhatsAppQuote = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const dims = firstVariant?.dimensions
+      ? `${firstVariant.dimensions.width}x${firstVariant.dimensions.height}x${firstVariant.dimensions.depth} cm`
+      : "Medidas estándar";
+    const origin =
+      typeof window !== "undefined"
+        ? window.location.origin
+        : "https://www.mueblesmaldonadoec.com";
+    const productUrl = `${origin}${productPath}`;
+    const formattedPrice = finalPrice.toLocaleString("es-EC", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    const message = `👋 ¡Hola Muebles Maldonado! Me interesa cotizar este mueble:\n🪑 *Producto:* ${product.name}\n🆔 *Código:* ${firstVariant?.sku || product.sku || "N/A"}\n💰 *Precio:* $${formattedPrice}\n📐 *Medidas:* ${dims}\n🎨 *Acabado/Color:* ${firstVariant?.color || product.colors?.[0] || "A elección"}\n🔗 *Enlace:* ${productUrl}\n¿Tienen disponibilidad y entrega en Quito?`;
+    window.open(
+      `https://wa.me/593959504842?text=${encodeURIComponent(message)}`,
+      "_blank",
+    );
+  };
+
   const [imgError, setImgError] = useState(false);
   const [imgError2, setImgError2] = useState(false);
 
-  const fallbackImage = "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp";
+  const fallbackImage =
+    "https://res.cloudinary.com/dwvruzkll/image/upload/v1769123783/dormitorio_ig6v5k.webp";
 
   return (
     <motion.div
@@ -170,8 +194,9 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             alt={`${product.name} - Vista alternativa`}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
-            className={`object-cover object-center transition-all duration-700 group-hover/img:scale-105 absolute inset-0 z-10 ${isHovered && !imgError2 ? "opacity-100" : "opacity-0"
-              }`}
+            className={`object-cover object-center transition-all duration-700 group-hover/img:scale-105 absolute inset-0 z-10 ${
+              isHovered && !imgError2 ? "opacity-100" : "opacity-0"
+            }`}
           />
         )}
 
@@ -179,10 +204,11 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           <button
             onClick={handleToggleFavorite}
             aria-label={isFav ? "Eliminar de favoritos" : "Añadir a favoritos"}
-            className={`p-1.5 sm:p-2 rounded-full backdrop-blur-md transition-all duration-300 shadow-sm z-50 ${isFav
-              ? "bg-white text-red-500"
-              : "bg-black/20 text-white hover:bg-white hover:text-red-500 scale-90 hover:scale-100"
-              }`}
+            className={`p-1.5 sm:p-2 rounded-full backdrop-blur-md transition-all duration-300 shadow-sm z-50 ${
+              isFav
+                ? "bg-white text-red-500"
+                : "bg-black/20 text-white hover:bg-white hover:text-red-500 scale-90 hover:scale-100"
+            }`}
           >
             {isFav ? (
               <HeartFilled className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -193,54 +219,56 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         </div>
 
         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
-          <span className="bg-white/90 backdrop-blur-md text-zinc-900 px-6 py-2.5 rounded-full label-premium shadow-xl transform translate-y-4 group-hover/img:translate-y-0 transition-transform duration-500">
+          <span className="bg-white/90 backdrop-blur-md text-zinc-900 px-6 py-2.5 rounded-full label-premium shadow-xl transform translate-y-4 group-hover/img:translate-y-0 transition-transform duration-500 font-bold">
             Ver Detalles
           </span>
         </div>
 
         <div className="hidden sm:flex absolute bottom-3 left-3 items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 dark:bg-black/70 backdrop-blur-md shadow-sm z-20 border border-black/5 dark:border-white/10 transition-all duration-300">
           <Truck className="w-3.5 h-3.5 text-[#758A6B] dark:text-[#A68B67]" />
-          <span className="text-sm font-medium text-neutral-700 dark:text-zinc-200">
+          <span className="text-xs font-semibold text-neutral-700 dark:text-zinc-200">
             {product.deliveryDays || 8} días
           </span>
         </div>
 
         {hasDiscount && product.discount !== null && (
           <div
-            className={`absolute top-3 left-3 z-20 px-2.5 py-1 rounded-sm text-[11px] font-bold -wider shadow-sm text-white transition-all duration-300 ${product.discount >= 10
-              ? "bg-rose-700 shadow-rose-900/20"
-              : product.discount > 5
-                ? "bg-[#567249]"
-                : "bg-stone-800"
-              }`}
+            className={`absolute top-3 left-3 z-20 px-2.5 py-1 rounded-sm text-[11px] font-bold shadow-sm text-white transition-all duration-300 ${
+              product.discount >= 10
+                ? "bg-rose-700 shadow-rose-900/20"
+                : product.discount > 5
+                  ? "bg-[#567249]"
+                  : "bg-stone-800"
+            }`}
           >
-            - {product.discount} %
+            -{product.discount}%
           </div>
         )}
       </div>
 
       <div className="p-2 sm:p-3 flex flex-col flex-1 cursor-default">
         <div className="flex-1">
-          <Link href={productPath}>
-            <h3 className="text-[14px] sm:text-[15px] font-semibold text-zinc-900 dark:text-zinc-100 truncate  leading-snug hover:text-[#7A5C3E] dark:hover:text-[#A98B6C] transition-colors duration-200 mb-1">
+          <Link href={productPath} title={product.name}>
+            <h3 className="text-base sm:text-lg font-normal text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug hover:text-[#7A5C3E] dark:hover:text-[#A98B6C] transition-colors duration-200 mb-2">
               {product.name}
             </h3>
           </Link>
+
           {product.variants?.[0]?.dimensions && (
-            <div className="flex items-center gap-3 text-[11px] text-zinc-700 dark:text-zinc-300 font-medium mb-2 uppercase tracking-wide">
-              <div className="flex items-center gap-1 p-1 px-2 bg-zinc-200/70 dark:bg-zinc-800 rounded-md">
-                <span className="flex items-center gap-1">
-                  <span className="text-xs opacity-90">⇅</span>
-                  {product.variants[0].dimensions.height}cm
+            <div className="flex items-center gap-2 label-premium text-zinc-600 dark:text-zinc-300 mb-2">
+              <div className="flex items-center gap-1 p-1 px-1.5 bg-zinc-100 dark:bg-zinc-800/80 rounded border border-zinc-200/60 dark:border-zinc-700/40">
+                <span className="flex items-center gap-0.5" title="Alto">
+                  <span className="opacity-70">⇅</span>
+                  {product.variants[0].dimensions.height}
                 </span>
-                <span className="w-px h-2.5 bg-[#897156]/40 mx-0.5" />
-                <span className="flex items-center gap-1">
-                  <span className="text-xs opacity-90">⇄</span>
-                  {product.variants[0].dimensions.width}cm
+                <span className="w-px h-2.5 bg-zinc-300 dark:bg-zinc-600 mx-0.5" />
+                <span className="flex items-center gap-0.5" title="Ancho">
+                  <span className="opacity-70">⇄</span>
+                  {product.variants[0].dimensions.width}
                 </span>
-                <span className="w-px h-2.5 bg-[#897156]/40 mx-0.5" />
-                <span className="flex items-center gap-1">
-                  <span className="text-xs opacity-90">⤢</span>
+                <span className="w-px h-2.5 bg-zinc-300 dark:bg-zinc-600 mx-0.5" />
+                <span className="flex items-center gap-0.5" title="Profundidad">
+                  <span className="opacity-70">⤢</span>
                   {product.variants[0].dimensions.depth}cm
                 </span>
               </div>
@@ -248,57 +276,66 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           )}
         </div>
 
-        <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#EDE8E0] dark:border-white/5">
-          <div className="flex flex-col items-start cursor-default">
+        <div className="flex items-center justify-between gap-1.5 pt-2 border-t border-zinc-100 dark:border-white/5">
+          <div className="flex flex-col items-start cursor-default min-w-0">
             {hasDiscount && (
-              <span className="text-[11px] text-zinc-600 dark:text-zinc-300 line-through font-light leading-none mb-0.5">
+              <span className="label-premium text-zinc-400 line-through leading-none mb-0.5">
                 ${product.price.toLocaleString()}
               </span>
             )}
             <span className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-white leading-none">
-              ${finalPrice.toLocaleString(undefined, {
+              $
+              {finalPrice.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
               })}
             </span>
           </div>
 
-          <button
-            onClick={handleAddToCart}
-            disabled={cartStatus}
-            aria-label={
-              cartStatus ? "Producto en el carrito" : "Añadir al carrito"
-            }
-            className={`hidden md:flex items-center justify-center gap-2 h-10 px-2 sm:px-4 rounded-xl transition-all duration-300 overflow-hidden shadow-md ${cartStatus
-              ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800"
-              : "bg-[#141414] text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 active:scale-95"
+          <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+            <button
+              onClick={handleWhatsAppQuote}
+              title="Cotizar por WhatsApp"
+              aria-label="Cotizar este mueble por WhatsApp"
+              className="h-9 px-2 sm:px-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center gap-1 label-premium text-white! font-medium transition-all shadow-xs active:scale-95 cursor-pointer"
+            >
+              <Whatsapp className="w-3.5 h-3.5 text-white" />
+              <span className="hidden sm:inline">Cotizar</span>
+            </button>
+
+            <button
+              onClick={handleAddToCart}
+              disabled={cartStatus}
+              aria-label={cartStatus ? "En la cesta" : "Añadir al carrito"}
+              title={cartStatus ? "En la cesta" : "Añadir al carrito"}
+              className={`h-9 px-2 sm:px-2.5 rounded-lg flex items-center justify-center gap-1 label-premium font-medium transition-all shadow-xs cursor-pointer ${
+                cartStatus
+                  ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800"
+                  : "bg-[#141414] text-white hover:bg-zinc-800 active:scale-95 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
               }`}
-          >
-            <AnimatePresence mode="wait">
-              {cartStatus ? (
-                <motion.div
-                  key="check"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center gap-1.5"
-                >
-                  <CheckBadge className="w-4 h-4 text-emerald-500" />
-                  <span className="label-premium text-emerald-500!">Listo</span>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="bag"
-                  initial={{ opacity: 0, scale: 1.2 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center gap-1.5"
-                >
-                  <CartPlusIcon className="w-4 h-4" />
-                  <span className="label-premium text-white! whitespace-nowrap">
-                    Añadir
-                  </span>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </button>
+            >
+              <AnimatePresence mode="wait">
+                {cartStatus ? (
+                  <motion.div
+                    key="check"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex items-center gap-1"
+                  >
+                    <CheckBadge className="w-3.5 h-3.5 text-emerald-500" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="bag"
+                    initial={{ opacity: 0, scale: 1.2 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex items-center gap-1"
+                  >
+                    <CartPlusIcon className="w-3.5 h-3.5" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </button>
+          </div>
         </div>
       </div>
     </motion.div>

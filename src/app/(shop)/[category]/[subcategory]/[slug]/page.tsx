@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cleanSubcategory = product.subcategory
     ? product.subcategory.replace(/-/g, " ")
     : "";
-  const titleText = `${product.name} | Muebles a Medida en Quito`;
-  const descriptionText = `${product.description.slice(0, 150)}... Cotiza tu ${product.name} personalizado en Quito. Fabricación de muebles de ${cleanCategory} y ${cleanSubcategory} de alta calidad.`;
+  const titleText = `${product.name} | Muebles Maldonado Quito`;
+  const descriptionText = `${product.description ? product.description.slice(0, 150) : product.name}. Cotiza tu ${product.name} a medida en Quito. Fabricación en melamina de ${cleanCategory} y ${cleanSubcategory} de alta calidad.`;
 
   return {
     title: titleText,
@@ -70,8 +70,43 @@ export default async function ProductDetailPage({ params }: Props) {
     getDbColors(),
   ]);
 
+  const { category, subcategory } = await params;
+
+  const finalPrice = product.discount
+    ? product.price - (product.price * product.discount) / 100
+    : product.price;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    image: product.images.map((img) => img.url),
+    description: product.description || `${product.name} - Muebles Maldonado`,
+    sku: product.sku || "",
+    brand: {
+      "@type": "Brand",
+      name: "Muebles Maldonado",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://www.mueblesmaldonadoec.com/${category}/${subcategory}/${slug}`,
+      priceCurrency: "USD",
+      price: finalPrice.toFixed(2),
+      itemCondition: "https://schema.org/NewCondition",
+      availability: "https://schema.org/PreOrder",
+      seller: {
+        "@type": "Organization",
+        name: "Muebles Maldonado",
+      },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-white dark:bg-[#050505] pt-24 pb-20 px-4 md:px-4">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-350 mx-auto">
         <ProductDetailClient
           product={product as any}

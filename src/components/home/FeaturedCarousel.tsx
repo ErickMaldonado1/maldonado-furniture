@@ -9,10 +9,16 @@ import Link from "next/link";
 
 interface FeaturedProps {
   products: ProductWithRelations[];
+  title?: string;
+  highlightWord?: string;
+  subtitle?: string;
 }
 
 export default function FeaturedCarousel({
   products: initialProducts,
+  title = "Productos",
+  highlightWord = "Destacados",
+  subtitle,
 }: FeaturedProps) {
   const [products, setProducts] = useState(initialProducts.slice(0, 5));
   const [hasLoadedExtra, setHasLoadedExtra] = useState(false);
@@ -91,12 +97,19 @@ export default function FeaturedCarousel({
     <section className="py-8 md:py-14 bg-white dark:bg-[#050505] overflow-hidden">
       <div className="max-w-360 mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-6 md:mb-10 border-b border-zinc-100 dark:border-zinc-800/50 pb-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium  text-zinc-900 dark:text-white leading-none">
-            Productos{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
-              Destacados
-            </span>
-          </h2>
+          <div>
+            {subtitle && (
+              <span className="label-premium block mb-1 text-[#8B735B] dark:text-[#C4A482]">
+                {subtitle}
+              </span>
+            )}
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-900 dark:text-white leading-none">
+              {title}{" "}
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037]">
+                {highlightWord}
+              </span>
+            </h2>
+          </div>
 
           <Link
             href="/productos"

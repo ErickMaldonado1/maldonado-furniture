@@ -27,8 +27,8 @@ export function ProductInfo({ product, selectedVariant }: ProductInfoProps) {
   };
 
   return (
-    <div className="space-y-2">
-      {/* Breadcrumbs */}
+    <div className="space-y-3">
+     
       <nav className="flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase -wider mb-2">
         <span className="hover:text-zinc-800 dark:hover:text-zinc-200 cursor-pointer transition-colors">
           Inicio
@@ -42,35 +42,41 @@ export function ProductInfo({ product, selectedVariant }: ProductInfoProps) {
           {subcategoryText}
         </span>
       </nav>
-      <h1 className="text-2xl md:text-[32px] font-semibold  text-[#111827] dark:text-zinc-100 leading-[1.1]">
-        {currentTitle}
-      </h1>
 
-      <div className="flex flex-wrap items-center gap-3 pt-1">
-        <span className="text-xs font-semibold -wide text-zinc-500 dark:text-zinc-400 uppercase">
-          SKU:{" "}
-          <span className="font-mono text-zinc-700 dark:text-zinc-300">
-            {currentSKU}
-          </span>
-        </span>
+      <div>
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-900 dark:text-white leading-tight">
+          {currentTitle}
+        </h1>
+      </div>
 
-        <div className="flex items-center gap-1.5 text-[11px] font-bold -wider text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-3.5 py-1.5 rounded-full border border-emerald-300/80 dark:border-emerald-700/50 uppercase">
+      <div className="flex flex-wrap items-center gap-2 pt-1">
+        {currentSKU && (
+          <div className="flex items-center gap-1.5 label-premium text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 rounded border border-zinc-200/80 dark:border-zinc-700/60">
+            <span>SKU: <span className="font-mono text-zinc-900 dark:text-white">{currentSKU}</span></span>
+          </div>
+        )}
+
+        <div className="flex items-center gap-1.5 label-premium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1 rounded-full border border-emerald-300/80 dark:border-emerald-700/50">
           <CheckBadge className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-          <span>BAJO PEDIDO</span>
+          <span>BAJO PEDIDO DIRECTO DE FÁBRICA</span>
         </div>
+
+        <span className="label-premium text-[#8B735B] dark:text-[#C4A482] bg-[#8B735B]/10 px-2.5 py-1 rounded-full">
+          A Medida Disponible
+        </span>
       </div>
 
       <div className="flex items-center gap-4 pt-3 pb-1">
         <button
           onClick={() => scrollToSection("descripcion")}
-          className="text-xs font-bold uppercase -wider text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors decoration-[#4A3728] underline-offset-4 decoration-2 hover:underline"
+          className="label-premium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer"
         >
           Descripción
         </button>
         <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
         <button
           onClick={() => scrollToSection("dimensiones")}
-          className="text-xs font-bold uppercase -wider text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors decoration-[#4A3728] underline-offset-4 decoration-2 hover:underline"
+          className="label-premium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer"
         >
           Características
         </button>

@@ -1,8 +1,11 @@
 "use client";
 
 import { useMemo } from "react";
+import Link from "next/link";
 import { ProductWithRelations } from "@/types/product-service";
 import { getProductHighlights } from "@/utils/product-highlights";
+import { Sparkles } from "@/utils/icons/actions";
+import { RealProjectsGallery } from "./RealProjectsGallery";
 
 interface ProductDetailsContentProps {
   product: ProductWithRelations;
@@ -24,7 +27,7 @@ export function ProductDetailsContent({
   const materialsText =
     selectedVariant?.material ||
     product.materials?.join(", ") ||
-    "100% Poliéster / Estructura de Madera";
+    "Melamina Pelikano RH / Estructura reforzada";
 
   const dimWidth = selectedVariant?.dimensions?.width ?? null;
   const dimHeight = selectedVariant?.dimensions?.height ?? null;
@@ -43,14 +46,15 @@ export function ProductDetailsContent({
   return (
     <div className="space-y-10 pt-8 border-t border-zinc-200/80 dark:border-zinc-800">
       <div className="p-5 rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 shadow-sm space-y-3">
-        <h3 className="text-[15px] font-semibold text-zinc-900 dark:text-white uppercase -wide">
+      <div className="p-5 rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 shadow-sm space-y-3">
+        <h3 className="label-premium text-zinc-900 dark:text-white">
           Lo que lo hace único
         </h3>
         <ul className="space-y-2">
           {highlights.map((point, index) => (
             <li
               key={index}
-              className="flex items-start gap-2 text-sm font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed"
+              className="flex items-start gap-2 text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed"
             >
               <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0" />
               {point}
@@ -58,25 +62,61 @@ export function ProductDetailsContent({
           ))}
         </ul>
       </div>
+
       <div id="descripcion" className="space-y-3 scroll-mt-28">
-        <h2 className="text-lg font-semibold text-zinc-900 dark:text-white uppercase -wide">
+        <h2 className="text-lg font-medium text-zinc-900 dark:text-white uppercase tracking-wider">
           Descripción
         </h2>
-        <div className="space-y-2 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+        <div className="space-y-2 text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed">
           <p className="font-medium text-zinc-900 dark:text-white">
             {product.name}
           </p>
-          <p className="whitespace-pre-line">
+          <p className="whitespace-pre-line text-zinc-500 dark:text-zinc-400">
             {product.description ||
-              "Práctico, estético y duradero, combina ahorro de espacio y elegancia contemporánea. La elección perfecta para quienes buscan un diseño moderno sin comprometer el estilo."}
+              "Práctico, estético y duradero, combina ahorro de espacio y elegancia contemporánea. Fabricado en melamina de alta calidad con garantía directa de taller."}
           </p>
         </div>
       </div>
+      <div className="p-5 rounded-2xl bg-[#FDFCFB] dark:bg-zinc-900/40 border border-[#8B735B]/30 space-y-3">
+        <div className="flex items-center gap-2 text-[#4A3728] dark:text-[#C4A482]">
+          <Sparkles className="w-4 h-4" />
+          <h3 className="label-premium text-[#4A3728] dark:text-[#C4A482]">
+            Opciones de Personalización Disponibles
+          </h3>
+        </div>
+        <p className="text-xs sm:text-sm font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          Cada espacio tiene necesidades diferentes. En Muebles Maldonado fabricamos directamente en Quito y podemos personalizar:
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs text-zinc-600 dark:text-zinc-400">
+          <div className="p-3 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 space-y-1">
+            <span className="font-medium text-zinc-900 dark:text-white block">📐 Medidas a tu Espacio:</span>
+            <span>Ajustamos el ancho, alto y profundidad según las dimensiones de tu habitación.</span>
+          </div>
+          <div className="p-3 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 space-y-1">
+            <span className="font-medium text-zinc-900 dark:text-white block">🎨 Acabados y Texturas:</span>
+            <span>
+              Más de 40 opciones de tableros Pelikano / Edimca / Masisa.{" "}
+              <Link href="/catalogo-colores" className="text-[#8B735B] underline font-medium hover:opacity-80">
+                Ver catálogo de colores →
+              </Link>
+            </span>
+          </div>
+          <div className="p-3 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 space-y-1">
+            <span className="font-medium text-zinc-900 dark:text-white block">⚙️ Distribución Interior:</span>
+            <span>Elección de gavetas adicionales, repisas regulables, pasacables o rieles telescópicos pesados.</span>
+          </div>
+          <div className="p-3 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 space-y-1">
+            <span className="font-medium text-zinc-900 dark:text-white block">🛡️ Calidad Garantizada:</span>
+            <span>Melamina RH resistente a humedad y rayones, cantos termoadheridos y garantía directa de fábrica.</span>
+          </div>
+        </div>
+      </div>
+
       <div
         id="dimensiones"
         className="space-y-4 pt-4 border-t border-zinc-200/60 dark:border-zinc-800 scroll-mt-28"
       >
-        <h2 className="text-lg font-semibold text-zinc-900 dark:text-white uppercase -wide">
+        <h2 className="text-lg font-medium text-zinc-900 dark:text-white uppercase tracking-wider">
           Características &amp; Dimensiones
         </h2>
 
@@ -170,6 +210,12 @@ export function ProductDetailsContent({
           </div>
         </div>
       </div>
+      <RealProjectsGallery
+        category={product.category}
+        subcategory={product.subcategory}
+        productName={product.name}
+      />
     </div>
+  </div>
   );
 }

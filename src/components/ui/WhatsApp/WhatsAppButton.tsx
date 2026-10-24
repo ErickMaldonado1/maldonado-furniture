@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { XMark } from "@/utils/icons/actions";
@@ -37,38 +38,73 @@ export default function WhatsAppButton() {
   if (!isVisible) return null;
   const phoneNumber = "593959504842";
   const message =
-    "👋 ¡Hola Muebles Maldonado! Me gustaría recibir asesoría personalizada para realizar un pedido. ¿Me pueden ayudar?";
+    "Hola Muebles Maldonado, me gustaría recibir asesoría para cotizar un mueble fabricado a medida";
 
   return (
     <div
-      className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4"
+      className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3"
       onMouseLeave={() => setIsOpen(false)}
     >
       {isOpen && (
-        <div className="relative bg-white dark:bg-zinc-900 p-4 rounded-2xl shadow-lg shadow-black/5 dark:shadow-zinc-800/50 border border-zinc-100 dark:border-zinc-800 max-w-[280px] animate-in fade-in zoom-in duration-300 origin-bottom-right">
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              setIsOpen(false);
-              setHasClosed(true);
-            }}
-            className="absolute top-2 right-2 p-1.5 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors"
-            aria-label="Cerrar"
-          >
-            <XMark className="w-4 h-4" />
-          </button>
+        <div className="relative w-[300px] rounded-2xl overflow-hidden shadow-2xl shadow-black/15 dark:shadow-black/50 border border-zinc-200/80 dark:border-zinc-700/60 animate-in fade-in zoom-in duration-300 origin-bottom-right">
+          <div className="bg-[#1a1a1a] px-4 py-3.5 flex items-center justify-between">
+            <div className="flex items-center gap-3">
 
-          <div className="flex items-start gap-3 pt-1">
-            <div className="flex-1 pr-4">
-              <h4 className="text-[14px] font-black  text-zinc-900 dark:text-white mb-0.5">
-                Asesoría en línea
-              </h4>
-              <p className="text-[14px]  text-zinc-500 dark:text-zinc-400">
-                ¡Hola! 👋 Escríbenos si tienes dudas sobre nuestros muebles.
+              <div className="relative">
+                <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-white border border-white/20">
+                  <Image
+                    src="/assets/images/logoA.webp"
+                    alt="Muebles Maldonado"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#25D366] border-2 border-[#1a1a1a]" />
+              </div>
+              <div>
+                <p className="text-[13px] font-semibold text-white leading-tight">Muebles Maldonado</p>
+                <p className="text-[11px] text-[#25D366] font-medium">En línea</p>
+              </div>
+            </div>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setIsOpen(false);
+                setHasClosed(true);
+              }}
+              className="p-1.5 text-zinc-400 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer"
+              aria-label="Cerrar"
+            >
+              <XMark className="w-4 h-4" />
+            </button>
+          </div>
+
+
+          <div className="bg-[#ECE5DD] dark:bg-[#0d1117] px-4 py-4">
+            <div className="bg-white dark:bg-[#1e2733] rounded-xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[90%]">
+              <p className="text-[13px] text-zinc-800 dark:text-zinc-100 leading-relaxed">
+                Bienvenido a{" "}
+                <span className="font-semibold">Muebles Maldonado</span>. Diseñamos y fabricamos muebles a medida en Quito.
               </p>
+              <p className="text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-2">
+                ¿En qué espacio podemos ayudarte? Cotiza sin compromiso.
+              </p>
+              <p className="text-[10px] text-zinc-400 text-right mt-2">ahora ✓✓</p>
             </div>
           </div>
-          <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white dark:bg-zinc-900 border-r border-b border-zinc-100 dark:border-zinc-800 rotate-45 transform"></div>
+
+
+          <Link
+            href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2.5 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-[13px] font-semibold py-3.5 transition-colors duration-200"
+          >
+            <Whatsapp className="w-4 h-4" />
+            Iniciar conversación
+          </Link>
+          <div className="absolute -bottom-2 right-[26px] w-4 h-4 bg-[#25D366] rotate-45" />
         </div>
       )}
 
@@ -76,12 +112,12 @@ export default function WhatsAppButton() {
         href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full  transition-all hover:scale-110 active:scale-95"
+        className="group relative flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full transition-all hover:scale-110 active:scale-95 shadow-lg shadow-[#25D366]/30"
         aria-label="Abrir WhatsApp"
         onMouseEnter={() => setIsOpen(true)}
       >
         <Whatsapp className="w-6 h-6" />
-        <span className="absolute inset-0 rounded-full border border-[#25D366] animate-ping opacity-20"></span>
+        <span className="absolute inset-0 rounded-full border border-[#25D366] animate-ping opacity-20" />
       </Link>
     </div>
   );
