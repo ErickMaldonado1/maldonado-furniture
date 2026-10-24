@@ -203,7 +203,7 @@ export function ProductActions({
             onClick={handleWhatsApp}
             title="Cotizar por WhatsApp"
             aria-label="Cotizar este producto por WhatsApp"
-            className="h-12 px-4 rounded-full bg-emerald-600 hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 text-white flex items-center justify-center gap-2 label-premium text-white! font-medium tracking-wider transition-all shadow-sm active:scale-95 cursor-pointer"
+            className="h-12 px-4 rounded-full bg-emerald-700 hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 text-white flex items-center justify-center gap-2 label-premium text-white! font-medium tracking-wider transition-all shadow-sm active:scale-95 cursor-pointer"
           >
             <Whatsapp className="w-5 h-5 text-white" aria-hidden="true" />
             <span>Cotizar por WhatsApp</span>

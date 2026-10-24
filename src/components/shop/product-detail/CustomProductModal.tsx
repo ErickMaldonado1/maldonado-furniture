@@ -258,7 +258,7 @@ ${notes ? `📝 *Detalles Adicionales:* ${notes}\n` : ""}🔗 *Enlace de referen
                 <button
                   type="submit"
                   aria-label="Enviar cotización a WhatsApp"
-                  className="flex-1 h-12 rounded-full bg-emerald-600 hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 text-white label-premium text-white! font-medium tracking-wider flex items-center justify-center gap-2 transition-all shadow-md active:scale-98 cursor-pointer"
+                  className="flex-1 h-12 rounded-full bg-emerald-700 hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 text-white label-premium text-white! font-medium tracking-wider flex items-center justify-center gap-2 transition-all shadow-md active:scale-98 cursor-pointer"
                 >
                   <Whatsapp className="w-5 h-5 text-white" aria-hidden="true" />
                   <span>Enviar Cotización a WhatsApp</span>

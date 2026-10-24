@@ -101,12 +101,12 @@ export default function WhatsAppButton() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Iniciar conversación por WhatsApp"
-            className="flex items-center justify-center gap-2.5 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-[13px] font-semibold py-3.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
+            className="flex items-center justify-center gap-2.5 w-full bg-emerald-700 hover:bg-emerald-800 text-white text-[13px] font-semibold py-3.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
           >
             <Whatsapp className="w-4 h-4" aria-hidden="true" />
             Iniciar conversación
           </Link>
-          <div className="absolute -bottom-2 right-[26px] w-4 h-4 bg-[#25D366] rotate-45" />
+          <div className="absolute -bottom-2 right-[26px] w-4 h-4 bg-emerald-700 rotate-45" />
         </div>
       )}
 

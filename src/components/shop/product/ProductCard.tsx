@@ -298,7 +298,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
               onClick={handleWhatsAppQuote}
               title={`Cotizar ${product.name} por WhatsApp`}
               aria-label={`Cotizar ${product.name} por WhatsApp`}
-              className="h-9 px-2 sm:px-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 text-white flex items-center justify-center gap-1 label-premium text-white! font-medium transition-all shadow-xs active:scale-95 cursor-pointer"
+              className="h-9 px-2 sm:px-2.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 text-white flex items-center justify-center gap-1 label-premium text-white! font-medium transition-all shadow-xs active:scale-95 cursor-pointer"
             >
               <Whatsapp className="w-3.5 h-3.5 text-white" aria-hidden="true" />
               <span className="hidden sm:inline">Cotizar</span>

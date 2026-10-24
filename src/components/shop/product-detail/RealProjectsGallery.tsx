@@ -191,8 +191,9 @@ export function RealProjectsGallery({
 
                 <div className="pt-2">
                   <button
+                    type="button"
                     onClick={() => handleConsultProject(selectedProject.title)}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white label-premium text-white! font-medium tracking-wider transition-all shadow-md active:scale-95 cursor-pointer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white label-premium text-white! font-medium tracking-wider transition-all shadow-md active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
                   >
                     <Whatsapp className="w-4 h-4 text-white" />
                     <span>Cotizar este diseño por WhatsApp</span>
