@@ -86,14 +86,14 @@ export default function RecentProjects({
       <div className="max-w-360 mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-12">
           <div className="space-y-2">
-            <span className="text-[#4A3728] text-md sm:text-md font-semibold uppercase block">
+            <span className="text-[#4A3728] dark:text-[#D4B896] text-md sm:text-md font-semibold uppercase block">
               {currentHeader.subtitle}
             </span>
             <h2 className="text-xl sm:text-xl md:text-3xl font-medium text-zinc-900 dark:text-white uppercase">
               {currentHeader.title}
             </h2>
           </div>
-          <p className="text-sm text-zinc-700 dark:text-zinc-400 max-w-sm mt-4 md:mt-0 text-justify md:text-right">
+          <p className="text-sm text-zinc-700 dark:text-zinc-300 max-w-sm mt-4 md:mt-0 text-justify md:text-right">
             Cada espacio es fabricado e instalado a medida, cuidando cada
             detalle estructural y estético para tu hogar.
           </p>
@@ -103,11 +103,21 @@ export default function RecentProjects({
           {categoryProjects.map((project) => (
             <div
               key={project.id}
+              role="button"
+              tabIndex={0}
+              aria-label={`Ver proyecto ${project.title}`}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setSelectedProject(project);
+                  setCurrentImgIdx(0);
+                }
+              }}
               onClick={() => {
                 setSelectedProject(project);
                 setCurrentImgIdx(0);
               }}
-              className="group cursor-pointer"
+              className="group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] rounded-md"
             >
               <div
                 className="relative aspect-4/3 overflow-hidden rounded-md bg-zinc-100 dark:bg-zinc-900"

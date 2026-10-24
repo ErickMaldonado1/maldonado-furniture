@@ -62,7 +62,7 @@ export function ContactForm() {
               <div className="flex flex-col gap-1.5">
                 <label
                   htmlFor="contact-name"
-                  className="text-[11px] font-bold text-zinc-400 uppercase"
+                  className="text-[11px] font-bold text-zinc-600 dark:text-zinc-300 uppercase"
                 >
                   Nombre
                 </label>
@@ -70,10 +70,12 @@ export function ContactForm() {
                   {...register("name")}
                   id="contact-name"
                   type="text"
-                  className={`bg-transparent border-b ${errors.name ? "border-red-500" : "border-zinc-200 dark:border-zinc-800"} py-2 text-sm outline-none focus:border-[#4A3728] transition-all text-zinc-900 dark:text-white font-medium`}
+                  aria-invalid={errors.name ? "true" : "false"}
+                  aria-describedby={errors.name ? "name-error" : undefined}
+                  className={`bg-transparent border-b ${errors.name ? "border-red-500" : "border-zinc-300 dark:border-zinc-700"} py-2 text-sm outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728] transition-all text-zinc-900 dark:text-white font-medium`}
                 />
                 {errors.name && (
-                  <span className="text-[10px] text-red-500 font-bold uppercase">
+                  <span id="name-error" className="text-[10px] text-red-600 dark:text-red-400 font-bold uppercase" role="alert">
                     {errors.name.message}
                   </span>
                 )}
@@ -82,7 +84,7 @@ export function ContactForm() {
               <div className="flex flex-col gap-1.5">
                 <label
                   htmlFor="contact-phone"
-                  className="text-[11px] font-bold text-zinc-400 uppercase"
+                  className="text-[11px] font-bold text-zinc-600 dark:text-zinc-300 uppercase"
                 >
                   Teléfono
                 </label>
@@ -91,10 +93,12 @@ export function ContactForm() {
                   id="contact-phone"
                   type="tel"
                   placeholder="09XXXXXXXX"
-                  className={`bg-transparent border-b ${errors.phone ? "border-red-500" : "border-zinc-200 dark:border-zinc-800"} py-2 text-sm outline-none focus:border-[#4A3728] transition-all text-zinc-900 dark:text-white font-medium placeholder:text-zinc-300 dark:placeholder:text-zinc-700`}
+                  aria-invalid={errors.phone ? "true" : "false"}
+                  aria-describedby={errors.phone ? "phone-error" : undefined}
+                  className={`bg-transparent border-b ${errors.phone ? "border-red-500" : "border-zinc-300 dark:border-zinc-700"} py-2 text-sm outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728] transition-all text-zinc-900 dark:text-white font-medium placeholder:text-zinc-400 dark:placeholder:text-zinc-500`}
                 />
                 {errors.phone && (
-                  <span className="text-[10px] text-red-500 font-bold uppercase">
+                  <span id="phone-error" className="text-[10px] text-red-600 dark:text-red-400 font-bold uppercase" role="alert">
                     {errors.phone.message}
                   </span>
                 )}
@@ -103,7 +107,7 @@ export function ContactForm() {
               <div className="md:col-span-2 flex flex-col gap-1.5">
                 <label
                   htmlFor="contact-email"
-                  className="text-[11px] font-bold text-zinc-400 uppercase"
+                  className="text-[11px] font-bold text-zinc-600 dark:text-zinc-300 uppercase"
                 >
                   Correo electrónico
                 </label>
@@ -111,10 +115,12 @@ export function ContactForm() {
                   {...register("email")}
                   id="contact-email"
                   type="email"
-                  className={`bg-transparent border-b ${errors.email ? "border-red-500" : "border-zinc-200 dark:border-zinc-800"} py-2 text-sm outline-none focus:border-[#4A3728] transition-all text-zinc-900 dark:text-white font-medium`}
+                  aria-invalid={errors.email ? "true" : "false"}
+                  aria-describedby={errors.email ? "email-error" : undefined}
+                  className={`bg-transparent border-b ${errors.email ? "border-red-500" : "border-zinc-300 dark:border-zinc-700"} py-2 text-sm outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728] transition-all text-zinc-900 dark:text-white font-medium`}
                 />
                 {errors.email && (
-                  <span className="text-[10px] text-red-500 font-bold uppercase">
+                  <span id="email-error" className="text-[10px] text-red-600 dark:text-red-400 font-bold uppercase" role="alert">
                     {errors.email.message}
                   </span>
                 )}
@@ -123,7 +129,7 @@ export function ContactForm() {
               <div className="md:col-span-2 flex flex-col gap-1.5">
                 <label
                   htmlFor="contact-message"
-                  className="text-[11px] font-bold text-zinc-400 uppercase"
+                  className="text-[11px] font-bold text-zinc-600 dark:text-zinc-300 uppercase"
                 >
                   ¿Cómo ayudamos?
                 </label>
@@ -131,10 +137,12 @@ export function ContactForm() {
                   {...register("message")}
                   id="contact-message"
                   rows={2}
-                  className={`bg-transparent border-b ${errors.message ? "border-red-500" : "border-zinc-200 dark:border-zinc-800"} py-2 text-sm outline-none focus:border-[#4A3728] transition-all text-zinc-900 dark:text-white font-medium resize-none`}
+                  aria-invalid={errors.message ? "true" : "false"}
+                  aria-describedby={errors.message ? "message-error" : undefined}
+                  className={`bg-transparent border-b ${errors.message ? "border-red-500" : "border-zinc-300 dark:border-zinc-700"} py-2 text-sm outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728] transition-all text-zinc-900 dark:text-white font-medium resize-none`}
                 />
                 {errors.message && (
-                  <span className="text-[10px] text-red-500 font-bold uppercase">
+                  <span id="message-error" className="text-[10px] text-red-600 dark:text-red-400 font-bold uppercase" role="alert">
                     {errors.message.message}
                   </span>
                 )}

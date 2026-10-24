@@ -104,12 +104,12 @@ export default function CategoryCarousel({
 
           <Link
             href={`/${categorySlug}`}
-            className="group flex items-center gap-2 text-sm md:text-base hover:text-[#4A3728] dark:hover:text-zinc-300 transition-all"
+            className="group flex items-center gap-2 text-sm md:text-base text-zinc-900 dark:text-zinc-100 hover:text-[#4A3728] dark:hover:text-[#D4B896] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] rounded"
             aria-label={`Ver colección de ${categorySlug.replace("-", " ")}`}
           >
             <span className="hidden sm:inline">VER COLECCIÓN</span>
             <span className="sm:hidden mt-0.5">COLECCIÓN</span>
-            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#4A3728] group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#4A3728] dark:text-[#D4B896] group-hover:translate-x-1 transition-transform" aria-hidden="true" />
           </Link>
         </div>
 

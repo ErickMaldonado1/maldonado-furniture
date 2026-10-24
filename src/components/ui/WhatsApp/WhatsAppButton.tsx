@@ -68,15 +68,16 @@ export default function WhatsAppButton() {
               </div>
             </div>
             <button
+              type="button"
               onClick={(e) => {
                 e.preventDefault();
                 setIsOpen(false);
                 setHasClosed(true);
               }}
-              className="p-1.5 text-zinc-400 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer"
-              aria-label="Cerrar"
+              className="p-1.5 text-zinc-400 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              aria-label="Cerrar notificación de WhatsApp"
             >
-              <XMark className="w-4 h-4" />
+              <XMark className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
 
@@ -87,10 +88,10 @@ export default function WhatsAppButton() {
                 Bienvenido a{" "}
                 <span className="font-semibold">Muebles Maldonado</span>. Diseñamos y fabricamos muebles a medida.
               </p>
-        <p className="text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-2">
+              <p className="text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-2">
                 ¿En qué espacio podemos ayudarte? Cotiza sin compromiso.
               </p>
-              <p className="text-[10px] text-zinc-400 text-right mt-2">ahora ✓✓</p>
+              <p className="text-[10px] text-zinc-500 dark:text-zinc-400 text-right mt-2">ahora ✓✓</p>
             </div>
           </div>
 
@@ -99,9 +100,10 @@ export default function WhatsAppButton() {
             href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2.5 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-[13px] font-semibold py-3.5 transition-colors duration-200"
+            aria-label="Iniciar conversación por WhatsApp"
+            className="flex items-center justify-center gap-2.5 w-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-[13px] font-semibold py-3.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
           >
-            <Whatsapp className="w-4 h-4" />
+            <Whatsapp className="w-4 h-4" aria-hidden="true" />
             Iniciar conversación
           </Link>
           <div className="absolute -bottom-2 right-[26px] w-4 h-4 bg-[#25D366] rotate-45" />
@@ -112,12 +114,12 @@ export default function WhatsAppButton() {
         href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full transition-all hover:scale-110 active:scale-95 shadow-lg shadow-[#25D366]/30"
-        aria-label="Abrir WhatsApp"
+        className="group relative flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full transition-all hover:scale-110 active:scale-95 shadow-lg shadow-[#25D366]/30 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400"
+        aria-label="Contactar a Muebles Maldonado por WhatsApp"
         onMouseEnter={() => setIsOpen(true)}
       >
-        <Whatsapp className="w-6 h-6" />
-        <span className="absolute inset-0 rounded-full border border-[#25D366] animate-ping opacity-20" />
+        <Whatsapp className="w-6 h-6" aria-hidden="true" />
+        <span className="absolute inset-0 rounded-full border border-[#25D366] animate-ping opacity-20" aria-hidden="true" />
       </Link>
     </div>
   );
