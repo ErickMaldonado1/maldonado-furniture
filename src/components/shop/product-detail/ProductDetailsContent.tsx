@@ -96,7 +96,7 @@ export function ProductDetailsContent({
             <span className="font-medium text-zinc-900 dark:text-white block">🎨 Acabados y Texturas:</span>
             <span>
               Más de 40 opciones de tableros Pelikano / Edimca / Masisa.{" "}
-              <Link href="/catalogo-colores" className="text-[#8B735B] underline font-medium hover:opacity-80">
+              <Link href="/catalogo-colores" className="text-[#634E3A] dark:text-[#D4B896] underline font-medium hover:opacity-80">
                 Ver catálogo de colores →
               </Link>
             </span>

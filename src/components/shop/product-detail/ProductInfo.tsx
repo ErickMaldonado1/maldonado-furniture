@@ -61,7 +61,7 @@ export function ProductInfo({ product, selectedVariant }: ProductInfoProps) {
           <span>BAJO PEDIDO DIRECTO DE FÁBRICA</span>
         </div>
 
-        <span className="label-premium text-[#8B735B] dark:text-[#C4A482] bg-[#8B735B]/10 px-2.5 py-1 rounded-full">
+        <span className="label-premium text-[#634E3A] dark:text-[#D4B896] bg-[#634E3A]/10 dark:bg-[#D4B896]/10 px-2.5 py-1 rounded-full">
           A Medida Disponible
         </span>
       </div>
