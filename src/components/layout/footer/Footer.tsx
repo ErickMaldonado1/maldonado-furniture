@@ -50,9 +50,9 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Columna 2: Catálogo */}
+         
           <div className="space-y-4 flex flex-col items-start text-left">
-            <h3 className="text-xs font-bold text-[#8B735B] uppercase">
+            <h3 className="text-xs font-bold text-[#D4B896] uppercase tracking-wider">
               Catálogo
             </h3>
             <nav className="flex flex-col gap-3.5 items-start">
@@ -65,7 +65,7 @@ const Footer = () => {
                 <Link
                   key={item.slug}
                   href={item.slug}
-                  className="text-zinc-400 hover:text-white text-sm font-normal transition-all duration-300 hover:translate-x-1 w-fit"
+                  className="text-zinc-400 hover:text-white text-sm font-normal transition-all duration-300 hover:translate-x-1 w-fit focus-visible:outline-none focus-visible:underline"
                 >
                   {item.name}
                 </Link>
@@ -74,7 +74,7 @@ const Footer = () => {
           </div>
 
           <div className="space-y-4 flex flex-col items-center md:items-start">
-            <h3 className="text-xs font-bold text-[#8B735B]  uppercase">
+            <h3 className="text-xs font-bold text-[#D4B896] uppercase tracking-wider">
               Servicios
             </h3>
             <nav className="flex flex-col gap-3.5">
@@ -87,7 +87,7 @@ const Footer = () => {
                 <Link
                   key={item.name}
                   href={item.path}
-                  className="text-zinc-400 hover:text-white text-sm font-normal transition-all duration-300 hover:translate-x-1"
+                  className="text-zinc-400 hover:text-white text-sm font-normal transition-all duration-300 hover:translate-x-1 focus-visible:outline-none focus-visible:underline"
                 >
                   {item.name}
                 </Link>
@@ -96,7 +96,7 @@ const Footer = () => {
           </div>
 
           <div className="space-y-4 flex flex-col items-center md:items-start">
-            <h3 className="text-xs font-bold text-[#8B735B]  uppercase">
+            <h3 className="text-xs font-bold text-[#D4B896] uppercase tracking-wider">
               Suscríbete
             </h3>
             <div className="w-full max-w-xs md:max-w-none">

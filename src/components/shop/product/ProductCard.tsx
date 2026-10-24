@@ -167,73 +167,74 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       transition={{ duration: 0.3, delay: index * 0.05 }}
       className="group bg-white dark:bg-[#1C1C1C] flex flex-col h-full border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-xl cursor-default"
     >
-      <div
-        className="relative w-full aspect-square overflow-hidden group/img cursor-pointer"
-        onClick={() => router.push(productPath)}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        aria-label={`Ver detalles de ${product.name}`}
-        role="button"
-        tabIndex={0}
-      >
-        <Image
-          loader={cloudinaryLoader}
-          src={imgError ? fallbackImage : rawImageUrl}
-          onError={() => setImgError(true)}
-          alt={product.name}
-          fill
-          priority={index < 4}
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
-          className="object-cover object-center transition-transform duration-700 group-hover/img:scale-105"
-        />
-        {rawSecondImageUrl && (
+      <div className="relative w-full aspect-square overflow-hidden group/img">
+        <Link
+          href={productPath}
+          aria-label={`Ver detalles de ${product.name}`}
+          className="block w-full h-full relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#634E3A]"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <Image
             loader={cloudinaryLoader}
-            src={imgError2 ? fallbackImage : rawSecondImageUrl}
-            onError={() => setImgError2(true)}
-            alt={`${product.name} - Vista alternativa`}
+            src={imgError ? fallbackImage : rawImageUrl}
+            onError={() => setImgError(true)}
+            alt={product.name}
             fill
+            priority={index < 4}
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
-            className={`object-cover object-center transition-all duration-700 group-hover/img:scale-105 absolute inset-0 z-10 ${
-              isHovered && !imgError2 ? "opacity-100" : "opacity-0"
-            }`}
+            className="object-cover object-center transition-transform duration-700 group-hover/img:scale-105"
           />
-        )}
+          {rawSecondImageUrl && (
+            <Image
+              loader={cloudinaryLoader}
+              src={imgError2 ? fallbackImage : rawSecondImageUrl}
+              onError={() => setImgError2(true)}
+              alt={`${product.name} - Vista alternativa`}
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
+              className={`object-cover object-center transition-all duration-700 group-hover/img:scale-105 absolute inset-0 z-10 ${
+                isHovered && !imgError2 ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          )}
+
+          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
+            <span className="bg-white/90 backdrop-blur-md text-zinc-900 px-6 py-2.5 rounded-full label-premium shadow-xl transform translate-y-4 group-hover/img:translate-y-0 transition-transform duration-500 font-bold">
+              Ver Detalles
+            </span>
+          </div>
+        </Link>
 
         <div className="absolute top-2 right-2 z-30 flex flex-col gap-2">
           <button
+            type="button"
             onClick={handleToggleFavorite}
-            aria-label={isFav ? "Eliminar de favoritos" : "Añadir a favoritos"}
-            className={`p-1.5 sm:p-2 rounded-full backdrop-blur-md transition-all duration-300 shadow-sm z-50 ${
+            aria-label={isFav ? `Eliminar ${product.name} de favoritos` : `Añadir ${product.name} a favoritos`}
+            className={`p-1.5 sm:p-2 rounded-full backdrop-blur-md transition-all duration-300 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 cursor-pointer ${
               isFav
                 ? "bg-white text-red-500"
                 : "bg-black/20 text-white hover:bg-white hover:text-red-500 scale-90 hover:scale-100"
             }`}
           >
             {isFav ? (
-              <HeartFilled className="w-4 h-4 sm:w-5 sm:h-5" />
+              <HeartFilled className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
             ) : (
-              <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Heart className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
             )}
           </button>
         </div>
 
-        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
-          <span className="bg-white/90 backdrop-blur-md text-zinc-900 px-6 py-2.5 rounded-full label-premium shadow-xl transform translate-y-4 group-hover/img:translate-y-0 transition-transform duration-500 font-bold">
-            Ver Detalles
-          </span>
-        </div>
-
-        <div className="hidden sm:flex absolute bottom-3 left-3 items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 dark:bg-black/70 backdrop-blur-md shadow-sm z-20 border border-black/5 dark:border-white/10 transition-all duration-300">
-          <Truck className="w-3.5 h-3.5 text-[#758A6B] dark:text-[#A68B67]" />
-          <span className="text-xs font-semibold text-neutral-700 dark:text-zinc-200">
+        <div className="hidden sm:flex absolute bottom-3 left-3 items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 dark:bg-black/70 backdrop-blur-md shadow-sm z-20 border border-black/5 dark:border-white/10 transition-all duration-300 pointer-events-none">
+          <Truck className="w-3.5 h-3.5 text-[#567249] dark:text-[#A68B67]" aria-hidden="true" />
+          <span className="text-xs font-semibold text-neutral-800 dark:text-zinc-200">
             {product.deliveryDays || 8} días
           </span>
         </div>
 
         {hasDiscount && product.discount !== null && (
           <div
-            className={`absolute top-3 left-3 z-20 px-2.5 py-1 rounded-sm text-[11px] font-bold shadow-sm text-white transition-all duration-300 ${
+            className={`absolute top-3 left-3 z-20 px-2.5 py-1 rounded-sm text-[11px] font-bold shadow-sm text-white transition-all duration-300 pointer-events-none ${
               product.discount >= 10
                 ? "bg-rose-700 shadow-rose-900/20"
                 : product.discount > 5
@@ -248,7 +249,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 
       <div className="p-2 sm:p-3 flex flex-col flex-1 cursor-default">
         <div className="flex-1">
-          <Link href={productPath} title={product.name}>
+          <Link href={productPath} title={product.name} className="focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#634E3A] rounded">
             <h3 className="text-base sm:text-lg font-normal text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug hover:text-[#7A5C3E] dark:hover:text-[#A98B6C] transition-colors duration-200 mb-2">
               {product.name}
             </h3>
@@ -258,17 +259,17 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             <div className="flex items-center gap-2 label-premium text-zinc-600 dark:text-zinc-300 mb-2">
               <div className="flex items-center gap-1 p-1 px-1.5 bg-zinc-100 dark:bg-zinc-800/80 rounded border border-zinc-200/60 dark:border-zinc-700/40">
                 <span className="flex items-center gap-0.5" title="Alto">
-                  <span className="opacity-70">⇅</span>
+                  <span className="opacity-70" aria-hidden="true">⇅</span>
                   {product.variants[0].dimensions.height}
                 </span>
-                <span className="w-px h-2.5 bg-zinc-300 dark:bg-zinc-600 mx-0.5" />
+                <span className="w-px h-2.5 bg-zinc-300 dark:bg-zinc-600 mx-0.5" aria-hidden="true" />
                 <span className="flex items-center gap-0.5" title="Ancho">
-                  <span className="opacity-70">⇄</span>
+                  <span className="opacity-70" aria-hidden="true">⇄</span>
                   {product.variants[0].dimensions.width}
                 </span>
-                <span className="w-px h-2.5 bg-zinc-300 dark:bg-zinc-600 mx-0.5" />
+                <span className="w-px h-2.5 bg-zinc-300 dark:bg-zinc-600 mx-0.5" aria-hidden="true" />
                 <span className="flex items-center gap-0.5" title="Profundidad">
-                  <span className="opacity-70">⤢</span>
+                  <span className="opacity-70" aria-hidden="true">⤢</span>
                   {product.variants[0].dimensions.depth}cm
                 </span>
               </div>
@@ -279,7 +280,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <div className="flex items-center justify-between gap-1.5 pt-2 border-t border-zinc-100 dark:border-white/5">
           <div className="flex flex-col items-start cursor-default min-w-0">
             {hasDiscount && (
-              <span className="label-premium text-zinc-400 line-through leading-none mb-0.5">
+              <span className="label-premium text-zinc-600 dark:text-zinc-400 line-through leading-none mb-0.5">
                 ${product.price.toLocaleString()}
               </span>
             )}
@@ -293,23 +294,25 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 
           <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
             <button
+              type="button"
               onClick={handleWhatsAppQuote}
-              title="Cotizar por WhatsApp"
-              aria-label="Cotizar este mueble por WhatsApp"
-              className="h-9 px-2 sm:px-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center gap-1 label-premium text-white! font-medium transition-all shadow-xs active:scale-95 cursor-pointer"
+              title={`Cotizar ${product.name} por WhatsApp`}
+              aria-label={`Cotizar ${product.name} por WhatsApp`}
+              className="h-9 px-2 sm:px-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 text-white flex items-center justify-center gap-1 label-premium text-white! font-medium transition-all shadow-xs active:scale-95 cursor-pointer"
             >
-              <Whatsapp className="w-3.5 h-3.5 text-white" />
+              <Whatsapp className="w-3.5 h-3.5 text-white" aria-hidden="true" />
               <span className="hidden sm:inline">Cotizar</span>
             </button>
 
             <button
+              type="button"
               onClick={handleAddToCart}
               disabled={cartStatus}
-              aria-label={cartStatus ? "En la cesta" : "Añadir al carrito"}
-              title={cartStatus ? "En la cesta" : "Añadir al carrito"}
-              className={`h-9 px-2 sm:px-2.5 rounded-lg flex items-center justify-center gap-1 label-premium font-medium transition-all shadow-xs cursor-pointer ${
+              aria-label={cartStatus ? `${product.name} en la cesta` : `Añadir ${product.name} al carrito`}
+              title={cartStatus ? `${product.name} en la cesta` : `Añadir ${product.name} al carrito`}
+              className={`h-9 px-2 sm:px-2.5 rounded-lg flex items-center justify-center gap-1 label-premium font-medium transition-all shadow-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-white ${
                 cartStatus
-                  ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800"
+                  ? "bg-zinc-200 text-zinc-600 cursor-not-allowed dark:bg-zinc-800 dark:text-zinc-400"
                   : "bg-[#141414] text-white hover:bg-zinc-800 active:scale-95 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
               }`}
             >
@@ -321,7 +324,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
                     animate={{ opacity: 1, scale: 1 }}
                     className="flex items-center gap-1"
                   >
-                    <CheckBadge className="w-3.5 h-3.5 text-emerald-500" />
+                    <CheckBadge className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -330,7 +333,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
                     animate={{ opacity: 1, scale: 1 }}
                     className="flex items-center gap-1"
                   >
-                    <CartPlusIcon className="w-3.5 h-3.5" />
+                    <CartPlusIcon className="w-3.5 h-3.5" aria-hidden="true" />
                   </motion.div>
                 )}
               </AnimatePresence>

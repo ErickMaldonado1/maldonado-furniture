@@ -59,8 +59,8 @@ export default function SmallSpacesSection({ products }: SmallSpacesSectionProps
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-10 border-b border-zinc-200/70 dark:border-zinc-800/50 pb-6 gap-4">
           <div>
             <div className="flex items-center gap-1.5 mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-[#8B735B] dark:text-[#C4A482]" />
-              <span className="label-premium text-[#8B735B] dark:text-[#C4A482]">
+              <Sparkles className="w-3.5 h-3.5 text-[#634E3A] dark:text-[#D4B896]" aria-hidden="true" />
+              <span className="label-premium text-[#634E3A] dark:text-[#D4B896]">
                 Optimización y Funcionalidad
               </span>
             </div>
@@ -70,19 +70,19 @@ export default function SmallSpacesSection({ products }: SmallSpacesSectionProps
                 Espacios Pequeños
               </span>
             </h2>
-            <p className="text-xs sm:text-sm font-medium text-zinc-500 dark:text-zinc-400 mt-2 max-w-xl">
+            <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-300 mt-2 max-w-xl">
               Muebles compactos, modulares y de doble función diseñados para aprovechar cada centímetro en departamentos y suites.
             </p>
           </div>
 
           <Link
             href="/productos"
-            className="group flex items-center gap-2 text-sm md:text-base hover:text-[#4A3728] dark:hover:text-zinc-300 transition-all"
+            className="group flex items-center gap-2 text-sm md:text-base text-zinc-900 dark:text-zinc-100 hover:text-[#4A3728] dark:hover:text-[#D4B896] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#634E3A] rounded"
             aria-label="Explorar todo el catálogo"
           >
             <span className="hidden sm:inline">EXPLORAR CATÁLOGO</span>
             <span className="sm:hidden">CATÁLOGO</span>
-            <ArrowNarrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#4A3728] group-hover:translate-x-1 transition-transform" />
+            <ArrowNarrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#4A3728] dark:text-[#D4B896] group-hover:translate-x-1 transition-transform" aria-hidden="true" />
           </Link>
         </div>
 

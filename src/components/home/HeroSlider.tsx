@@ -138,10 +138,11 @@ const HeroSlider = () => {
                 <button
                   type="button"
                   onClick={() => handleWhatsAppQuote(slides[current])}
-                  title="Cotizar este estilo por WhatsApp"
-                  className="inline-flex items-center gap-2.5 px-6 py-4 text-[13px] font-medium uppercase text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all duration-500 group cursor-pointer"
+                  title={`Cotizar ${slides[current].title} por WhatsApp`}
+                  aria-label={`Cotizar ${slides[current].title} por WhatsApp`}
+                  className="inline-flex items-center gap-2.5 px-6 py-4 text-[13px] font-medium uppercase text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all duration-500 group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  <Whatsapp className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
+                  <Whatsapp className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" aria-hidden="true" />
                   <span>Cotizar a Medida</span>
                 </button>
               </m.div>
@@ -214,21 +215,22 @@ const HeroSlider = () => {
               <div className="flex gap-2 sm:gap-3">
                 {[
                   {
-                    icon: <ChevronLeft className="w-5 h-5" />,
+                    icon: <ChevronLeft className="w-5 h-5" aria-hidden="true" />,
                     onClick: prevSlide,
-                    label: "Anterior",
+                    label: "Diapositiva anterior",
                   },
                   {
-                    icon: <ChevronRight className="w-5 h-5" />,
+                    icon: <ChevronRight className="w-5 h-5" aria-hidden="true" />,
                     onClick: nextSlide,
-                    label: "Siguiente",
+                    label: "Diapositiva siguiente",
                   },
                 ].map((btn, i) => (
                   <button
                     key={i}
+                    type="button"
                     onClick={btn.onClick}
                     aria-label={btn.label}
-                    className="w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/20 bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-500 group cursor-pointer"
+                    className="w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/20 bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-500 group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                   >
                     <div className="transition-transform duration-500 group-hover:scale-110">
                       {btn.icon}

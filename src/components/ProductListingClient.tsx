@@ -136,10 +136,16 @@ export default function ProductListingClient({
             </div>
 
             <div className="flex items-center gap-4">
+              <label htmlFor="sort-by-select" className="sr-only">
+                Ordenar catálogo de productos
+              </label>
               <select
+                id="sort-by-select"
+                name="sortBy"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-transparent border-none text-[12px] md:text-[12px] font-black uppercase cursor-pointer focus:ring-0"
+                aria-label="Ordenar productos"
+                className="bg-transparent border-none text-[12px] md:text-[12px] font-black uppercase cursor-pointer focus:ring-0 focus-visible:ring-1 focus-visible:ring-[#4A3728]"
               >
                 <option value="recent">Novedades</option>
                 <option value="price_asc">Precio: más bajo</option>
@@ -208,8 +214,6 @@ export default function ProductListingClient({
           </AnimatePresence>
         </div>
       </div>
-
-      {/* DRAWER MÓVIL (FILTROS) */}
       <AnimatePresence>
         {isMobileFiltersOpen && (
           <>

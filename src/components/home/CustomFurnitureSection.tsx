@@ -81,8 +81,8 @@ export default function CustomFurnitureSection() {
     <section className="py-12 md:py-20 bg-white dark:bg-[#050505] overflow-hidden">
       <div className="max-w-360 mx-auto px-4 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="inline-flex items-center gap-1.5 label-premium text-[#8B735B] dark:text-[#C4A482] mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
+          <span className="inline-flex items-center gap-1.5 label-premium text-[#634E3A] dark:text-[#D4B896] mb-3">
+            <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
             Servicio Exclusivo en Quito y Valles
           </span>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-900 dark:text-white leading-none">
@@ -97,15 +97,15 @@ export default function CustomFurnitureSection() {
           {steps.map((st) => (
             <div
               key={st.num}
-              className="p-5 rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-[#FAF9F7] dark:bg-zinc-900/40 relative overflow-hidden group hover:border-[#8B735B]/50 transition-all duration-300"
+              className="p-5 rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-[#FAF9F7] dark:bg-zinc-900/40 relative overflow-hidden group hover:border-[#634E3A]/50 transition-all duration-300"
             >
-              <span className="text-2xl font-light text-zinc-300 dark:text-zinc-700 block mb-2 font-mono">
+              <span className="text-2xl font-semibold text-[#634E3A] dark:text-[#D4B896] block mb-2 font-mono">
                 {st.num}
               </span>
               <h3 className="text-sm font-medium text-zinc-900 dark:text-white mb-1">
                 {st.title}
               </h3>
-              <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              <p className="text-xs font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed">
                 {st.desc}
               </p>
             </div>
@@ -117,13 +117,13 @@ export default function CustomFurnitureSection() {
 
           <div className="lg:col-span-7 bg-[#FAF9F7] dark:bg-zinc-900/50 rounded-2xl p-6 sm:p-8 border border-zinc-200 dark:border-zinc-800 shadow-sm">
             <div className="mb-6">
-              <span className="label-premium text-[#8B735B] dark:text-[#C4A482] block">
+              <span className="label-premium text-[#634E3A] dark:text-[#D4B896] block">
                 Cotización Rápida
               </span>
               <h3 className="text-xl font-medium text-zinc-900 dark:text-white mt-1">
                 Solicita tu Proforma Personalizada
               </h3>
-              <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400 mt-0.5">
+              <p className="text-xs font-medium text-zinc-600 dark:text-zinc-300 mt-0.5">
                 Te enviamos un presupuesto preliminar directamente por WhatsApp sin compromiso.
               </p>
             </div>
@@ -131,13 +131,15 @@ export default function CustomFurnitureSection() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label htmlFor="tipo-mueble" className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
                     Tipo de Mueble
                   </label>
                   <select
+                    id="tipo-mueble"
+                    name="tipoMueble"
                     value={furnitureType}
                     onChange={(e) => setFurnitureType(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
                   >
                     <option value="Clóset o Walking Clóset">Clóset / Walking Clóset</option>
                     <option value="Cocina Integral o Modular">Cocina Integral a Medida</option>
@@ -150,13 +152,15 @@ export default function CustomFurnitureSection() {
                 </div>
 
                 <div>
-                  <label className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
-                    Acabado de Melamina
+                  <label htmlFor="acabado-color" className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
+                    Color o Acabado Preferido
                   </label>
                   <select
+                    id="acabado-color"
+                    name="acabadoColor"
                     value={finish}
                     onChange={(e) => setFinish(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
                   >
                     <option value="Melamina Maderada (Roble, Carvalo, Cava)">Maderado Cálido</option>
                     <option value="Blanco Mate o Brillante">Blanco Minimalista</option>
@@ -168,87 +172,103 @@ export default function CustomFurnitureSection() {
               </div>
 
               <div>
-                <label className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
+                <span className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
                   Medidas Aproximadas de tu espacio
-                </label>
+                </span>
                 <div className="grid grid-cols-3 gap-2">
                   <input
+                    id="medida-ancho"
+                    name="ancho"
                     type="text"
                     placeholder="Ancho (ej. 180cm)"
+                    aria-label="Ancho aproximado en centímetros"
                     value={width}
                     onChange={(e) => setWidth(e.target.value)}
-                    className="px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728]"
+                    className="px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
                   />
                   <input
+                    id="medida-alto"
+                    name="alto"
                     type="text"
                     placeholder="Alto (ej. 220cm)"
+                    aria-label="Alto aproximado en centímetros"
                     value={height}
                     onChange={(e) => setHeight(e.target.value)}
-                    className="px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728]"
+                    className="px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
                   />
                   <input
+                    id="medida-fondo"
+                    name="fondo"
                     type="text"
                     placeholder="Fondo (ej. 55cm)"
+                    aria-label="Fondo aproximado en centímetros"
                     value={depth}
                     onChange={(e) => setDepth(e.target.value)}
-                    className="px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728]"
+                    className="px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label htmlFor="cliente-nombre" className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
                     Tu Nombre
                   </label>
                   <input
+                    id="cliente-nombre"
+                    name="nombreCliente"
                     type="text"
                     placeholder="Tu nombre"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    className="w-full px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728]"
+                    className="w-full px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
                   />
                 </div>
                 <div>
-                  <label className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label htmlFor="cliente-sector" className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
                     Sector en Quito
                   </label>
                   <input
+                    id="cliente-sector"
+                    name="sectorCliente"
                     type="text"
                     placeholder="Ej. El Condado, Cumbayá..."
                     value={sector}
                     onChange={(e) => setSector(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728]"
+                    className="w-full px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
                   />
                 </div>
                 <div>
-                  <label className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
+                  <label htmlFor="cliente-presupuesto" className="block label-premium text-zinc-700 dark:text-zinc-300 mb-1">
                     Presupuesto (Opcional)
                   </label>
                   <input
+                    id="cliente-presupuesto"
+                    name="presupuestoCliente"
                     type="text"
                     placeholder="Ej. $250 - $400"
                     value={budget}
                     onChange={(e) => setBudget(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728]"
+                    className="w-full px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
                   />
                 </div>
               </div>
 
               <div className="p-3 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/80 dark:border-zinc-700/60 flex items-center justify-between label-premium text-zinc-600 dark:text-zinc-300">
                 <span className="flex items-center gap-1.5 font-medium">
-                  <CheckBadge className="w-4 h-4 text-emerald-500" />
+                  <CheckBadge className="w-4 h-4 text-emerald-500" aria-hidden="true" />
                   Asesoría técnica y cotización sin costo
                 </span>
-                <span className="font-mono text-zinc-400">095 950 4842</span>
+                <span className="font-mono text-zinc-600 dark:text-zinc-400">095 950 4842</span>
               </div>
 
               <button
                 type="submit"
-                className="w-full h-12 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white label-premium text-white! font-medium tracking-wider flex items-center justify-center gap-2 transition-all shadow-md active:scale-98 cursor-pointer"
+                aria-label="Enviar solicitud de cotización por WhatsApp"
+                className="w-full h-12 rounded-full bg-emerald-600 hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 text-white label-premium text-white! font-medium tracking-wider flex items-center justify-center gap-2 transition-all shadow-md active:scale-98 cursor-pointer"
               >
-                <Whatsapp className="w-5 h-5 text-white" />
+                <Whatsapp className="w-5 h-5 text-white" aria-hidden="true" />
                 <span>Enviar Solicitud a WhatsApp</span>
               </button>
             </form>
@@ -261,10 +281,11 @@ export default function CustomFurnitureSection() {
               </span>
               <Link
                 href="/proyectos"
-                className="label-premium text-[#8B735B] hover:underline inline-flex items-center gap-1"
+                aria-label="Ver todos los proyectos entregados"
+                className="label-premium text-[#634E3A] dark:text-[#D4B896] hover:underline inline-flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#634E3A] rounded"
               >
                 <span>Ver proyectos</span>
-                <ArrowNarrowRight className="w-3.5 h-3.5" />
+                <ArrowNarrowRight className="w-3.5 h-3.5" aria-hidden="true" />
               </Link>
             </div>
 
@@ -284,7 +305,7 @@ export default function CustomFurnitureSection() {
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="label-premium text-[#8B735B] dark:text-[#C4A482]">
+                    <span className="label-premium text-[#634E3A] dark:text-[#D4B896]">
                       {p.tag}
                     </span>
                     <h4 className="text-sm font-medium text-zinc-900 dark:text-white truncate">

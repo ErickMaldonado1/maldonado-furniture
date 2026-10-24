@@ -85,9 +85,9 @@ export default function WhatsAppButton() {
             <div className="bg-white dark:bg-[#1e2733] rounded-xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[90%]">
               <p className="text-[13px] text-zinc-800 dark:text-zinc-100 leading-relaxed">
                 Bienvenido a{" "}
-                <span className="font-semibold">Muebles Maldonado</span>. Diseñamos y fabricamos muebles a medida en Quito.
+                <span className="font-semibold">Muebles Maldonado</span>. Diseñamos y fabricamos muebles a medida.
               </p>
-              <p className="text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-2">
+        <p className="text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-2">
                 ¿En qué espacio podemos ayudarte? Cotiza sin compromiso.
               </p>
               <p className="text-[10px] text-zinc-400 text-right mt-2">ahora ✓✓</p>

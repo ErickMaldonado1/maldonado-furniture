@@ -15,20 +15,21 @@ export const SliderButton = ({ direction, onClick }: SliderButtonProps) => {
   `;
 
   const directionClasses = isLeft
-    ? "left-0 border-y border-r rounded-r-3xl -translate-x-full group-hover/left:translate-x-0 group-hover/left:opacity-100 opacity-0"
-    : "right-0 border-y border-l rounded-l-3xl translate-x-full group-hover/right:translate-x-0 group-hover/right:opacity-100 opacity-0";
+    ? "left-0 border-y border-r rounded-r-3xl -translate-x-full group-hover/left:translate-x-0 group-hover/left:opacity-100 opacity-0 focus-visible:translate-x-0 focus-visible:opacity-100"
+    : "right-0 border-y border-l rounded-l-3xl translate-x-full group-hover/right:translate-x-0 group-hover/right:opacity-100 opacity-0 focus-visible:translate-x-0 focus-visible:opacity-100";
 
   return (
     <button
+      type="button"
       onClick={onClick}
-      className={`${baseClasses} ${directionClasses}`}
-      aria-label={isLeft ? "Anterior" : "Siguiente"}
+      className={`${baseClasses} ${directionClasses} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728]`}
+      aria-label={isLeft ? "Ver elementos anteriores" : "Ver elementos siguientes"}
     >
       <div className="relative overflow-hidden flex items-center justify-center">
         {isLeft ? (
-          <ChevronLeft className="w-6 h-6 text-zinc-500 dark:text-zinc-400 group-hover/btn:text-white transition-all duration-300" />
+          <ChevronLeft className="w-6 h-6 text-zinc-600 dark:text-zinc-300 group-hover/btn:text-white transition-all duration-300" aria-hidden="true" />
         ) : (
-          <ChevronRight className="w-6 h-6 text-zinc-500 dark:text-zinc-400 group-hover/btn:text-white transition-all duration-300" />
+          <ChevronRight className="w-6 h-6 text-zinc-600 dark:text-zinc-300 group-hover/btn:text-white transition-all duration-300" aria-hidden="true" />
         )}
       </div>
     </button>

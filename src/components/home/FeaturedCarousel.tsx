@@ -99,7 +99,7 @@ export default function FeaturedCarousel({
         <div className="flex items-center justify-between mb-6 md:mb-10 border-b border-zinc-100 dark:border-zinc-800/50 pb-6">
           <div>
             {subtitle && (
-              <span className="label-premium block mb-1 text-[#8B735B] dark:text-[#C4A482]">
+              <span className="label-premium block mb-1 text-[#634E3A] dark:text-[#D4B896]">
                 {subtitle}
               </span>
             )}
@@ -113,12 +113,12 @@ export default function FeaturedCarousel({
 
           <Link
             href="/productos"
-            className="group flex items-center gap-2 text-sm md:text-base hover:text-[#4A3728] dark:hover:text-zinc-300 transition-all"
+            className="group flex items-center gap-2 text-sm md:text-base text-zinc-900 dark:text-zinc-100 hover:text-[#4A3728] dark:hover:text-[#D4B896] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#634E3A] rounded"
             aria-label="Ver colección de productos"
           >
             <span className="hidden sm:inline">VER CATÁLOGO COMPLETO</span>
             <span className="sm:hidden">CATÁLOGO</span>
-            <ArrowNarrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform text-[#4A3728]" />
+            <ArrowNarrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform text-[#4A3728]" aria-hidden="true" />
           </Link>
         </div>
 

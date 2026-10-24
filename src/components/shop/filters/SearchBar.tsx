@@ -72,14 +72,20 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   return (
     <form onSubmit={handleSearch} className="flex-1 max-w-xl relative group">
+      <label htmlFor="header-search-input" className="sr-only">
+        Buscar productos
+      </label>
       <Search
+        aria-hidden="true"
         className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${
           !showSolidNavbar
             ? "text-white/40 group-focus-within:text-white"
-            : "text-zinc-400 dark:text-zinc-500 group-focus-within:text-[#4A3728]"
+            : "text-zinc-500 dark:text-zinc-400 group-focus-within:text-[#4A3728]"
         }`}
       />
       <input
+        id="header-search-input"
+        name="busqueda"
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
@@ -90,7 +96,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         className={`w-full border-b py-2.5 pl-12 pr-4 focus:outline-none transition-all -wide text-lg font-light ${
           !showSolidNavbar
             ? "bg-transparent border-white/20 text-white placeholder:text-white/90 focus:border-white/80"
-            : "bg-transparent border-zinc-400 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 focus:border-[#4A3728] placeholder:text-zinc-400"
+            : "bg-transparent border-zinc-400 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:border-[#4A3728] placeholder:text-zinc-500"
         }`}
       />
     </form>

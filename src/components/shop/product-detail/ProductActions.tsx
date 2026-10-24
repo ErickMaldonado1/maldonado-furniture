@@ -106,7 +106,7 @@ export function ProductActions({
         </span>
         {discount && discount > 0 ? (
           <div className="flex items-center gap-2">
-            <span className="label-premium text-zinc-400 line-through">
+            <span className="label-premium text-zinc-600 dark:text-zinc-400 line-through">
               $
               {price.toLocaleString("es-EC", {
                 minimumFractionDigits: 2,
@@ -126,7 +126,7 @@ export function ProductActions({
         </span>
         <div className="flex items-center gap-1">
           <span>Plazo de entrega {deliveryText}</span>
-          <span className="w-4 h-4 rounded-full border border-zinc-400 text-[10px] flex items-center justify-center font-bold">
+          <span className="w-4 h-4 rounded-full border border-zinc-400 text-[10px] flex items-center justify-center font-bold" aria-hidden="true">
             i
           </span>
         </div>
@@ -135,10 +135,15 @@ export function ProductActions({
       <div className="flex flex-col gap-3 pt-1">
         <div className="flex items-center gap-2.5">
           <div className="relative shrink-0">
+            <label htmlFor="product-detail-quantity" className="sr-only">
+              Cantidad
+            </label>
             <select
+              id="product-detail-quantity"
+              name="productQuantity"
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
-              className="appearance-none h-12 pl-4 pr-8 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-sm font-medium text-zinc-900 dark:text-white cursor-pointer hover:border-zinc-900 dark:hover:border-white transition-colors"
+              className="appearance-none h-12 pl-4 pr-8 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-sm font-medium text-zinc-900 dark:text-white cursor-pointer hover:border-zinc-900 dark:hover:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] transition-colors"
               aria-label="Seleccionar cantidad"
             >
               {[1, 2, 3, 4, 5].map((num) => (
@@ -147,7 +152,7 @@ export function ProductActions({
                 </option>
               ))}
             </select>
-            <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500">
+            <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500" aria-hidden="true">
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -168,9 +173,10 @@ export function ProductActions({
             type="button"
             onClick={isInCart ? undefined : onAddToCart}
             disabled={isInCart}
-            className={`flex-1 h-12 rounded-full flex items-center justify-center gap-2 label-premium text-xs tracking-wider transition-all duration-300 ${
+            aria-label={isInCart ? "Producto en la cesta" : "Añadir a la cesta"}
+            className={`flex-1 h-12 rounded-full flex items-center justify-center gap-2 label-premium text-xs tracking-wider transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-white ${
               isInCart
-                ? "bg-zinc-200 text-zinc-500 cursor-not-allowed dark:bg-zinc-800 dark:text-zinc-400"
+                ? "bg-zinc-200 text-zinc-600 cursor-not-allowed dark:bg-zinc-800 dark:text-zinc-400"
                 : "bg-[#141414] text-white! hover:bg-[#252525] hover:shadow-lg hover:-translate-y-0.5 dark:bg-white dark:text-zinc-950! dark:hover:bg-zinc-200 active:scale-[0.98]"
             }`}
           >
@@ -180,13 +186,13 @@ export function ProductActions({
           <button
             type="button"
             onClick={onToggleFav}
-            className="w-12 h-12 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 flex items-center justify-center text-zinc-900 dark:text-white hover:border-zinc-900 dark:hover:border-white transition-colors shrink-0"
-            aria-label="Agregar a favoritos"
+            className="w-12 h-12 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 flex items-center justify-center text-zinc-900 dark:text-white hover:border-zinc-900 dark:hover:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 transition-colors shrink-0"
+            aria-label={isFav ? "Eliminar de favoritos" : "Agregar a favoritos"}
           >
             {isFav ? (
-              <HeartFilled className="w-5 h-5 text-red-500" />
+              <HeartFilled className="w-5 h-5 text-red-500" aria-hidden="true" />
             ) : (
-              <Heart className="w-5 h-5" />
+              <Heart className="w-5 h-5" aria-hidden="true" />
             )}
           </button>
         </div>
@@ -196,9 +202,10 @@ export function ProductActions({
             type="button"
             onClick={handleWhatsApp}
             title="Cotizar por WhatsApp"
-            className="h-12 px-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center gap-2 label-premium text-white! font-medium tracking-wider transition-all shadow-sm active:scale-95 cursor-pointer"
+            aria-label="Cotizar este producto por WhatsApp"
+            className="h-12 px-4 rounded-full bg-emerald-600 hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 text-white flex items-center justify-center gap-2 label-premium text-white! font-medium tracking-wider transition-all shadow-sm active:scale-95 cursor-pointer"
           >
-            <Whatsapp className="w-5 h-5 text-white" />
+            <Whatsapp className="w-5 h-5 text-white" aria-hidden="true" />
             <span>Cotizar por WhatsApp</span>
           </button>
 
@@ -206,9 +213,10 @@ export function ProductActions({
             type="button"
             onClick={() => setIsCustomModalOpen(true)}
             title="Personalizar este mueble con medidas y acabados a medida"
-            className="h-12 px-4 rounded-full border border-[#4A3728] dark:border-[#8B735B] text-[#4A3728] dark:text-[#C4A482] hover:bg-[#4A3728] hover:text-white dark:hover:bg-[#8B735B] dark:hover:text-black flex items-center justify-center gap-2 label-premium font-medium tracking-wider transition-all shadow-xs active:scale-95 cursor-pointer"
+            aria-label="Personalizar este mueble con medidas y acabados a medida"
+            className="h-12 px-4 rounded-full border border-[#4A3728] dark:border-[#A6866A] text-[#4A3728] dark:text-[#D4B896] hover:bg-[#4A3728] hover:text-white dark:hover:bg-[#D4B896] dark:hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] flex items-center justify-center gap-2 label-premium font-medium tracking-wider transition-all shadow-xs active:scale-95 cursor-pointer"
           >
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-4 h-4" aria-hidden="true" />
             <span>Personalizar a Medida</span>
           </button>
         </div>
