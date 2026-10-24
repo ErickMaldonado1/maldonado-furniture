@@ -64,14 +64,14 @@ export function RealProjectsGallery({
     <section className="pt-8 border-t border-zinc-200/80 dark:border-zinc-800 space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
-          <span className="label-premium text-[#8B735B] dark:text-[#C4A482] block">
+          <span className="label-premium text-[#634E3A] dark:text-[#D4B896] block">
             Trabajos reales en Quito y alrededores
           </span>
           <h3 className="text-lg sm:text-xl font-medium text-zinc-900 dark:text-white">
             Fabricados por Muebles Maldonado en Hogares Reales
           </h3>
         </div>
-        <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
+        <p className="text-xs font-medium text-zinc-600 dark:text-zinc-300">
           Fotografías reales de entregas e instalaciones
         </p>
       </div>
@@ -80,11 +80,21 @@ export function RealProjectsGallery({
         {matchedProjects.map((proj) => (
           <div
             key={proj.id}
+            role="button"
+            tabIndex={0}
+            aria-label={`Ver proyecto ${proj.title}`}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setSelectedProject(proj);
+                setCurrentImgIdx(0);
+              }
+            }}
             onClick={() => {
               setSelectedProject(proj);
               setCurrentImgIdx(0);
             }}
-            className="group cursor-pointer rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex flex-col transition-all duration-300 hover:shadow-lg"
+            className="group cursor-pointer rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex flex-col transition-all duration-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#634E3A]"
           >
             <div className="relative aspect-square w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800">
               <Image
@@ -96,15 +106,15 @@ export function RealProjectsGallery({
               />
               <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span className="p-2 rounded-full bg-white/90 text-[#4A3728] shadow">
-                  <Plus className="w-4 h-4" />
+                  <Plus className="w-4 h-4" aria-hidden="true" />
                 </span>
               </div>
             </div>
             <div className="p-2.5 flex flex-col flex-1">
-              <h4 className="text-sm font-medium text-zinc-900 dark:text-white line-clamp-1 group-hover:text-[#8B735B] transition-colors">
+              <h4 className="text-sm font-medium text-zinc-900 dark:text-white line-clamp-1 group-hover:text-[#634E3A] transition-colors">
                 {proj.title}
               </h4>
-              <span className="label-premium text-zinc-500 dark:text-zinc-400 mt-0.5">
+              <span className="label-premium text-zinc-600 dark:text-zinc-400 mt-0.5">
                 {proj.category} • Instalado
               </span>
             </div>
