@@ -9,7 +9,6 @@ import { ContactForm } from "@/components/shop/contact/ContactForm";
 export default function ContactoPage() {
   return (
     <main className="mt-20 min-h-screen bg-white dark:bg-[#050505] transition-colors duration-300">
-      {/* Header Banner */}
       <section className="pt-8 md:pt-14 pb-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-8 border-b border-zinc-100 dark:border-zinc-800/80 pb-6 mb-6 md:mb-10">
           <motion.div
@@ -19,7 +18,7 @@ export default function ContactoPage() {
             transition={{ duration: 0.7 }}
             className="text-center md:text-left"
           >
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4A3728] dark:text-[#D4B896] block mb-1">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#4A3728] dark:text-[#D4B896] block mb-1">
               Canales Directos
             </span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-zinc-900 dark:text-white leading-tight">
@@ -48,7 +47,6 @@ export default function ContactoPage() {
         </div>
       </section>
 
-      {/* 4 Direct Contact Cards */}
       <section className="py-8 bg-zinc-50/50 dark:bg-[#080808] border-y border-zinc-200/60 dark:border-zinc-800/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -141,13 +139,11 @@ export default function ContactoPage() {
         </div>
       </section>
 
-      {/* Main Form & Map Balanced Layout */}
       <section className="py-12 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
-          {/* Column 1: Solicita una Proforma (Form) */}
           <div className="flex flex-col h-full">
             <div className="mb-6 pb-4 border-b border-zinc-200/80 dark:border-zinc-800">
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4A3728] dark:text-[#D4B896] block mb-1">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#4A3728] dark:text-[#D4B896] block mb-1">
                 Cotización en Línea
               </span>
               <h2 className="text-2xl sm:text-3xl font-medium text-zinc-900 dark:text-white leading-tight">
@@ -164,10 +160,9 @@ export default function ContactoPage() {
             </div>
           </div>
 
-          {/* Column 2: Nuestra Fábrica & Mapa */}
           <div className="flex flex-col h-full">
             <div className="mb-6 pb-4 border-b border-zinc-200/80 dark:border-zinc-800">
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4A3728] dark:text-[#D4B896] block mb-1">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#4A3728] dark:text-[#D4B896] block mb-1">
                 Taller de Producción
               </span>
               <h2 className="text-2xl sm:text-3xl font-medium text-zinc-900 dark:text-white leading-tight">
@@ -180,14 +175,13 @@ export default function ContactoPage() {
             </div>
 
             <div className="flex-1 bg-white dark:bg-[#0D0D0D] border border-zinc-200/80 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between gap-6">
-              {/* Information Cards (Location & Hours) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/70 dark:border-zinc-800/80 flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-[#4A3728]/10 dark:bg-[#D4B896]/10 flex items-center justify-center shrink-0 text-[#4A3728] dark:text-[#D4B896]">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">
                       Ubicación
                     </span>
                     <p className="text-xs font-bold text-zinc-800 dark:text-zinc-200 mt-0.5">
@@ -201,7 +195,7 @@ export default function ContactoPage() {
                     <Clock className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">
                       Horario de Atención
                     </span>
                     <p className="text-xs font-bold text-zinc-800 dark:text-zinc-200 mt-0.5">
@@ -211,7 +205,6 @@ export default function ContactoPage() {
                 </div>
               </div>
 
-              {/* Interactive Google Map Embed */}
               <div className="relative w-full flex-1 min-h-[320px] rounded-2xl overflow-hidden border border-zinc-200/80 dark:border-zinc-800 shadow-inner group">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.8131877759606!2d-78.52207852622!3d-0.09190273548446162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d5854e128da845%3A0xe91f40a9dd58a38a!2sMuebles%20Maldonado%20Ec!5e0!3m2!1ses-419!2sec!4v1765848391688!5m2!1ses-419!2sec"
@@ -233,7 +226,6 @@ export default function ContactoPage() {
                 </div>
               </div>
 
-              {/* Direct appointment button via WhatsApp */}
               <div className="pt-2">
                 <a
                   href="https://wa.me/593959504842?text=Hola%20Muebles%20Maldonado,%20quisiera%20agendar%20una%20cita%20previa%20para%20visitar%20su%20f%C3%A1brica%20en%20el%20Norte%20de%20Quito."

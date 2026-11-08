@@ -285,7 +285,7 @@ export function AttributesTab({
 
           </div>
 
-          <span className="self-start sm:self-auto px-3 py-1.5 rounded-full bg-[#A6866A]/10 text-[#A6866A] text-[11px] font-black">
+          <span className="self-start sm:self-auto px-3 py-1.5 rounded-full bg-[#A6866A]/10 text-[#A6866A] text-xs font-semibold">
             {watchedColors.length} seleccionados
           </span>
 
@@ -296,7 +296,7 @@ export function AttributesTab({
 
           <div className="mb-5">
 
-            <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-2">
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-2">
               Seleccionados
             </p>
 
@@ -339,7 +339,7 @@ export function AttributesTab({
 
                       </div>
 
-                      <span className="text-[11px] font-bold text-zinc-700 dark:text-zinc-300">
+                      <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
                         {colorName}
                       </span>
 
@@ -481,12 +481,12 @@ export function AttributesTab({
 
                     <div className="px-3 py-2.5 bg-white dark:bg-zinc-900">
 
-                      <p className="text-[11px] font-bold text-zinc-800 dark:text-zinc-200 truncate">
+                      <p className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 truncate">
                         {color.name}
                       </p>
 
                       {color.hexCode && (
-                        <p className="text-[9px] font-mono text-zinc-400 mt-0.5">
+                        <p className="text-xs font-mono text-zinc-400 mt-0.5">
                           {color.hexCode}
                         </p>
                       )}
@@ -595,7 +595,7 @@ export function AttributesTab({
               Oferta Flash
             </p>
 
-            <p className="text-[11px] text-zinc-500 mt-1">
+            <p className="text-xs text-zinc-500 mt-1">
               Mostrar este producto como destacado
               dentro del catálogo.
             </p>

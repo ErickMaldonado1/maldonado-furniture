@@ -155,7 +155,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
               <div className="flex items-center gap-2.5 px-4 py-2 bg-zinc-50 dark:bg-zinc-800/60 rounded-2xl border border-zinc-200/80 dark:border-zinc-800">
                 <ShoppingBag size={16} className="text-[#A6866A]" />
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                     Pedidos
                   </p>
                   <p className="text-base font-bold text-zinc-900 dark:text-white leading-none">
@@ -167,7 +167,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
               <div className="flex items-center gap-2.5 px-4 py-2 bg-zinc-50 dark:bg-zinc-800/60 rounded-2xl border border-zinc-200/80 dark:border-zinc-800">
                 <Heart size={16} className="text-rose-500" />
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                     Favoritos
                   </p>
                   <p className="text-base font-bold text-zinc-900 dark:text-white leading-none">
@@ -179,7 +179,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
               <div className="flex items-center gap-2.5 px-4 py-2 bg-zinc-50 dark:bg-zinc-800/60 rounded-2xl border border-zinc-200/80 dark:border-zinc-800">
                 <CalendarDays size={16} className="text-blue-500" />
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                     Miembro desde
                   </p>
                   <p className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 leading-none mt-0.5">
@@ -226,7 +226,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
               <Package size={18} className="text-[#4A3728] dark:text-[#A6866A] group-hover:scale-110 transition-transform" />
               <div className="min-w-0">
                 <span className="text-xs font-bold text-zinc-900 dark:text-white block truncate">Inventario</span>
-                <span className="text-[10px] text-zinc-500 block truncate">Ver productos</span>
+                <span className="text-xs text-zinc-500 block truncate">Ver productos</span>
               </div>
             </Link>
 
@@ -237,7 +237,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
               <Layers size={18} className="text-emerald-600 group-hover:scale-110 transition-transform" />
               <div className="min-w-0">
                 <span className="text-xs font-bold text-zinc-900 dark:text-white block truncate">Pedidos</span>
-                <span className="text-[10px] text-zinc-500 block truncate">Gestionar órdenes</span>
+                <span className="text-xs text-zinc-500 block truncate">Gestionar órdenes</span>
               </div>
             </Link>
 
@@ -248,7 +248,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
               <Users size={18} className="text-blue-500 group-hover:scale-110 transition-transform" />
               <div className="min-w-0">
                 <span className="text-xs font-bold text-zinc-900 dark:text-white block truncate">Usuarios</span>
-                <span className="text-[10px] text-zinc-500 block truncate">Cuentas y roles</span>
+                <span className="text-xs text-zinc-500 block truncate">Cuentas y roles</span>
               </div>
             </Link>
 
@@ -259,7 +259,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
               <Palette size={18} className="text-purple-500 group-hover:scale-110 transition-transform" />
               <div className="min-w-0">
                 <span className="text-xs font-bold text-zinc-900 dark:text-white block truncate">Colores</span>
-                <span className="text-[10px] text-zinc-500 block truncate">Pelikano / Edimca</span>
+                <span className="text-xs text-zinc-500 block truncate">Pelikano / Edimca</span>
               </div>
             </Link>
           </div>
@@ -363,7 +363,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
                   <User size={16} />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 block">
                     Nombre Registrado
                   </span>
                   <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">
@@ -377,7 +377,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
                   <Mail size={16} />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 block">
                     Correo Electrónico
                   </span>
                   <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">
@@ -391,7 +391,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
                   <Phone size={16} />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 block">
                     Teléfono Celular
                   </span>
                   <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">
@@ -405,7 +405,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
                   <ShieldCheck size={16} />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 block">
                     Tipo de Cuenta
                   </span>
                   <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">
@@ -439,7 +439,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
                   <h3 className="text-xs font-bold text-zinc-900 dark:text-white group-hover:text-[#4A3728] transition-colors">
                     Ver Carrito de Compras
                   </h3>
-                  <p className="text-[11px] text-zinc-500">Revisa tus productos y muebles a medida seleccionados</p>
+                  <p className="text-xs text-zinc-500">Revisa tus productos y muebles a medida seleccionados</p>
                 </div>
               </div>
               <ArrowRight size={14} className="text-zinc-400 group-hover:translate-x-1 transition-transform" />
@@ -457,7 +457,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
                   <h3 className="text-xs font-bold text-zinc-900 dark:text-white group-hover:text-[#4A3728] transition-colors">
                     Guía de Mantenimiento
                   </h3>
-                  <p className="text-[11px] text-zinc-500">Consejos para conservar muebles de melamina</p>
+                  <p className="text-xs text-zinc-500">Consejos para conservar muebles de melamina</p>
                 </div>
               </div>
               <ArrowRight size={14} className="text-zinc-400 group-hover:translate-x-1 transition-transform" />
@@ -475,7 +475,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
                   <h3 className="text-xs font-bold text-zinc-900 dark:text-white group-hover:text-[#4A3728] transition-colors">
                     Contacto y Cita Previa
                   </h3>
-                  <p className="text-[11px] text-zinc-500">Visita nuestra fábrica en Norte de Quito, Secot Condado Alto</p>
+                  <p className="text-xs text-zinc-500">Visita nuestra fábrica en Norte de Quito, Secot Condado Alto</p>
                 </div>
               </div>
               <ArrowRight size={14} className="text-zinc-400 group-hover:translate-x-1 transition-transform" />
@@ -506,7 +506,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
                     <p className="text-xs font-bold text-zinc-900 dark:text-white">
                       Orden #{order.id.slice(-6).toUpperCase()}
                     </p>
-                    <p className="text-[11px] text-zinc-500">
+                    <p className="text-xs text-zinc-500">
                       {new Date(order.createdAt).toLocaleDateString("es-EC", {
                         day: "2-digit",
                         month: "short",
@@ -521,7 +521,7 @@ export function ProfileClientView({ user }: ProfileClientViewProps) {
                     ${(order.total || 0).toLocaleString()}
                   </p>
                   <span
-                    className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
+                    className={`px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border ${
                       statusColors[order.status] || statusColors.PENDING
                     }`}
                   >

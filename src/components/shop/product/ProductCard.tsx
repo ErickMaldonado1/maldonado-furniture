@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { ProductWithRelations } from "@/types/product-service";
 import cloudinaryLoader from "@/utils/cloudinaryLoader";
 import { Whatsapp } from "@/utils/icons/social";
+import { FiArrowUp, FiArrowRight, FiMaximize2 } from "react-icons/fi";
 
 interface ProductCardProps {
   product: ProductWithRelations;
@@ -241,7 +242,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 
         {hasDiscount && product.discount !== null && (
           <div
-            className={`absolute top-3 left-3 z-20 px-2.5 py-1 rounded-sm text-[11px] font-bold shadow-sm text-white transition-all duration-300 pointer-events-none ${
+            className={`absolute top-3 left-3 z-20 px-2.5 py-1 rounded-sm text-xs font-semibold shadow-sm text-white transition-all duration-300 pointer-events-none ${
               product.discount >= 10
                 ? "bg-rose-700 shadow-rose-900/20"
                 : product.discount > 5
@@ -267,32 +268,26 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           </Link>
 
           {product.variants?.[0]?.dimensions && (
-            <div className="flex items-center gap-2 label-premium text-zinc-600 dark:text-zinc-300 mb-2">
-              <div className="flex items-center gap-1 p-1 px-1.5 bg-zinc-100 dark:bg-zinc-800/80 rounded border border-zinc-200/60 dark:border-zinc-700/40">
-                <span className="flex items-center gap-0.5" title="Alto">
-                  <span className="opacity-70" aria-hidden="true">
-                    ⇅
-                  </span>
+            <div className="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-300 mb-2">
+              <div className="flex items-center gap-1.5 p-1 px-2 bg-zinc-100 dark:bg-zinc-800/80 rounded-md border border-zinc-200/60 dark:border-zinc-700/40">
+                <span className="flex items-center gap-1" title="Alto">
+                  <FiArrowUp className="w-3 h-3 text-zinc-400" aria-hidden="true" />
                   {product.variants[0].dimensions.height}
                 </span>
                 <span
                   className="w-px h-2.5 bg-zinc-300 dark:bg-zinc-600 mx-0.5"
                   aria-hidden="true"
                 />
-                <span className="flex items-center gap-0.5" title="Ancho">
-                  <span className="opacity-70" aria-hidden="true">
-                    ⇄
-                  </span>
+                <span className="flex items-center gap-1" title="Ancho">
+                  <FiArrowRight className="w-3 h-3 text-zinc-400" aria-hidden="true" />
                   {product.variants[0].dimensions.width}
                 </span>
                 <span
                   className="w-px h-2.5 bg-zinc-300 dark:bg-zinc-600 mx-0.5"
                   aria-hidden="true"
                 />
-                <span className="flex items-center gap-0.5" title="Profundidad">
-                  <span className="opacity-70" aria-hidden="true">
-                    ⤢
-                  </span>
+                <span className="flex items-center gap-1" title="Profundidad">
+                  <FiMaximize2 className="w-3 h-3 text-zinc-400" aria-hidden="true" />
                   {product.variants[0].dimensions.depth}cm
                 </span>
               </div>
@@ -303,7 +298,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <div className="flex items-center justify-between gap-1.5 pt-2 border-t border-zinc-100 dark:border-white/5">
           <div className="flex flex-col items-start cursor-default min-w-0">
             {hasDiscount && (
-              <span className="label-premium text-zinc-600 dark:text-zinc-400 line-through leading-none mb-0.5">
+              <span className="text-xs font-normal text-zinc-400 dark:text-zinc-500 line-through leading-none mb-0.5">
                 ${product.price.toLocaleString()}
               </span>
             )}
@@ -346,7 +341,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
                   ? `${product.name} en la cesta`
                   : `Añadir ${product.name} al carrito`
               }
-              className={`h-9 px-2 sm:px-2.5 rounded-lg flex items-center justify-center gap-1 label-premium font-medium transition-all shadow-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-white ${
+              className={`h-9 px-2 sm:px-2.5 rounded-lg flex items-center justify-center gap-1 text-xs font-medium transition-all shadow-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-white ${
                 cartStatus
                   ? "bg-zinc-200 text-zinc-600 cursor-not-allowed dark:bg-zinc-800 dark:text-zinc-400"
                   : "bg-[#141414] text-white hover:bg-zinc-800 active:scale-95 dark:bg-white dark:text-black dark:hover:bg-zinc-200"

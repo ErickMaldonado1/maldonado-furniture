@@ -55,15 +55,15 @@ export default async function OrdersPage() {
         <header className="mb-12">
           <Link
             href="/"
-            className="flex items-center gap-2 text-[10px] font-black uppercase -[0.2em] text-zinc-400 hover:text-[#4A3728] transition-colors mb-6 w-fit"
+            className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-400 hover:text-[#4A3728] transition-colors mb-6 w-fit"
           >
             <ArrowLeft size={14} />
             Volver a la tienda
           </Link>
-          <h1 className="text-4xl md:text-5xl font-black uppercase  text-zinc-900 dark:text-white">
-            Mis <span className="text-[#4A3728]">Pedidos</span>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight uppercase text-zinc-900 dark:text-white">
+            Mis <span className="text-[#4A3728] dark:text-[#D4B896]">Pedidos</span>
           </h1>
-          <p className="mt-2 text-zinc-500 font-medium uppercase text-xs -[0.2em]">
+          <p className="mt-2 text-zinc-500 font-medium uppercase text-xs tracking-wider">
             Sigue el estado de tus compras y coordinaciones
           </p>
         </header>
@@ -75,12 +75,12 @@ export default async function OrdersPage() {
                 size={48}
                 className="mx-auto text-zinc-200 dark:text-zinc-800 mb-4"
               />
-              <p className="text-[10px] uppercase  text-zinc-400 dark:text-zinc-600 font-black italic">
+              <p className="text-xs uppercase text-zinc-400 dark:text-zinc-500 font-semibold italic tracking-wider">
                 Aún no has realizado ningún pedido
               </p>
               <Link
                 href="/shop"
-                className="inline-block mt-8 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-2xl font-black uppercase  text-xs hover:bg-[#4A3728] transition-all"
+                className="inline-block mt-8 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-2xl font-semibold uppercase tracking-wider text-xs hover:bg-[#4A3728] transition-all"
               >
                 Explorar Productos
               </Link>
@@ -97,7 +97,7 @@ export default async function OrdersPage() {
                       <Clock size={18} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-black uppercase -[0.2em] text-[#4A3728]">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-[#4A3728] dark:text-[#D4B896]">
                         Orden #{(order.id as string).slice(-6).toUpperCase()}
                       </p>
                       <p className="text-xs font-bold text-zinc-400 uppercase">
@@ -112,15 +112,15 @@ export default async function OrdersPage() {
 
                   <div className="flex items-center gap-6">
                     <div className="text-right">
-                      <p className="text-[10px] font-black uppercase  text-zinc-400 mb-0.5">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-0.5">
                         Total
                       </p>
-                      <p className="text-xl font-black text-zinc-900 dark:text-white ">
+                      <p className="text-xl font-bold text-zinc-900 dark:text-white">
                         ${(order.total || 0).toLocaleString()}
                       </p>
                     </div>
                     <span
-                      className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase  border transition-all ${statusColors[order.status as keyof typeof statusColors] || statusColors.PENDING}`}
+                      className={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border transition-all ${statusColors[order.status as keyof typeof statusColors] || statusColors.PENDING}`}
                     >
                       {statusLabels[
                         order.status as keyof typeof statusLabels
@@ -140,11 +140,11 @@ export default async function OrdersPage() {
                           <Package className="text-zinc-300" size={24} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-black text-zinc-900 dark:text-white text-xs uppercase truncate group-hover/item:text-[#4A3728] transition-colors">
+                          <h4 className="font-semibold text-zinc-900 dark:text-white text-xs uppercase tracking-wide truncate group-hover/item:text-[#4A3728] transition-colors">
                             {item.variant?.product?.name ||
                               "Producto desconocido"}
                           </h4>
-                          <p className="text-[10px] font-bold text-zinc-400 uppercase  mt-1">
+                          <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mt-1">
                             {item.quantity} x ${item.price.toLocaleString()} |{" "}
                             {item.variant?.color || "Color estándar"}
                           </p>
@@ -153,7 +153,6 @@ export default async function OrdersPage() {
                     ))}
                   </div>
 
-                  {/* Info de envío */}
                   <div className="md:col-span-5 bg-zinc-50 dark:bg-zinc-800/30 p-6 rounded-3xl border border-zinc-100 dark:border-zinc-800 space-y-4">
                     <div className="flex items-start gap-3">
                       <MapPin
@@ -161,10 +160,10 @@ export default async function OrdersPage() {
                         className="text-[#4A3728] mt-1 shrink-0"
                       />
                       <div>
-                        <p className="text-[10px] font-black uppercase  text-zinc-400 mb-1">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1">
                           Dirección de Entrega
                         </p>
-                        <p className="text-xs font-bold text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                        <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300 leading-relaxed">
                           {(order as OrderWithDetails).address ||
                             "Dirección no especificada"}
                           <br />
@@ -175,10 +174,10 @@ export default async function OrdersPage() {
                     </div>
                     {(order as OrderWithDetails).notes && (
                       <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800">
-                        <p className="text-[10px] font-black uppercase  text-zinc-400 mb-1">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1">
                           Notas del pedido
                         </p>
-                        <p className="text-[12px] font-medium text-zinc-500 italic">
+                        <p className="text-xs font-medium text-zinc-500 italic">
                           &quot;{(order as OrderWithDetails).notes}&quot;
                         </p>
                       </div>

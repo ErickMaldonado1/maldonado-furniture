@@ -22,7 +22,7 @@ export const FilterGroup = ({
       onClick={onClick}
       className={`
         flex items-center transition-all duration-200 w-full
-        px-2 py-2 rounded-lg border text-xs font-bold uppercase  justify-center
+        px-2 py-2 rounded-lg border text-xs font-medium uppercase tracking-wider justify-center
         lg:border-none lg:bg-transparent lg:px-0 lg:py-0 lg:justify-start lg:w-full
         ${
           isActive
@@ -133,7 +133,7 @@ export const FilterGroup = ({
             className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-[#4A3728]"
           />
           <div className="flex justify-between mt-2">
-            <span className="text-[10px] font-bold text-zinc-400">HASTA</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">HASTA</span>
             <span className="text-sm font-black text-zinc-900 dark:text-zinc-100">
               ${filters.priceRange[1].toLocaleString()}
             </span>
@@ -143,7 +143,7 @@ export const FilterGroup = ({
 
       <button
         onClick={clearFilters}
-        className="flex items-center gap-2 text-[12px] justify-center font-black uppercase text-zinc-400 hover:text-red-500 transition-colors pt-6 border-t border-zinc-100 dark:border-zinc-900 w-full"
+        className="flex items-center gap-2 text-xs justify-center font-semibold uppercase tracking-wider text-zinc-400 hover:text-red-500 transition-colors pt-6 border-t border-zinc-100 dark:border-zinc-900 w-full"
       >
         <Trash className="w-4 h-4" /> Restablecer
       </button>

@@ -8,7 +8,7 @@ interface BreadcrumbStep {
 
 export function Breadcrumbs({ steps }: { steps: BreadcrumbStep[] }) {
   return (
-    <nav className="flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase -[0.12em] mb-6">
+    <nav className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider mb-6">
       <Link
         href="/"
         className="text-zinc-400 hover:text-[#4A3728] transition-colors"

@@ -212,7 +212,7 @@ export function RealProjectsGallery({
                   <button
                     type="button"
                     onClick={() => handleConsultProject(selectedProject.title)}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#166534] hover:bg-[#14532d] text-white label-premium text-white! font-medium tracking-wider transition-all shadow-md active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#166534]"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#166534] hover:bg-[#14532d] text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#166534]"
                   >
                     <Whatsapp className="w-4 h-4 text-white" />
                     <span>Cotizar este diseño por WhatsApp</span>

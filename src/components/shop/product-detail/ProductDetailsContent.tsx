@@ -6,6 +6,14 @@ import { ProductWithRelations } from "@/types/product-service";
 import { getProductHighlights } from "@/utils/product-highlights";
 import { Sparkles } from "@/utils/icons/actions";
 import { RealProjectsGallery } from "./RealProjectsGallery";
+import {
+  FiMaximize,
+  FiLayers,
+  FiSliders,
+  FiShield,
+  FiFileText,
+  FiMove,
+} from "react-icons/fi";
 
 interface ProductDetailsContentProps {
   product: ProductWithRelations;
@@ -45,18 +53,17 @@ export function ProductDetailsContent({
 
   return (
     <div className="space-y-10 pt-8 border-t border-zinc-200/80 dark:border-zinc-800">
-      <div className="p-5 rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 shadow-sm space-y-3">
-      <div className="p-5 rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 shadow-sm space-y-3">
+      <div className="p-5 sm:p-6 rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 shadow-xs space-y-3">
         <h3 className="label-premium text-zinc-900 dark:text-white">
           Lo que lo hace único
         </h3>
-        <ul className="space-y-2">
+        <ul className="space-y-2.5">
           {highlights.map((point, index) => (
             <li
               key={index}
-              className="flex items-start gap-2 text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed"
+              className="flex items-start gap-2.5 text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed"
             >
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#4A3728] dark:bg-[#D4B896] shrink-0" />
               {point}
             </li>
           ))}
@@ -64,50 +71,69 @@ export function ProductDetailsContent({
       </div>
 
       <div id="descripcion" className="space-y-3 scroll-mt-28">
-        <h2 className="text-lg font-medium text-zinc-900 dark:text-white uppercase tracking-wider">
+        <h2 className="text-base sm:text-lg font-medium text-zinc-900 dark:text-white uppercase tracking-wider">
           Descripción
         </h2>
-        <div className="space-y-2 text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed">
+        <div className="space-y-2.5 text-sm sm:text-base font-normal text-zinc-600 dark:text-zinc-300 leading-relaxed">
           <p className="font-medium text-zinc-900 dark:text-white">
             {product.name}
           </p>
-          <p className="whitespace-pre-line text-zinc-500 dark:text-zinc-400">
+          <p className="whitespace-pre-line text-zinc-600 dark:text-zinc-400">
             {product.description ||
               "Práctico, estético y duradero, combina ahorro de espacio y elegancia contemporánea. Fabricado en melamina de alta calidad con garantía directa de taller."}
           </p>
         </div>
       </div>
-      <div className="p-5 rounded-2xl bg-[#FDFCFB] dark:bg-zinc-900/40 border border-[#8B735B]/30 space-y-3">
+
+      <div className="p-5 sm:p-6 rounded-2xl bg-[#FDFCFB] dark:bg-zinc-900/40 border border-[#8B735B]/30 space-y-4">
         <div className="flex items-center gap-2 text-[#4A3728] dark:text-[#C4A482]">
           <Sparkles className="w-4 h-4" />
           <h3 className="label-premium text-[#4A3728] dark:text-[#C4A482]">
             Opciones de Personalización Disponibles
           </h3>
         </div>
-        <p className="text-xs sm:text-sm font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed">
+        <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-300 leading-relaxed">
           Cada espacio tiene necesidades diferentes. En Muebles Maldonado fabricamos directamente en Quito y podemos personalizar:
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs text-zinc-600 dark:text-zinc-400">
-          <div className="p-3 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 space-y-1">
-            <span className="font-medium text-zinc-900 dark:text-white block">📐 Medidas a tu Espacio:</span>
-            <span>Ajustamos el ancho, alto y profundidad según las dimensiones de tu habitación.</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+          <div className="p-3.5 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 space-y-1.5">
+            <div className="flex items-center gap-2 font-medium text-zinc-900 dark:text-white">
+              <FiMaximize className="w-4 h-4 text-[#4A3728] dark:text-[#D4B896] shrink-0" aria-hidden="true" />
+              <span>Medidas a tu Espacio:</span>
+            </div>
+            <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 pl-6">
+              Ajustamos el ancho, alto y profundidad según las dimensiones de tu habitación.
+            </p>
           </div>
-          <div className="p-3 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 space-y-1">
-            <span className="font-medium text-zinc-900 dark:text-white block">🎨 Acabados y Texturas:</span>
-            <span>
+          <div className="p-3.5 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 space-y-1.5">
+            <div className="flex items-center gap-2 font-medium text-zinc-900 dark:text-white">
+              <FiLayers className="w-4 h-4 text-[#4A3728] dark:text-[#D4B896] shrink-0" aria-hidden="true" />
+              <span>Acabados y Texturas:</span>
+            </div>
+            <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 pl-6">
               Más de 40 opciones de tableros Pelikano / Edimca / Masisa.{" "}
               <Link href="/catalogo-colores" className="text-[#634E3A] dark:text-[#D4B896] underline font-medium hover:opacity-80">
                 Ver catálogo de colores →
               </Link>
-            </span>
+            </p>
           </div>
-          <div className="p-3 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 space-y-1">
-            <span className="font-medium text-zinc-900 dark:text-white block">⚙️ Distribución Interior:</span>
-            <span>Elección de gavetas adicionales, repisas regulables, pasacables o rieles telescópicos pesados.</span>
+          <div className="p-3.5 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 space-y-1.5">
+            <div className="flex items-center gap-2 font-medium text-zinc-900 dark:text-white">
+              <FiSliders className="w-4 h-4 text-[#4A3728] dark:text-[#D4B896] shrink-0" aria-hidden="true" />
+              <span>Distribución Interior:</span>
+            </div>
+            <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 pl-6">
+              Elección de gavetas adicionales, repisas regulables, pasacables o rieles telescópicos pesados.
+            </p>
           </div>
-          <div className="p-3 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 space-y-1">
-            <span className="font-medium text-zinc-900 dark:text-white block">🛡️ Calidad Garantizada:</span>
-            <span>Melamina RH resistente a humedad y rayones, cantos termoadheridos y garantía directa de fábrica.</span>
+          <div className="p-3.5 bg-white dark:bg-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 space-y-1.5">
+            <div className="flex items-center gap-2 font-medium text-zinc-900 dark:text-white">
+              <FiShield className="w-4 h-4 text-[#4A3728] dark:text-[#D4B896] shrink-0" aria-hidden="true" />
+              <span>Calidad Garantizada:</span>
+            </div>
+            <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 pl-6">
+              Melamina RH resistente a humedad y rayones, cantos termoadheridos y garantía directa de fábrica.
+            </p>
           </div>
         </div>
       </div>
@@ -116,89 +142,65 @@ export function ProductDetailsContent({
         id="dimensiones"
         className="space-y-4 pt-4 border-t border-zinc-200/60 dark:border-zinc-800 scroll-mt-28"
       >
-        <h2 className="text-lg font-medium text-zinc-900 dark:text-white uppercase tracking-wider">
+        <h2 className="text-base sm:text-lg font-medium text-zinc-900 dark:text-white uppercase tracking-wider">
           Características &amp; Dimensiones
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/80 dark:border-zinc-800">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-5 sm:p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/80 dark:border-zinc-800">
           <div className="space-y-3">
-            <p className="flex items-center gap-2 text-[13px] font-medium text-zinc-900 dark:text-white uppercase -wide">
-              <svg
-                className="w-4 h-4 text-zinc-500 dark:text-zinc-400 shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
+            <p className="flex items-center gap-2 text-xs font-semibold text-zinc-900 dark:text-white uppercase tracking-wider">
+              <FiFileText className="w-4 h-4 text-zinc-500 dark:text-zinc-400 shrink-0" aria-hidden="true" />
               Características
             </p>
-            <div className="space-y-1.5 text-sm text-zinc-600 dark:text-zinc-300">
-              <p>
-                <span className="font-medium text-zinc-800 dark:text-zinc-200">
-                  Color:{" "}
+            <div className="space-y-2 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300">
+              <p className="flex items-center justify-between border-b border-zinc-200/60 dark:border-zinc-800/60 pb-1.5">
+                <span className="font-medium text-zinc-500 dark:text-zinc-400">
+                  Color:
                 </span>
-                <span className="capitalize">{activeColor}</span>
+                <span className="capitalize font-medium text-zinc-900 dark:text-zinc-100">{activeColor}</span>
               </p>
-              <p>
-                <span className="font-medium text-zinc-800 dark:text-zinc-200">
-                  Material:{" "}
+              <p className="flex items-center justify-between border-b border-zinc-200/60 dark:border-zinc-800/60 pb-1.5">
+                <span className="font-medium text-zinc-500 dark:text-zinc-400">
+                  Material:
                 </span>
-                <span>{materialsText}</span>
+                <span className="font-medium text-zinc-900 dark:text-zinc-100 text-right">{materialsText}</span>
               </p>
-              <p>
-                <span className="font-medium text-zinc-800 dark:text-zinc-200">
-                  Tamaño:{" "}
+              <p className="flex items-center justify-between">
+                <span className="font-medium text-zinc-500 dark:text-zinc-400">
+                  Tamaño:
                 </span>
-                <span>{activeSize}</span>
+                <span className="font-medium text-zinc-900 dark:text-zinc-100">{activeSize}</span>
               </p>
             </div>
           </div>
           <div className="space-y-3">
-            <p className="flex items-center gap-2 text-[13px] font-medium text-zinc-900 dark:text-white uppercase -wide">
-              <svg
-                className="w-4 h-4 text-zinc-500 dark:text-zinc-400 shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 8V4m0 0h4M4 4l5 5m11-2V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
-                />
-              </svg>
+            <p className="flex items-center gap-2 text-xs font-semibold text-zinc-900 dark:text-white uppercase tracking-wider">
+              <FiMove className="w-4 h-4 text-zinc-500 dark:text-zinc-400 shrink-0" aria-hidden="true" />
               Dimensiones
             </p>
-            <div className="space-y-1.5 text-sm text-zinc-600 dark:text-zinc-300">
+            <div className="space-y-2 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300">
               {dimWidth !== null ? (
-                <p>
-                  <span className="font-medium text-zinc-800 dark:text-zinc-200">
-                    Largo / Ancho:{" "}
+                <p className="flex items-center justify-between border-b border-zinc-200/60 dark:border-zinc-800/60 pb-1.5">
+                  <span className="font-medium text-zinc-500 dark:text-zinc-400">
+                    Largo / Ancho:
                   </span>
-                  {dimWidth} cm
+                  <span className="font-medium text-zinc-900 dark:text-zinc-100">{dimWidth} cm</span>
                 </p>
               ) : null}
               {dimHeight !== null ? (
-                <p>
-                  <span className="font-medium text-zinc-800 dark:text-zinc-200">
-                    Alto:{" "}
+                <p className="flex items-center justify-between border-b border-zinc-200/60 dark:border-zinc-800/60 pb-1.5">
+                  <span className="font-medium text-zinc-500 dark:text-zinc-400">
+                    Alto:
                   </span>
-                  {dimHeight} cm
+                  <span className="font-medium text-zinc-900 dark:text-zinc-100">{dimHeight} cm</span>
                 </p>
               ) : null}
               {dimDepth !== null ? (
-                <p>
-                  <span className="font-medium text-zinc-800 dark:text-zinc-200">
-                    Profundidad:{" "}
+                <p className="flex items-center justify-between border-b border-zinc-200/60 dark:border-zinc-800/60 pb-1.5">
+                  <span className="font-medium text-zinc-500 dark:text-zinc-400">
+                    Profundidad:
                   </span>
-                  {dimDepth} cm
+                  <span className="font-medium text-zinc-900 dark:text-zinc-100">{dimDepth} cm</span>
                 </p>
               ) : null}
               {dimWidth === null && dimHeight === null && dimDepth === null && (
@@ -216,6 +218,5 @@ export function ProductDetailsContent({
         productName={product.name}
       />
     </div>
-  </div>
   );
 }

@@ -6,6 +6,7 @@ import {
   Plus,
   Trash2,
 } from "lucide-react";
+import { FiInfo } from "react-icons/fi";
 
 import { useFormContext } from "react-hook-form";
 import { useProductVariants } from "../hooks/useProductVariants";
@@ -65,8 +66,9 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
 
       <div className="mb-6 p-5 rounded-2xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40">
 
-        <p className="text-xs font-black text-amber-800 dark:text-amber-400 uppercase tracking-wider mb-2">
-          ⚡ Cómo funciona
+        <p className="text-xs font-semibold text-amber-800 dark:text-amber-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+          <FiInfo className="w-4 h-4 shrink-0" aria-hidden="true" />
+          <span>Cómo funciona</span>
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-amber-700 dark:text-amber-300/80">
@@ -115,13 +117,13 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
               Colores utilizados
             </h3>
 
-            <p className="text-[11px] text-zinc-500 mt-1">
+            <p className="text-xs text-zinc-500 mt-1">
               Estos colores vienen directamente de
               Atributos.
             </p>
           </div>
 
-          <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#A6866A]/10 text-[#A6866A]">
+          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#A6866A]/10 text-[#A6866A]">
             {watchedColors.length} seleccionados
           </span>
 
@@ -183,7 +185,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
                       )}
                     </div>
 
-                    <span className="text-[11px] font-bold text-zinc-700 dark:text-zinc-300">
+                    <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
                       {colorName}
                     </span>
 
@@ -205,7 +207,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
             Medidas y precios
           </h3>
 
-          <p className="text-[11px] text-zinc-500 mt-1">
+          <p className="text-xs text-zinc-500 mt-1">
             Cada medida puede tener su propio precio.
           </p>
         </div>
@@ -245,7 +247,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
               >
 
                 {isExpanded && (
-                  <div className="absolute -top-3 left-6 bg-[#A6866A] text-white text-[10px] font-bold px-3 py-1 rounded-full z-10 shadow-sm flex items-center gap-2">
+                  <div className="absolute -top-3 left-6 bg-[#A6866A] text-white text-xs font-semibold px-3 py-1 rounded-full z-10 shadow-sm flex items-center gap-2">
                     MEDIDA {index + 1}
                   </div>
                 )}
@@ -333,11 +335,11 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
 
                         <div className="flex items-center gap-1.5">
 
-                          <label className="text-[10px] uppercase text-zinc-500 font-medium ml-1">
+                          <label className="text-xs uppercase text-zinc-500 font-semibold tracking-wider ml-1">
                             Etiqueta de Tamaño
                           </label>
 
-                          <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
+                          <span className="text-xs font-semibold px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400">
                             Visible al cliente
                           </span>
 
@@ -351,7 +353,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
                           className="w-full text-sm border border-zinc-200 dark:border-zinc-800 rounded-xl p-3 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-[#A6866A]/20 outline-none transition-all"
                         />
 
-                        <p className="text-[10px] text-zinc-400 ml-1">
+                        <p className="text-xs text-zinc-400 ml-1">
                           Si lo dejas vacío, se generará automáticamente con las medidas.
                         </p>
 
@@ -359,7 +361,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
 
                       <div className="space-y-1.5">
 
-                        <label className="text-[10px] uppercase text-zinc-500 font-medium ml-1 block">
+                        <label className="text-xs uppercase text-zinc-500 font-semibold tracking-wider ml-1 block">
                           Precio de esta medida
                         </label>
 
@@ -382,7 +384,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
 
                         </div>
 
-                        <p className="text-[10px] text-zinc-400 ml-1">
+                        <p className="text-xs text-zinc-400 ml-1">
                           Si está vacío, se utilizará el precio base.
                         </p>
 
@@ -403,7 +405,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
                           Number(dimension.height) > 0 ||
                           Number(dimension.depth) > 0) && (
 
-                          <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-[#A6866A]/10 text-[#A6866A] dark:text-[#D4A373]">
+                          <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-[#A6866A]/10 text-[#A6866A] dark:text-[#D4A373]">
 
                             {dimension.width || 0} ×{" "}
                             {dimension.height || 0} ×{" "}
@@ -441,7 +443,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
                             className="space-y-1"
                           >
 
-                            <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-medium ml-1 block">
+                            <label className="text-xs uppercase text-zinc-400 dark:text-zinc-500 font-semibold tracking-wider ml-1 block">
 
                               {dim.label}{" "}
 
@@ -473,7 +475,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
 
                         <div className="space-y-1">
 
-                          <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-medium ml-1 block">
+                          <label className="text-xs uppercase text-zinc-400 dark:text-zinc-500 font-semibold tracking-wider ml-1 block">
 
                             Espesor{" "}
 
@@ -520,7 +522,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
               Vista previa de combinaciones
             </h3>
 
-            <p className="text-[11px] text-zinc-500 mt-1">
+            <p className="text-xs text-zinc-500 mt-1">
               Estas son las variantes que el servidor
               creará automáticamente.
             </p>
@@ -586,7 +588,7 @@ export function VariantsTab({ availableColors, showModal, setActiveTab }: Varian
                             {variantName}
                           </p>
 
-                          <p className="text-[10px] text-zinc-500 mt-0.5">
+                          <p className="text-xs text-zinc-500 mt-0.5">
                             {getDimensionLabel(
                               dimension
                             )}

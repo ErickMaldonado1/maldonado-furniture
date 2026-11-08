@@ -17,7 +17,6 @@ export function ProductFilters({
   const selectedSubcategory = searchParams.get("subcategory") || "";
   const currentQuery = searchParams.get("query") || "";
 
-  // Available subcategories for the selected category
   const availableSubcategories = selectedCategory
     ? categoryMap[selectedCategory] || []
     : Array.from(new Set(Object.values(categoryMap).flat()));
@@ -29,7 +28,6 @@ export function ProductFilters({
     } else {
       params.delete("category");
     }
-    // Clear subcategory when category changes
     params.delete("subcategory");
     router.push(`?${params.toString()}`);
   };

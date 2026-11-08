@@ -135,7 +135,7 @@ export default function CheckoutPage() {
       .map((item) => {
         const itemTotal = (item.price * item.quantity).toLocaleString();
         const detailsText = item.customization?.isCustom
-          ? `📐 A Medida: ${item.dimensions} | Acabado: ${item.customization.finish || item.variantName}${item.customization.notes ? `\nObs: ${item.customization.notes}` : ""}`
+          ? `• A Medida: ${item.dimensions} | Acabado: ${item.customization.finish || item.variantName}${item.customization.notes ? `\nObs: ${item.customization.notes}` : ""}`
           : `Detalles: ${item.variantName || "Estándar"} | ${item.materials || "Melamina"}`;
 
         return [
@@ -207,7 +207,7 @@ export default function CheckoutPage() {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase -wider text-zinc-500">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                     Nombre Completo
                   </label>
                   <input
@@ -221,7 +221,7 @@ export default function CheckoutPage() {
                   )}
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase -wider text-zinc-500">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                     Email
                   </label>
                   <input
@@ -237,7 +237,7 @@ export default function CheckoutPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-bold uppercase -wider text-zinc-500">
+                <label className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                   Dirección de Envío
                 </label>
                 <input
@@ -253,7 +253,7 @@ export default function CheckoutPage() {
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                 <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase -wider text-zinc-500">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                     Ciudad
                   </label>
                   <input
@@ -262,7 +262,7 @@ export default function CheckoutPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase -wider text-zinc-500">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                     Código Postal
                   </label>
                   <input
@@ -271,7 +271,7 @@ export default function CheckoutPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase -wider text-zinc-500">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                     Teléfono
                   </label>
                   <input
@@ -282,7 +282,7 @@ export default function CheckoutPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-bold uppercase -wider text-zinc-500">
+                <label className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                   Notas (Opcional)
                 </label>
                 <textarea
@@ -337,13 +337,13 @@ export default function CheckoutPage() {
                       fill
                       className="object-cover"
                     />
-                    <span className="absolute top-0 right-0 w-5 h-5 bg-[#4A3728] text-white text-[10px] font-bold flex items-center justify-center rounded-bl-lg">
+                    <span className="absolute top-0 right-0 w-5 h-5 bg-[#4A3728] text-white text-xs font-semibold flex items-center justify-center rounded-bl-lg">
                       {item.quantity}
                     </span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="text-sm font-bold truncate">{item.name}</h4>
-                    <p className="text-[10px] text-zinc-400 uppercase ">
+                    <p className="text-xs text-zinc-400 uppercase tracking-wider">
                       SKU: {item.sku || "N/A"}
                     </p>
                     <p className="text-sm font-bold text-[#4A3728] mt-1">

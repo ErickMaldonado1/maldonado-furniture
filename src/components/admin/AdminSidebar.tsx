@@ -73,7 +73,7 @@ export default function AdminSidebar() {
               <p className="font-bold text-sm text-zinc-900 dark:text-zinc-100 tracking-tight leading-none">
                 Muebles Maldonado
               </p>
-              <p className="text-[10px] font-semibold text-[#4A3728] dark:text-[#A6866A] tracking-wider uppercase mt-0.5">
+              <p className="text-xs font-medium text-[#4A3728] dark:text-[#A6866A] tracking-wider uppercase mt-0.5">
                 Panel CMS
               </p>
             </div>
@@ -123,7 +123,7 @@ export default function AdminSidebar() {
             <ExternalLink size={15} />
             Ver Tienda Pública
           </span>
-          <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-400">
+          <span className="text-xs uppercase font-semibold tracking-wider text-zinc-400">
             Web
           </span>
         </Link>
@@ -141,7 +141,6 @@ export default function AdminSidebar() {
 
   return (
     <>
-      {/* Mobile Top Header */}
       <header className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0A0A0A]/95 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 px-4 py-3 flex items-center justify-between">
         <Link href="/admin" className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-md bg-[#4A3728] dark:bg-[#A6866A] text-white flex items-center justify-center font-bold text-xs">
@@ -151,7 +150,7 @@ export default function AdminSidebar() {
             <p className="font-bold text-xs text-zinc-900 dark:text-zinc-100 leading-none">
               Muebles Maldonado
             </p>
-            <p className="text-[9px] font-semibold text-[#4A3728] dark:text-[#A6866A] uppercase">
+            <p className="text-xs font-semibold text-[#4A3728] dark:text-[#A6866A] uppercase tracking-wider">
               CMS Admin
             </p>
           </div>
@@ -165,7 +164,6 @@ export default function AdminSidebar() {
         </button>
       </header>
 
-      {/* Mobile Backdrop & Drawer */}
       {mobileOpen && (
         <div className="lg:hidden fixed inset-0 z-50 flex">
           <div
@@ -178,7 +176,6 @@ export default function AdminSidebar() {
         </div>
       )}
 
-      {/* Desktop Fixed Sidebar */}
       <aside className="fixed inset-y-0 left-0 z-40 w-72 bg-white dark:bg-[#0A0A0A] border-r border-zinc-200 dark:border-zinc-800/80 hidden lg:flex flex-col shadow-xs">
         {navContent}
       </aside>

@@ -141,7 +141,6 @@ export default function UsersList({ initialUsers }: UsersListProps) {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex flex-col gap-1 border-b border-zinc-200 dark:border-zinc-800/80 pb-6">
         <Link
           href="/admin"
@@ -224,7 +223,7 @@ export default function UsersList({ initialUsers }: UsersListProps) {
                 <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wide truncate">
                   {user.name || "Usuario sin nombre"}
                 </h3>
-                <div className="flex items-center gap-1.5 text-[11px] text-zinc-500 mt-1">
+                <div className="flex items-center gap-1.5 text-xs text-zinc-500 mt-1">
                   <Shield
                     size={12}
                     className={
@@ -274,7 +273,7 @@ export default function UsersList({ initialUsers }: UsersListProps) {
               className="relative w-full max-w-md bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-sm overflow-hidden shadow-2xl z-10 flex flex-col"
             >
               <div className="flex justify-between items-center px-6 py-4 border-b border-zinc-100 dark:border-zinc-900">
-                <h3 className="font-black text-zinc-950 dark:text-white uppercase -wider text-[10px]">
+                <h3 className="font-semibold text-zinc-950 dark:text-white uppercase tracking-wider text-xs">
                   Editar Usuario
                 </h3>
                 <button
@@ -288,7 +287,7 @@ export default function UsersList({ initialUsers }: UsersListProps) {
 
               <form onSubmit={handleEditSubmit} className="p-6 space-y-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-black -wider">
+                  <label className="text-xs uppercase text-zinc-400 dark:text-zinc-500 font-semibold tracking-wider">
                     Nombre Completo
                   </label>
                   <input
@@ -301,7 +300,7 @@ export default function UsersList({ initialUsers }: UsersListProps) {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[10px] uppercase text-zinc-400 dark:text-zinc-500 font-black -wider">
+                  <label className="text-xs uppercase text-zinc-400 dark:text-zinc-500 font-semibold tracking-wider">
                     Rol / Permisos
                   </label>
                   <select
@@ -352,7 +351,7 @@ export default function UsersList({ initialUsers }: UsersListProps) {
               className="relative w-full max-w-md bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-sm overflow-hidden shadow-2xl z-10 flex flex-col"
             >
               <div className="flex justify-between items-center px-6 py-4 border-b border-zinc-100 dark:border-zinc-900">
-                <h3 className="font-black text-red-500 uppercase -wider text-[10px]">
+                <h3 className="font-semibold text-red-500 uppercase tracking-wider text-xs">
                   Confirmar Eliminación
                 </h3>
                 <button
@@ -372,7 +371,7 @@ export default function UsersList({ initialUsers }: UsersListProps) {
                   </strong>
                   ?
                 </p>
-                <p className="text-[10px] text-zinc-400 dark:text-zinc-500 bg-zinc-50 dark:bg-zinc-900/50 p-3 rounded-sm border border-zinc-200/50 dark:border-zinc-800/50 uppercase -wider font-bold">
+                <p className="text-xs text-zinc-400 dark:text-zinc-500 bg-zinc-50 dark:bg-zinc-900/50 p-3 rounded-sm border border-zinc-200/50 dark:border-zinc-800/50 uppercase tracking-wider font-medium">
                   Esta acción eliminará su cuenta, sesiones activas y favoritos.
                   No se puede deshacer.
                 </p>

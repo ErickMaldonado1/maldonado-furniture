@@ -223,7 +223,7 @@ export default function RecentProjects({
                 </div>
               </div>
               <div className="mt-6 text-center">
-                <h4 className="text-white font-black uppercase -[0.2em] text-base">
+                <h4 className="text-white font-semibold uppercase tracking-wider text-base">
                   {selectedProject.title}
                 </h4>
                 <p className="text-zinc-400 text-xs uppercase  mt-1">

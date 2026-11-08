@@ -97,7 +97,7 @@ export default async function OrdersPage() {
 
               <div className="flex items-center gap-5">
                 <div className="text-right">
-                  <p className="text-[12px] font-medium text-zinc-400 dark:text-zinc-500 uppercase -wider">
+                  <p className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">
                     Total del Pedido
                   </p>
                   <p className="text-xl font-bold text-zinc-900 dark:text-white ">
@@ -143,7 +143,7 @@ export default async function OrdersPage() {
                   </div>
                 </div>
                 <div className="space-y-1.5">
-                  <h3 className="text-xs font-bold uppercase -wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
                     <Phone
                       size={14}
                       className="text-[#4A3728] dark:text-[#A6866A]"
@@ -155,7 +155,7 @@ export default async function OrdersPage() {
                   </p>
                 </div>
                 <div className="space-y-1.5">
-                  <h3 className="text-xs font-bold uppercase -wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
                     <MapPin
                       size={14}
                       className="text-[#4A3728] dark:text-[#A6866A]"
@@ -179,7 +179,7 @@ export default async function OrdersPage() {
                 </div>
                 {order.notes && (
                   <div className="space-y-1.5 pt-2 border-t border-zinc-100 dark:border-zinc-800">
-                    <h3 className="text-xs font-bold uppercase -wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
                       <ClipboardList
                         size={14}
                         className="text-[#4A3728] dark:text-[#A6866A]"
@@ -193,7 +193,7 @@ export default async function OrdersPage() {
                 )}
               </div>
               <div className="lg:col-span-8 p-6 space-y-4">
-                <h3 className="text-xs font-bold uppercase -wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
                   <Package
                     size={14}
                     className="text-[#4A3728] dark:text-[#A6866A]"
@@ -215,10 +215,10 @@ export default async function OrdersPage() {
                           {item.variant?.product?.name ||
                             "Producto no encontrado"}
                         </p>
-                        <p className="text-[12px] font-medium text-zinc-500 dark:text-zinc-400 mt-0.5 flex flex-wrap gap-x-2">
+                        <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400 mt-0.5 flex flex-wrap gap-x-2">
                           <span>
                             SKU:{" "}
-                            <code className="font-mono text-[10px] text-zinc-700 dark:text-zinc-300">
+                            <code className="font-mono text-xs text-zinc-700 dark:text-zinc-300">
                               {item.variant?.sku || "N/A"}
                             </code>
                           </span>

@@ -2,6 +2,7 @@
 
 import { SafeImage } from "@/components/ui/SafeImage";
 import { ChevronDown, Upload, X } from "lucide-react";
+import { FiLoader } from "react-icons/fi";
 import { useFormContext } from "react-hook-form";
 import { useProductImages, ProductImageForm } from "../hooks/useProductImages";
 
@@ -57,9 +58,7 @@ export function ImagesTab({ showModal }: ImagesTabProps) {
         >
           <div className="w-16 h-16 rounded-full bg-white dark:bg-zinc-800 shadow-sm flex items-center justify-center text-zinc-500 mb-2">
             {uploading ? (
-              <span className="animate-spin text-2xl">
-                ⏳
-              </span>
+              <FiLoader className="w-7 h-7 text-[#A6866A] animate-spin" aria-hidden="true" />
             ) : (
               <Upload
                 size={28}
@@ -91,7 +90,7 @@ export function ImagesTab({ showModal }: ImagesTabProps) {
                 Imágenes cargadas
               </h3>
 
-              <p className="text-[11px] text-zinc-500 mt-1">
+              <p className="text-xs text-zinc-500 mt-1">
                 {watchedImages.length}{" "}
                 {watchedImages.length === 1
                   ? "imagen"

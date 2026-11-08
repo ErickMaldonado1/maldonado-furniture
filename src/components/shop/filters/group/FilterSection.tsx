@@ -25,7 +25,7 @@ export function FilterSection({
         className="flex justify-between items-center w-full group py-2 focus:outline-none"
         aria-expanded={isOpen}
       >
-        <span className="text-[12px] font-black uppercase -[0.2em] text-zinc-900 dark:text-zinc-100 group-hover:text-[#4A3728] transition-colors">
+        <span className="text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 group-hover:text-[#4A3728] transition-colors">
           {title}
         </span>
         <div className="text-zinc-400 group-hover:text-[#4A3728] transition-colors">

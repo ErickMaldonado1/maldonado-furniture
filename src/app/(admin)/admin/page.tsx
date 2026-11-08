@@ -14,8 +14,6 @@ import {
   AlertCircle,
   PlusCircle,
   Store,
-  Layers,
-  FileSpreadsheet,
 } from "lucide-react";
 
 export default async function AdminPage() {
@@ -25,11 +23,10 @@ export default async function AdminPage() {
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
-      {/* Executive Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-200 dark:border-zinc-800 pb-6">
         <div>
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#4A3728]/10 text-[#4A3728] dark:bg-[#A6866A]/20 dark:text-[#A6866A]">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#4A3728]/10 text-[#4A3728] dark:bg-[#A6866A]/20 dark:text-[#A6866A]">
               Panel de Control CMS
             </span>
           </div>
@@ -63,9 +60,7 @@ export default async function AdminPage() {
         </div>
       </div>
 
-      {/* KPI Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Total Revenue */}
         <div className="bg-white dark:bg-[#111111] p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 shadow-xs relative overflow-hidden group">
           <div className="flex items-center justify-between mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
@@ -81,13 +76,12 @@ export default async function AdminPage() {
               maximumFractionDigits: 2,
             })}
           </p>
-          <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-2 flex items-center gap-1.5">
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-2 flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
             Pedidos pagados y completados
           </p>
         </div>
 
-        {/* Total Orders */}
         <div className="bg-white dark:bg-[#111111] p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 shadow-xs relative overflow-hidden group">
           <div className="flex items-center justify-between mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
@@ -100,14 +94,13 @@ export default async function AdminPage() {
           <p className="text-2xl lg:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight">
             {stats.totalOrders}
           </p>
-          <div className="flex items-center gap-2 mt-2 text-[11px] font-medium text-zinc-500">
+          <div className="flex items-center gap-2 mt-2 text-xs font-medium text-zinc-500">
             <span className="text-amber-600 dark:text-amber-400 font-bold">{stats.pendingOrders} pend.</span>
             <span>•</span>
             <span className="text-emerald-600 dark:text-emerald-400 font-bold">{stats.paidOrders} pagados</span>
           </div>
         </div>
 
-        {/* Total Catalog Products */}
         <div className="bg-white dark:bg-[#111111] p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 shadow-xs relative overflow-hidden group">
           <div className="flex items-center justify-between mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
@@ -120,14 +113,13 @@ export default async function AdminPage() {
           <p className="text-2xl lg:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight">
             {stats.totalProducts}
           </p>
-          <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-2 flex items-center gap-1.5">
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-2 flex items-center gap-1.5">
             <span className="text-emerald-600 dark:text-emerald-400 font-bold">{stats.activeProducts} activos</span>
             <span>•</span>
             <span className="text-zinc-400">{stats.inactiveProducts} inactivos</span>
           </p>
         </div>
 
-        {/* Community & Customers */}
         <div className="bg-white dark:bg-[#111111] p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800/80 shadow-xs relative overflow-hidden group">
           <div className="flex items-center justify-between mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
@@ -140,7 +132,7 @@ export default async function AdminPage() {
           <p className="text-2xl lg:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight">
             {stats.totalUsers}
           </p>
-          <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-2 flex items-center gap-1.5">
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-2 flex items-center gap-1.5">
             <span>{stats.clientUsers} clientes</span>
             <span>•</span>
             <span>{stats.totalSubscribers} newsletter</span>
@@ -148,7 +140,6 @@ export default async function AdminPage() {
         </div>
       </div>
 
-      {/* Operational Breakdown Bar */}
       <div className="bg-white dark:bg-[#111111] p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800/80">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
           <div>
@@ -177,7 +168,7 @@ export default async function AdminPage() {
             <p className="text-xl font-extrabold text-amber-950 dark:text-amber-200 mt-1">
               {stats.pendingOrders}
             </p>
-            <p className="text-[10px] text-amber-700/80 dark:text-amber-400/80 mt-0.5">Por procesar</p>
+            <p className="text-xs text-amber-700/80 dark:text-amber-400/80 mt-0.5">Por procesar</p>
           </div>
 
           <div className="p-3.5 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200/50 dark:border-emerald-800/30">
@@ -188,7 +179,7 @@ export default async function AdminPage() {
             <p className="text-xl font-extrabold text-emerald-950 dark:text-emerald-200 mt-1">
               {stats.paidOrders}
             </p>
-            <p className="text-[10px] text-emerald-700/80 dark:text-emerald-400/80 mt-0.5">En fabricación</p>
+            <p className="text-xs text-emerald-700/80 dark:text-emerald-400/80 mt-0.5">En fabricación</p>
           </div>
 
           <div className="p-3.5 rounded-xl bg-blue-50/60 dark:bg-blue-950/20 border border-blue-200/50 dark:border-blue-800/30">
@@ -199,7 +190,7 @@ export default async function AdminPage() {
             <p className="text-xl font-extrabold text-blue-950 dark:text-blue-200 mt-1">
               {stats.completedOrders}
             </p>
-            <p className="text-[10px] text-blue-700/80 dark:text-blue-400/80 mt-0.5">Instalados / Entregados</p>
+            <p className="text-xs text-blue-700/80 dark:text-blue-400/80 mt-0.5">Instalados / Entregados</p>
           </div>
 
           <div className="p-3.5 rounded-xl bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200 dark:border-zinc-700/50">
@@ -210,12 +201,11 @@ export default async function AdminPage() {
             <p className="text-xl font-extrabold text-zinc-800 dark:text-zinc-200 mt-1">
               {stats.cancelledOrders}
             </p>
-            <p className="text-[10px] text-zinc-500 mt-0.5">Anulados</p>
+            <p className="text-xs text-zinc-500 mt-0.5">Anulados</p>
           </div>
         </div>
       </div>
 
-      {/* CMS Module Quick Navigation */}
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
@@ -309,7 +299,6 @@ export default async function AdminPage() {
         </div>
       </div>
 
-      {/* Recent Orders Section */}
       <div className="bg-white dark:bg-[#111111] rounded-2xl border border-zinc-200 dark:border-zinc-800/80 overflow-hidden shadow-xs">
         <div className="p-5 md:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-100 dark:border-zinc-800/60">
           <div>
@@ -356,14 +345,14 @@ export default async function AdminPage() {
                       key={order.id}
                       className="hover:bg-zinc-50/70 dark:hover:bg-zinc-900/40 transition-colors"
                     >
-                      <td className="py-4 px-5 font-mono text-[11px] font-bold text-zinc-600 dark:text-zinc-300">
+                      <td className="py-4 px-5 font-mono text-xs font-bold text-zinc-600 dark:text-zinc-300">
                         #{order.id.slice(-6).toUpperCase()}
                       </td>
                       <td className="py-4 px-5">
                         <p className="font-semibold text-zinc-800 dark:text-zinc-200">
                           {order.fullName || order.user?.name || "Cliente"}
                         </p>
-                        <p className="text-[11px] text-zinc-400">
+                        <p className="text-xs text-zinc-400">
                           {order.email || order.user?.email || "Sin email"}
                         </p>
                       </td>
@@ -375,7 +364,7 @@ export default async function AdminPage() {
                       </td>
                       <td className="py-4 px-5">
                         <span
-                          className={`inline-block px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider border ${
+                          className={`inline-block px-2.5 py-1 rounded-md text-xs font-semibold uppercase tracking-wider border ${
                             statusColors[order.status] || "bg-zinc-100 text-zinc-600"
                           }`}
                         >

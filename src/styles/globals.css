@@ -4,13 +4,16 @@
 
 @theme {
   --font-sans:
-    var(--font-jost), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    var(--font-jost), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 @layer base {
   body {
-    @apply text-[15px] leading-relaxed;
+    @apply text-base leading-relaxed text-zinc-900 dark:text-zinc-100;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   h1,
@@ -19,20 +22,29 @@
   h4,
   h5,
   h6 {
-    @apply font-normal  text-zinc-900 dark:text-white;
+    @apply font-normal text-zinc-900 dark:text-white;
   }
 
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
+    @apply text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight leading-tight;
   }
   h2 {
-    @apply text-3xl md:text-4xl;
+    @apply text-2xl sm:text-3xl font-normal tracking-tight leading-snug;
   }
   h3 {
-    @apply text-2xl md:text-3xl;
+    @apply text-xl sm:text-2xl font-normal tracking-tight;
+  }
+  h4 {
+    @apply text-lg sm:text-xl font-medium;
+  }
+  h5 {
+    @apply text-base sm:text-lg font-medium;
+  }
+  h6 {
+    @apply text-sm sm:text-base font-medium;
   }
 
   .label-premium {
-    @apply uppercase text-[11px] font-medium text-zinc-500 dark:text-zinc-400;
+    @apply uppercase text-xs tracking-wider font-medium text-zinc-500 dark:text-zinc-400;
   }
 }

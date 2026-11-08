@@ -101,11 +101,9 @@ const CoverageCard = ({
 export default function EnvioMontajePage() {
   return (
     <main className="min-h-screen bg-white text-zinc-900 transition-colors dark:bg-[#050505] dark:text-white">
-      {/* Hero */}
       <section className="px-6 pb-20 pt-28 md:px-8 md:pb-28 md:pt-36">
         <div className="mx-auto max-w-6xl">
           <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-            {/* Text */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -123,7 +121,6 @@ export default function EnvioMontajePage() {
               </p>
             </motion.div>
 
-            {/* Image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -157,7 +154,6 @@ export default function EnvioMontajePage() {
         </div>
       </section>
 
-      {/* Process */}
       <section className="border-y border-zinc-200 bg-zinc-50/70 px-6 py-20 md:px-8 md:py-24 dark:border-zinc-800 dark:bg-zinc-900/20">
         <div className="mx-auto max-w-6xl">
           <motion.div
@@ -255,7 +251,6 @@ export default function EnvioMontajePage() {
             />
           </div>
 
-          {/* Notice */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

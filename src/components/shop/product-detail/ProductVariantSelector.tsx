@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { SiblingProduct } from "@/app/(shop)/[category]/[subcategory]/[slug]/ProductDetailClient";
+import { FiChevronRight } from "react-icons/fi";
 
 interface ProductVariantSelectorProps {
   variants: any[];
@@ -50,68 +51,44 @@ export function ProductVariantSelector({
       <button
         type="button"
         onClick={() => onOpenDrawer("color")}
-        className="w-full flex items-center justify-between px-5 py-3.5 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:border-zinc-900 dark:hover:border-white transition-all duration-200 group text-left shadow-sm"
+        className="w-full flex items-center justify-between px-4 sm:px-5 py-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-900 dark:hover:border-zinc-400 transition-all duration-200 group text-left shadow-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728]"
       >
-        <div className="flex items-center gap-1.5 text-[13px] truncate">
-          <span className="font-medium text-zinc-900 dark:text-white uppercase -wide">
+        <div className="flex items-center gap-2 truncate">
+          <span className="text-xs font-semibold text-zinc-900 dark:text-white uppercase tracking-wider">
             Color:
           </span>
-          <span className="text-zinc-500 dark:text-zinc-400 capitalize truncate">
+          <span className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 capitalize truncate font-normal">
             {activeColor}
           </span>
         </div>
 
         <div className="flex items-center gap-2 shrink-0 ml-2">
-          <span className="w-5 h-5 rounded-full border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-[11px] font-medium text-zinc-500 dark:text-zinc-400 flex items-center justify-center">
+          <span className="w-5 h-5 rounded-full border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-xs font-medium text-zinc-500 dark:text-zinc-400 flex items-center justify-center">
             {totalColorsCount}
           </span>
-          <svg
-            className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
+          <FiChevronRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors" />
         </div>
       </button>
 
       <button
         type="button"
         onClick={() => onOpenDrawer("size")}
-        className="w-full flex items-center justify-between px-5 py-3.5 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:border-zinc-900 dark:hover:border-white transition-all duration-200 group text-left shadow-sm"
+        className="w-full flex items-center justify-between px-4 sm:px-5 py-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-900 dark:hover:border-zinc-400 transition-all duration-200 group text-left shadow-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728]"
       >
-        <div className="flex items-center gap-1.5 text-[13px] truncate">
-          <span className="font-medium text-zinc-900 dark:text-white uppercase -wide">
+        <div className="flex items-center gap-2 truncate">
+          <span className="text-xs font-semibold text-zinc-900 dark:text-white uppercase tracking-wider">
             Tamaño:
           </span>
-          <span className="text-zinc-500 dark:text-zinc-400 truncate">
+          <span className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 truncate font-normal">
             {activeSize}
           </span>
         </div>
 
         <div className="flex items-center gap-2 shrink-0 ml-2">
-          <span className="w-5 h-5 rounded-full border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-[11px] font-medium text-zinc-500 dark:text-zinc-400 flex items-center justify-center">
+          <span className="w-5 h-5 rounded-full border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-xs font-medium text-zinc-500 dark:text-zinc-400 flex items-center justify-center">
             {totalSizesCount}
           </span>
-          <svg
-            className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
+          <FiChevronRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors" />
         </div>
       </button>
     </div>

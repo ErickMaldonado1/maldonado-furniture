@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { XMark } from "@/utils/icons/actions";
 import { Whatsapp } from "@/utils/icons/social";
+import { LuCheckCheck } from "react-icons/lu";
 
 export default function WhatsAppButton() {
   const pathname = usePathname();
@@ -63,8 +64,8 @@ export default function WhatsAppButton() {
                 <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#25D366] border-2 border-[#1a1a1a]" />
               </div>
               <div>
-                <p className="text-[13px] font-semibold text-white leading-tight">Muebles Maldonado</p>
-                <p className="text-[11px] text-[#25D366] font-medium">En línea</p>
+                <p className="text-sm font-semibold text-white leading-tight">Muebles Maldonado</p>
+                <p className="text-xs text-[#25D366] font-medium">En línea</p>
               </div>
             </div>
             <button
@@ -84,14 +85,17 @@ export default function WhatsAppButton() {
 
           <div className="bg-[#ECE5DD] dark:bg-[#0d1117] px-4 py-4">
             <div className="bg-white dark:bg-[#1e2733] rounded-xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[90%]">
-              <p className="text-[13px] text-zinc-800 dark:text-zinc-100 leading-relaxed">
+              <p className="text-xs sm:text-sm text-zinc-800 dark:text-zinc-100 leading-relaxed">
                 Bienvenido a{" "}
                 <span className="font-semibold">Muebles Maldonado</span>. Diseñamos y fabricamos muebles a medida.
               </p>
-              <p className="text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-2">
+              <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed mt-2">
                 ¿En qué espacio podemos ayudarte? Cotiza sin compromiso.
               </p>
-              <p className="text-[10px] text-zinc-500 dark:text-zinc-400 text-right mt-2">ahora ✓✓</p>
+              <div className="flex items-center justify-end gap-1 text-xs text-zinc-500 dark:text-zinc-400 mt-2">
+                <span>ahora</span>
+                <LuCheckCheck className="w-3.5 h-3.5 text-sky-500" aria-hidden="true" />
+              </div>
             </div>
           </div>
 
@@ -101,7 +105,7 @@ export default function WhatsAppButton() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Iniciar conversación por WhatsApp"
-            className="flex items-center justify-center gap-2.5 w-full bg-emerald-700 hover:bg-emerald-800 text-white text-[13px] font-semibold py-3.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
+            className="flex items-center justify-center gap-2.5 w-full bg-emerald-700 hover:bg-emerald-800 text-white text-xs sm:text-sm font-semibold py-3.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
           >
             <Whatsapp className="w-4 h-4" aria-hidden="true" />
             Iniciar conversación

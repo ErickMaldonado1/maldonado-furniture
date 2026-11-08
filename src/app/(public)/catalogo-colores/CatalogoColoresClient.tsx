@@ -208,7 +208,7 @@ export default function CatalogoColoresClient({
       <section className="px-4 py-8 max-w-360 mx-auto">
         <div className="flex items-center justify-between mb-5">
           <div>
-            <p className="text-xs font-bold uppercase -wider text-zinc-400">
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
               {searchQuery.trim()
                 ? "Resultados de búsqueda"
                 : getEmpresaNombre(activeEmpresa)}
@@ -273,12 +273,12 @@ export default function CatalogoColoresClient({
 
                   <div className="absolute inset-x-0 bottom-0 p-3">
                     <div className="bg-black/25 backdrop-blur-md border border-white/10 py-2 px-2 text-center">
-                      <h3 className="text-[12px] font-black uppercase text-white truncate">
+                      <h3 className="text-xs font-semibold uppercase tracking-wide text-white truncate">
                         {color.name.replace(/-/g, " ")}
                       </h3>
 
                       {searchQuery.trim() && (
-                        <p className="text-[9px] font-bold uppercase -wider text-white/70 mt-1">
+                        <p className="text-xs font-medium uppercase tracking-wider text-white/80 mt-1">
                           {getEmpresaNombre(color.company)}
                         </p>
                       )}
@@ -308,7 +308,7 @@ export default function CatalogoColoresClient({
               <button
                 type="button"
                 onClick={() => setSearchQuery("")}
-                className="mt-5 px-5 py-2.5 rounded-xl bg-[#4A3728] text-white text-xs font-bold uppercase -wider hover:opacity-90 transition"
+                className="mt-5 px-5 py-2.5 rounded-xl bg-[#4A3728] text-white text-xs font-semibold uppercase tracking-wider hover:opacity-90 transition"
               >
                 Limpiar búsqueda
               </button>

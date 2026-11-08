@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight } from "@/utils/icons/navigation";
+import { FiCheck } from "react-icons/fi";
 import { Category, SubCategory } from "@/utils/categories";
 
 interface MegaMenuProps {
@@ -68,7 +69,7 @@ const MegaMenu = ({
               <div className="flex items-center justify-between pb-5 mb-6 border-b border-zinc-100 dark:border-zinc-800/80">
                 <div className="flex items-center gap-3">
                   <span className="w-2 h-2 rounded-full bg-[#4A3728] dark:bg-[#D4B896]" />
-                  <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-500 dark:text-zinc-400">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                     Colección • {data.label}
                   </p>
                 </div>
@@ -88,7 +89,7 @@ const MegaMenu = ({
 
               <div className="grid grid-cols-[220px_1fr_310px] gap-8 items-start">
                 <div className="min-w-0 pr-2 border-r border-zinc-100 dark:border-zinc-800/80">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3.5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3.5">
                     Categorías
                   </p>
 
@@ -128,7 +129,7 @@ const MegaMenu = ({
                 </div>
 
                 <div className="min-w-0">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3.5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3.5">
                     Explorar Mobiliario
                   </p>
 
@@ -167,7 +168,7 @@ const MegaMenu = ({
                           </div>
 
                           <span
-                            className={`text-[11px] font-bold uppercase tracking-wider transition-colors duration-200 truncate max-w-full ${
+                            className={`text-xs font-medium uppercase tracking-wider transition-colors duration-200 truncate max-w-full ${
                               isHovered
                                 ? "text-[#4A3728] dark:text-[#D4B896]"
                                 : "text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white"
@@ -183,7 +184,7 @@ const MegaMenu = ({
 
                 {featured && (
                   <div className="min-w-0 pl-2">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3.5">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3.5">
                       Diseño a Medida
                     </p>
 
@@ -202,7 +203,7 @@ const MegaMenu = ({
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                         {featured.badge && (
-                          <span className="absolute top-3 left-3 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider rounded-full bg-[#4A3728] text-white shadow-sm z-10">
+                          <span className="absolute top-3 left-3 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider rounded-full bg-[#4A3728] text-white shadow-sm z-10">
                             {featured.badge}
                           </span>
                         )}
@@ -215,17 +216,23 @@ const MegaMenu = ({
                             Fabricación personalizada con melamina de alta
                             densidad e instalación en Quito.
                           </p>
-                          <span className="mt-2.5 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#D4B896] group-hover:translate-x-1 transition-transform">
+                          <span className="mt-2.5 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#D4B896] group-hover:translate-x-1 transition-transform">
                             Ver detalles →
                           </span>
                         </div>
                       </div>
                     </Link>
 
-                    <div className="mt-3.5 pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-[11px] text-zinc-500 dark:text-zinc-400">
-                      <span>✓ 100% a medida</span>
-                      <span>✓ Instalación gratis</span>
-                      <span>✓ Melamina 18mm</span>
+                    <div className="mt-3.5 pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
+                      <span className="flex items-center gap-1">
+                        <FiCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" /> 100% a medida
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <FiCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" /> Instalación gratis
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <FiCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" /> Melamina 18mm
+                      </span>
                     </div>
                   </div>
                 )}

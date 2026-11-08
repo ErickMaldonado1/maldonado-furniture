@@ -11,22 +11,22 @@ import { MapPin, Calendar, Ruler, AlertCircle } from "lucide-react";
 const steps = [
   {
     num: "01",
-    title: "1. Cuéntanos tu Espacio",
+    title: "Cuéntanos tu Espacio",
     desc: "Envíanos las medidas referenciales, un plano o una foto del lugar que se desea amoblar.",
   },
   {
     num: "02",
-    title: "2. Diseño & Melaminas",
+    title: "Diseño & Melaminas",
     desc: "Elige la distribución y el catálogo de colores disponible (Pelikano, Edimca, Masisa).",
   },
   {
     num: "03",
-    title: "3. Fabricación en Taller",
+    title: "Fabricación en Taller",
     desc: "Corte milimétrico computarizado, cantos termoadheridos y tableros de melamina de alta resistencia.",
   },
   {
     num: "04",
-    title: "4. Envío & Instalación",
+    title: "Envío & Instalación",
     desc: "Entrega e instalación profesional en Quito y valles sin intermediarios.",
   },
 ];
@@ -288,7 +288,7 @@ export default function CustomFurnitureSection() {
                     <Ruler className="w-3.5 h-3.5 text-[#634E3A] dark:text-[#D4B896]" />
                     Medidas Aproximadas de tu Espacio (en Centímetros)
                   </span>
-                  <span className="text-[11px] font-semibold text-zinc-400">
+                  <span className="text-xs font-medium text-zinc-400">
                     Unidad: cm
                   </span>
                 </div>
@@ -317,12 +317,12 @@ export default function CustomFurnitureSection() {
                             : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728] focus:ring-[#4A3728]"
                         } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1`}
                       />
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] font-bold text-zinc-400 pointer-events-none">
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400 pointer-events-none">
                         cm
                       </span>
                     </div>
                     {errors.width && (
-                      <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
                         <AlertCircle className="w-3 h-3 shrink-0" />
                         {errors.width}
                       </p>
@@ -352,12 +352,12 @@ export default function CustomFurnitureSection() {
                             : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728] focus:ring-[#4A3728]"
                         } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1`}
                       />
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] font-bold text-zinc-400 pointer-events-none">
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400 pointer-events-none">
                         cm
                       </span>
                     </div>
                     {errors.height && (
-                      <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
                         <AlertCircle className="w-3 h-3 shrink-0" />
                         {errors.height}
                       </p>
@@ -387,12 +387,12 @@ export default function CustomFurnitureSection() {
                             : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728] focus:ring-[#4A3728]"
                         } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1`}
                       />
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] font-bold text-zinc-400 pointer-events-none">
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400 pointer-events-none">
                         cm
                       </span>
                     </div>
                     {errors.depth && (
-                      <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
                         <AlertCircle className="w-3 h-3 shrink-0" />
                         {errors.depth}
                       </p>
@@ -427,7 +427,7 @@ export default function CustomFurnitureSection() {
                     } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
                   />
                   {errors.name && (
-                    <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                    <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
                       <AlertCircle className="w-3 h-3 shrink-0" />
                       {errors.name}
                     </p>
@@ -459,7 +459,7 @@ export default function CustomFurnitureSection() {
                     } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
                   />
                   {errors.sector && (
-                    <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                    <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
                       <AlertCircle className="w-3 h-3 shrink-0" />
                       {errors.sector}
                     </p>
@@ -560,7 +560,7 @@ export default function CustomFurnitureSection() {
                   <h4 className="text-xs pt-2 font-bold uppercase tracking-wider text-zinc-900 dark:text-white">
                     Visita Nuestra Fábrica con Cita Previa
                   </h4>
-                  <div className="flex items-center gap-1 text-[11px] text-zinc-500 dark:text-zinc-400">
+                  <div className="flex items-center gap-1 text-xs text-zinc-500 dark:text-zinc-400">
                     <MapPin className="w-5 h-5 pt-2 text-[#4A3728] dark:text-[#A6866A]" />
                     <span className="pt-2">
                       Sector Condado Alto, norte de Quito

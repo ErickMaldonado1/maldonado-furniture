@@ -123,19 +123,19 @@ export default function FAQPage() {
     <main className="min-h-screen bg-[#FDFCFB] dark:bg-[#0A0A0A] md:pt-32 pt-24 pb-24 px-6 md:px-8">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16 space-y-4">
-          <span className="text-md font-black uppercase -[0.2em] text-[#4A3728]">
+          <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#4A3728] dark:text-[#D4B896]">
             Soporte al Cliente
           </span>
-          <h1 className="text-3xl md:text-4xl font-black uppercase  text-zinc-900 dark:text-white leading-none">
-            Preguntas <span className="text-[#4A3728]">Frecuentes</span>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight uppercase text-zinc-900 dark:text-white leading-none">
+            Preguntas <span className="text-[#4A3728] dark:text-[#D4B896]">Frecuentes</span>
           </h1>
-          <div className="h-1.5 w-36 bg-[#4A3728] mx-auto mt-6" />
+          <div className="h-1.5 w-36 bg-[#4A3728] dark:bg-[#D4B896] mx-auto mt-6" />
         </div>
 
         <div className="space-y-8">
           {faqData.map((category, catIndex) => (
             <section key={catIndex} className="space-y-4">
-              <h2 className="text-[13px] font-black uppercase -[0.2em] text-zinc-400 border-l-4 border-[#4A3728] pl-4 mb-4">
+              <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 border-l-4 border-[#4A3728] dark:border-[#D4B896] pl-4 mb-4">
                 {category.title}
               </h2>
               <div className="border-t border-zinc-200 dark:border-zinc-800">

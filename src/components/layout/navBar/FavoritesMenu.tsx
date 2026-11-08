@@ -98,7 +98,7 @@ const FavoritesMenu: React.FC<FavoritesMenuProps> = ({ isOpen, onClose }) => {
 
                   <button
                     onClick={() => handleAddToCart(item)}
-                    className="text-xs font-bold uppercase -wider text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800 self-start hover:border-[#4A3728] transition-colors"
+                    className="text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800 self-start hover:border-[#4A3728] transition-colors"
                     aria-label="add-cart"
                   >
                     Añadir al Carrito

@@ -5,6 +5,7 @@ import { useCartStore } from "@/store/cart-store";
 import { Minus, ShoppingBag } from "@/utils/icons/shop";
 import { Trash, Plus } from "@/utils/icons/actions";
 import { ArrowRight } from "@/utils/icons/navigation";
+import { FiSliders } from "react-icons/fi";
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } =
@@ -43,10 +44,10 @@ export default function CartPage() {
     <main className="pt-20 md:pt-36 pb-20 bg-zinc-50 dark:bg-[#0b0b0b] min-h-screen transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header className="mb-12">
-          <h1 className="text-3xl md:text-4xl font-black uppercase  text-zinc-900 dark:text-white">
-            Tu Carrito <span className="text-[#4A3728]">({cart.length})</span>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight uppercase text-zinc-900 dark:text-white">
+            Tu Carrito <span className="text-[#4A3728] dark:text-[#D4B896]">({cart.length})</span>
           </h1>
-          <p className="mt-2 text-zinc-500 font-medium uppercase text-xs -[0.2em]">
+          <p className="mt-2 text-zinc-500 dark:text-zinc-400 font-medium uppercase text-xs tracking-wider">
             Gestiona tus productos antes del checkout
           </p>
         </header>
@@ -69,28 +70,31 @@ export default function CartPage() {
 
                 <div className="flex-1 min-w-0 text-center sm:text-left space-y-3">
                   <div>
-                    <h3 className="text-lg font-black uppercase text-zinc-900 dark:text-white line-clamp-1">
+                    <h3 className="text-base sm:text-lg font-semibold uppercase text-zinc-900 dark:text-white line-clamp-1">
                       {item.name}
                     </h3>
                     <div className="flex flex-wrap justify-center sm:justify-start gap-x-4 gap-y-1 mt-1">
-                      <p className="text-[12px] font-bold text-zinc-400 uppercase">
+                      <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
                         SKU: {item.sku || "N/A"}
                       </p>
-                      <p className="text-[12px] font-bold text-[#4A3728] dark:text-[#D4B896] uppercase">
+                      <p className="text-xs font-semibold text-[#4A3728] dark:text-[#D4B896] uppercase tracking-wider">
                         Color / Acabado: {item.variantName || "Estándar"}
                       </p>
                     </div>
 
                     {item.customization?.isCustom && (
                       <div className="mt-2 p-2.5 rounded-xl bg-[#4A3728]/10 dark:bg-[#A6866A]/10 text-xs text-[#4A3728] dark:text-[#D4B896] text-left space-y-1">
-                        <span className="font-bold block">📐 Fabricación a Medida: {item.dimensions}</span>
+                        <span className="font-semibold flex items-center gap-1.5">
+                          <FiSliders className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                          Fabricación a Medida: {item.dimensions}
+                        </span>
                         {item.customization.finish && (
-                          <span className="text-zinc-600 dark:text-zinc-300 block">
+                          <span className="text-zinc-600 dark:text-zinc-300 block text-xs">
                             Melamina / Textura: {item.customization.finish}
                           </span>
                         )}
                         {item.customization.notes && (
-                          <span className="text-zinc-500 dark:text-zinc-400 text-[11px] block italic">
+                          <span className="text-zinc-500 dark:text-zinc-400 text-xs block italic">
                             Detalles: &ldquo;{item.customization.notes}&rdquo;
                           </span>
                         )}
@@ -170,28 +174,28 @@ export default function CartPage() {
                 <div className="w-12 h-12 rounded-full bg-[#4A3728]/10 flex items-center justify-center text-[#4A3728]">
                   <ShoppingBag className="w-6 h-6" />
                 </div>
-                <h2 className="text-xl font-black uppercase  text-zinc-900 dark:text-white">
+                <h2 className="text-lg sm:text-xl font-semibold uppercase tracking-tight text-zinc-900 dark:text-white">
                   Resumen de Pedido
                 </h2>
               </div>
 
               <div className="space-y-4 pt-4 border-t border-zinc-50 dark:border-zinc-800/50">
-                <div className="flex justify-between text-zinc-500 font-bold uppercase text-[13px] ">
+                <div className="flex justify-between text-zinc-500 font-medium uppercase text-xs sm:text-sm tracking-wide">
                   <span>Productos ({getTotalItems()})</span>
-                  <span className="text-zinc-900 dark:text-white">
+                  <span className="text-zinc-900 dark:text-white font-semibold">
                     ${getTotalPrice().toLocaleString()}
                   </span>
                 </div>
-                <div className="flex justify-between text-zinc-500 font-bold uppercase text-[13px] ">
+                <div className="flex justify-between text-zinc-500 font-medium uppercase text-xs sm:text-sm tracking-wide">
                   <span>Envío Especializado</span>
-                  <span className="text-green-600 font-black">Gratis</span>
+                  <span className="text-emerald-600 font-bold">Gratis</span>
                 </div>
 
                 <div className="pt-6 border-t border-zinc-50 dark:border-zinc-800/50 flex justify-between items-end">
-                  <span className="text-xs font-black uppercase -[0.2em] text-zinc-400">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                     Total Estimado
                   </span>
-                  <span className="text-4xl font-black  text-[#4A3728] dark:text-[#E6CBA3]">
+                  <span className="text-3xl sm:text-4xl font-bold text-[#4A3728] dark:text-[#E6CBA3]">
                     ${getTotalPrice().toLocaleString()}
                   </span>
                 </div>
@@ -199,7 +203,7 @@ export default function CartPage() {
 
               <Link href="/checkout" className="block pt-4">
                 <button
-                  className="w-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 py-5 rounded-2xl font-black uppercase -[0.2em] text-xs hover:bg-[#4A3728] dark:hover:bg-[#E7DED4] transition-all shadow-lg hover:shadow-[#4A3728]/20 hover:-translate-y-1 flex items-center justify-center gap-3"
+                  className="w-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 h-14 rounded-2xl font-semibold uppercase tracking-wider text-sm hover:bg-[#4A3728] dark:hover:bg-[#E7DED4] transition-all shadow-lg hover:shadow-[#4A3728]/20 hover:-translate-y-0.5 flex items-center justify-center gap-3 cursor-pointer"
                   aria-label="checkout"
                 >
                   Continuar al Pago
@@ -207,8 +211,8 @@ export default function CartPage() {
                 </button>
               </Link>
 
-              <div className="flex items-center gap-3 justify-center text-[13px] font-bold text-zinc-400 uppercase ">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              <div className="flex items-center gap-3 justify-center text-xs font-medium text-zinc-400 uppercase tracking-wider">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 Compra 100% Protegida
               </div>
             </div>

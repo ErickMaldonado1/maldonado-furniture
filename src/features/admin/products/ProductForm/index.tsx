@@ -3,6 +3,7 @@
 import { FormProvider } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { Save, Package, Tags, Image as ImageIcon, Layers } from "lucide-react";
+import { FiAlertCircle, FiLoader } from "react-icons/fi";
 import { useProductForm } from "../hooks/useProductForm";
 import { useProductModal } from "../hooks/useProductModal";
 import { ProductModal } from "./ProductModal";
@@ -85,7 +86,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                 disabled={isSubmitting}
                 className="bg-zinc-900 dark:bg-[#A6866A] text-white px-6 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg"
               >
-                {isSubmitting ? <span className="animate-spin">⏳</span> : <Save size={18} />}
+                {isSubmitting ? <FiLoader className="w-4 h-4 animate-spin text-white" aria-hidden="true" /> : <Save size={18} />}
                 {initialData ? "Guardar Cambios" : "Publicar Producto"}
               </button>
             </div>
@@ -115,8 +116,9 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                     <Icon size={16} className={isActive ? "text-[#A6866A]" : ""} />
                     {tab.label}
                     {tab.error && (
-                      <span className="text-red-500 bg-red-100 dark:bg-red-900/30 px-1.5 py-0.5 rounded text-[10px] ml-1">
-                        ⚠️ Error
+                      <span className="inline-flex items-center gap-1 text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30 px-1.5 py-0.5 rounded text-xs ml-1 font-medium">
+                        <FiAlertCircle className="w-3 h-3 shrink-0" aria-hidden="true" />
+                        Error
                       </span>
                     )}
                   </button>

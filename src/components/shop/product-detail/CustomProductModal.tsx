@@ -28,7 +28,6 @@ interface CustomProductModalProps {
   };
 }
 
-// Manufacturing bounds in cm
 const LIMITS = {
   width: { min: 30, max: 400 },
   height: { min: 30, max: 300 },
@@ -69,7 +68,6 @@ export function CustomProductModal({
 
   const { addToCart } = useCartStore();
 
-  // Synchronize state when product changes
   useEffect(() => {
     if (product) {
       setFurnitureType(product.name || "Mueble a Medida");
@@ -83,7 +81,6 @@ export function CustomProductModal({
     }
   }, [product]);
 
-  // Lock body scroll and handle Escape key
   useEffect(() => {
     if (!isOpen) return;
 
@@ -308,7 +305,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                       <Ruler className="w-3.5 h-3.5 text-[#634E3A] dark:text-[#D4B896]" />
                       Medidas Requeridas (en Centímetros)
                     </span>
-                    <span className="text-[11px] font-semibold text-zinc-400">
+                    <span className="text-xs font-medium text-zinc-400">
                       Unidad: cm
                     </span>
                   </div>
@@ -340,12 +337,12 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                               : "border-zinc-200 dark:border-zinc-700 focus:border-[#4A3728]"
                           } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
                         />
-                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] font-bold text-zinc-400 pointer-events-none">
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400 pointer-events-none">
                           cm
                         </span>
                       </div>
                       {errors.width && (
-                        <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                        <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
                           <AlertCircle className="w-3 h-3 shrink-0" />
                           {errors.width}
                         </p>
@@ -378,12 +375,12 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                               : "border-zinc-200 dark:border-zinc-700 focus:border-[#4A3728]"
                           } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
                         />
-                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] font-bold text-zinc-400 pointer-events-none">
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400 pointer-events-none">
                           cm
                         </span>
                       </div>
                       {errors.height && (
-                        <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                        <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
                           <AlertCircle className="w-3 h-3 shrink-0" />
                           {errors.height}
                         </p>
@@ -416,12 +413,12 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                               : "border-zinc-200 dark:border-zinc-700 focus:border-[#4A3728]"
                           } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
                         />
-                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] font-bold text-zinc-400 pointer-events-none">
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400 pointer-events-none">
                           cm
                         </span>
                       </div>
                       {errors.depth && (
-                        <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                        <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
                           <AlertCircle className="w-3 h-3 shrink-0" />
                           {errors.depth}
                         </p>
@@ -456,7 +453,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                       } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
                     />
                     {errors.finish && (
-                      <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
                         <AlertCircle className="w-3 h-3 shrink-0" />
                         {errors.finish}
                       </p>
@@ -508,7 +505,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                       } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
                     />
                     {errors.name && (
-                      <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
                         <AlertCircle className="w-3 h-3 shrink-0" />
                         {errors.name}
                       </p>
@@ -540,7 +537,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                       } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
                     />
                     {errors.city && (
-                      <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1 font-medium">
+                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
                         <AlertCircle className="w-3 h-3 shrink-0" />
                         {errors.city}
                       </p>
@@ -569,7 +566,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
 
                 <div className="p-3 bg-zinc-50 dark:bg-zinc-900 rounded-xl border border-zinc-100 dark:border-zinc-800 label-premium text-zinc-600 dark:text-zinc-400 flex items-start gap-2">
                   <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                  <span className="text-[11px] leading-relaxed">
+                  <span className="text-xs leading-relaxed">
                     <strong className="text-zinc-900 dark:text-white">
                       Garantía Maldonado:
                     </strong>{" "}

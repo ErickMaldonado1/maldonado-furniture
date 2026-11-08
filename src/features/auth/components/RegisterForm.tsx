@@ -164,7 +164,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
               <User className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
             {errors.name && (
-              <p className="text-[11px] text-red-500 font-medium ml-1">
+              <p className="text-xs text-red-500 font-medium ml-1">
                 {errors.name.message}
               </p>
             )}
@@ -189,7 +189,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
               <Mail className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
             {errors.email && (
-              <p className="text-[11px] text-red-500 font-medium ml-1">
+              <p className="text-xs text-red-500 font-medium ml-1">
                 {errors.email.message}
               </p>
             )}
@@ -214,7 +214,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
               <Phone className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
             {errors.phone && (
-              <p className="text-[11px] text-red-500 font-medium ml-1">
+              <p className="text-xs text-red-500 font-medium ml-1">
                 {errors.phone.message}
               </p>
             )}
@@ -254,7 +254,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
               </button>
             </div>
             {errors.password && (
-              <p className="text-[11px] text-red-500 font-medium ml-1">
+              <p className="text-xs text-red-500 font-medium ml-1">
                 {errors.password.message}
               </p>
             )}
@@ -296,7 +296,7 @@ const RegisterForm = ({ onSuccess, onSwitchToLogin }: RegisterFormProps) => {
               </button>
             </div>
             {errors.confirmPassword && (
-              <p className="text-[11px] text-red-500 font-medium ml-1">
+              <p className="text-xs text-red-500 font-medium ml-1">
                 {errors.confirmPassword.message}
               </p>
             )}

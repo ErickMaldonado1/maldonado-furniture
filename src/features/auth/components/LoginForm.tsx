@@ -157,7 +157,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
               <Mail className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
             {errors.email && (
-              <p className="text-[11px] text-red-500 font-medium ml-1">
+              <p className="text-xs text-red-500 font-medium ml-1">
                 {errors.email.message}
               </p>
             )}
@@ -197,7 +197,7 @@ const LoginForm = ({ onSuccess, onSwitchToRegister }: LoginFormProps) => {
               </button>
             </div>
             {errors.password && (
-              <p className="text-[11px] text-red-500 font-medium ml-1">
+              <p className="text-xs text-red-500 font-medium ml-1">
                 {errors.password.message}
               </p>
             )}

@@ -241,7 +241,7 @@ const Navbar = () => {
             >
               <HiOutlineHeart className="text-xl group-hover:scale-110 transition-transform duration-200" />
               {mounted && favorites.length > 0 && (
-                <span className="absolute top-0.5 right-0.5 bg-[#4A3728] text-white text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center shadow-md animate-in zoom-in">
+                <span className="absolute -top-0.5 -right-0.5 bg-[#4A3728] text-white text-xs font-bold min-w-4.5 h-4.5 px-1 rounded-full flex items-center justify-center shadow-md animate-in zoom-in">
                   {favorites.length}
                 </span>
               )}
@@ -268,7 +268,7 @@ const Navbar = () => {
             >
               <HiOutlineShoppingBag className="text-xl group-hover:scale-110 transition-transform duration-200" />
               {mounted && totalItems > 0 && (
-                <span className="absolute top-0.5 right-0.5 bg-[#4A3728] text-white text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center shadow-md animate-in zoom-in">
+                <span className="absolute -top-0.5 -right-0.5 bg-[#4A3728] text-white text-xs font-bold min-w-4.5 h-4.5 px-1 rounded-full flex items-center justify-center shadow-md animate-in zoom-in">
                   {totalItems}
                 </span>
               )}

@@ -96,7 +96,7 @@ const UserDropdown: React.FC<UserDropdownProps> = ({
             {user?.email}
           </p>
           {user?.role === "ADMIN" && (
-            <span className="mt-2 inline-block px-2.5 py-0.5 text-[10px] font-bold rounded-full uppercase tracking-wider bg-[#4A3728]/15 text-[#4A3728] dark:bg-[#D4B896]/15 dark:text-[#D4B896]">
+            <span className="mt-2 inline-block px-2.5 py-0.5 text-xs font-semibold rounded-full uppercase tracking-wider bg-[#4A3728]/15 text-[#4A3728] dark:bg-[#D4B896]/15 dark:text-[#D4B896]">
               Administrador
             </span>
           )}

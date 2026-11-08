@@ -97,7 +97,7 @@ const MobileMenu = ({ isOpen, onClose, isDarkMode }: MobileMenuProps) => {
             </div>
 
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3">
+              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3">
                 Colecciones
               </p>
               <div className="flex flex-col gap-2">
@@ -162,7 +162,7 @@ const MobileMenu = ({ isOpen, onClose, isDarkMode }: MobileMenuProps) => {
             </div>
 
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3">
+              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3">
                 Navegación
               </p>
               <nav className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800/60">

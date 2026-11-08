@@ -103,15 +103,13 @@ const ValueProps = () => {
           ))}
         </motion.div>
 
-        {/* Trust Badges Bar - Balanced & Elegant Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-          {/* Card 1: Proyectos Realizados */}
           <div className="p-5 rounded-2xl bg-[#FAF9F7] dark:bg-zinc-900/50 border border-zinc-200/80 dark:border-zinc-800 flex items-start gap-4 transition-all duration-300 hover:border-[#4A3728]/40 dark:hover:border-[#A6866A]/40 group">
             <div className="w-11 h-11 rounded-xl bg-[#4A3728]/10 dark:bg-[#A6866A]/10 text-[#4A3728] dark:text-[#A6866A] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
               <CheckCircle2 className="w-5 h-5" />
             </div>
             <div className="space-y-1 min-w-0">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#634E3A] dark:text-[#D4B896] block">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#634E3A] dark:text-[#D4B896] block">
                 Experiencia Comprobada
               </span>
               <h3 className="text-sm font-semibold text-zinc-900 dark:text-white leading-snug">
@@ -124,13 +122,12 @@ const ValueProps = () => {
             </div>
           </div>
 
-          {/* Card 2: Atención en Fábrica */}
           <div className="p-5 rounded-2xl bg-[#FAF9F7] dark:bg-zinc-900/50 border border-zinc-200/80 dark:border-zinc-800 flex items-start gap-4 transition-all duration-300 hover:border-[#4A3728]/40 dark:hover:border-[#A6866A]/40 group">
             <div className="w-11 h-11 rounded-xl bg-[#4A3728]/10 dark:bg-[#A6866A]/10 text-[#4A3728] dark:text-[#A6866A] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
               <MapPin className="w-5 h-5" />
             </div>
             <div className="space-y-1 min-w-0">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#634E3A] dark:text-[#D4B896] block">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#634E3A] dark:text-[#D4B896] block">
                 Atención Personalizada
               </span>
               <h3 className="text-sm font-semibold text-zinc-900 dark:text-white leading-snug">
@@ -143,13 +140,12 @@ const ValueProps = () => {
             </div>
           </div>
 
-          {/* Card 3: Asesoría Directa */}
           <div className="p-5 rounded-2xl bg-[#FAF9F7] dark:bg-zinc-900/50 border border-zinc-200/80 dark:border-zinc-800 flex items-start gap-4 transition-all duration-300 hover:border-[#4A3728]/40 dark:hover:border-[#A6866A]/40 group">
             <div className="w-11 h-11 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
               <MessageSquare className="w-5 h-5" />
             </div>
             <div className="space-y-1 min-w-0">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 block">
+              <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 block">
                 Asesoría Técnica Directa
               </span>
               <h3 className="text-sm font-semibold text-zinc-900 dark:text-white leading-snug">
@@ -219,7 +215,7 @@ const ServiceCard = ({ service }: { service: (typeof services)[0] }) => {
           <Link
             href={service.href}
             aria-label={`${service.cta}: ${service.title}`}
-            className="inline-flex items-center gap-2 label-premium text-zinc-900 dark:text-white hover:text-[#4A3728] dark:hover:text-[#D4B896] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#4A3728] rounded"
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-white hover:text-[#4A3728] dark:hover:text-[#D4B896] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#4A3728] rounded"
           >
             {service.cta}
             <span

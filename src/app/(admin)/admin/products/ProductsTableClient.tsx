@@ -28,7 +28,6 @@ export function ProductsTableClient({
   const [loadingMore, setLoadingMore] = useState(false);
   const [skip, setSkip] = useState(initialProducts.length);
 
-  // Sync state whenever props update due to query/category/subcategory changes
   useEffect(() => {
     setProducts(initialProducts);
     setHasMore(initialHasMore);
@@ -61,19 +60,19 @@ export function ProductsTableClient({
         <table className="min-w-full divide-y divide-zinc-100 dark:divide-zinc-800/50">
           <thead className="bg-zinc-50/50 dark:bg-zinc-900/30">
             <tr>
-              <th className="px-6 py-4 text-left text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+              <th className="px-6 py-4 text-left text-xs font-semibold text-zinc-500 uppercase tracking-wider">
                 Producto
               </th>
-              <th className="px-6 py-4 text-left text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+              <th className="px-6 py-4 text-left text-xs font-semibold text-zinc-500 uppercase tracking-wider">
                 Categoría
               </th>
-              <th className="px-6 py-4 text-left text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+              <th className="px-6 py-4 text-left text-xs font-semibold text-zinc-500 uppercase tracking-wider">
                 Precio
               </th>
-              <th className="px-6 py-4 text-center text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+              <th className="px-6 py-4 text-center text-xs font-semibold text-zinc-500 uppercase tracking-wider">
                 Variantes
               </th>
-              <th className="px-6 py-4 text-right text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+              <th className="px-6 py-4 text-right text-xs font-semibold text-zinc-500 uppercase tracking-wider">
                 Acciones
               </th>
             </tr>
@@ -135,19 +134,19 @@ export function ProductsTableClient({
                             {product.name}
                           </span>
                           {!product.isActive && (
-                            <span className="bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 text-[9px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-wider whitespace-nowrap">
+                            <span className="bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 text-xs font-semibold px-2 py-0.5 rounded uppercase tracking-wider whitespace-nowrap">
                               Inactivo
                             </span>
                           )}
                         </div>
-                        <div className="text-[10px] font-medium text-zinc-400 dark:text-zinc-500 uppercase mt-0.5 tracking-wide">
+                        <div className="text-xs font-medium text-zinc-400 dark:text-zinc-500 uppercase mt-0.5 tracking-wider">
                           SKU: {product.sku || "N/A"}
                         </div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 align-middle">
-                    <span className="inline-flex items-center text-[11px] font-medium text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 rounded-md">
+                    <span className="inline-flex items-center text-xs font-medium text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 rounded-md">
                       {product.category}
                     </span>
                   </td>
@@ -155,7 +154,7 @@ export function ProductsTableClient({
                     ${product.price.toLocaleString()}
                   </td>
                   <td className="px-6 py-4 align-middle text-center">
-                    <span className="inline-block border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white dark:bg-zinc-900">
+                    <span className="inline-block border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-white dark:bg-zinc-900">
                       {product._count.variants} var
                     </span>
                   </td>

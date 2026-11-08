@@ -46,7 +46,7 @@ export default function NotFound() {
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
           <Link
             href="/"
-            className="group flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-8 py-3 rounded-md text-sm font-black   hover:bg-[#4A3728] dark:hover:bg-zinc-200 transition-all duration-300 shadow-xl"
+            className="group flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-8 py-3 rounded-md text-sm font-semibold uppercase tracking-wider hover:bg-[#4A3728] dark:hover:bg-zinc-200 transition-all duration-300 shadow-xl"
           >
             <ArrowLongLeft className="w-4 h-4 text-sm group-hover:-translate-x-1 transition-transform" />
             Volver ahora
@@ -54,7 +54,7 @@ export default function NotFound() {
         </div>
 
         <div className="mt-20 opacity-10 dark:opacity-5 select-none">
-          <span className="text-[20px] md:text-[30px] font-black  uppercase text-zinc-900 dark:text-white leading-none">
+          <span className="text-xl md:text-3xl font-medium uppercase tracking-widest text-zinc-900 dark:text-white leading-none">
             Muebles <br className="md:hidden" /> Maldonado
           </span>
         </div>

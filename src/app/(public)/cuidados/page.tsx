@@ -43,7 +43,6 @@ export default function CuidadosHubPage() {
   return (
     <main className="min-h-screen pt-28 pb-20 bg-zinc-50 dark:bg-[#070707] transition-colors">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#4A3728]/10 dark:bg-[#A6866A]/10 text-[#4A3728] dark:text-[#D4B896] text-xs font-bold uppercase tracking-wider">
             <BookOpen className="w-3.5 h-3.5" />
@@ -60,7 +59,6 @@ export default function CuidadosHubPage() {
           </p>
         </div>
 
-        {/* Guides Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {guides.map((guide) => (
             <Link
@@ -69,7 +67,7 @@ export default function CuidadosHubPage() {
               className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#111111] border border-zinc-200 dark:border-zinc-800 hover:border-[#4A3728] dark:hover:border-[#A6866A] transition-all shadow-sm hover:shadow-md flex flex-col justify-between group"
             >
               <div className="space-y-3">
-                <span className="text-[11px] font-bold text-[#634E3A] dark:text-[#D4B896] uppercase tracking-wide block">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#634E3A] dark:text-[#D4B896] block">
                   {guide.badge}
                 </span>
                 <h2 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-white group-hover:text-[#4A3728] dark:group-hover:text-[#D4B896] transition-colors">
@@ -88,7 +86,6 @@ export default function CuidadosHubPage() {
           ))}
         </div>
 
-        {/* Reassurance Banner */}
         <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#FAF9F7] to-zinc-100 dark:from-zinc-900/60 dark:to-zinc-900 border border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-2xl bg-[#4A3728]/10 text-[#4A3728] dark:text-[#D4B896] flex items-center justify-center shrink-0">

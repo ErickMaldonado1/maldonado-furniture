@@ -80,7 +80,7 @@ export default function TerminosPage() {
     <main className="min-h-screen bg-white dark:bg-[#050505] pt-32 pb-24 px-6 md:px-8 transition-colors">
       <div className="max-w-5xl mx-auto">
         <header className="mb-20 space-y-4">
-          <span className="text-[13px] font-bold uppercase  text-[#4A3728] block">
+          <span className="text-xs font-semibold uppercase tracking-wider text-[#4A3728] block">
             Marco Legal
           </span>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium  text-zinc-900 dark:text-white leading-none">
@@ -93,14 +93,14 @@ export default function TerminosPage() {
 
         <div className="grid lg:grid-cols-4 gap-16">
           <aside className="hidden lg:block space-y-3 sticky top-32 h-fit">
-            <span className="text-[11px] font-black uppercase -[0.2em] text-zinc-400 block mb-4">
+            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 block mb-4">
               Índice
             </span>
             {sections.map((section) => (
               <a
                 key={section.id}
                 href={`#${section.id}`}
-                className="block text-xs font-bold text-zinc-500 hover:text-[#4A3728] dark:hover:text-[#4A3728] transition-colors uppercase -wider"
+                className="block text-xs font-semibold text-zinc-500 hover:text-[#4A3728] dark:hover:text-[#4A3728] transition-colors uppercase tracking-wider"
               >
                 {section.title}
               </a>
@@ -125,7 +125,6 @@ export default function TerminosPage() {
               </motion.section>
             ))}
 
-            {/* Caja de Ayuda */}
             <div className="p-8 md:p-12 bg-zinc-50 dark:bg-[#0A0A0A] border border-zinc-200 dark:border-zinc-800 rounded-sm space-y-6">
               <div className="flex items-center gap-4 text-[#4A3728]">
                 <Scale width={32} height={32} />
@@ -141,13 +140,13 @@ export default function TerminosPage() {
               <div className="flex flex-wrap gap-4 pt-2">
                 <a
                   href="mailto:legal@mueblesmaldonado.com"
-                  className="inline-flex items-center justify-center bg-[#4A3728] hover:bg-zinc-900 dark:hover:bg-white dark:hover:text-zinc-900 text-white px-6 py-3 rounded-sm text-[11px] font-black uppercase -[0.2em] transition-all duration-300"
+                  className="inline-flex items-center justify-center bg-[#4A3728] hover:bg-zinc-900 dark:hover:bg-white dark:hover:text-zinc-900 text-white px-6 py-3 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all duration-300"
                 >
                   Enviar Correo
                 </a>
                 <Link
                   href="/contacto"
-                  className="inline-flex items-center justify-center border border-zinc-300 dark:border-zinc-700 px-6 py-3 rounded-sm hover:border-[#4A3728] dark:hover:border-[#4A3728] text-[11px] font-black uppercase -[0.2em] transition-all text-zinc-900 dark:text-white"
+                  className="inline-flex items-center justify-center border border-zinc-300 dark:border-zinc-700 px-6 py-3 rounded-lg hover:border-[#4A3728] dark:hover:border-[#4A3728] text-xs font-semibold uppercase tracking-wider transition-all text-zinc-900 dark:text-white"
                 >
                   Ir a Contacto
                 </Link>
@@ -156,7 +155,7 @@ export default function TerminosPage() {
           </div>
         </div>
         <footer className="mt-32 pt-12 border-t border-zinc-100 dark:border-zinc-900 text-center">
-          <p className="text-xs font-bold text-zinc-400 uppercase -[0.25em]">
+          <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider">
             Muebles Maldonado © 2026 • Todos los derechos reservados
           </p>
         </footer>

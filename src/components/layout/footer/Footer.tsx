@@ -8,7 +8,7 @@ import {
   BackgroundPattern,
 } from "@/utils/icons/social";
 import NewsletterForm from "./NewsletterForm";
-import { MapPin, Phone, Clock, Sparkles, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Sparkles, ArrowRight } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,7 +18,6 @@ const Footer = () => {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none overflow-hidden">
         <BackgroundPattern />
       </div>
-
       <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-16 text-left">
           <div className="sm:col-span-2 lg:col-span-4 space-y-4">
@@ -124,7 +123,6 @@ const Footer = () => {
             </nav>
           </div>
 
-          {/* Column 4: Cuidados de Muebles (Span 2) - New Section */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="text-xs font-bold text-[#D4B896] uppercase tracking-wider flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5" />
@@ -155,7 +153,6 @@ const Footer = () => {
             </nav>
           </div>
 
-          {/* Column 5: Suscripción & Novedades (Span 2) */}
           <div className="sm:col-span-2 lg:col-span-2 space-y-4">
             <h3 className="text-xs font-bold text-[#D4B896] uppercase tracking-wider">
               Novedades
@@ -170,7 +167,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Social Links */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-3 text-xs font-medium text-zinc-400 text-center sm:text-left">
             <span>

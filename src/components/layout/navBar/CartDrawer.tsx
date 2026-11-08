@@ -8,6 +8,7 @@ import { CartItem } from "@/store/cart-store";
 import Drawer from "@/components/ui/Drawer";
 import { Cart, Minus } from "@/utils/icons/shop";
 import { Plus, Trash } from "@/utils/icons/actions";
+import { FiSliders } from "react-icons/fi";
 import { slugify } from "@/utils/slug_url";
 interface CartDrawerProps {
   isOpen: boolean;
@@ -93,12 +94,13 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items }) => {
                     </div>
 
                     {item.customization?.isCustom && (
-                      <div className="mt-1.5 p-1.5 rounded-lg bg-[#4A3728]/10 dark:bg-[#A6866A]/10 text-[11px] text-[#4A3728] dark:text-[#D4B896] space-y-0.5">
-                        <span className="font-bold block">
-                          📐 Medida: {item.dimensions}
+                      <div className="mt-1.5 p-2 rounded-lg bg-[#4A3728]/10 dark:bg-[#A6866A]/10 text-xs text-[#4A3728] dark:text-[#D4B896] space-y-1">
+                        <span className="font-semibold flex items-center gap-1.5">
+                          <FiSliders className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                          Medida: {item.dimensions}
                         </span>
                         {item.customization.finish && (
-                          <span className="text-zinc-600 dark:text-zinc-300 block">
+                          <span className="text-zinc-600 dark:text-zinc-300 block text-xs">
                             Acabado: {item.customization.finish}
                           </span>
                         )}

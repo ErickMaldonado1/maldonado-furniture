@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { Heart } from "@/utils/icons/navigation";
 import { HeartFilled, Sparkles } from "@/utils/icons/actions";
 import { Whatsapp } from "@/utils/icons/social";
+import { FiCheck } from "react-icons/fi";
 import { CustomProductModal } from "./CustomProductModal";
 
 const ProductAccordion = dynamic(
@@ -116,14 +117,14 @@ Tienen disponibilidad y realizan instalacion en Quito? Me gustaria coordinar det
         </span>
         {discount && discount > 0 ? (
           <div className="flex items-center gap-2">
-            <span className="label-premium text-zinc-600 dark:text-zinc-400 line-through">
+            <span className="text-sm font-normal text-zinc-400 dark:text-zinc-500 line-through">
               $
               {price.toLocaleString("es-EC", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })}
             </span>
-            <span className="label-premium bg-red-100 text-red-600 dark:bg-red-950 dark:text-red-400 px-2 py-0.5 rounded-full">
+            <span className="text-xs font-semibold bg-red-100 text-red-600 dark:bg-red-950/60 dark:text-red-400 px-2 py-0.5 rounded-full">
               -{discount}% OFF
             </span>
           </div>
@@ -134,10 +135,10 @@ Tienen disponibilidad y realizan instalacion en Quito? Me gustaria coordinar det
         <span className="font-medium text-zinc-700 dark:text-zinc-300">
           Cantidad limitada
         </span>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <span>Plazo de entrega {deliveryText}</span>
           <span
-            className="w-4 h-4 rounded-full border border-zinc-400 text-[10px] flex items-center justify-center font-bold"
+            className="w-4 h-4 rounded-full border border-zinc-400 text-xs flex items-center justify-center font-medium"
             aria-hidden="true"
           >
             i
@@ -190,10 +191,10 @@ Tienen disponibilidad y realizan instalacion en Quito? Me gustaria coordinar det
             onClick={isInCart ? undefined : onAddToCart}
             disabled={isInCart}
             aria-label={isInCart ? "Producto en la cesta" : "Añadir a la cesta"}
-            className={`flex-1 h-12 rounded-full flex items-center justify-center gap-2 label-premium text-xs tracking-wider transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-white ${
+            className={`flex-1 h-12 rounded-full flex items-center justify-center gap-2 text-sm sm:text-base font-semibold tracking-wide uppercase transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-white ${
               isInCart
                 ? "bg-zinc-200 text-zinc-600 cursor-not-allowed dark:bg-zinc-800 dark:text-zinc-400"
-                : "bg-[#141414] text-white! hover:bg-[#252525] hover:shadow-lg hover:-translate-y-0.5 dark:bg-white dark:text-zinc-950! dark:hover:bg-zinc-200 active:scale-[0.98]"
+                : "bg-[#141414] text-white hover:bg-[#252525] hover:shadow-lg hover:-translate-y-0.5 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 active:scale-[0.98]"
             }`}
           >
             <span>{isInCart ? "En la cesta" : "Añadir a la cesta"}</span>
@@ -222,7 +223,7 @@ Tienen disponibilidad y realizan instalacion en Quito? Me gustaria coordinar det
             onClick={handleWhatsApp}
             title="Cotizar por WhatsApp"
             aria-label="Cotizar este producto por WhatsApp"
-            className="h-12 px-4 rounded-full bg-[#166534] hover:bg-[#14532d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#166534] focus-visible:ring-offset-2 text-white flex items-center justify-center gap-2 label-premium text-white! font-medium tracking-wider transition-all shadow-sm active:scale-95 cursor-pointer"
+            className="h-12 px-4 rounded-full bg-[#166534] hover:bg-[#14532d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#166534] focus-visible:ring-offset-2 text-white flex items-center justify-center gap-2 text-sm font-semibold tracking-wide transition-all shadow-sm active:scale-95 cursor-pointer"
           >
             <Whatsapp className="w-5 h-5 text-white" aria-hidden="true" />
             <span>Cotizar por WhatsApp</span>
@@ -233,22 +234,22 @@ Tienen disponibilidad y realizan instalacion en Quito? Me gustaria coordinar det
             onClick={() => setIsCustomModalOpen(true)}
             title="Personalizar este mueble con medidas y acabados a medida"
             aria-label="Personalizar este mueble con medidas y acabados a medida"
-            className="h-12 px-4 rounded-full border border-[#4A3728] dark:border-[#A6866A] text-[#4A3728] dark:text-[#D4B896] hover:bg-[#4A3728] hover:text-white dark:hover:bg-[#D4B896] dark:hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] flex items-center justify-center gap-2 label-premium font-medium tracking-wider transition-all shadow-xs active:scale-95 cursor-pointer"
+            className="h-12 px-4 rounded-full border border-[#4A3728] dark:border-[#A6866A] text-[#4A3728] dark:text-[#D4B896] hover:bg-[#4A3728] hover:text-white dark:hover:bg-[#D4B896] dark:hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] flex items-center justify-center gap-2 text-sm font-semibold tracking-wide transition-all shadow-xs active:scale-95 cursor-pointer"
           >
             <Sparkles className="w-4 h-4" aria-hidden="true" />
             <span>Personalizar a Medida</span>
           </button>
         </div>
 
-        <div className="pt-2 flex items-center justify-between label-premium text-zinc-500 dark:text-zinc-400 border-t border-zinc-100 dark:border-zinc-800">
-          <span className="flex items-center gap-1">
-            <span className="text-emerald-500">✓</span> Fabricación en Quito
+        <div className="pt-2 flex flex-wrap items-center justify-between gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400 border-t border-zinc-100 dark:border-zinc-800">
+          <span className="flex items-center gap-1.5">
+            <FiCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" /> Fabricación en Quito
           </span>
-          <span className="flex items-center gap-1">
-            <span className="text-emerald-500">✓</span> Melamina alta calidad
+          <span className="flex items-center gap-1.5">
+            <FiCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" /> Melamina alta calidad
           </span>
-          <span className="flex items-center gap-1">
-            <span className="text-emerald-500">✓</span> Garantía directa
+          <span className="flex items-center gap-1.5">
+            <FiCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" /> Garantía directa
           </span>
         </div>
       </div>

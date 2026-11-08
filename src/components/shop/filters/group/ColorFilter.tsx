@@ -87,9 +87,9 @@ export const ColorFilter = ({
 
               <span
                 className={`
-                  mt-1.5 text-[10px] md:text-[9px] font-medium normal-case sm:uppercase sm:-wider
+                  mt-1.5 text-xs font-medium normal-case sm:uppercase sm:tracking-wider
                   whitespace-normal text-center
-                  ${isSelected ? "text-zinc-900 dark:text-white font-bold" : "text-zinc-400"}
+                  ${isSelected ? "text-zinc-900 dark:text-white font-semibold" : "text-zinc-400"}
                 `}
               >
                 {color}
@@ -102,7 +102,7 @@ export const ColorFilter = ({
       {hasMore && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="group flex items-center justify-center gap-1.5 py-4 mt-2 text-[9px] font-bold uppercase -[0.2em] text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all"
+          className="group flex items-center justify-center gap-1.5 py-4 mt-2 text-xs font-semibold uppercase tracking-wider text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all cursor-pointer"
         >
           <span className="border-b border-transparent group-hover:border-zinc-900 dark:group-hover:border-zinc-100 transition-all">
             {isExpanded

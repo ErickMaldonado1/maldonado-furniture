@@ -68,7 +68,7 @@ export default function ProyectosPage() {
                 key={cat}
                 onClick={() => handleFilterChange(cat)}
                 aria-label="categorias"
-                className={`px-6 py-2.5 text-[12px] font-semibold tracking-widest uppercase transition-all duration-300 rounded-full border 
+                className={`px-6 py-2.5 text-xs font-semibold tracking-wider uppercase transition-all duration-300 rounded-full border 
                 ${filter === cat
                     ? "bg-[#4A3728] border-[#4A3728] text-white shadow-lg"
                     : "border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:border-[#4A3728]"
@@ -122,7 +122,7 @@ export default function ProyectosPage() {
                   <h3 className="text-sm font-semibold text-zinc-900 dark:text-white truncate">
                     {proy.title}
                   </h3>
-                  <p className="text-[12px] text-[#4A3728] font-bold uppercase tracking-widest mt-1">
+                  <p className="text-xs text-[#4A3728] font-semibold uppercase tracking-wider mt-1">
                     {proy.category}
                   </p>
                 </div>
@@ -136,7 +136,7 @@ export default function ProyectosPage() {
             <button
               onClick={loadMore}
               aria-label="proyectos"
-              className="flex items-center gap-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-10 py-5 rounded-sm text-[12px] font-bold tracking-widest uppercase hover:bg-[#4A3728] dark:hover:bg-[#4A3728] hover:text-white transition-all duration-300 group"
+              className="flex items-center gap-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-10 py-5 rounded-sm text-xs sm:text-sm font-semibold tracking-wider uppercase hover:bg-[#4A3728] dark:hover:bg-[#4A3728] hover:text-white transition-all duration-300 group"
             >
               Cargar más proyectos
               <Plus className="w-5 h-6 text-xl group-hover:rotate-90 transition-transform" />
@@ -214,7 +214,7 @@ export default function ProyectosPage() {
                 <h4 className="text-white font-bold uppercase tracking-widest text-lg md:text-lg">
                   {selectedProject.title}
                 </h4>
-                <p className="text-zinc-500 text-[12px] uppercase tracking-wider font-medium mt-2">
+                <p className="text-zinc-500 text-xs uppercase tracking-wider font-medium mt-2">
                   {currentImgIdx + 1} / {allImages.length}
                 </p>
               </div>

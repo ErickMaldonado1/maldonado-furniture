@@ -141,7 +141,7 @@ const CategoryShowcase = () => {
                   </h3>
 
                   <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <span className="text-[10px] font-semibold -wider uppercase text-white">
+                    <span className="text-xs font-medium tracking-wider uppercase text-white">
                       Explorar
                     </span>
                     <div className="w-2.5 h-px bg-[#A98B6C]" />

@@ -130,7 +130,7 @@ export default function ProductListingClient({
                   <ViewColumns width={20} height={20} />
                 </button>
               </div>
-              <span className="text-[10px] md:text-[12px] font-black uppercase text-zinc-400">
+              <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">
                 {filteredProducts.length} Artículos
               </span>
             </div>
@@ -145,7 +145,7 @@ export default function ProductListingClient({
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
                 aria-label="Ordenar productos"
-                className="bg-transparent border-none text-[12px] md:text-[12px] font-black uppercase cursor-pointer focus:ring-0 focus-visible:ring-1 focus-visible:ring-[#4A3728]"
+                className="bg-transparent border-none text-xs font-semibold uppercase tracking-wider text-zinc-700 dark:text-zinc-300 cursor-pointer focus:ring-0 focus-visible:ring-1 focus-visible:ring-[#4A3728]"
               >
                 <option value="recent">Novedades</option>
                 <option value="price_asc">Precio: más bajo</option>
@@ -154,7 +154,7 @@ export default function ProductListingClient({
 
               <button
                 onClick={() => setIsMobileFiltersOpen(true)}
-                className="lg:hidden flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-5 py-2.5 rounded-full text-[12px] font-black uppercase shadow-lg active:scale-95 transition-transform"
+                className="lg:hidden flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider shadow-lg active:scale-95 transition-transform"
               >
                 <AdjustmentsHorizontal width={18} height={18} /> Filtros
               </button>
@@ -205,7 +205,7 @@ export default function ProductListingClient({
                 </p>
                 <button
                   onClick={clearFilters}
-                  className="mt-8 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-[12px] font-black uppercase rounded-full hover:opacity-90 transition-all active:scale-95 shadow-xl"
+                  className="mt-8 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-semibold uppercase tracking-wider rounded-full hover:opacity-90 transition-all active:scale-95 shadow-xl"
                 >
                   Limpiar Filtros
                 </button>
@@ -233,7 +233,7 @@ export default function ProductListingClient({
             >
               <div className="px-4 py-4 flex justify-between items-center border-b border-zinc-100 dark:border-zinc-900">
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-[14px] font-black uppercase text-zinc-900 dark:text-white">
+                  <span className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
                     Filtros
                   </span>
                 </div>
@@ -258,7 +258,7 @@ export default function ProductListingClient({
               <div className="p-4 border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-[#0A0A0A]">
                 <button
                   onClick={() => setIsMobileFiltersOpen(false)}
-                  className="w-full py-5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-2xl font-black uppercase text-[12px]  shadow-xl active:scale-[0.96] transition-all hover:bg-zinc-800 dark:hover:bg-white"
+                  className="w-full py-5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-2xl font-semibold uppercase tracking-wider text-xs shadow-xl active:scale-[0.96] transition-all hover:bg-zinc-800 dark:hover:bg-white"
                 >
                   Mostrar {filteredProducts.length} Artículos
                 </button>

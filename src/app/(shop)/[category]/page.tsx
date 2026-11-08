@@ -180,7 +180,7 @@ async function SuspendedProductGrid({ queryKey }: { queryKey: string }) {
   if (productsFromDB.length === 0) {
     return (
       <div className="text-center py-24 border-2 border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl">
-        <p className="text-zinc-400 uppercase -[0.2em] text-xs font-black">
+        <p className="text-zinc-400 uppercase tracking-wider text-xs font-semibold">
           Próximamente más modelos exclusivos
         </p>
       </div>
@@ -313,7 +313,7 @@ export default async function CategoryPage({ params }: Props) {
                     sizes="(max-width: 640px) 64px, (max-width: 768px) 96px, 128px"
                   />
                 </div>
-                <span className="text-[12px] sm:text-sm font-medium  text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-white text-center transition-colors">
+                <span className="text-xs sm:text-sm font-medium text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-white text-center transition-colors">
                   {sub.label}
                 </span>
               </Link>

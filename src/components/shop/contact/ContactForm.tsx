@@ -105,7 +105,7 @@ export function ContactForm({
             />
             {errors.name && (
               <p
-                className="text-[10px] text-red-500 font-medium flex items-center gap-1 mt-1"
+                className="text-xs text-red-500 font-medium flex items-center gap-1 mt-1"
                 role="alert"
               >
                 <AlertCircle className="w-3 h-3 shrink-0" />
@@ -135,7 +135,7 @@ export function ContactForm({
             />
             {errors.phone && (
               <p
-                className="text-[10px] text-red-500 font-medium flex items-center gap-1 mt-1"
+                className="text-xs text-red-500 font-medium flex items-center gap-1 mt-1"
                 role="alert"
               >
                 <AlertCircle className="w-3 h-3 shrink-0" />
@@ -166,7 +166,7 @@ export function ContactForm({
           />
           {errors.email && (
             <p
-              className="text-[10px] text-red-500 font-medium flex items-center gap-1 mt-1"
+              className="text-xs text-red-500 font-medium flex items-center gap-1 mt-1"
               role="alert"
             >
               <AlertCircle className="w-3 h-3 shrink-0" />
@@ -196,7 +196,7 @@ export function ContactForm({
           />
           {errors.message && (
             <p
-              className="text-[10px] text-red-500 font-medium flex items-center gap-1 mt-1"
+              className="text-xs text-red-500 font-medium flex items-center gap-1 mt-1"
               role="alert"
             >
               <AlertCircle className="w-3 h-3 shrink-0" />
@@ -251,7 +251,7 @@ export function ContactForm({
             )}
           </button>
 
-          <div className="flex items-center gap-1.5 text-[11px] text-zinc-500 dark:text-zinc-400">
+          <div className="flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
             <ShieldCheck className="w-4 h-4 text-emerald-500" />
             <span>Tus datos son 100% confidenciales.</span>
           </div>
@@ -283,7 +283,7 @@ export function ContactForm({
           </div>
 
           <div className="relative z-10 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-semibold tracking-wider text-[#D4B896] uppercase">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-semibold tracking-wider text-[#D4B896] uppercase">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               Taller Maldonado
             </div>
@@ -305,7 +305,7 @@ export function ContactForm({
                 <Phone className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[10px] text-zinc-400 uppercase font-bold block">
+                <span className="text-xs text-zinc-400 uppercase font-semibold tracking-wider block">
                   WhatsApp & Llamadas
                 </span>
                 <a
@@ -324,7 +324,7 @@ export function ContactForm({
                 <Mail className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[10px] text-zinc-400 uppercase font-bold block">
+                <span className="text-xs text-zinc-400 uppercase font-semibold tracking-wider block">
                   Correo Oficial
                 </span>
                 <span className="font-semibold">
@@ -338,7 +338,7 @@ export function ContactForm({
                 <MapPin className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[10px] text-zinc-400 uppercase font-bold block">
+                <span className="text-xs text-zinc-400 uppercase font-semibold tracking-wider block">
                   Fábrica (Cita Previa)
                 </span>
                 <span className="font-semibold">

@@ -97,7 +97,7 @@ const DesktopNav = ({
                   }}
                   aria-haspopup={isCategory ? "true" : undefined}
                   aria-expanded={isCategory ? isActive : undefined}
-                  className={`group relative isolate px-3.5 py-1.5 rounded-full text-xs xl:text-[13px] font-medium tracking-[0.10em] uppercase transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] dark:focus-visible:ring-[#D4B896] ${
+                  className={`group relative isolate px-3.5 py-1.5 rounded-full text-xs xl:text-sm font-medium tracking-wider uppercase transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] dark:focus-visible:ring-[#D4B896] ${
                     !showSolidNavbar
                       ? isActive
                         ? "text-white font-semibold"

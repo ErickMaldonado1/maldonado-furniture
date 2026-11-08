@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ModalState } from "../types/product.types";
+import { FiCheck, FiAlertCircle } from "react-icons/fi";
 
 interface ProductModalProps {
   modal: ModalState;
@@ -46,9 +47,9 @@ export function ProductModal({ modal, closeModal }: ProductModalProps) {
                   }`}
                 >
                   {modal.type === "success" ? (
-                    <span className="text-2xl">✓</span>
+                    <FiCheck className="w-6 h-6" aria-hidden="true" />
                   ) : (
-                    <span className="text-2xl">!</span>
+                    <FiAlertCircle className="w-6 h-6" aria-hidden="true" />
                   )}
                 </div>
                 <div className="flex-1">

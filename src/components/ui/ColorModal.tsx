@@ -57,26 +57,26 @@ export default function ColorModal({
           <div className="absolute bottom-4 left-4 right-4 z-20">
             <div className="bg-black/50 backdrop-blur-2xl border border-white/10 px-6 py-4 flex items-center justify-between">
               <div className="flex flex-col">
-                <span className="text-[14px] font-black uppercase  text-white leading-none">
+                <span className="text-sm font-semibold uppercase tracking-wide text-white leading-none">
                   {selectedColor.nombre.replace(/-/g, " ")}
                 </span>
               </div>
               <div className="flex items-center gap-4">
                 <div className="h-4 w-px bg-white/20" />
                 <div className="flex flex-col">
-                  <span className="text-[10px] text-zinc-400 font-bold uppercase ">
+                  <span className="text-xs text-zinc-400 font-medium uppercase tracking-wider">
                     Proveedor
                   </span>
-                  <span className="text-[12px] font-bold uppercase text-white leading-none">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-white leading-none">
                     {selectedColor.empresaId}
                   </span>
                 </div>
                 <div className="h-4 w-px bg-white/20" />
                 <div className="flex flex-col text-right">
-                  <span className="text-[10px] text-zinc-400 font-bold uppercase ">
+                  <span className="text-xs text-zinc-400 font-medium uppercase tracking-wider">
                     Formato
                   </span>
-                  <span className="text-[12px] font-bold uppercase text-white leading-none">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-white leading-none">
                     {formato}
                   </span>
                 </div>

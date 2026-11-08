@@ -194,7 +194,7 @@ export function VariantDrawer({
                         </div>
                       ) : (
                         <div className="w-full h-full bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center">
-                          <span className="text-zinc-400 text-[10px]">
+                          <span className="text-zinc-400 text-xs">
                             Sin img
                           </span>
                         </div>
@@ -202,7 +202,7 @@ export function VariantDrawer({
                     </div>
                     <div className="text-center mt-2 relative w-full flex flex-col items-center">
                       <span
-                        className={`text-[11px] block uppercase -wide transition-colors ${isSelected ? "font-bold text-[#111827] dark:text-white" : "font-medium text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white"}`}
+                        className={`text-xs block uppercase tracking-wider transition-colors ${isSelected ? "font-bold text-[#111827] dark:text-white" : "font-medium text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white"}`}
                       >
                         {item.color}
                       </span>
@@ -295,12 +295,12 @@ export function VariantDrawer({
                         </svg>
                       </div>
 
-                      <h4 className="text-[13px] font-medium uppercase -wider text-zinc-900 dark:text-white">
+                      <h4 className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
                         {item.size}
                       </h4>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-[15px] font-medium text-zinc-900 dark:text-white">
+                      <span className="text-sm sm:text-base font-semibold text-zinc-900 dark:text-white">
                         $
                         {item.price.toLocaleString("es-EC", {
                           minimumFractionDigits: 2,

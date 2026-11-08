@@ -51,7 +51,7 @@ export const WhatsAppModal = ({
 
             <div className="bg-zinc-50 dark:bg-zinc-800/40 p-5 rounded-3xl text-left border border-zinc-100 dark:border-zinc-700/50">
               <div className="flex justify-between items-center mb-3">
-                <span className="text-[10px] font-black uppercase -[0.2em] text-zinc-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                   Detalles
                 </span>
                 <span className="h-px flex-1 bg-zinc-200 dark:bg-zinc-700 ml-4" />
@@ -91,7 +91,7 @@ export const WhatsAppModal = ({
                       className="group-hover:scale-110 transition-transform"
                     />
                   )}
-                  <span className="uppercase text-xs">
+                  <span className="uppercase text-sm font-semibold tracking-wide">
                     {isLoading ? "Procesando..." : "Enviar a WhatsApp"}
                   </span>
                 </div>
@@ -99,14 +99,14 @@ export const WhatsAppModal = ({
 
               <button
                 onClick={onClose}
-                className="text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-100 text-[10px] font-black uppercase -[0.2em] transition-colors"
+                className="text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-100 text-xs font-semibold uppercase tracking-wider transition-colors"
               >
                 Revisar Carrito
               </button>
             </div>
-            <div className="pt-4 flex items-center justify-center gap-2 opacity-40">
+            <div className="pt-4 flex items-center justify-center gap-2 opacity-60">
               <div className="h-1 w-1 bg-zinc-400 rounded-full" />
-              <p className="text-[12px] font-medium uppercase  text-zinc-500">
+              <p className="text-xs font-medium uppercase tracking-wider text-zinc-500">
                 Compra Segura & Privada
               </p>
               <div className="h-1 w-1 bg-zinc-400 rounded-full" />
