@@ -261,7 +261,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
               <button
                 type="button"
                 onClick={onClose}
-                className="absolute top-4 right-4 p-2 rounded-full text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728]"
+                className="absolute top-4 right-4 p-2 rounded-full text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728]"
                 aria-label="Cerrar ventana de personalización"
               >
                 <XMark className="w-5 h-5" />
@@ -295,7 +295,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                     value={furnitureType}
                     onChange={(e) => setFurnitureType(e.target.value)}
                     required
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-400 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
                   />
                 </div>
 
@@ -305,7 +305,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                       <Ruler className="w-3.5 h-3.5 text-[#634E3A] dark:text-[#D4B896]" />
                       Medidas Requeridas (en Centímetros)
                     </span>
-                    <span className="text-xs font-medium text-zinc-400">
+                    <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
                       Unidad: cm
                     </span>
                   </div>
@@ -314,7 +314,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                     <div>
                       <label
                         htmlFor="modal-medida-ancho"
-                        className="label-premium text-zinc-600 dark:text-zinc-400 block mb-1"
+                        className="label-premium text-zinc-700 dark:text-zinc-300 block mb-1"
                       >
                         Ancho / Largo
                       </label>
@@ -334,10 +334,10 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                           className={`w-full px-3 py-2 pr-10 rounded-xl border ${
                             errors.width
                               ? "border-red-500 focus:border-red-500"
-                              : "border-zinc-200 dark:border-zinc-700 focus:border-[#4A3728]"
-                          } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
+                              : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896]"
+                          } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]`}
                         />
-                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400 pointer-events-none">
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-600 dark:text-zinc-400 pointer-events-none" aria-hidden="true">
                           cm
                         </span>
                       </div>
@@ -352,7 +352,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                     <div>
                       <label
                         htmlFor="modal-medida-alto"
-                        className="label-premium text-zinc-600 dark:text-zinc-400 block mb-1"
+                        className="label-premium text-zinc-700 dark:text-zinc-300 block mb-1"
                       >
                         Alto
                       </label>
@@ -372,10 +372,10 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                           className={`w-full px-3 py-2 pr-10 rounded-xl border ${
                             errors.height
                               ? "border-red-500 focus:border-red-500"
-                              : "border-zinc-200 dark:border-zinc-700 focus:border-[#4A3728]"
-                          } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
+                              : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896]"
+                          } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]`}
                         />
-                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400 pointer-events-none">
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-600 dark:text-zinc-400 pointer-events-none" aria-hidden="true">
                           cm
                         </span>
                       </div>
@@ -390,7 +390,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                     <div>
                       <label
                         htmlFor="modal-medida-fondo"
-                        className="label-premium text-zinc-600 dark:text-zinc-400 block mb-1"
+                        className="label-premium text-zinc-700 dark:text-zinc-300 block mb-1"
                       >
                         Profundidad
                       </label>
@@ -410,10 +410,10 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                           className={`w-full px-3 py-2 pr-10 rounded-xl border ${
                             errors.depth
                               ? "border-red-500 focus:border-red-500"
-                              : "border-zinc-200 dark:border-zinc-700 focus:border-[#4A3728]"
-                          } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
+                              : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896]"
+                          } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]`}
                         />
-                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400 pointer-events-none">
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-600 dark:text-zinc-400 pointer-events-none" aria-hidden="true">
                           cm
                         </span>
                       </div>
@@ -449,8 +449,8 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                       className={`w-full px-3 py-2 rounded-xl border ${
                         errors.finish
                           ? "border-red-500 focus:border-red-500"
-                          : "border-zinc-200 dark:border-zinc-700 focus:border-[#4A3728]"
-                      } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
+                          : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896]"
+                      } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]`}
                     />
                     {errors.finish && (
                       <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
@@ -474,7 +474,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                       placeholder="Ej. $200 - $350"
                       value={budget}
                       onChange={(e) => setBudget(e.target.value)}
-                      className="w-full px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
+                      className="w-full px-3 py-2 rounded-xl border border-zinc-400 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
                     />
                   </div>
                 </div>
@@ -501,8 +501,8 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                       className={`w-full px-3 py-2 rounded-xl border ${
                         errors.name
                           ? "border-red-500 focus:border-red-500"
-                          : "border-zinc-200 dark:border-zinc-700 focus:border-[#4A3728]"
-                      } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
+                          : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896]"
+                      } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]`}
                     />
                     {errors.name && (
                       <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
@@ -533,8 +533,8 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                       className={`w-full px-3 py-2 rounded-xl border ${
                         errors.city
                           ? "border-red-500 focus:border-red-500"
-                          : "border-zinc-200 dark:border-zinc-700 focus:border-[#4A3728]"
-                      } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
+                          : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896]"
+                      } bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]`}
                     />
                     {errors.city && (
                       <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
@@ -560,7 +560,7 @@ Podrian confirmarme la cotizacion preliminar y tiempo de fabricacion e instalaci
                     placeholder="Describe cualquier detalle específico de tu espacio o necesidades funcionales..."
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728] resize-none"
+                    className="w-full px-3 py-2 rounded-xl border border-zinc-400 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-900/60 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896] resize-none"
                   />
                 </div>
 

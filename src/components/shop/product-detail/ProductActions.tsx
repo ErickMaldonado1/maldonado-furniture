@@ -117,14 +117,15 @@ Tienen disponibilidad y realizan instalacion en Quito? Me gustaria coordinar det
         </span>
         {discount && discount > 0 ? (
           <div className="flex items-center gap-2">
-            <span className="text-sm font-normal text-zinc-400 dark:text-zinc-500 line-through">
+            <span className="text-sm font-medium text-zinc-600 dark:text-zinc-400 line-through">
+              <span className="sr-only">Precio original: </span>
               $
               {price.toLocaleString("es-EC", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })}
             </span>
-            <span className="text-xs font-semibold bg-red-100 text-red-600 dark:bg-red-950/60 dark:text-red-400 px-2 py-0.5 rounded-full">
+            <span className="text-xs font-semibold bg-red-100 text-red-700 dark:bg-red-950/60 dark:text-red-300 px-2 py-0.5 rounded-full">
               -{discount}% OFF
             </span>
           </div>

@@ -188,7 +188,8 @@ const HeroSlider = () => {
             src={getOptimizedHeroImage(slides[nextSlideIndex].image)}
             alt="Próxima diapositiva"
             width={1400}
-            height={900}
+            height={788}
+            className="w-full h-auto object-cover"
             priority
           />
         </div>

@@ -228,7 +228,7 @@ export default function CustomFurnitureSection() {
                     name="tipoMueble"
                     value={furnitureType}
                     onChange={(e) => setFurnitureType(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
                   >
                     <option value="Clóset o Walking Clóset">
                       Clóset / Walking Clóset
@@ -264,7 +264,7 @@ export default function CustomFurnitureSection() {
                     name="acabadoColor"
                     value={finish}
                     onChange={(e) => setFinish(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
                   >
                     <option value="Melamina Maderada (Roble, Carvalo, Cava)">
                       Maderado Cálido
@@ -285,10 +285,10 @@ export default function CustomFurnitureSection() {
               <div>
                 <div className="flex items-center justify-between mb-1">
                   <span className="label-premium text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
-                    <Ruler className="w-3.5 h-3.5 text-[#634E3A] dark:text-[#D4B896]" />
+                    <Ruler className="w-3.5 h-3.5 text-[#634E3A] dark:text-[#D4B896]" aria-hidden="true" />
                     Medidas Aproximadas de tu Espacio (en Centímetros)
                   </span>
-                  <span className="text-xs font-medium text-zinc-400">
+                  <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
                     Unidad: cm
                   </span>
                 </div>
@@ -314,10 +314,10 @@ export default function CustomFurnitureSection() {
                         className={`w-full px-3 py-2 pr-10 rounded-xl border ${
                           errors.width
                             ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                            : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728] focus:ring-[#4A3728]"
-                        } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1`}
+                            : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
+                        } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1`}
                       />
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400 pointer-events-none">
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-600 dark:text-zinc-400 pointer-events-none" aria-hidden="true">
                         cm
                       </span>
                     </div>
@@ -349,10 +349,10 @@ export default function CustomFurnitureSection() {
                         className={`w-full px-3 py-2 pr-10 rounded-xl border ${
                           errors.height
                             ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                            : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728] focus:ring-[#4A3728]"
-                        } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1`}
+                            : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
+                        } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1`}
                       />
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400 pointer-events-none">
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-600 dark:text-zinc-400 pointer-events-none" aria-hidden="true">
                         cm
                       </span>
                     </div>
@@ -384,10 +384,10 @@ export default function CustomFurnitureSection() {
                         className={`w-full px-3 py-2 pr-10 rounded-xl border ${
                           errors.depth
                             ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                            : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728] focus:ring-[#4A3728]"
-                        } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1`}
+                            : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
+                        } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1`}
                       />
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400 pointer-events-none">
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-600 dark:text-zinc-400 pointer-events-none" aria-hidden="true">
                         cm
                       </span>
                     </div>
@@ -423,8 +423,8 @@ export default function CustomFurnitureSection() {
                     className={`w-full px-3 py-2 rounded-xl border ${
                       errors.name
                         ? "border-red-500 focus:border-red-500"
-                        : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728]"
-                    } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
+                        : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896]"
+                    } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]`}
                   />
                   {errors.name && (
                     <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
@@ -455,8 +455,8 @@ export default function CustomFurnitureSection() {
                     className={`w-full px-3 py-2 rounded-xl border ${
                       errors.sector
                         ? "border-red-500 focus:border-red-500"
-                        : "border-zinc-300 dark:border-zinc-700 focus:border-[#4A3728]"
-                    } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#4A3728]`}
+                        : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896]"
+                    } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]`}
                   />
                   {errors.sector && (
                     <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
@@ -480,7 +480,7 @@ export default function CustomFurnitureSection() {
                     placeholder="Ej. $250 - $400"
                     value={budget}
                     onChange={(e) => setBudget(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-[#4A3728] focus:ring-1 focus:ring-[#4A3728]"
+                    className="w-full px-3 py-2 rounded-xl border border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
                   />
                 </div>
               </div>

@@ -271,7 +271,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             <div className="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-300 mb-2">
               <div className="flex items-center gap-1.5 p-1 px-2 bg-zinc-100 dark:bg-zinc-800/80 rounded-md border border-zinc-200/60 dark:border-zinc-700/40">
                 <span className="flex items-center gap-1" title="Alto">
-                  <FiArrowUp className="w-3 h-3 text-zinc-400" aria-hidden="true" />
+                  <FiArrowUp className="w-3 h-3 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
                   {product.variants[0].dimensions.height}
                 </span>
                 <span
@@ -279,7 +279,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
                   aria-hidden="true"
                 />
                 <span className="flex items-center gap-1" title="Ancho">
-                  <FiArrowRight className="w-3 h-3 text-zinc-400" aria-hidden="true" />
+                  <FiArrowRight className="w-3 h-3 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
                   {product.variants[0].dimensions.width}
                 </span>
                 <span
@@ -287,8 +287,9 @@ export default function ProductCard({ product, index }: ProductCardProps) {
                   aria-hidden="true"
                 />
                 <span className="flex items-center gap-1" title="Profundidad">
-                  <FiMaximize2 className="w-3 h-3 text-zinc-400" aria-hidden="true" />
-                  {product.variants[0].dimensions.depth}cm
+                  <FiMaximize2 className="w-3 h-3 text-zinc-500 dark:text-zinc-400" aria-hidden="true" />
+                  {product.variants[0].dimensions.depth}
+                  <span className="font-medium text-zinc-600 dark:text-zinc-400">cm</span>
                 </span>
               </div>
             </div>
@@ -298,11 +299,13 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <div className="flex items-center justify-between gap-1.5 pt-2 border-t border-zinc-100 dark:border-white/5">
           <div className="flex flex-col items-start cursor-default min-w-0">
             {hasDiscount && (
-              <span className="text-xs font-normal text-zinc-400 dark:text-zinc-500 line-through leading-none mb-0.5">
+              <span className="text-xs font-medium text-zinc-600 dark:text-zinc-400 line-through leading-none mb-0.5">
+                <span className="sr-only">Precio original: </span>
                 ${product.price.toLocaleString()}
               </span>
             )}
             <span className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-white leading-none">
+              <span className="sr-only">Precio actual: </span>
               $
               {finalPrice.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
