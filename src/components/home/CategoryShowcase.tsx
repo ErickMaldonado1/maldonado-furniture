@@ -7,42 +7,42 @@ const categories = [
   {
     name: "Camas Lineales",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769995574/maldonado-furniture/products/revj9kwq1m6cu0dt8was.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769995574/maldonado-furniture/products/revj9kwq1m6cu0dt8was.webp",
     href: "/dormitorio/camas-lineales",
     tag: "Minimalista",
   },
   {
     name: "Clósets",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1786233117/dormitorio-page_vyz24g.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1786233117/dormitorio-page_vyz24g.webp",
     href: "/closets",
     tag: "Funcional",
   },
   {
     name: "Cocina",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769127395/cocina_stp9o1.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769127395/cocina_stp9o1.webp",
     href: "/cocina/",
     tag: "Integral",
   },
   {
     name: "Cómodas",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1787109140/maldonado-furniture/products/gbtexxwrbpluqyq06gan.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1787109140/maldonado-furniture/products/gbtexxwrbpluqyq06gan.webp",
     href: "/dormitorio/comodas",
     tag: "Elegante",
   },
   {
     name: "Veladores",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1786982073/maldonado-furniture/products/pmm2otqtsuzbkyozyrv2.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1786982073/maldonado-furniture/products/pmm2otqtsuzbkyozyrv2.webp",
     href: "/dormitorio/veladores",
     tag: "Moderno",
   },
   {
     name: "Muebles de TV",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769918623/maldonado-furniture/products/cridxxmounhabfnoxnyo.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769918623/maldonado-furniture/products/cridxxmounhabfnoxnyo.webp",
     href: "/sala/muebles-tv",
     tag: "Escultural",
   },
@@ -50,42 +50,42 @@ const categories = [
   {
     name: "Aparadores",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770158971/maldonado-furniture/products/s1zbhksggqc4meitoraj.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770158971/maldonado-furniture/products/s1zbhksggqc4meitoraj.webp",
     href: "/sala/aparadores",
     tag: "Sofisticado",
   },
   {
     name: "Mesas de Centro",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770161665/maldonado-furniture/products/piete4kbki8cylmu7psn.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770161665/maldonado-furniture/products/piete4kbki8cylmu7psn.webp",
     href: "/sala/mesas-de-centro",
     tag: "Central",
   },
   {
     name: "Escritorios",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769954367/maldonado-furniture/products/qw3bewwgy7ednw8ytdcr.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769954367/maldonado-furniture/products/qw3bewwgy7ednw8ytdcr.webp",
     href: "/oficina/escritorios",
     tag: "Productivo",
   },
   {
     name: "Libreros",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770164331/maldonado-furniture/products/clgysfgzb3ilvfrha6vr.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770164331/maldonado-furniture/products/clgysfgzb3ilvfrha6vr.webp",
     href: "/oficina/libreros",
     tag: "Estudio",
   },
   {
     name: "Archivadores",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769958515/maldonado-furniture/products/ejh4fky3i6llm7zm7ugn.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769958515/maldonado-furniture/products/ejh4fky3i6llm7zm7ugn.webp",
     href: "/oficina/archivadores",
     tag: "Organización",
   },
   {
     name: "Complementos",
     image:
-      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770162241/maldonado-furniture/products/jcienn2bef6xkqmx0sls.webp?auto=compress&cs=tinysrgb&w=2070",
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1770162241/maldonado-furniture/products/jcienn2bef6xkqmx0sls.webp",
     href: "/productos",
     tag: "Exclusivo",
   },
@@ -127,7 +127,7 @@ const CategoryShowcase = () => {
                 src={cat.image}
                 alt={cat.name}
                 fill
-                priority={idx < 6}
+                loading="lazy"
                 className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
               />

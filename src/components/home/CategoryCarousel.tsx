@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { motion, PanInfo } from "framer-motion";
+import { m, LazyMotion, domMax, PanInfo } from "framer-motion";
 import ProductCard from "@/components/shop/product/ProductCard";
 import Link from "next/link";
 import { SliderButton } from "../ui/SliderButton";
@@ -134,25 +134,27 @@ export default function CategoryCarousel({
           )}
 
           <div className="overflow-hidden">
-            <motion.div
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.5}
-              onDragEnd={handleDragEnd}
-              animate={{ x: `-${currentIndex * (100 / visibleCount)}%` }}
-              transition={{ type: "spring", damping: 30, stiffness: 200 }}
-              className="flex -mx-2 md:-mx-4 cursor-grab active:cursor-grabbing"
-            >
-              {products.map((product: ProductWithRelations, idx: number) => (
-                <div
-                  key={product.id}
-                  className="flex-none px-1 md:px-2"
-                  style={{ width: `${100 / visibleCount}%` }}
-                >
-                  <ProductCard product={product} index={idx} />
-                </div>
-              ))}
-            </motion.div>
+            <LazyMotion features={domMax}>
+              <m.div
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.5}
+                onDragEnd={handleDragEnd}
+                animate={{ x: `-${currentIndex * (100 / visibleCount)}%` }}
+                transition={{ type: "spring", damping: 30, stiffness: 200 }}
+                className="flex -mx-2 md:-mx-4 cursor-grab active:cursor-grabbing"
+              >
+                {products.map((product: ProductWithRelations, idx: number) => (
+                  <div
+                    key={product.id}
+                    className="flex-none px-1 md:px-2"
+                    style={{ width: `${100 / visibleCount}%` }}
+                  >
+                    <ProductCard product={product} index={idx} />
+                  </div>
+                ))}
+              </m.div>
+            </LazyMotion>
           </div>
         </div>
       </div>

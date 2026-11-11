@@ -23,8 +23,10 @@ export default function NewsletterForm() {
       if (!response.ok) throw new Error("Error al suscribirse");
       toast.success("¡Gracias por suscribirte!");
       setEmail("");
-    } catch (error: any) {
-      toast.error(error.message || "Error al suscribirse");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Error al suscribirse";
+      toast.error(message);
     } finally {
       setLoading(false);
     }

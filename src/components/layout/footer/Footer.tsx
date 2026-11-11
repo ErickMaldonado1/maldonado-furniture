@@ -26,14 +26,15 @@ const Footer = () => {
               className="group inline-block transition-transform duration-300 hover:scale-102"
               aria-label="Ir al inicio de Muebles Maldonado"
             >
-              <div className="relative w-48 h-12">
+              <div className="relative w-44 h-[50px] aspect-[400/113]">
                 <Image
                   src="/assets/images/logoA1.webp"
                   alt="Muebles Maldonado Quito"
                   fill
                   unoptimized
                   className="object-contain"
-                  priority
+                  loading="lazy"
+                  sizes="176px"
                 />
               </div>
             </Link>

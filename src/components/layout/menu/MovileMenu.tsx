@@ -67,7 +67,7 @@ const MobileMenu = ({ isOpen, onClose, isDarkMode }: MobileMenuProps) => {
         }`}
       >
         <div className="flex items-center justify-between px-5 py-3.5 border-b border-zinc-100 dark:border-zinc-800/80">
-          <div className="relative w-28 sm:w-32 aspect-400/113">
+          <div className="relative w-28 sm:w-32 h-8 sm:h-9 aspect-[400/113]">
             <Image
               src={
                 isDarkMode

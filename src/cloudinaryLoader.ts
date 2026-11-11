@@ -7,7 +7,13 @@ export default function cloudinaryLoader({
   width: number;
   quality?: number;
 }) {
-  const params = ['f_auto', 'c_limit', `w_${width}`, `q_${quality || 'auto'}`];
+  const params = [
+    'f_auto',
+    'c_limit',
+    `w_${width}`,
+    `q_${quality || 'auto'}`,
+    'd_dormitorio_ig6v5k.webp',
+  ];
   if (src.includes('res.cloudinary.com')) {
     const urlParts = src.split('/upload/');
     if (urlParts.length === 2) {

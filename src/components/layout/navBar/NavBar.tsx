@@ -186,7 +186,7 @@ const Navbar = () => {
             aria-label="Muebles Maldonado - Ir al inicio"
             suppressHydrationWarning
           >
-            <div className="relative w-32 sm:w-36 md:w-40 aspect-400/113 transition-transform duration-300 group-hover:scale-102">
+            <div className="relative w-32 sm:w-36 md:w-40 h-9 sm:h-10 md:h-[45px] aspect-[400/113] transition-transform duration-300 group-hover:scale-102">
               <Image
                 src={
                   !mounted || !showSolidNavbar || theme === "dark"
@@ -252,15 +252,12 @@ const Navbar = () => {
               showSolidNavbar={showSolidNavbar}
             />
 
-            <Link
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setCartOpen(true);
-              }}
+            <button
+              type="button"
+              onClick={() => setCartOpen(true)}
               title="Ver bolsa de compras"
               aria-label="Abrir carrito"
-              className={`p-2 rounded-full relative group transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] dark:focus-visible:ring-white ${
+              className={`p-2 rounded-full relative group transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A3728] dark:focus-visible:ring-white cursor-pointer ${
                 !showSolidNavbar
                   ? "text-white hover:bg-white/15"
                   : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10 hover:text-zinc-950 dark:hover:text-white"
@@ -272,7 +269,7 @@ const Navbar = () => {
                   {totalItems}
                 </span>
               )}
-            </Link>
+            </button>
 
             <button
               onClick={() => setIsMobileMenuOpen(true)}

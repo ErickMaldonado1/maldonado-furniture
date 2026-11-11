@@ -77,14 +77,14 @@ export const metadata: Metadata = {
     "muebles de melamina para oficina",
   ],
   alternates: {
-    canonical: "https://mueblesmaldonadoec.com",
+    canonical: "https://www.mueblesmaldonadoec.com",
   },
   openGraph: {
     title:
       "Muebles Maldonado | ¡Muebles a medida y modernos con los mejores precios!",
     description:
       "Muebles Maldonado: Fabricación de muebles a medida, modernos y con los mejores precios. Especialistas en dormitorios, muebles de tv, muebles de cocina, oficina y todo para tu hogar.",
-    url: "https://mueblesmaldonadoec.com",
+    url: "https://www.mueblesmaldonadoec.com",
     siteName: "Muebles Maldonado",
     images: [
       {
@@ -97,21 +97,33 @@ export const metadata: Metadata = {
     locale: "es_EC",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Muebles Maldonado | ¡Muebles a medida y modernos con los mejores precios!",
+    description:
+      "Muebles Maldonado: Fabricación de muebles a medida, modernos y con los mejores precios en Quito. Dormitorios, muebles de TV, cocinas y oficinas.",
+    images: [
+      "https://res.cloudinary.com/dwvruzkll/image/upload/v1769127395/cocina_stp9o1.webp",
+    ],
+  },
 };
 
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import ReactDOM from "react-dom";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "FurnitureStore",
   "name": "Muebles Maldonado",
+  "description": "Fabricación de muebles a medida, modernos y con los mejores precios en Quito Ecuador. Especialistas en dormitorios, cocinas, muebles de TV, closets y oficinas.",
   "image": "https://res.cloudinary.com/dwvruzkll/image/upload/v1769127395/cocina_stp9o1.webp",
-  "@id": "https://mueblesmaldonadoec.com",
-  "url": "https://mueblesmaldonadoec.com",
+  "@id": "https://www.mueblesmaldonadoec.com",
+  "url": "https://www.mueblesmaldonadoec.com",
   "telephone": "+593959504842",
+  "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Sector Condado Alto",
     "addressLocality": "Quito",
     "addressRegion": "Pichincha",
     "addressCountry": "EC"
@@ -120,7 +132,16 @@ const jsonLd = {
     "@type": "GeoCoordinates",
     "latitude": -0.1806532,
     "longitude": -78.4678382
-  }
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Quito"
+  },
+  "sameAs": [
+    "https://www.instagram.com/muebles_maldonad/",
+    "https://www.facebook.com/MueblesMaldonad/",
+    "https://www.pinterest.com/mueblesmaldonadoec/"
+  ]
 };
 
 export default function RootLayout({
@@ -128,12 +149,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  ReactDOM.preconnect("https://res.cloudinary.com", {
-    crossOrigin: "anonymous",
-  });
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

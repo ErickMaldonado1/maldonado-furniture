@@ -14,12 +14,20 @@ import { AnimatePresence, m, LazyMotion, domAnimation } from "framer-motion";
 
 const getOptimizedHeroImage = (url: string) => {
   if (!url || !url.includes("cloudinary.com")) return url;
-  return url.replace("/upload/", "/upload/f_auto,q_auto:good,w_1400/");
+
+  return url.replace(
+    "/upload/",
+    "/upload/f_auto,q_auto:good,c_fill,g_auto,ar_16:9,w_1920/"
+  );
 };
 
 const getOptimizedThumbImage = (url: string) => {
   if (!url || !url.includes("cloudinary.com")) return url;
-  return url.replace("/upload/", "/upload/f_auto,q_auto:good,w_120/");
+
+  return url.replace(
+    "/upload/",
+    "/upload/f_auto,q_auto:good,c_fill,g_auto,ar_1:1,w_120/"
+  );
 };
 
 const HeroSlider = () => {
@@ -104,8 +112,9 @@ const HeroSlider = () => {
                 alt={slides[current].title}
                 fill
                 className="object-cover"
-                priority
-                fetchPriority="high"
+                priority={current === 0}
+                loading="eager"
+                fetchPriority={current === 0 ? "high" : "auto"}
                 decoding="async"
                 sizes="(max-width: 768px) 100vw, (max-width: 1400px) 100vw, 1600px"
               />
@@ -182,17 +191,6 @@ const HeroSlider = () => {
             </div>
           </m.div>
         </AnimatePresence>
-
-        <div className="hidden" aria-hidden="true">
-          <Image
-            src={getOptimizedHeroImage(slides[nextSlideIndex].image)}
-            alt="Próxima diapositiva"
-            width={1400}
-            height={788}
-            className="w-full h-auto object-cover"
-            priority
-          />
-        </div>
 
         <div className="absolute inset-x-0 bottom-6 md:bottom-10 z-20 pointer-events-none">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-end pointer-events-auto">

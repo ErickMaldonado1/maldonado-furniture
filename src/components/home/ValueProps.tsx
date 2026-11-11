@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion, Variants } from "framer-motion";
+import { m, LazyMotion, domAnimation, type Variants } from "framer-motion";
 import { Sparkles, ShieldCheck } from "@/utils/icons/actions";
 import { Truck, UserGroup } from "@/utils/icons/shop";
 import { CheckCircle2, MapPin, MessageSquare } from "lucide-react";
@@ -61,47 +61,48 @@ const itemVariants: Variants = {
 
 const ValueProps = () => {
   return (
-    <section className="py-10 md:py-16 bg-white dark:bg-[#050505] overflow-hidden">
-      <div className="max-w-360 mx-auto px-4 sm:px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12 border-b border-zinc-100 dark:border-zinc-800/50 pb-6 gap-4">
-          <div>
-            <span className="label-premium text-[#634E3A] dark:text-[#D4B896] block mb-1">
-              Diferenciación &amp; Confianza
-            </span>
-            <motion.h2
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-900 dark:text-white leading-none"
-            >
-              Por qué elegir{" "}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037] dark:from-[#C4A482] dark:to-[#E0CCA7]">
-                Muebles Maldonado
+    <LazyMotion features={domAnimation}>
+      <section className="py-10 md:py-16 bg-white dark:bg-[#050505] overflow-hidden">
+        <div className="max-w-360 mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12 border-b border-zinc-100 dark:border-zinc-800/50 pb-6 gap-4">
+            <div>
+              <span className="label-premium text-[#634E3A] dark:text-[#D4B896] block mb-1">
+                Diferenciación & Confianza
               </span>
-            </motion.h2>
-          </div>
-          <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 max-w-md">
-            Mobiliario contemporáneo, fabricación directa y proyectos
-            residenciales corporativos en Quito y otras provincias del Ecuador.
-          </p>
-        </div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="flex md:grid overflow-x-auto md:overflow-visible pb-6 md:pb-0 hide-scrollbar snap-x snap-mandatory md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8"
-        >
-          {services.map((service, idx) => (
-            <div
-              key={idx}
-              className="min-w-[85%] sm:min-w-[48%] md:min-w-0 snap-center p-1"
-            >
-              <ServiceCard service={service} />
+              <m.h2
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-900 dark:text-white leading-none"
+              >
+                Por qué elegir{" "}
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A3728] to-[#5D4037] dark:from-[#C4A482] dark:to-[#E0CCA7]">
+                  Muebles Maldonado
+                </span>
+              </m.h2>
             </div>
-          ))}
-        </motion.div>
+            <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 max-w-md">
+              Mobiliario contemporáneo, fabricación directa y proyectos
+              residenciales corporativos en Quito y otras provincias del Ecuador.
+            </p>
+          </div>
+
+          <m.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex md:grid overflow-x-auto md:overflow-visible pb-6 md:pb-0 hide-scrollbar snap-x snap-mandatory md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8"
+          >
+            {services.map((service, idx) => (
+              <div
+                key={idx}
+                className="min-w-[85%] sm:min-w-[48%] md:min-w-0 snap-center p-1"
+              >
+                <ServiceCard service={service} />
+              </div>
+            ))}
+          </m.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
           <div className="p-5 rounded-2xl bg-[#FAF9F7] dark:bg-zinc-900/50 border border-zinc-200/80 dark:border-zinc-800 flex items-start gap-4 transition-all duration-300 hover:border-[#4A3728]/40 dark:hover:border-[#A6866A]/40 group">
@@ -160,7 +161,8 @@ const ValueProps = () => {
         </div>
       </div>
     </section>
-  );
+  </LazyMotion>
+);
 };
 
 const ServiceCard = ({ service }: { service: (typeof services)[0] }) => {
@@ -168,7 +170,7 @@ const ServiceCard = ({ service }: { service: (typeof services)[0] }) => {
   const Icon = service.icon;
 
   return (
-    <motion.div
+    <m.div
       variants={itemVariants}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -181,7 +183,7 @@ const ServiceCard = ({ service }: { service: (typeof services)[0] }) => {
         }
       `}
     >
-      <motion.div
+      <m.div
         animate={
           hovered
             ? { x: 5, rotate: 5, scale: 1.05 }
@@ -196,7 +198,7 @@ const ServiceCard = ({ service }: { service: (typeof services)[0] }) => {
           strokeWidth={1.5}
           aria-hidden="true"
         />
-      </motion.div>
+      </m.div>
 
       <div className="flex-1 flex flex-col w-full">
         <span className="label-premium text-[#4A3728] dark:text-[#D4B896] mb-1 font-semibold">
@@ -224,7 +226,7 @@ const ServiceCard = ({ service }: { service: (typeof services)[0] }) => {
           </Link>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 

@@ -200,7 +200,7 @@ export default function CustomFurnitureSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-7 bg-[#FAF9F7] dark:bg-zinc-900/50 rounded-2xl p-6 sm:p-8 border border-zinc-200 dark:border-zinc-800 shadow-sm">
+          <div className="lg:col-span-7 bg-[#FAF9F7] dark:bg-[#1C1C1C] rounded-xl p-6 sm:p-8 border border-zinc-200 dark:border-zinc-700 shadow-sm">
             <div className="mb-6">
               <span className="label-premium text-[#634E3A] dark:text-[#D4B896] block">
                 Cotización Rápida
@@ -208,7 +208,7 @@ export default function CustomFurnitureSection() {
               <h3 className="text-xl font-medium text-zinc-900 dark:text-white mt-1">
                 Solicita tu Proforma Personalizada
               </h3>
-              <p className="text-xs font-medium text-zinc-600 dark:text-zinc-300 mt-0.5">
+              <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mt-1 leading-relaxed">
                 Te enviamos un presupuesto preliminar directamente por WhatsApp
                 con asesoría técnica sin compromiso.
               </p>
@@ -288,7 +288,7 @@ export default function CustomFurnitureSection() {
                     <Ruler className="w-3.5 h-3.5 text-[#634E3A] dark:text-[#D4B896]" aria-hidden="true" />
                     Medidas Aproximadas de tu Espacio (en Centímetros)
                   </span>
-                  <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">
+                  <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
                     Unidad: cm
                   </span>
                 </div>
@@ -311,18 +311,17 @@ export default function CustomFurnitureSection() {
                             setErrors((prev) => ({ ...prev, width: "" }));
                           }
                         }}
-                        className={`w-full px-3 py-2 pr-10 rounded-xl border ${
-                          errors.width
-                            ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                            : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
-                        } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1`}
+                        className={`w-full px-3 py-2 pr-10 rounded-xl border ${errors.width
+                          ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+                          : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
+                          } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-600 dark:placeholder:text-zinc-300 focus:outline-none focus:ring-1`}
                       />
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-600 dark:text-zinc-400 pointer-events-none" aria-hidden="true">
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-700 dark:text-zinc-300 pointer-events-none" aria-hidden="true">
                         cm
                       </span>
                     </div>
                     {errors.width && (
-                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
+                      <p role="alert" className="text-xs text-red-700 dark:text-red-400 mt-1 flex items-center gap-1 font-medium">
                         <AlertCircle className="w-3 h-3 shrink-0" />
                         {errors.width}
                       </p>
@@ -346,18 +345,17 @@ export default function CustomFurnitureSection() {
                             setErrors((prev) => ({ ...prev, height: "" }));
                           }
                         }}
-                        className={`w-full px-3 py-2 pr-10 rounded-xl border ${
-                          errors.height
-                            ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                            : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
-                        } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1`}
+                        className={`w-full px-3 py-2 pr-10 rounded-xl border ${errors.height
+                          ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+                          : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
+                          } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-600 dark:placeholder:text-zinc-300 focus:outline-none focus:ring-1`}
                       />
                       <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-600 dark:text-zinc-400 pointer-events-none" aria-hidden="true">
                         cm
                       </span>
                     </div>
                     {errors.height && (
-                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
+                      <p role="alert" className="text-xs text-red-700 dark:text-red-400 mt-1 flex items-center gap-1 font-medium">
                         <AlertCircle className="w-3 h-3 shrink-0" />
                         {errors.height}
                       </p>
@@ -381,18 +379,17 @@ export default function CustomFurnitureSection() {
                             setErrors((prev) => ({ ...prev, depth: "" }));
                           }
                         }}
-                        className={`w-full px-3 py-2 pr-10 rounded-xl border ${
-                          errors.depth
-                            ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                            : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
-                        } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1`}
+                        className={`w-full px-3 py-2 pr-10 rounded-xl border ${errors.depth
+                          ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+                          : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
+                          } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-600 dark:placeholder:text-zinc-300 focus:outline-none focus:ring-1`}
                       />
                       <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-600 dark:text-zinc-400 pointer-events-none" aria-hidden="true">
                         cm
                       </span>
                     </div>
                     {errors.depth && (
-                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
+                      <p role="alert" className="text-xs text-red-700 dark:text-red-400 mt-1 flex items-center gap-1 font-medium">
                         <AlertCircle className="w-3 h-3 shrink-0" />
                         {errors.depth}
                       </p>
@@ -420,14 +417,13 @@ export default function CustomFurnitureSection() {
                       if (errors.name)
                         setErrors((prev) => ({ ...prev, name: "" }));
                     }}
-                    className={`w-full px-3 py-2 rounded-xl border ${
-                      errors.name
-                        ? "border-red-500 focus:border-red-500"
-                        : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896]"
-                    } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]`}
+                    className={`w-full px-3 py-2 rounded-xl border ${errors.name
+                      ? "border-red-500 focus:border-red-500"
+                      : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896]"
+                      } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-600 dark:placeholder:text-zinc-300 focus:outline-none focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]`}
                   />
                   {errors.name && (
-                    <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
+                    <p role="alert" className="text-xs text-red-700 dark:text-red-400 mt-1 flex items-center gap-1 font-medium">
                       <AlertCircle className="w-3 h-3 shrink-0" />
                       {errors.name}
                     </p>
@@ -452,14 +448,13 @@ export default function CustomFurnitureSection() {
                       if (errors.sector)
                         setErrors((prev) => ({ ...prev, sector: "" }));
                     }}
-                    className={`w-full px-3 py-2 rounded-xl border ${
-                      errors.sector
-                        ? "border-red-500 focus:border-red-500"
-                        : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896]"
-                    } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]`}
+                    className={`w-full px-3 py-2 rounded-xl border ${errors.sector
+                      ? "border-red-500 focus:border-red-500"
+                      : "border-zinc-400 dark:border-zinc-600 focus:border-[#4A3728] dark:focus:border-[#D4B896]"
+                      } bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-600 dark:placeholder:text-zinc-300 focus:outline-none focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]`}
                   />
                   {errors.sector && (
-                    <p className="text-xs text-red-500 mt-1 flex items-center gap-1 font-medium">
+                    <p role="alert" className="text-xs text-red-700 dark:text-red-400 mt-1 flex items-center gap-1 font-medium">
                       <AlertCircle className="w-3 h-3 shrink-0" />
                       {errors.sector}
                     </p>
@@ -480,7 +475,7 @@ export default function CustomFurnitureSection() {
                     placeholder="Ej. $250 - $400"
                     value={budget}
                     onChange={(e) => setBudget(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
+                    className="w-full px-3 py-2 rounded-xl border border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-xs font-medium text-zinc-900 dark:text-white placeholder:text-zinc-600 dark:placeholder:text-zinc-300 focus:outline-none focus:border-[#4A3728] dark:focus:border-[#D4B896] focus:ring-1 focus:ring-[#4A3728] dark:focus:ring-[#D4B896]"
                   />
                 </div>
               </div>
@@ -493,7 +488,7 @@ export default function CustomFurnitureSection() {
                   />
                   Asesoría técnica y cotización sin costo
                 </span>
-                <span className="font-mono text-zinc-600 dark:text-zinc-400">
+                <span className="font-mono font-semibold text-zinc-700 dark:text-zinc-300">
                   095 950 4842
                 </span>
               </div>
@@ -501,7 +496,11 @@ export default function CustomFurnitureSection() {
               <button
                 type="submit"
                 aria-label="Enviar solicitud de cotización por WhatsApp"
-                className="w-full h-12 rounded-full bg-[#166534] hover:bg-[#14532d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#166534] focus-visible:ring-offset-2 text-white label-premium text-white! font-medium tracking-wider flex items-center justify-center gap-2 transition-all shadow-md active:scale-98 cursor-pointer"
+                className="w-full h-12 rounded-full bg-[#166534] hover:bg-[#14532d] 
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#166534] 
+                focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#1C1C1C] 
+                text-white label-premium font-medium tracking-wider flex items-center 
+                justify-center gap-2 transition-all shadow-md active:scale-98 cursor-pointer"
               >
                 <Whatsapp className="w-5 h-5 text-white" aria-hidden="true" />
                 <span>Enviar Solicitud a WhatsApp</span>
@@ -511,7 +510,7 @@ export default function CustomFurnitureSection() {
 
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800">
-              <span className="label-premium text-zinc-700 dark:text-zinc-300">
+              <span className="label-premium text-[#634E3A] dark:text-[#D4B896]">
                 Proyectos Entregados Recientemente
               </span>
               <Link
@@ -560,7 +559,7 @@ export default function CustomFurnitureSection() {
                   <h4 className="text-xs pt-2 font-bold uppercase tracking-wider text-zinc-900 dark:text-white">
                     Visita Nuestra Fábrica con Cita Previa
                   </h4>
-                  <div className="flex items-center gap-1 text-xs text-zinc-500 dark:text-zinc-400">
+                  <div className="flex items-center gap-1 text-xs font-medium text-zinc-700 dark:text-zinc-300">
                     <MapPin className="w-5 h-5 pt-2 text-[#4A3728] dark:text-[#A6866A]" />
                     <span className="pt-2">
                       Sector Condado Alto, norte de Quito
